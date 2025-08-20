@@ -1,5 +1,4 @@
-import SidebarLink from "./sidebar-link";
-import { Blocks, Menu, ScrollText } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -8,22 +7,23 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
-import { Button } from "../ui/button";
-import BrandLogo from "./brand-logo";
 import { Locale } from "@/i18n.config";
-import { LocaleDict } from "@/lib/locales";
-import { getSidebarLinks } from "@/constants/sidebar";
+import BrandLogo from "./brand-logo";
+import SidebarLink from "./sidebar-link";
 
 interface MobileSidebarProps {
   locale: Locale;
-  translations: LocaleDict;
+  sidebarLinks: {
+    name: string;
+    href: string;
+    icon: React.ReactNode;
+  }[];
 }
 
 export default function MobileSidebar({
   locale,
-  translations,
+  sidebarLinks,
 }: MobileSidebarProps) {
-  const sidebarLinks = getSidebarLinks(locale, translations)
 
   return (
     <div className="md:hidden flex items-center justify-between w-full">
@@ -32,10 +32,8 @@ export default function MobileSidebar({
 
       {/* Mobile Sidebar Trigger and Content */}
       <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="ghost">
-            <Menu className="text-primary h-5 w-5" />
-          </Button>
+        <SheetTrigger>
+          <Menu className="text-primary h-5 w-5" />
         </SheetTrigger>
         <SheetContent side="left" className="w-11/12 h-full">
           <SheetHeader className="hidden">

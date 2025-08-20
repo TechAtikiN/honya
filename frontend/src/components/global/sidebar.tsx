@@ -2,25 +2,23 @@
 
 import { useSidebarStore } from "@/stores/sidebar.store";
 import { PanelLeftOpen, PanelRightOpen } from "lucide-react";
-
 import { Button } from "../ui/button";
+import { Locale } from "@/i18n.config";
 import SidebarLink from "./sidebar-link";
 import BrandLogo from "./brand-logo";
-import { Locale } from "@/i18n.config";
 import LanguageSelector from "./language-selector";
-import { LocaleDict } from "@/lib/locales";
-import { getSidebarLinks } from "@/constants/sidebar";
-
 
 interface SidebarProps {
   locale: Locale;
-  translations: LocaleDict
+  sidebarLinks: {
+    name: string;
+    href: string;
+    icon: React.ReactNode;
+  }[]
 }
 
-export default function Sidebar({ locale, translations }: SidebarProps) {
+export default function Sidebar({ locale, sidebarLinks }: SidebarProps) {
   const { collapse, toggleCollapse } = useSidebarStore();
-
-  const sidebarLinks = getSidebarLinks(locale, translations)
 
   return (
     <div

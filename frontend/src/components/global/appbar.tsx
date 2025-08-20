@@ -1,21 +1,21 @@
 import { Locale } from "@/i18n.config";
-import MobileSidebar from "./mobile-sidebar";
 import { LocaleDict } from "@/lib/locales";
+import MobileSidebar from "./mobile-sidebar";
 
 interface AppbarProps {
   locale: Locale;
-  translations: LocaleDict;
+  sidebarLinks: { name: string; href: string; icon: React.ReactNode }[];
 }
 
 export default function Appbar({
   locale,
-  translations,
+  sidebarLinks,
 }: AppbarProps) {
   return (
-    <div className="flex items-center justify-end md:justify-end p-2">
+    <div className="flex items-center justify-end p-2">
       <MobileSidebar
         locale={locale}
-        translations={translations}
+        sidebarLinks={sidebarLinks}
       />
     </div>
   );
