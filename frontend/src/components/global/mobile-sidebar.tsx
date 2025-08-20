@@ -12,6 +12,7 @@ import { Button } from "../ui/button";
 import BrandLogo from "./brand-logo";
 import { Locale } from "@/i18n.config";
 import { LocaleDict } from "@/lib/locales";
+import { getSidebarLinks } from "@/constants/sidebar";
 
 interface MobileSidebarProps {
   locale: Locale;
@@ -22,18 +23,7 @@ export default function MobileSidebar({
   locale,
   translations,
 }: MobileSidebarProps) {
-  const SIDEBAR_LINKS = [
-    {
-      name: translations.sidebar.navigation.books,
-      href: "/",
-      icon: <ScrollText className="w-5 h-5" />,
-    },
-    {
-      name: translations.sidebar.navigation.analytics,
-      href: "/analytics",
-      icon: <Blocks className="w-5 h-5" />,
-    },
-  ];
+  const sidebarLinks = getSidebarLinks(locale, translations)
 
   return (
     <div className="md:hidden flex items-center justify-between w-full">
@@ -64,7 +54,7 @@ export default function MobileSidebar({
               <BrandLogo />
               {/* links */}
               <div className="space-y-2">
-                {SIDEBAR_LINKS.map((link) => (
+                {sidebarLinks.map((link) => (
                   <SidebarLink key={link.name} link={link} locale={locale} />
                 ))}
               </div>
