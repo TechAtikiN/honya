@@ -1,0 +1,16 @@
+{
+    "sidebar": {
+        "navigation": {
+            "books": "本",
+            "analytics": "分析"
+        }
+    },
+    "page": {
+        "home": {
+        "title": "ホーム"
+        },
+        "analytics": {
+        "title": "分析"
+        }
+    }   
+}

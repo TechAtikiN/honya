@@ -1,26 +1,36 @@
 "use client";
 
 import { useSidebarStore } from "@/stores/sidebar.store";
-import { Languages, PanelLeftOpen, PanelRightOpen } from "lucide-react";
-import { SIDEBAR_LINKS } from "@/constants/sidebar";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Blocks, PanelLeftOpen, PanelRightOpen, ScrollText } from "lucide-react";
+
 import { Button } from "../ui/button";
 import SidebarLink from "./sidebar-link";
 import BrandLogo from "./brand-logo";
+import { Locale } from "@/i18n.config";
+import LanguageSelector from "./language-selector";
+import { LocaleDict } from "@/lib/locales";
 
-const LANGUAGES = [
-  {
-    name: "English",
-    code: "en"
-  },
-  {
-    name: "日本語",
-    code: "ja"
-  }
-]
 
-export default function Sidebar() {
+interface SidebarProps {
+  locale: Locale;
+  translations: LocaleDict
+}
+
+export default function Sidebar({ locale, translations }: SidebarProps) {
   const { collapse, toggleCollapse } = useSidebarStore();
+
+  const SIDEBAR_LINKS = [
+    {
+      name: translations.sidebar.navigation.books,
+      href: "/",
+      icon: <ScrollText className="w-5 h-5" />,
+    },
+    {
+      name: translations.sidebar.navigation.analytics,
+      href: "/analytics",
+      icon: <Blocks className="w-5 h-5" />,
+    },
+  ];
 
   return (
     <div
@@ -49,42 +59,18 @@ export default function Sidebar() {
         {/* links */}
         <div className="space-y-2">
           {SIDEBAR_LINKS.map((link) => (
-            <SidebarLink key={link.name} link={link} collapse={collapse} />
+            <SidebarLink
+              key={link.name} link={link} collapse={collapse} locale={locale}
+            />
           ))}
         </div>
       </div>
 
       {/* footer */}
-      <div className="w-full">
-        <Popover>
-          <PopoverTrigger asChild className="p-4">
-            <Button
-              variant={"default"}
-              className="flex items-center justify-center w-full hover:cursor-pointer p-5"
-            >
-              <Languages className="h-5 w-5" />
-              <p className={`text-white ${collapse ? "hidden" : ""}`}>
-                Select Language
-              </p>
-            </Button>
-          </PopoverTrigger>
-
-          <PopoverContent className="w-full">
-            <div className="space-y-2 w-full">
-              {LANGUAGES.map((language) => (
-                <Button
-                  key={language.code}
-                  variant="ghost"
-                  size={"sm"}
-                  className="w-full justify-start"
-                >
-                  {language.name}
-                </Button>
-              ))}
-            </div>
-          </PopoverContent>
-        </Popover>
-      </div>
+      <LanguageSelector
+        collapse={collapse}
+        locale={locale}
+      />
     </div>
   );
 }

@@ -1,0 +1,16 @@
+{
+  "sidebar": {
+    "navigation": {
+      "books": "Books",
+      "analytics": "Analytics"
+    }
+  },
+  "page": {
+    "home": {
+        "title": "Home"
+    },
+    "analytics": {
+        "title": "Analytics"
+    }
+  }
+}

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: "Honya, your personal book library",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -27,7 +27,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   );
