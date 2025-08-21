@@ -1,21 +1,117 @@
 import { bookCategory } from "@/types/book";
+import { Aperture, Atom, AudioWaveform, BadgeQuestionMark, BellDot, BellRing, BookHeart, BookPlus, BookType, CalendarClock, Component, CookingPot, HeartHandshake, History, Laugh, Layers, MapPlus, SquareLibrary, Star, UserRoundPen, Zap } from "lucide-react";
 
 export const BOOK_CATEGORIES = [
-  { value: 'fiction', label: "Fiction" },
-  { value: 'non-fiction', label: "Non-Fiction" },
-  { value: 'science', label: "Science" },
-  { value: 'history', label: "History" },
-  { value: 'fantasy', label: "Fantasy" },
-  { value: 'mystery', label: "Mystery" },
-  { value: 'biography', label: "Biography" },
-  { value: 'romance', label: "Romance" },
-  { value: 'thriller', label: "Thriller" },
-  { value: 'self-help', label: "Self Help" },
-  { value: 'cooking', label: "Cooking" },
-  { value: 'travel', label: "Travel" },
-  { value: 'classics', label: "Classics" },
-  { value: 'comics', label: "Comics" }
+  {
+    value: 'all',
+    label: "All Categories",
+    icon: <SquareLibrary className="h-4 w-4" />
+  },
+  {
+    value: 'fiction',
+    label: "Fiction",
+    icon: <Aperture className="h-4 w-4" />
+  },
+  {
+    value: 'non-fiction',
+    label: "Non-Fiction",
+    icon: <AudioWaveform className="h-4 w-4" />
+  },
+  {
+    value: 'science',
+    label: "Science",
+    icon: <Atom className="h-4 w-4" />
+  },
+  {
+    value: 'history',
+    label: "History",
+    icon: <History className="h-4 w-4" />
+  },
+  {
+    value: 'fantasy',
+    label: "Fantasy",
+    icon: <Component className='h-4 w-4' />
+  },
+  {
+    value: 'mystery',
+    label: "Mystery",
+    icon: <BadgeQuestionMark className="h-4 w-4" />
+  },
+  {
+    value: 'biography',
+    label: "Biography",
+    icon: <UserRoundPen className="h-4 w-4" />
+  },
+  {
+    value: 'romance',
+    label: "Romance",
+    icon: <BookHeart className="h-4 w-4" />
+  },
+  {
+    value: 'thriller',
+    label: "Thriller",
+    icon: <BellRing className="h-4 w-4" />
+  },
+  {
+    value: 'self-help',
+    label: "Self Help",
+    icon: <HeartHandshake className="h-4 w-4" />
+  },
+  {
+    value: 'cooking',
+    label: "Cooking",
+    icon: <CookingPot className="h-4 w-4" />
+  },
+  {
+    value: 'travel',
+    label: "Travel",
+    icon: <MapPlus className="h-4 w-4" />
+  },
+  {
+    value: 'classics',
+    label: "Classics",
+    icon: <Zap className="h-4 w-4" />
+  },
+  {
+    value: 'comics',
+    label: "Comics",
+    icon: <Laugh className="h-4 w-4" />
+  }
 ];
+
+export const BOOK_SORT_OPTIONS = [
+  {
+    value: 'title',
+    label: "Title",
+    icon: <BookType className="h-4 w-4" />
+  },
+  {
+    value: 'rating',
+    label: "Rating",
+    icon: <Star className="h-4 w-4" />
+  },
+  {
+    value: 'recently_added',
+    label: "Recently Added",
+    icon: <BookPlus className="h-4 w-4" />
+  },
+  {
+    value: 'recently_updated',
+    label: "Recently Updated",
+    icon: <BellDot className="h-4 w-4" />
+  },
+  {
+    value: 'publication_year',
+    label: "Publication Year",
+    icon: <CalendarClock className="h-4 w-4" />
+  },
+  {
+    value: "pages",
+    label: "Number of Pages",
+    icon: <Layers className="h-4 w-4" />
+  }
+
+]
 
 export const MOCK_BOOKS_DATA = [
   {
