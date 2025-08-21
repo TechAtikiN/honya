@@ -33,7 +33,7 @@ export default function SidebarLink({
       locale={locale}
       href={link.href}
       className={`flex items-center justify-start space-x-3 p-2 rounded-sm
-        ${isActive ? 'bg-secondary font-medium' : 'font-normal'}
+        ${isActive ? 'bg-secondary font-medium border border-primary/60' : 'font-normal'}
         `}
     >
       <div>{link.icon}</div>

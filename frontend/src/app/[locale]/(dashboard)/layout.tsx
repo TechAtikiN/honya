@@ -19,7 +19,7 @@ export default async function MainLayout({
   return (
     <div className='w-full flex bg-accent'>
       {/* Sidebar */}
-      <div className='h-[calc(100vh)]t'>
+      <div className='min-h-[calc(100vh)]'>
         <Sidebar locale={lang} sidebarLinks={sidebarLinks} />
       </div>
 

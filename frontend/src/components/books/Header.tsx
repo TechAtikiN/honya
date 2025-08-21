@@ -1,5 +1,4 @@
 import { Search } from 'lucide-react'
-import AddNewBook from './AddNewBook'
 
 export default function Header() {
   return (
@@ -14,7 +13,6 @@ export default function Header() {
 
       </div>
 
-      <AddNewBook />
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { BOOK_CATEGORIES, BOOK_SORT_OPTIONS } from "@/constants/books"
 import DropdownFilter from "./DropdownFilter"
 import RangeFilter from "./RangeFilter"
+import AddNewBook from "./AddNewBook"
 
 export default function FilterAndSortSection() {
   return (
@@ -30,21 +31,23 @@ export default function FilterAndSortSection() {
           step={1000}
           fromLabel={1}
         />
-      </div>
-
-      <div className="flex items-center justify-start space-x-4">
         <DropdownFilter
           label="Category"
           searchParamKey="category"
           defaultValue="all"
           list={BOOK_CATEGORIES}
         />
+      </div>
+
+      <div className="flex items-center justify-start gap-2">
         <DropdownFilter
           label="Sort"
           searchParamKey="sort_by"
           defaultValue="recently_added"
           list={BOOK_SORT_OPTIONS}
         />
+        <AddNewBook />
+
       </div>
     </div>
   )

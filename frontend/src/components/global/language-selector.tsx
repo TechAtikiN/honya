@@ -1,11 +1,10 @@
 'use client';
 
-import { Globe, Languages } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { i18n, Locale } from '@/i18n.config';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 
 interface LanguageSelectorProps {
   collapse: boolean;
@@ -66,7 +65,7 @@ export default function LanguageSelector({
           >
             Select Language
           </p>
-          <Globe className='h-5 w-5' />
+          <Globe className='-ml-2 h-5 w-5' />
         </Button>
       </PopoverTrigger>
 

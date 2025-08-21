@@ -69,7 +69,7 @@ export default function AddNewBook() {
     <div>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
-          <Button className="flex items-center">
+          <Button className="flex items-start justify-start min-w-40">
             <BookDashed className="h-4 w-4" />
             <span> Add New Book</span>
           </Button>

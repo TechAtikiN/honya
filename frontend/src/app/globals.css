@@ -49,8 +49,8 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: oklch(26.9% 0 0);
+  --primary-foreground: oklch(98.5% 0 0);
   --secondary: oklch(92.2% 0 0);
   --secondary-foreground: oklch(0.145 0 0);
   --muted: oklch(0.97 0 0);
@@ -83,8 +83,8 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  --primary: oklch(26.9% 0 0);
+  --primary-foreground: oklch(98.5% 0 0);
   --secondary: oklch(92.2% 0 0);
   --secondary-foreground: oklch(0.145 0 0);
   --muted: oklch(0.269 0 0);
@@ -147,6 +147,6 @@
   }
 
   .form-input {
-    @apply rounded-sm p-2 border border-secondary focus:outline-none focus:ring-2 focus:ring-accent duration-150 text-sm;
+    @apply rounded-sm p-2 border border-primary/40 focus:outline-none shadow-xs text-sm hover:shadow-sm hover:border-primary/80 transition-all duration-300 ease-in-out;
   }
 }
