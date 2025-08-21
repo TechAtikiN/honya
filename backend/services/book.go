@@ -2,6 +2,7 @@ package services
 
 import (
 	"github.com/techatikin/backend/dtos"
+	"github.com/techatikin/backend/errors"
 	"github.com/techatikin/backend/models"
 	"github.com/techatikin/backend/repositories"
 	"github.com/techatikin/backend/utils"
@@ -9,10 +10,10 @@ import (
 
 // TBookService defines the interface for book-related services.
 type TBookService interface {
-	GetBooks(params dtos.BookQueryParams) ([]models.Book, int64, error)
-	GetBookByID(id string) (models.Book, error)
-	CreateBook(dtos.BookCreateRequest) (models.Book, error)
-	UpdateBook(id string, updates dtos.BookUpdateRequest) (models.Book, error) // <-- added
+	GetBooks(params dtos.BookQueryParams) ([]models.Book, *dtos.PaginationMeta, error)
+	GetBookByID(id string) (*models.Book, error)
+	CreateBook(book *dtos.BookCreateRequest) (*models.Book, error)
+	UpdateBook(id string, updateData *dtos.BookUpdateRequest) (*models.Book, error)
 	DeleteBook(id string) error
 }
 
@@ -24,21 +25,48 @@ func BookService(repo repositories.TBookRepository) TBookService {
 	return &bookService{repo}
 }
 
-func (s *bookService) GetBooks(params dtos.BookQueryParams) ([]models.Book, int64, error) {
-	return s.repo.FindAll(params)
-}
-
-func (s *bookService) GetBookByID(id string) (models.Book, error) {
-	return s.repo.FindByID(id)
-}
-
-func (s *bookService) CreateBook(book dtos.BookCreateRequest) (models.Book, error) {
-	// Validate the book creation request
-	if err := utils.ValidateBookCreateRequest(book); err != nil {
-		return models.Book{}, err
+func (s *bookService) GetBooks(params dtos.BookQueryParams) ([]models.Book, *dtos.PaginationMeta, error) {
+	books, meta, err := s.repo.FindAll(params)
+	if err != nil {
+		return nil, nil, errors.NewInternalError(err)
 	}
 
-	resource := models.Book{
+	if len(books) == 0 {
+		return books, &dtos.PaginationMeta{
+			TotalCount: 0,
+			Offset:     params.Offset,
+			Limit:      params.Limit,
+		}, nil
+	}
+
+	return books, &meta, nil
+}
+
+func (s *bookService) GetBookByID(id string) (*models.Book, error) {
+	if id == "" {
+		return nil, errors.NewBadRequestError("ID is required")
+	}
+
+	book, err := s.repo.FindByID(id)
+	if err != nil {
+		return nil, errors.NewInternalError(err)
+	}
+
+	if book == nil {
+		return nil, errors.NewNotFoundError("Book not found")
+	}
+
+	return book, nil
+}
+
+func (s *bookService) CreateBook(book *dtos.BookCreateRequest) (*models.Book, error) {
+	// Validate the book creation request
+	if err := utils.ValidateBookCreateRequest(book); err != nil {
+		return nil, errors.NewBadRequestError(err.Error())
+	}
+
+	// Create a new book model
+	newBook := models.Book{
 		Title:           book.Title,
 		Description:     book.Description,
 		Category:        book.Category,
@@ -50,13 +78,54 @@ func (s *bookService) CreateBook(book dtos.BookCreateRequest) (models.Book, erro
 		AuthorName:      book.AuthorName,
 	}
 
-	return s.repo.Create(resource)
+	// Call repository to create the book
+	resource, err := s.repo.Create(&newBook)
+	if err != nil {
+		return nil, errors.NewInternalError(err)
+	}
+
+	return resource, nil
 }
 
-func (s *bookService) UpdateBook(id string, updates dtos.BookUpdateRequest) (models.Book, error) {
-	return s.repo.Update(id, updates)
+func (s *bookService) UpdateBook(id string, updateData *dtos.BookUpdateRequest) (*models.Book, error) {
+	if id == "" {
+		return nil, errors.NewBadRequestError("ID is required")
+	}
+
+	// Validate input
+	if err := utils.ValidateBookUpdateRequest(updateData); err != nil {
+		return nil, errors.NewBadRequestError(err.Error())
+	}
+
+	// Check if book exists
+	existingBook, err := s.repo.FindByID(id)
+	if err != nil {
+		return nil, errors.NewInternalError(err)
+	}
+
+	if existingBook == nil {
+		return nil, errors.NewNotFoundError("Book not found")
+	}
+
+	// Perform update
+	resource, err := s.repo.Update(id, updateData)
+	if err != nil {
+		return nil, errors.NewInternalError(err)
+	}
+
+	return resource, nil
 }
 
 func (s *bookService) DeleteBook(id string) error {
+	// Check if book exists
+	existingBook, err := s.repo.FindByID(id)
+	if err != nil {
+		return errors.NewInternalError(err)
+	}
+
+	if existingBook == nil {
+		return errors.NewNotFoundError("Book not found")
+	}
+
 	return s.repo.Delete(id)
 }

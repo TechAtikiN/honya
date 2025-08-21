@@ -42,6 +42,10 @@ func main() {
 	ctrl := controllers.BookController(svc)
 
 	// Set up Routers
+	api.Get("/health", func(c *fiber.Ctx) error {
+		return c.SendString("API is running")
+	})
+
 	routers.SetupBooksRouter(api, ctrl)
 
 	// Start the server

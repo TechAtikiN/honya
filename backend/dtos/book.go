@@ -48,3 +48,9 @@ type BookQueryParams struct {
 	Rating          float64 `query:"rating"`
 	Pages           int     `query:"pages"`
 }
+
+type PaginationMeta struct {
+	TotalCount int64 `json:"total_count"`
+	Offset     int   `json:"offset"`
+	Limit      int   `json:"limit"`
+}

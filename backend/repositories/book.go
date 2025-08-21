@@ -8,10 +8,10 @@ import (
 
 // TBookRepository defines the interface for book-related database operations.
 type TBookRepository interface {
-	FindAll(params dtos.BookQueryParams) ([]models.Book, int64, error)
-	FindByID(id string) (models.Book, error)
-	Create(book models.Book) (models.Book, error)
-	Update(id string, updates dtos.BookUpdateRequest) (models.Book, error)
+	FindAll(params dtos.BookQueryParams) ([]models.Book, dtos.PaginationMeta, error)
+	FindByID(id string) (*models.Book, error)
+	Create(book *models.Book) (*models.Book, error)
+	Update(id string, updateData *dtos.BookUpdateRequest) (*models.Book, error)
 	Delete(id string) error
 }
 
@@ -23,105 +23,131 @@ func BookRepository(db *gorm.DB) TBookRepository {
 	return &bookRepository{db}
 }
 
-func (r *bookRepository) FindAll(params dtos.BookQueryParams) ([]models.Book, int64, error) {
+func (r *bookRepository) FindAll(params dtos.BookQueryParams) ([]models.Book, dtos.PaginationMeta, error) {
+	// Variales to hold results and metadata
 	var books []models.Book
 	var totalCount int64
 
-	bookQuery := r.db.Model(&models.Book{})
+	// Build the query
+	query := r.db.Model(&models.Book{})
 
-	// Apply full-text query
+	// Apply filters based on search query
 	if params.Query != "" {
 		likeQuery := "%" + params.Query + "%"
-		bookQuery = bookQuery.Where("title ILIKE ? OR description ILIKE ? OR author_name ILIKE ?", likeQuery, likeQuery, likeQuery)
+		query = query.Where("title ILIKE ? OR description ILIKE ? OR author_name ILIKE ?", likeQuery, likeQuery, likeQuery)
 	}
 
 	// Apply category filter
 	if params.Category != "" {
-		bookQuery = bookQuery.Where("category = ?", params.Category)
+		query = query.Where("category = ?", params.Category)
 	}
 
 	// Apply publication year logic
 	if params.PublicationYear > 0 {
 		if params.PublicationYear < 1950 {
-			bookQuery = bookQuery.Where("publication_year <= ?", 1950)
+			query = query.Where("publication_year <= ?", 1950)
 		} else {
-			bookQuery = bookQuery.Where("publication_year <= ?", params.PublicationYear)
+			query = query.Where("publication_year <= ?", params.PublicationYear)
 		}
 	}
 
+	// Apply rating and pages filters
 	if params.Rating > 0 {
-		bookQuery = bookQuery.Where("rating >= ?", params.Rating)
+		query = query.Where("rating >= ?", params.Rating)
 	}
 
+	// Apply pages filter
 	if params.Pages > 0 {
-		bookQuery = bookQuery.Where("pages <= ?", params.Pages)
+		query = query.Where("pages <= ?", params.Pages)
 	}
 
-	err := bookQuery.Count(&totalCount).Error
+	// Count total records for pagination
+	err := query.Count(&totalCount).Error
 	if err != nil {
-		return nil, 0, err
+		return nil, dtos.PaginationMeta{}, err
 	}
 
-	// Then: apply pagination and fetch results
-	err = bookQuery.Offset(params.Offset).Limit(params.Limit).Find(&books).Error
+	// Apply pagination
+	err = query.Offset(params.Offset).Limit(params.Limit).Find(&books).Error
 	if err != nil {
-		return nil, 0, err
+		return nil, dtos.PaginationMeta{}, err
 	}
 
-	return books, totalCount, nil
+	// Prepare pagination metadata
+	meta := dtos.PaginationMeta{
+		TotalCount: int64(totalCount),
+		Offset:     params.Offset,
+		Limit:      params.Limit,
+	}
+
+	return books, meta, nil
 }
 
-func (r *bookRepository) FindByID(id string) (models.Book, error) {
+func (r *bookRepository) FindByID(id string) (*models.Book, error) {
 	var book models.Book
+
+	// Find book by ID
 	err := r.db.First(&book, "id = ?", id).Error
-	return book, err
+	if err != nil {
+		if err == gorm.ErrRecordNotFound {
+			return nil, nil
+		}
+		return nil, err
+	}
+	return &book, nil
 }
 
-func (r *bookRepository) Create(book models.Book) (models.Book, error) {
-	err := r.db.Create(&book).Error
-	return book, err
+func (r *bookRepository) Create(book *models.Book) (*models.Book, error) {
+	// Create a new book record
+	err := r.db.Create(book).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return book, nil
 }
 
-func (r *bookRepository) Update(id string, updates dtos.BookUpdateRequest) (models.Book, error) {
-	var book models.Book
-
-	// Find existing book
-	if err := r.db.First(&book, "id = ?", id).Error; err != nil {
-		return models.Book{}, err
+func (r *bookRepository) Update(id string, updateData *dtos.BookUpdateRequest) (*models.Book, error) {
+	book, err := r.FindByID(id)
+	if err != nil {
+		return nil, err
+	}
+	if book == nil {
+		return nil, gorm.ErrRecordNotFound
 	}
 
-	// Apply updates only for non-nil fields
-	if updates.Title != nil {
-		book.Title = *updates.Title
+	// Update only non-nil fields
+	if updateData.Title != nil {
+		book.Title = *updateData.Title
 	}
-	if updates.Description != nil {
-		book.Description = *updates.Description
+	if updateData.Description != nil {
+		book.Description = *updateData.Description
 	}
-	if updates.Category != nil {
-		book.Category = *updates.Category
+	if updateData.Category != nil {
+		book.Category = *updateData.Category
 	}
-	if updates.Image != nil {
-		book.Image = *updates.Image
+	if updateData.Image != nil {
+		book.Image = *updateData.Image
 	}
-	if updates.PublicationYear != nil {
-		book.PublicationYear = *updates.PublicationYear
+	if updateData.PublicationYear != nil {
+		book.PublicationYear = *updateData.PublicationYear
 	}
-	if updates.Rating != nil {
-		book.Rating = *updates.Rating
+	if updateData.Rating != nil {
+		book.Rating = *updateData.Rating
 	}
-	if updates.Pages != nil {
-		book.Pages = *updates.Pages
+	if updateData.Pages != nil {
+		book.Pages = *updateData.Pages
 	}
-	if updates.Isbn != nil {
-		book.Isbn = *updates.Isbn
+	if updateData.Isbn != nil {
+		book.Isbn = *updateData.Isbn
 	}
-	if updates.AuthorName != nil {
-		book.AuthorName = *updates.AuthorName
+	if updateData.AuthorName != nil {
+		book.AuthorName = *updateData.AuthorName
 	}
 
-	// Save changes
-	if err := r.db.Save(&book).Error; err != nil {
-		return models.Book{}, err
+	// Save the updated book
+	if err := r.db.Save(book).Error; err != nil {
+		return nil, err
 	}
 
 	return book, nil
