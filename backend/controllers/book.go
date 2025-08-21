@@ -1,6 +1,9 @@
 package controllers
 
 import (
+	"strconv"
+	"strings"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/techatikin/backend/dtos"
 	"github.com/techatikin/backend/services"
@@ -8,6 +11,10 @@ import (
 
 type TBookController struct {
 	service services.TBookService
+}
+
+func BookController(service services.TBookService) *TBookController {
+	return &TBookController{service}
 }
 
 type BookCreateRequest struct {
@@ -19,7 +26,7 @@ type BookCreateRequest struct {
 	Rating          float64 `json:"rating"`
 	Pages           int     `json:"pages"`
 	Isbn            string  `json:"isbn"`
-	AuthorId        string  `json:"author_id"`
+	AuthorName      string  `json:"author_name"`
 }
 
 type BookUpdateRequest struct {
@@ -37,22 +44,31 @@ type BookResponse struct {
 	Rating          float64 `json:"rating"`
 	Pages           int     `json:"pages"`
 	Isbn            string  `json:"isbn"`
-	AuthorId        string  `json:"author_id"`
+	AuthorName      string  `json:"author_name"`
 	CreatedAt       int64   `json:"created_at"`
 	UpdatedAt       int64   `json:"updated_at"`
 }
 
-func BookController(service services.TBookService) *TBookController {
-	return &TBookController{service}
-}
-
 func (c *TBookController) GetBooks(ctx *fiber.Ctx) error {
-	books, err := c.service.GetBooks()
+	query := ctx.Query("query")
+	offset, _ := strconv.Atoi(ctx.Query("offset", "0"))
+	limit, _ := strconv.Atoi(ctx.Query("limit", "10"))
+	category := strings.ToLower(ctx.Query("category", ""))
+	publicationYear, _ := strconv.Atoi(ctx.Query("publication_year", "2025"))
+	rating, _ := strconv.ParseFloat(ctx.Query("rating", "5"), 64)
+	pages, _ := strconv.Atoi(ctx.Query("pages", "0"))
+
+	books, count, err := c.service.GetBooks(query, offset, limit, category, publicationYear, rating, pages)
 	if err != nil {
 		return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 
-	return ctx.Status(fiber.StatusOK).JSON(books)
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
+		"data":   books,
+		"count":  count,
+		"offset": offset,
+		"limit":  limit,
+	})
 }
 
 func (c *TBookController) GetBookByID(ctx *fiber.Ctx) error {
@@ -73,7 +89,7 @@ func (c *TBookController) GetBookByID(ctx *fiber.Ctx) error {
 		Rating:          book.Rating,
 		Pages:           book.Pages,
 		Isbn:            book.Isbn,
-		AuthorId:        book.AuthorId,
+		AuthorName:      book.AuthorName,
 		CreatedAt:       book.CreatedAt,
 		UpdatedAt:       book.UpdatedAt,
 	}
@@ -103,7 +119,7 @@ func (c *TBookController) CreateBook(ctx *fiber.Ctx) error {
 		Rating:          book.Rating,
 		Pages:           book.Pages,
 		Isbn:            book.Isbn,
-		AuthorId:        book.AuthorId,
+		AuthorName:      book.AuthorName,
 		CreatedAt:       book.CreatedAt,
 		UpdatedAt:       book.UpdatedAt,
 	}

@@ -7,7 +7,7 @@ import (
 
 // TBookRepository defines the interface for book-related database operations.
 type TBookRepository interface {
-	FindAll() ([]models.Book, error)
+	FindAll(query string, offset, limit int, category string, publicationYear int, rating float64, pages int) ([]models.Book, int64, error)
 	FindByID(id string) (models.Book, error)
 	Create(book models.Book) (models.Book, error)
 	Delete(id string) error
@@ -21,10 +21,52 @@ func BookRepository(db *gorm.DB) TBookRepository {
 	return &bookRepository{db}
 }
 
-func (r *bookRepository) FindAll() ([]models.Book, error) {
+func (r *bookRepository) FindAll(query string, offset, limit int, category string, publicationYear int, rating float64, pages int) ([]models.Book, int64, error) {
 	var books []models.Book
-	err := r.db.Find(&books).Error
-	return books, err
+	var totalCount int64
+
+	bookQuery := r.db.Model(&models.Book{})
+
+	// Apply full-text query
+	if query != "" {
+		likeQuery := "%" + query + "%"
+		bookQuery = bookQuery.Where("title ILIKE ? OR description ILIKE ? OR author_name ILIKE ?", likeQuery, likeQuery, likeQuery)
+	}
+
+	// Apply category filter
+	if category != "" {
+		bookQuery = bookQuery.Where("category = ?", category)
+	}
+
+	// Apply publication year logic
+	if publicationYear > 0 {
+		if publicationYear < 1950 {
+			bookQuery = bookQuery.Where("publication_year <= ?", 1950)
+		} else {
+			bookQuery = bookQuery.Where("publication_year <= ?", publicationYear)
+		}
+	}
+
+	if rating > 0 {
+		bookQuery = bookQuery.Where("rating >= ?", rating)
+	}
+
+	if pages > 0 {
+		bookQuery = bookQuery.Where("pages <= ?", pages)
+	}
+
+	err := bookQuery.Count(&totalCount).Error
+	if err != nil {
+		return nil, 0, err
+	}
+
+	// Then: apply pagination and fetch results
+	err = bookQuery.Offset(offset).Limit(limit).Find(&books).Error
+	if err != nil {
+		return nil, 0, err
+	}
+
+	return books, totalCount, nil
 }
 
 func (r *bookRepository) FindByID(id string) (models.Book, error) {

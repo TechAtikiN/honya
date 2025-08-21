@@ -12,7 +12,7 @@ func ValidateBookCreateRequest(request dtos.BookCreateRequest) error {
 	if request.Title == "" {
 		return errors.New("title is required")
 	}
-	if request.AuthorId == "" {
+	if request.AuthorName == "" {
 		return errors.New("author ID is required")
 	}
 	currentYear := time.Now().Year()
@@ -35,7 +35,7 @@ func ValidateBookUpdateRequest(request dtos.BookUpdateRequest) error {
 	if *request.Title == "" {
 		return errors.New("title is required")
 	}
-	if *request.AuthorId == "" {
+	if *request.AuthorName == "" {
 		return errors.New("author ID is required")
 	}
 	currentYear := time.Now().Year()

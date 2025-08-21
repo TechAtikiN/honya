@@ -28,6 +28,8 @@ func main() {
 
 	// Setup cors middleware
 	app.Use(cors.New())
+
+	// Set up API routes
 	api := app.Group("/api")
 
 	// Set up Repositories

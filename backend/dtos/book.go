@@ -9,7 +9,7 @@ type BookCreateRequest struct {
 	Rating          float64 `json:"rating"`
 	Pages           int     `json:"pages"`
 	Isbn            string  `json:"isbn"`
-	AuthorId        string  `json:"author_id" validate:"required"`
+	AuthorName      string  `json:"author_name" validate:"required"`
 }
 
 type BookUpdateRequest struct {
@@ -21,7 +21,7 @@ type BookUpdateRequest struct {
 	Rating          *float64 `json:"rating,omitempty"`
 	Pages           *int     `json:"pages,omitempty"`
 	Isbn            *string  `json:"isbn,omitempty"`
-	AuthorId        *string  `json:"author_id,omitempty"`
+	AuthorName      *string  `json:"author_name,omitempty"`
 }
 
 type BookResponse struct {
@@ -34,7 +34,7 @@ type BookResponse struct {
 	Rating          float64 `json:"rating"`
 	Pages           int     `json:"pages"`
 	Isbn            string  `json:"isbn"`
-	AuthorId        string  `json:"author_id"`
+	AuthorName      string  `json:"author_name"`
 	CreatedAt       int64   `json:"created_at"`
 	UpdatedAt       int64   `json:"updated_at"`
 }

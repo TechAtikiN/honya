@@ -17,7 +17,7 @@ type Book struct {
 	Isbn            string  `gorm:"type:varchar(20);unique" json:"isbn"`
 	CreatedAt       int64   `gorm:"autoCreateTime" json:"created_at"`
 	UpdatedAt       int64   `gorm:"autoUpdateTime" json:"updated_at"`
-	AuthorId        string  `gorm:"type:varchar(26);not null" json:"author_id"`
+	AuthorName      string  `gorm:"type:varchar(100)" json:"author_name"`
 }
 
 func (book *Book) BeforeCreate(tx *gorm.DB) error {
