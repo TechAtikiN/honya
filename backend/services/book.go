@@ -9,9 +9,10 @@ import (
 
 // TBookService defines the interface for book-related services.
 type TBookService interface {
-	GetBooks(query string, offset, limit int, category string, publication_year int, rating float64, pages int) ([]models.Book, int64, error)
+	GetBooks(params dtos.BookQueryParams) ([]models.Book, int64, error)
 	GetBookByID(id string) (models.Book, error)
 	CreateBook(dtos.BookCreateRequest) (models.Book, error)
+	UpdateBook(id string, updates dtos.BookUpdateRequest) (models.Book, error) // <-- added
 	DeleteBook(id string) error
 }
 
@@ -23,8 +24,8 @@ func BookService(repo repositories.TBookRepository) TBookService {
 	return &bookService{repo}
 }
 
-func (s *bookService) GetBooks(query string, offset, limit int, category string, publicationYear int, rating float64, pages int) ([]models.Book, int64, error) {
-	return s.repo.FindAll(query, offset, limit, category, publicationYear, rating, pages)
+func (s *bookService) GetBooks(params dtos.BookQueryParams) ([]models.Book, int64, error) {
+	return s.repo.FindAll(params)
 }
 
 func (s *bookService) GetBookByID(id string) (models.Book, error) {
@@ -50,6 +51,10 @@ func (s *bookService) CreateBook(book dtos.BookCreateRequest) (models.Book, erro
 	}
 
 	return s.repo.Create(resource)
+}
+
+func (s *bookService) UpdateBook(id string, updates dtos.BookUpdateRequest) (models.Book, error) {
+	return s.repo.Update(id, updates)
 }
 
 func (s *bookService) DeleteBook(id string) error {

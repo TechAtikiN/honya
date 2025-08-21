@@ -11,5 +11,6 @@ func SetupBooksRouter(api fiber.Router, ctrl *controllers.TBookController) {
 	booksRoutes.Get("/", ctrl.GetBooks)
 	booksRoutes.Get("/:id", ctrl.GetBookByID)
 	booksRoutes.Post("/", ctrl.CreateBook)
+	booksRoutes.Put("/:id", ctrl.UpdateBook)
 	booksRoutes.Delete("/:id", ctrl.DeleteBook)
 }

@@ -38,3 +38,13 @@ type BookResponse struct {
 	CreatedAt       int64   `json:"created_at"`
 	UpdatedAt       int64   `json:"updated_at"`
 }
+
+type BookQueryParams struct {
+	Query           string  `query:"query"`
+	Offset          int     `query:"offset"`
+	Limit           int     `query:"limit"`
+	Category        string  `query:"category"`
+	PublicationYear int     `query:"publication_year"`
+	Rating          float64 `query:"rating"`
+	Pages           int     `query:"pages"`
+}
