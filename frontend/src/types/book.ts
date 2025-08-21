@@ -14,3 +14,18 @@ export enum bookCategory {
     CLASSICS = "classics",
     COMICS = "comics",
 }
+
+export type Book = {
+    id: string;
+    title: string;
+    description: string;
+    authorName: string;
+    category: bookCategory;
+    image: string;
+    publicationYear: number;
+    rating: number;
+    pages: number;
+    isbn: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
