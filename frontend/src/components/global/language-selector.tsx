@@ -61,9 +61,8 @@ export default function LanguageSelector({
           className='flex items-center justify-between w-full hover:cursor-pointer p-5'
         >
           <p
-            className={`text-white transition-all duration-200 ease-in-out whitespace-nowrap overflow-hidden ${
-              collapse ? 'opacity-0 w-0' : 'opacity-100 w-auto'
-            }`}
+            className={`text-white transition-all duration-200 ease-in-out whitespace-nowrap overflow-hidden ${collapse ? 'opacity-0 w-0' : 'opacity-100 w-auto'
+              }`}
           >
             Select Language
           </p>
@@ -82,9 +81,8 @@ export default function LanguageSelector({
             <Button
               key={lang}
               variant={'link'}
-              className={`justify-start w-full hover:no-underline ${
-                lang === locale ? 'bg-neutral-200' : ''
-              }`}
+              className={`justify-start w-full hover:no-underline ${lang === locale ? 'bg-neutral-200' : ''
+                }`}
               onClick={() => setLocaleAndReload(lang)}
             >
               {lang === Locale.EN ? 'English' : '日本語'}

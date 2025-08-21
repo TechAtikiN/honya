@@ -32,15 +32,14 @@ export default function SidebarLink({
     <CustomLink
       locale={locale}
       href={link.href}
-      className={`flex items-center justify-start space-x-3 p-2 rounded-md
+      className={`flex items-center justify-start space-x-3 p-2 rounded-sm
         ${isActive ? 'bg-secondary font-medium' : 'font-normal'}
         `}
     >
       <div>{link.icon}</div>
       <p
-        className={`transition-all duration-200 ease-in-out whitespace-nowrap overflow-hidden ${
-          collapse ? 'opacity-0 w-0' : 'opacity-100 w-auto'
-        }`}
+        className={`transition-all duration-200 ease-in-out whitespace-nowrap overflow-hidden ${collapse ? 'opacity-0 w-0' : 'opacity-100 w-auto'
+          }`}
       >
         {link.name}
       </p>
