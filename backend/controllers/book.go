@@ -42,8 +42,9 @@ func (c *TBookController) GetBooks(ctx *fiber.Ctx) error {
 		Limit:           utils.ParseInt(ctx.Query("limit"), 10),
 		Category:        strings.ToLower(ctx.Query("category")),
 		PublicationYear: utils.ParseInt(ctx.Query("publication_year"), 2025),
-		Rating:          utils.ParseFloat(ctx.Query("rating"), 5),
+		Rating:          utils.ParseFloat(ctx.Query("rating"), 0),
 		Pages:           utils.ParseInt(ctx.Query("pages"), 0),
+		Sort:            strings.ToLower(ctx.Query("sort")),
 	}
 
 	// Call service to get books

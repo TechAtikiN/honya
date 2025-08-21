@@ -47,6 +47,7 @@ type BookQueryParams struct {
 	PublicationYear int     `query:"publication_year"`
 	Rating          float64 `query:"rating"`
 	Pages           int     `query:"pages"`
+	Sort            string  `query:"sort"`
 }
 
 type PaginationMeta struct {

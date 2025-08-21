@@ -24,58 +24,68 @@ func BookRepository(db *gorm.DB) TBookRepository {
 }
 
 func (r *bookRepository) FindAll(params dtos.BookQueryParams) ([]models.Book, dtos.PaginationMeta, error) {
-	// Variales to hold results and metadata
 	var books []models.Book
 	var totalCount int64
 
-	// Build the query
 	query := r.db.Model(&models.Book{})
 
-	// Apply filters based on search query
+	// Search filter
 	if params.Query != "" {
 		likeQuery := "%" + params.Query + "%"
 		query = query.Where("title ILIKE ? OR description ILIKE ? OR author_name ILIKE ?", likeQuery, likeQuery, likeQuery)
 	}
 
-	// Apply category filter
+	// Category filter
 	if params.Category != "" {
 		query = query.Where("category = ?", params.Category)
 	}
 
-	// Apply publication year logic
+	// Publication year filter (range logic can be added if needed)
 	if params.PublicationYear > 0 {
-		if params.PublicationYear < 1950 {
-			query = query.Where("publication_year <= ?", 1950)
-		} else {
-			query = query.Where("publication_year <= ?", params.PublicationYear)
-		}
+		query = query.Where("publication_year <= ?", params.PublicationYear)
 	}
 
-	// Apply rating and pages filters
+	// Rating filter
 	if params.Rating > 0 {
 		query = query.Where("rating >= ?", params.Rating)
 	}
 
-	// Apply pages filter
+	// Pages filter
 	if params.Pages > 0 {
 		query = query.Where("pages <= ?", params.Pages)
 	}
 
-	// Count total records for pagination
-	err := query.Count(&totalCount).Error
-	if err != nil {
+	// Sorting
+	switch params.Sort {
+	case "title_asc":
+		query = query.Order("title ASC")
+	case "rating_desc":
+		query = query.Order("rating DESC")
+	case "created_at_desc":
+		query = query.Order("created_at DESC")
+	case "updated_at_desc":
+		query = query.Order("updated_at DESC")
+	case "pages_desc":
+		query = query.Order("pages DESC")
+	case "publication_year_desc":
+		query = query.Order("publication_year DESC")
+	default:
+		query = query.Order("created_at DESC")
+	}
+
+	// Count total records
+	if err := query.Count(&totalCount).Error; err != nil {
 		return nil, dtos.PaginationMeta{}, err
 	}
 
 	// Apply pagination
-	err = query.Offset(params.Offset).Limit(params.Limit).Find(&books).Error
-	if err != nil {
+	if err := query.Offset(params.Offset).Limit(params.Limit).Find(&books).Error; err != nil {
 		return nil, dtos.PaginationMeta{}, err
 	}
 
-	// Prepare pagination metadata
+	// Pagination metadata
 	meta := dtos.PaginationMeta{
-		TotalCount: int64(totalCount),
+		TotalCount: totalCount,
 		Offset:     params.Offset,
 		Limit:      params.Limit,
 	}
