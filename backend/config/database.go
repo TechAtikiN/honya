@@ -1,18 +1,23 @@
 package config
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"time"
 
 	"github.com/joho/godotenv"
-	"github.com/techatikin/backend/models"
+	"github.com/techatikin/backend/model"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
-func ConnectToDatabase() (*gorm.DB, error) {
+type Dbinstance struct {
+	Db *gorm.DB
+}
+
+var DB Dbinstance
+
+func ConnectToDatabase() {
 	// Load the .env file
 	err := godotenv.Load()
 	if err != nil {
@@ -22,29 +27,29 @@ func ConnectToDatabase() (*gorm.DB, error) {
 	// Get the database connection string from environment variables
 	dsn := os.Getenv("DATABASE_URL")
 	if dsn == "" {
-		return nil, fmt.Errorf("DATABASE_URL environment variable is not set")
+		log.Fatal("DATABASE_URL environment variable is not set")
 	}
 
 	// Connect to the PostgreSQL database
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		return nil, fmt.Errorf("failed to connect database: %w", err)
+		log.Fatalf("Failed to connect to the database: %v", err)
 	}
 
 	// Set connection pool settings
 	sqlDB, err := db.DB()
 	if err != nil {
-		return nil, fmt.Errorf("failed to get DB instance: %w", err)
+		log.Fatalf("Failed to get database instance: %v", err)
 	}
 	sqlDB.SetMaxIdleConns(10)
 	sqlDB.SetMaxOpenConns(100)
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
 	// Migrate models (including the new PasswordResetToken model)
-	if err := db.AutoMigrate(&models.Book{}); err != nil {
-		return nil, fmt.Errorf("failed to migrate database: %w", err)
+	if err := db.AutoMigrate(&model.Book{}); err != nil {
+		log.Fatalf("Failed to migrate database: %v", err)
 	}
 
-	log.Println("Connected and migrated DB")
-	return db, nil
+	DB = Dbinstance{Db: db}
+	log.Println("Database connection established successfully")
 }

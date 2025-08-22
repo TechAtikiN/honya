@@ -7,20 +7,20 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
 	"github.com/techatikin/backend/config"
-	"github.com/techatikin/backend/controllers"
 	"github.com/techatikin/backend/errors"
-	"github.com/techatikin/backend/repositories"
-	"github.com/techatikin/backend/routers"
-	"github.com/techatikin/backend/services"
+	"github.com/techatikin/backend/router"
 )
 
+// @title Honya API
+// @version 1.0
+// @description API documentation for Honya - an online book library.
+// @termsOfService http://swagger.io/terms/
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+// @host localhost:8080
+// @BasePath /api
 func main() {
 	_ = godotenv.Load()
-
-	db, err := config.ConnectToDatabase()
-	if err != nil {
-		log.Fatalf("Database connection failed: %v", err)
-	}
 
 	app := fiber.New(fiber.Config{
 		ErrorHandler: func(ctx *fiber.Ctx, err error) error {
@@ -39,19 +39,9 @@ func main() {
 
 	app.Use(cors.New())
 
-	api := app.Group("/api")
+	config.ConnectToDatabase()
 
-	repo := repositories.BookRepository(db)
-
-	svc := services.BookService(repo)
-
-	ctrl := controllers.BookController(svc)
-
-	api.Get("/health", func(c *fiber.Ctx) error {
-		return c.SendString("API is running")
-	})
-
-	routers.SetupBooksRouter(api, ctrl)
+	router.Setup(app)
 
 	log.Println("Server starting on port 8080...")
 	log.Fatal(app.Listen(":8080"))
