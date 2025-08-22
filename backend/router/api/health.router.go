@@ -13,7 +13,7 @@ func NewHealthRouter(app *fiber.App) *HealthRouter {
 }
 
 func (r *HealthRouter) Setup(api fiber.Router) {
-	api.Get("/", r.handleHealthCheck)
+	api.Get("/health", r.handleHealthCheck)
 }
 
 func (r *HealthRouter) handleHealthCheck(ctx *fiber.Ctx) error {
