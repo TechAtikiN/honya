@@ -1,5 +1,7 @@
 package dtos
 
+import "github.com/google/uuid"
+
 type BookCreateRequest struct {
 	Title           string  `json:"title" validate:"required"`
 	Description     string  `json:"description"`
@@ -21,21 +23,22 @@ type BookUpdateRequest struct {
 	Rating          *float64 `json:"rating,omitempty"`
 	Pages           *int     `json:"pages,omitempty"`
 	AuthorName      *string  `json:"author_name,omitempty"`
+	Isbn            *string  `json:"isbn,omitempty"` // 🚫 disallowed
 }
 
 type BookResponse struct {
-	ID              string  `json:"id"`
-	Title           string  `json:"title"`
-	Description     string  `json:"description"`
-	Category        string  `json:"category"`
-	Image           string  `json:"image"`
-	PublicationYear int     `json:"publication_year"`
-	Rating          float64 `json:"rating"`
-	Pages           int     `json:"pages"`
-	Isbn            string  `json:"isbn"`
-	AuthorName      string  `json:"author_name"`
-	CreatedAt       int64   `json:"created_at"`
-	UpdatedAt       int64   `json:"updated_at"`
+	ID              uuid.UUID `json:"id"`
+	Title           string    `json:"title"`
+	Description     string    `json:"description"`
+	Category        string    `json:"category"`
+	Image           string    `json:"image"`
+	PublicationYear int       `json:"publication_year"`
+	Rating          float64   `json:"rating"`
+	Pages           int       `json:"pages"`
+	Isbn            string    `json:"isbn"`
+	AuthorName      string    `json:"author_name"`
+	CreatedAt       int64     `json:"created_at"`
+	UpdatedAt       int64     `json:"updated_at"`
 }
 
 type BookQueryParams struct {

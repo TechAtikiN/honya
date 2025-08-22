@@ -5,6 +5,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/techatikin/backend/dtos"
+	"github.com/techatikin/backend/errors"
 	"github.com/techatikin/backend/services"
 	"github.com/techatikin/backend/utils"
 )
@@ -18,7 +19,6 @@ func BookController(service services.TBookService) *TBookController {
 }
 
 func (c *TBookController) GetBooks(ctx *fiber.Ctx) error {
-	// Get params
 	params := dtos.BookQueryParams{
 		Query:           ctx.Query("query"),
 		Offset:          utils.ParseInt(ctx.Query("offset"), 0),
@@ -30,13 +30,11 @@ func (c *TBookController) GetBooks(ctx *fiber.Ctx) error {
 		Sort:            strings.ToLower(ctx.Query("sort")),
 	}
 
-	// Call service to get books
 	books, meta, err := c.service.GetBooks(params)
 	if err != nil {
 		return err
 	}
 
-	// Prepare response
 	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
 		"meta": meta,
 		"data": books,
@@ -44,16 +42,16 @@ func (c *TBookController) GetBooks(ctx *fiber.Ctx) error {
 }
 
 func (c *TBookController) GetBookByID(ctx *fiber.Ctx) error {
-	// Get book ID from params
-	id := ctx.Params("id")
+	id, err := utils.ParseUUIDParam(ctx, "id")
+	if err != nil {
+		return err
+	}
 
-	// Call service to get book by ID
 	book, err := c.service.GetBookByID(id)
 	if err != nil {
 		return err
 	}
 
-	// Prepare response
 	result := dtos.BookResponse{
 		ID:              book.ID,
 		Title:           book.Title,
@@ -69,26 +67,20 @@ func (c *TBookController) GetBookByID(ctx *fiber.Ctx) error {
 		UpdatedAt:       book.UpdatedAt,
 	}
 
-	// Return book details
 	return ctx.Status(fiber.StatusOK).JSON(result)
 }
 
 func (c *TBookController) CreateBook(ctx *fiber.Ctx) error {
-	// Request body
 	var reqData dtos.BookCreateRequest
-
-	// Parse request body
 	if err := ctx.BodyParser(&reqData); err != nil {
-		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request"})
+		return errors.NewBadRequestError("Invalid JSON body")
 	}
 
-	// Create book using service
 	book, err := c.service.CreateBook(&reqData)
 	if err != nil {
 		return err
 	}
 
-	// Prepare response
 	result := dtos.BookResponse{
 		ID:              book.ID,
 		Title:           book.Title,
@@ -104,59 +96,57 @@ func (c *TBookController) CreateBook(ctx *fiber.Ctx) error {
 		UpdatedAt:       book.UpdatedAt,
 	}
 
-	// Return created book
 	return ctx.Status(fiber.StatusCreated).JSON(result)
 }
 
 func (c *TBookController) UpdateBook(ctx *fiber.Ctx) error {
-	// Get book ID from params
-	id := ctx.Params("id")
-
-	// Request body
-	var requestData dtos.BookUpdateRequest
-
-	// Parse request body
-	if err := ctx.BodyParser(&requestData); err != nil {
-		return err
-	}
-
-	// Update book using service
-	updatedTodo, err := c.service.UpdateBook(id, &requestData)
+	id, err := utils.ParseUUIDParam(ctx, "id")
 	if err != nil {
 		return err
 	}
 
-	// Prepare response
-	result := dtos.BookResponse{
-		ID:              updatedTodo.ID,
-		Title:           updatedTodo.Title,
-		Description:     updatedTodo.Description,
-		Category:        updatedTodo.Category,
-		Image:           updatedTodo.Image,
-		PublicationYear: updatedTodo.PublicationYear,
-		Rating:          updatedTodo.Rating,
-		Pages:           updatedTodo.Pages,
-		Isbn:            updatedTodo.Isbn,
-		AuthorName:      updatedTodo.AuthorName,
-		CreatedAt:       updatedTodo.CreatedAt,
-		UpdatedAt:       updatedTodo.UpdatedAt,
+	var requestData dtos.BookUpdateRequest
+	if err := ctx.BodyParser(&requestData); err != nil {
+		return errors.NewBadRequestError("Invalid JSON body")
 	}
 
-	// Return updated book
+	if requestData.Isbn != nil {
+		return errors.NewBadRequestError("ISBN cannot be updated once set")
+	}
+
+	updatedBook, err := c.service.UpdateBook(id, &requestData)
+	if err != nil {
+		return err
+	}
+
+	result := dtos.BookResponse{
+		ID:              updatedBook.ID,
+		Title:           updatedBook.Title,
+		Description:     updatedBook.Description,
+		Category:        updatedBook.Category,
+		Image:           updatedBook.Image,
+		PublicationYear: updatedBook.PublicationYear,
+		Rating:          updatedBook.Rating,
+		Pages:           updatedBook.Pages,
+		Isbn:            updatedBook.Isbn,
+		AuthorName:      updatedBook.AuthorName,
+		CreatedAt:       updatedBook.CreatedAt,
+		UpdatedAt:       updatedBook.UpdatedAt,
+	}
+
 	return ctx.Status(fiber.StatusOK).JSON(result)
 }
 
 func (c *TBookController) DeleteBook(ctx *fiber.Ctx) error {
-	// Get book ID from params
-	id := ctx.Params("id")
-
-	// Call service to delete book
-	err := c.service.DeleteBook(id)
+	id, err := utils.ParseUUIDParam(ctx, "id")
 	if err != nil {
 		return err
 	}
 
-	// Return success message
+	if err := c.service.DeleteBook(id); err != nil {
+		return err
+	}
+
 	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
 		"message": "Book deleted successfully",
 	})

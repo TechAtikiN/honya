@@ -1,6 +1,7 @@
 package repositories
 
 import (
+	"github.com/google/uuid"
 	"github.com/techatikin/backend/dtos"
 	"github.com/techatikin/backend/models"
 	"gorm.io/gorm"
@@ -9,10 +10,10 @@ import (
 // TBookRepository defines the interface for book-related database operations.
 type TBookRepository interface {
 	FindAll(params dtos.BookQueryParams) ([]models.Book, dtos.PaginationMeta, error)
-	FindByID(id string) (*models.Book, error)
+	FindByID(id uuid.UUID) (*models.Book, error)
 	Create(book *models.Book) (*models.Book, error)
-	Update(id string, updateData *dtos.BookUpdateRequest) (*models.Book, error)
-	Delete(id string) error
+	Update(id uuid.UUID, updateData *dtos.BookUpdateRequest) (*models.Book, error)
+	Delete(id uuid.UUID) error
 }
 
 type bookRepository struct {
@@ -29,33 +30,27 @@ func (r *bookRepository) FindAll(params dtos.BookQueryParams) ([]models.Book, dt
 
 	query := r.db.Model(&models.Book{})
 
-	// Search filter
 	if params.Query != "" {
 		likeQuery := "%" + params.Query + "%"
 		query = query.Where("title ILIKE ? OR description ILIKE ? OR author_name ILIKE ?", likeQuery, likeQuery, likeQuery)
 	}
 
-	// Category filter
 	if params.Category != "" {
 		query = query.Where("category = ?", params.Category)
 	}
 
-	// Publication year filter (range logic can be added if needed)
 	if params.PublicationYear > 0 {
 		query = query.Where("publication_year <= ?", params.PublicationYear)
 	}
 
-	// Rating filter
 	if params.Rating > 0 {
 		query = query.Where("rating >= ?", params.Rating)
 	}
 
-	// Pages filter
 	if params.Pages > 0 {
 		query = query.Where("pages <= ?", params.Pages)
 	}
 
-	// Sorting
 	switch params.Sort {
 	case "title_asc":
 		query = query.Order("title ASC")
@@ -73,17 +68,14 @@ func (r *bookRepository) FindAll(params dtos.BookQueryParams) ([]models.Book, dt
 		query = query.Order("created_at DESC")
 	}
 
-	// Count total records
 	if err := query.Count(&totalCount).Error; err != nil {
 		return nil, dtos.PaginationMeta{}, err
 	}
 
-	// Apply pagination
 	if err := query.Offset(params.Offset).Limit(params.Limit).Find(&books).Error; err != nil {
 		return nil, dtos.PaginationMeta{}, err
 	}
 
-	// Pagination metadata
 	meta := dtos.PaginationMeta{
 		TotalCount: totalCount,
 		Offset:     params.Offset,
@@ -93,10 +85,9 @@ func (r *bookRepository) FindAll(params dtos.BookQueryParams) ([]models.Book, dt
 	return books, meta, nil
 }
 
-func (r *bookRepository) FindByID(id string) (*models.Book, error) {
+func (r *bookRepository) FindByID(id uuid.UUID) (*models.Book, error) {
 	var book models.Book
 
-	// Find book by ID
 	err := r.db.First(&book, "id = ?", id).Error
 	if err != nil {
 		if err == gorm.ErrRecordNotFound {
@@ -108,16 +99,14 @@ func (r *bookRepository) FindByID(id string) (*models.Book, error) {
 }
 
 func (r *bookRepository) Create(book *models.Book) (*models.Book, error) {
-	// Create a new book record
 	err := r.db.Create(book).Error
 	if err != nil {
 		return nil, err
 	}
-
 	return book, nil
 }
 
-func (r *bookRepository) Update(id string, updateData *dtos.BookUpdateRequest) (*models.Book, error) {
+func (r *bookRepository) Update(id uuid.UUID, updateData *dtos.BookUpdateRequest) (*models.Book, error) {
 	book, err := r.FindByID(id)
 	if err != nil {
 		return nil, err
@@ -126,40 +115,48 @@ func (r *bookRepository) Update(id string, updateData *dtos.BookUpdateRequest) (
 		return nil, gorm.ErrRecordNotFound
 	}
 
-	// Update only non-nil fields
+	updates := map[string]interface{}{}
+
 	if updateData.Title != nil {
-		book.Title = *updateData.Title
+		updates["title"] = *updateData.Title
 	}
 	if updateData.Description != nil {
-		book.Description = *updateData.Description
+		updates["description"] = *updateData.Description
 	}
 	if updateData.Category != nil {
-		book.Category = *updateData.Category
+		updates["category"] = *updateData.Category
 	}
 	if updateData.Image != nil {
-		book.Image = *updateData.Image
+		updates["image"] = *updateData.Image
 	}
 	if updateData.PublicationYear != nil {
-		book.PublicationYear = *updateData.PublicationYear
+		updates["publication_year"] = *updateData.PublicationYear
 	}
 	if updateData.Rating != nil {
-		book.Rating = *updateData.Rating
+		updates["rating"] = *updateData.Rating
 	}
 	if updateData.Pages != nil {
-		book.Pages = *updateData.Pages
+		updates["pages"] = *updateData.Pages
 	}
 	if updateData.AuthorName != nil {
-		book.AuthorName = *updateData.AuthorName
+		updates["author_name"] = *updateData.AuthorName
 	}
 
-	// Save the updated book
-	if err := r.db.Save(book).Error; err != nil {
+	if len(updates) == 0 {
+		return book, nil
+	}
+
+	if err := r.db.Model(book).Where("id = ?", id).Updates(updates).Error; err != nil {
+		return nil, err
+	}
+
+	if err := r.db.First(book, "id = ?", id).Error; err != nil {
 		return nil, err
 	}
 
 	return book, nil
 }
 
-func (r *bookRepository) Delete(id string) error {
+func (r *bookRepository) Delete(id uuid.UUID) error {
 	return r.db.Delete(&models.Book{}, "id = ?", id).Error
 }

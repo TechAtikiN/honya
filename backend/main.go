@@ -8,6 +8,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/techatikin/backend/config"
 	"github.com/techatikin/backend/controllers"
+	"github.com/techatikin/backend/errors"
 	"github.com/techatikin/backend/repositories"
 	"github.com/techatikin/backend/routers"
 	"github.com/techatikin/backend/services"
@@ -24,7 +25,20 @@ func main() {
 	}
 
 	// Set up Fiber app
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		ErrorHandler: func(ctx *fiber.Ctx, err error) error {
+			if appErr, ok := err.(*errors.AppError); ok {
+				return ctx.Status(appErr.Code).JSON(fiber.Map{
+					"error":   appErr.Message,
+					"details": appErr.Err.Error(),
+				})
+			}
+
+			return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"error": "Something went wrong",
+			})
+		},
+	})
 
 	// Setup cors middleware
 	app.Use(cors.New())

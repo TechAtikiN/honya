@@ -1,6 +1,9 @@
 package services
 
 import (
+	"strings"
+
+	"github.com/google/uuid"
 	"github.com/techatikin/backend/dtos"
 	"github.com/techatikin/backend/errors"
 	"github.com/techatikin/backend/models"
@@ -11,10 +14,10 @@ import (
 // TBookService defines the interface for book-related services.
 type TBookService interface {
 	GetBooks(params dtos.BookQueryParams) ([]models.Book, *dtos.PaginationMeta, error)
-	GetBookByID(id string) (*models.Book, error)
+	GetBookByID(id uuid.UUID) (*models.Book, error)
 	CreateBook(book *dtos.BookCreateRequest) (*models.Book, error)
-	UpdateBook(id string, updateData *dtos.BookUpdateRequest) (*models.Book, error)
-	DeleteBook(id string) error
+	UpdateBook(id uuid.UUID, updateData *dtos.BookUpdateRequest) (*models.Book, error)
+	DeleteBook(id uuid.UUID) error
 }
 
 type bookService struct {
@@ -43,16 +46,12 @@ func (s *bookService) GetBooks(params dtos.BookQueryParams) ([]models.Book, *dto
 	return books, &meta, nil
 }
 
-func (s *bookService) GetBookByID(id string) (*models.Book, error) {
-	if id == "" {
-		return nil, errors.NewBadRequestError("ID is required")
-	}
+func (s *bookService) GetBookByID(id uuid.UUID) (*models.Book, error) {
 
 	book, err := s.repo.FindByID(id)
 	if err != nil {
 		return nil, errors.NewInternalError(err)
 	}
-
 	if book == nil {
 		return nil, errors.NewNotFoundError("Book not found")
 	}
@@ -88,6 +87,9 @@ func (s *bookService) CreateBook(book *dtos.BookCreateRequest) (*models.Book, er
 	// Call repository to create the book
 	resource, err := s.repo.Create(&newBook)
 	if err != nil {
+		if strings.Contains(err.Error(), "unique constraint") {
+			return nil, errors.NewConflictError("Book with this ISBN already exists")
+		}
 		// Delete the uploaded image if book creation fails
 		// s.s3repo.DeleteImage(imageURL)
 		return nil, errors.NewInternalError(err)
@@ -96,27 +98,23 @@ func (s *bookService) CreateBook(book *dtos.BookCreateRequest) (*models.Book, er
 	return resource, nil
 }
 
-func (s *bookService) UpdateBook(id string, updateData *dtos.BookUpdateRequest) (*models.Book, error) {
-	if id == "" {
-		return nil, errors.NewBadRequestError("ID is required")
+func (s *bookService) UpdateBook(id uuid.UUID, updateData *dtos.BookUpdateRequest) (*models.Book, error) {
+	if updateData.Isbn != nil {
+		return nil, errors.NewBadRequestError("ISBN cannot be updated once set")
 	}
 
-	// Validate input
 	if err := utils.ValidateBookUpdateRequest(updateData); err != nil {
 		return nil, errors.NewBadRequestError(err.Error())
 	}
 
-	// Check if book exists
 	existingBook, err := s.repo.FindByID(id)
 	if err != nil {
 		return nil, errors.NewInternalError(err)
 	}
-
 	if existingBook == nil {
 		return nil, errors.NewNotFoundError("Book not found")
 	}
 
-	// Perform update
 	resource, err := s.repo.Update(id, updateData)
 	if err != nil {
 		return nil, errors.NewInternalError(err)
@@ -125,8 +123,7 @@ func (s *bookService) UpdateBook(id string, updateData *dtos.BookUpdateRequest) 
 	return resource, nil
 }
 
-func (s *bookService) DeleteBook(id string) error {
-	// Check if book exists
+func (s *bookService) DeleteBook(id uuid.UUID) error {
 	existingBook, err := s.repo.FindByID(id)
 	if err != nil {
 		return errors.NewInternalError(err)
