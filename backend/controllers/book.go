@@ -17,23 +17,6 @@ func BookController(service services.TBookService) *TBookController {
 	return &TBookController{service}
 }
 
-type BookCreateRequest struct {
-	Title           string  `json:"title"`
-	Description     string  `json:"description"`
-	Category        string  `json:"category"`
-	Image           string  `json:"image"`
-	PublicationYear int     `json:"publication_year"`
-	Rating          float64 `json:"rating"`
-	Pages           int     `json:"pages"`
-	Isbn            string  `json:"isbn"`
-	AuthorName      string  `json:"author_name"`
-}
-
-type BookUpdateRequest struct {
-	BookCreateRequest
-	ID string `json:"id"`
-}
-
 func (c *TBookController) GetBooks(ctx *fiber.Ctx) error {
 	// Get params
 	params := dtos.BookQueryParams{

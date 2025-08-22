@@ -20,7 +20,6 @@ type BookUpdateRequest struct {
 	PublicationYear *int     `json:"publication_year,omitempty"`
 	Rating          *float64 `json:"rating,omitempty"`
 	Pages           *int     `json:"pages,omitempty"`
-	Isbn            *string  `json:"isbn,omitempty"`
 	AuthorName      *string  `json:"author_name,omitempty"`
 }
 
@@ -40,9 +39,9 @@ type BookResponse struct {
 }
 
 type BookQueryParams struct {
-	Query           string  `query:"query"`
 	Offset          int     `query:"offset"`
 	Limit           int     `query:"limit"`
+	Query           string  `query:"query"`
 	Category        string  `query:"category"`
 	PublicationYear int     `query:"publication_year"`
 	Rating          float64 `query:"rating"`

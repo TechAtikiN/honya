@@ -19,6 +19,7 @@ type TBookService interface {
 
 type bookService struct {
 	repo repositories.TBookRepository
+	// s3repo repositories.TS3Repository // S3 repository for handling images
 }
 
 func BookService(repo repositories.TBookRepository) TBookService {
@@ -65,12 +66,18 @@ func (s *bookService) CreateBook(book *dtos.BookCreateRequest) (*models.Book, er
 		return nil, errors.NewBadRequestError(err.Error())
 	}
 
+	// Call S3 repository to upload the image
+	// imageURL, err := s.s3repo.UploadImage(book.Image)
+	// if err != nil {
+	// 	return nil, errors.NewInternalError(err)
+	// }
+
 	// Create a new book model
 	newBook := models.Book{
 		Title:           book.Title,
 		Description:     book.Description,
 		Category:        book.Category,
-		Image:           book.Image,
+		Image:           book.Image, // imageURL,
 		PublicationYear: book.PublicationYear,
 		Rating:          book.Rating,
 		Pages:           book.Pages,
@@ -81,6 +88,8 @@ func (s *bookService) CreateBook(book *dtos.BookCreateRequest) (*models.Book, er
 	// Call repository to create the book
 	resource, err := s.repo.Create(&newBook)
 	if err != nil {
+		// Delete the uploaded image if book creation fails
+		// s.s3repo.DeleteImage(imageURL)
 		return nil, errors.NewInternalError(err)
 	}
 

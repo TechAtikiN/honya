@@ -53,9 +53,6 @@ func ValidateBookUpdateRequest(request *dtos.BookUpdateRequest) error {
 	if request.Pages != nil && *request.Pages <= 0 {
 		return errors.New("pages must be a positive integer")
 	}
-	if request.Isbn != nil && *request.Isbn == "" {
-		return errors.New("ISBN cannot be empty")
-	}
 
 	return nil
 }

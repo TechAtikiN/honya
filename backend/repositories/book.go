@@ -148,9 +148,6 @@ func (r *bookRepository) Update(id string, updateData *dtos.BookUpdateRequest) (
 	if updateData.Pages != nil {
 		book.Pages = *updateData.Pages
 	}
-	if updateData.Isbn != nil {
-		book.Isbn = *updateData.Isbn
-	}
 	if updateData.AuthorName != nil {
 		book.AuthorName = *updateData.AuthorName
 	}
