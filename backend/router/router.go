@@ -11,6 +11,7 @@ type Router struct {
 	healthRouter *api.HealthRouter
 	bookRouter   *api.BookRouter
 	reviewRouter *api.ReviewRouter
+	seedRouter   *api.SeedRouter
 }
 
 func New(app *fiber.App) *Router {
@@ -19,6 +20,7 @@ func New(app *fiber.App) *Router {
 		healthRouter: api.NewHealthRouter(app),
 		bookRouter:   api.NewBookRouter(app),
 		reviewRouter: api.NewReviewRouter(app),
+		seedRouter:   api.NewSeedRouter(app),
 	}
 }
 
@@ -30,4 +32,5 @@ func Setup(app *fiber.App) {
 	router.healthRouter.Setup(api)
 	router.bookRouter.Setup(api)
 	router.reviewRouter.Setup(api)
+	router.seedRouter.Setup(api)
 }

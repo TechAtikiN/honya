@@ -1,0 +1,222 @@
+[
+  {
+    "title": "The Silent Mountain",
+    "description": "A gripping historical fiction about a soldier during World War II.",
+    "category": "fiction",
+    "author_name": "Sarah Miller",
+    "publication_year": 2022,
+    "rating": 4.6,
+    "pages": 330,
+    "isbn": "978-9876543210",
+    "image": "https://img.freepik.com/free-photo/close-book-with-blue-cover_1101-92.jpg?semt=ais_hybrid&w=740&q=80"
+  },
+  {
+    "title": "The Art of Mindfulness",
+    "description": "A guide to achieving inner peace through mindfulness and meditation.",
+    "category": "self_help",
+    "author_name": "John Green",
+    "publication_year": 2019,
+    "rating": 4.3,
+    "pages": 200,
+    "isbn": "978-9876543211",
+    "image": "https://i.pinimg.com/474x/90/49/e5/9049e5a4e33d49807bbbccf25339d266.jpg"
+  },
+  {
+    "title": "A Journey Through the Stars",
+    "description": "A deep dive into the mysteries of the universe and space exploration.",
+    "category": "science",
+    "author_name": "Emily Roberts",
+    "publication_year": 2020,
+    "rating": 4.8,
+    "pages": 360,
+    "isbn": "978-9876543212",
+    "image": "https://img.freepik.com/premium-vector/book-cover-blank-white-vertical-design-template-vector-empty-book-cover-model-mockup-isolated-transparent-background_790965-515.jpg"
+  },
+  {
+    "title": "Cooking with Love",
+    "description": "A collection of heartwarming recipes to cook with your loved ones.",
+    "category": "cooking",
+    "author_name": "Olivia Jones",
+    "publication_year": 2021,
+    "rating": 4.5,
+    "pages": 250,
+    "isbn": "978-9876543213",
+    "image": "https://wallpapers.com/images/hd/red-leather-blank-book-cover-ja6121mqrx4crxz2-2.jpg"
+  },
+  {
+    "title": "The Dark Truth",
+    "description": "A thrilling murder mystery that uncovers dark secrets in a small town.",
+    "category": "mystery",
+    "author_name": "Daniel Harris",
+    "publication_year": 2021,
+    "rating": 4.7,
+    "pages": 320,
+    "isbn": "978-9876543214",
+    "image": "https://i.pinimg.com/736x/c6/99/5f/c6995fe66e6e107088071a28c0e2539d.jpg"
+  },
+  {
+    "title": "The Island of Lost Souls",
+    "description": "A fantasy adventure set on a remote island filled with mythical creatures.",
+    "category": "fantasy",
+    "author_name": "Jessica Lee",
+    "publication_year": 2023,
+    "rating": 4.9,
+    "pages": 400,
+    "isbn": "978-9876543215",
+    "image": "https://img.freepik.com/premium-psd/cover-book-design-rendering-isolated_470226-44.jpg?semt=ais_hybrid&w=740&q=80"
+  },
+  {
+    "title": "The Great Escape",
+    "description": "A thrilling tale of survival and escape from a high-security prison.",
+    "category": "thriller",
+    "author_name": "Mark Thompson",
+    "publication_year": 2021,
+    "rating": 4.4,
+    "pages": 290,
+    "isbn": "978-9876543216",
+    "image": "https://img.freepik.com/premium-vector/book-cover-blank-white-vertical-design-template-vector-empty-book-cover-model-mockup-isolated-transparent-background_790965-515.jpg"
+  },
+  {
+    "title": "The City of Shadows",
+    "description": "A story of a detective who uncovers hidden truths about a corrupt city.",
+    "category": "mystery",
+    "author_name": "William Scott",
+    "publication_year": 2020,
+    "rating": 4.5,
+    "pages": 310,
+    "isbn": "978-9876543217",
+    "image": "https://wallpapers.com/images/hd/red-leather-blank-book-cover-ja6121mqrx4crxz2-2.jpg"
+  },
+  {
+    "title": "The Garden of Hope",
+    "description": "A non-fiction story of overcoming adversity through gardening.",
+    "category": "non_fiction",
+    "author_name": "Samantha White",
+    "publication_year": 2021,
+    "rating": 4.3,
+    "pages": 220,
+    "isbn": "978-9876543218",
+    "image": "https://img.freepik.com/free-photo/close-book-with-blue-cover_1101-92.jpg?semt=ais_hybrid&w=740&q=80"
+  },
+  {
+    "title": "A Life Well Lived",
+    "description": "A biography of a famous explorer and adventurer.",
+    "category": "biography",
+    "author_name": "Alan Moore",
+    "publication_year": 2020,
+    "rating": 4.6,
+    "pages": 280,
+    "isbn": "978-9876543219",
+    "image": "https://i.pinimg.com/474x/90/49/e5/9049e5a4e33d49807bbbccf25339d266.jpg"
+  },
+  {
+    "title": "Eternal Flames",
+    "description": "A romance novel about two lovers torn apart by time and circumstance.",
+    "category": "romance",
+    "author_name": "Rebecca King",
+    "publication_year": 2022,
+    "rating": 4.7,
+    "pages": 310,
+    "isbn": "978-9876543220",
+    "image": "https://i.pinimg.com/736x/c6/99/5f/c6995fe66e6e107088071a28c0e2539d.jpg"
+  },
+  {
+    "title": "Into the Wild",
+    "description": "A gripping true story about survival in the wilderness.",
+    "category": "non_fiction",
+    "author_name": "Jon Krakauer",
+    "publication_year": 1996,
+    "rating": 4.8,
+    "pages": 240,
+    "isbn": "978-9876543221",
+    "image": "https://img.freepik.com/premium-psd/cover-book-design-rendering-isolated_470226-44.jpg?semt=ais_hybrid&w=740&q=80"
+  },
+  {
+    "title": "Science Unfolded",
+    "description": "A fascinating look at the latest scientific breakthroughs.",
+    "category": "science",
+    "author_name": "Dr. Sarah Williams",
+    "publication_year": 2021,
+    "rating": 4.6,
+    "pages": 280,
+    "isbn": "978-9876543222",
+    "image": "https://img.freepik.com/premium-vector/book-cover-blank-white-vertical-design-template-vector-empty-book-cover-model-mockup-isolated-transparent-background_790965-515.jpg"
+  },
+  {
+    "title": "Escape from the Shadows",
+    "description": "A thrilling adventure that keeps you on the edge of your seat.",
+    "category": "thriller",
+    "author_name": "David Lang",
+    "publication_year": 2022,
+    "rating": 4.9,
+    "pages": 350,
+    "isbn": "978-9876543223",
+    "image": "https://i.pinimg.com/474x/90/49/e5/9049e5a4e33d49807bbbccf25339d266.jpg"
+  },
+  {
+    "title": "Fighting the Storm",
+    "description": "A motivational story about resilience and perseverance.",
+    "category": "self_help",
+    "author_name": "James Foster",
+    "publication_year": 2021,
+    "rating": 4.2,
+    "pages": 270,
+    "isbn": "978-9876543224",
+    "image": "https://wallpapers.com/images/hd/red-leather-blank-book-cover-ja6121mqrx4crxz2-2.jpg"
+  },
+  {
+    "title": "The Lost Treasure",
+    "description": "An exciting fantasy about a quest for a mythical treasure.",
+    "category": "fantasy",
+    "author_name": "Liam O'Conner",
+    "publication_year": 2022,
+    "rating": 4.6,
+    "pages": 300,
+    "isbn": "978-9876543225",
+    "image": "https://img.freepik.com/premium-vector/book-cover-blank-white-vertical-design-template-vector-empty-book-cover-model-mockup-isolated-transparent-background_790965-515.jpg"
+  },
+  {
+    "title": "The Edge of Tomorrow",
+    "description": "A fast-paced science fiction adventure about time travel and its consequences.",
+    "category": "science",
+    "author_name": "Nina Patterson",
+    "publication_year": 2021,
+    "rating": 4.4,
+    "pages": 280,
+    "isbn": "978-9876543226",
+    "image": "https://i.pinimg.com/474x/90/49/e5/9049e5a4e33d49807bbbccf25339d266.jpg"
+  },
+  {
+    "title": "Secrets of the Heart",
+    "description": "A heartwarming romance about finding love after heartbreak.",
+    "category": "romance",
+    "author_name": "Emily Wood",
+    "publication_year": 2021,
+    "rating": 4.8,
+    "pages": 260,
+    "isbn": "978-9876543227",
+    "image": "https://wallpapers.com/images/hd/red-leather-blank-book-cover-ja6121mqrx4crxz2-2.jpg"
+  },
+  {
+    "title": "The Forgotten Kingdom",
+    "description": "A historical fiction that explores a lost civilization.",
+    "category": "history",
+    "author_name": "Hannah Greene",
+    "publication_year": 2022,
+    "rating": 4.3,
+    "pages": 290,
+    "isbn": "978-9876543228",
+    "image": "https://img.freepik.com/premium-psd/cover-book-design-rendering-isolated_470226-44.jpg?semt=ais_hybrid&w=740&q=80"
+  },
+  {
+    "title": "Beneath the Surface",
+    "description": "A mystery thriller about a detective investigating a series of disappearances.",
+    "category": "mystery",
+    "author_name": "Sophia Black",
+    "publication_year": 2023,
+    "rating": 4.5,
+    "pages": 300,
+    "isbn": "978-9876543229",
+    "image": "https://img.freepik.com/free-photo/close-book-with-blue-cover_1101-92.jpg?semt=ais_hybrid&w=740&q=80"
+  }
+]
