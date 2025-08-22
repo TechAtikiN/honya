@@ -8,8 +8,8 @@ import (
 	"gorm.io/gorm"
 )
 
-// TBookRepository defines the interface for book-related database operations.
-type TBookRepository interface {
+// BookRepository defines the interface for book-related database operations.
+type BookRepository interface {
 	FindAll(params dtos.BookQueryParams) ([]model.Book, dtos.PaginationMeta, error)
 	FindByID(id uuid.UUID) (*model.Book, error)
 	Create(book *model.Book) (*model.Book, error)
@@ -21,7 +21,7 @@ type bookRepository struct {
 	db *gorm.DB
 }
 
-func BookRepository() TBookRepository {
+func NewBookRepository() BookRepository {
 	return &bookRepository{
 		db: config.DB.Db,
 	}

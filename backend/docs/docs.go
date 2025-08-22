@@ -435,7 +435,7 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "localhost:8080",
 	BasePath:         "/api",
 	Schemes:          []string{},
-	Title:            "Honya API",
+	Title:            "Honya API Documentation",
 	Description:      "API documentation for Honya - an online book library.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,

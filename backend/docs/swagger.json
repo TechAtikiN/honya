@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "description": "API documentation for Honya - an online book library.",
-        "title": "Honya API",
+        "title": "Honya API Documentation",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {},
         "license": {

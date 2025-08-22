@@ -8,27 +8,28 @@ import (
 )
 
 type BookRouter struct {
-	app            *fiber.App
-	bookController controller.TBookController
+	app  *fiber.App
+	ctrl controller.BookController
 }
 
 func NewBookRouter(app *fiber.App) *BookRouter {
-	bookRepo := repositories.BookRepository()
-	bookService := service.BookService(bookRepo)
-	bookController := controller.BookController(bookService)
+	repo := repositories.NewBookRepository()
+	service := service.NewBookService(repo)
+	ctrl := controller.NewBookController(service)
 
 	return &BookRouter{
-		app:            app,
-		bookController: bookController,
+		app:  app,
+		ctrl: ctrl,
 	}
 }
 
 func (r *BookRouter) Setup(api fiber.Router) {
 	booksRoutes := api.Group("/books")
 
-	booksRoutes.Get("/", r.bookController.GetBooks)
-	booksRoutes.Get("/:id", r.bookController.GetBookByID)
-	booksRoutes.Post("/", r.bookController.CreateBook)
-	booksRoutes.Put("/:id", r.bookController.UpdateBook)
-	booksRoutes.Delete("/:id", r.bookController.DeleteBook)
+	booksRoutes.Get("/", r.ctrl.GetBooks)
+	booksRoutes.Get("/:id", r.ctrl.GetBookByID)
+	booksRoutes.Post("/", r.ctrl.CreateBook)
+	// add put endpoint
+	booksRoutes.Patch("/:id", r.ctrl.UpdateBook)
+	booksRoutes.Delete("/:id", r.ctrl.DeleteBook)
 }

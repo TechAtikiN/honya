@@ -12,7 +12,7 @@ import (
 	"github.com/techatikin/backend/router"
 )
 
-// @title Honya API
+// @title Honya API Documentation
 // @version 1.0
 // @description API documentation for Honya - an online book library.
 // @termsOfService http://swagger.io/terms/
@@ -33,8 +33,8 @@ func main() {
 	cfg := swagger.Config{
 		BasePath: "/",
 		FilePath: "./docs/swagger.json",
-		Path:     "swagger",
-		Title:    "Swagger API Docs",
+		Path:     "docs",
+		Title:    "Honya | API Documentation",
 		CacheAge: 60,
 	}
 

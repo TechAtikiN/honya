@@ -10,12 +10,20 @@ import (
 	"github.com/techatikin/backend/utils"
 )
 
-type TBookController struct {
-	bookService service.TBookService
+type BookController interface {
+	GetBooks(ctx *fiber.Ctx) error
+	GetBookByID(ctx *fiber.Ctx) error
+	CreateBook(ctx *fiber.Ctx) error
+	UpdateBook(ctx *fiber.Ctx) error
+	DeleteBook(ctx *fiber.Ctx) error
 }
 
-func BookController(service service.TBookService) TBookController {
-	return TBookController{service}
+type bookController struct {
+	service service.BookService
+}
+
+func NewBookController(service service.BookService) BookController {
+	return &bookController{service}
 }
 
 // GetBooks godoc
@@ -34,7 +42,7 @@ func BookController(service service.TBookService) TBookController {
 // @Param sort query string false "Sort order (asc/desc)"
 // @Success 200 {object} dtos.BookListResponse "Books fetched successfully"
 // @Router /books [get]
-func (c *TBookController) GetBooks(ctx *fiber.Ctx) error {
+func (c *bookController) GetBooks(ctx *fiber.Ctx) error {
 	params := dtos.BookQueryParams{
 		Query:           ctx.Query("query"),
 		Offset:          utils.ParseInt(ctx.Query("offset"), utils.DefaultOffset),
@@ -46,7 +54,7 @@ func (c *TBookController) GetBooks(ctx *fiber.Ctx) error {
 		Sort:            strings.ToLower(ctx.Query("sort")),
 	}
 
-	books, meta, err := c.bookService.GetBooks(params)
+	books, meta, err := c.service.GetBooks(params)
 	if err != nil {
 		return err
 	}
@@ -66,13 +74,13 @@ func (c *TBookController) GetBooks(ctx *fiber.Ctx) error {
 // @Failure 400 {object} errors.ErrorResponse "Invalid ID format"
 // @Failure 404 {object} errors.ErrorResponse "Book not found"
 // @Router /books/{id} [get]
-func (c *TBookController) GetBookByID(ctx *fiber.Ctx) error {
+func (c *bookController) GetBookByID(ctx *fiber.Ctx) error {
 	id, err := utils.ParseUUIDParam(ctx, "id")
 	if err != nil {
 		return err
 	}
 
-	book, err := c.bookService.GetBookByID(id)
+	book, err := c.service.GetBookByID(id)
 	if err != nil {
 		return err
 	}
@@ -91,13 +99,13 @@ func (c *TBookController) GetBookByID(ctx *fiber.Ctx) error {
 // @Success 201 {object} dtos.BookResponse "Book created successfully"
 // @Failure 400 {object} errors.ErrorResponse "Invalid input data"
 // @Router /books [post]
-func (c *TBookController) CreateBook(ctx *fiber.Ctx) error {
+func (c *bookController) CreateBook(ctx *fiber.Ctx) error {
 	var reqData dtos.BookCreateRequest
 	if err := ctx.BodyParser(&reqData); err != nil {
 		return errors.NewBadRequestError("Invalid JSON body")
 	}
 
-	book, err := c.bookService.CreateBook(&reqData)
+	book, err := c.service.CreateBook(&reqData)
 	if err != nil {
 		return err
 	}
@@ -118,7 +126,7 @@ func (c *TBookController) CreateBook(ctx *fiber.Ctx) error {
 // @Failure 400 {object} errors.ErrorResponse "Invalid input data"
 // @Failure 404 {object} errors.ErrorResponse "Book not found"
 // @Router /books/{id} [put]
-func (c *TBookController) UpdateBook(ctx *fiber.Ctx) error {
+func (c *bookController) UpdateBook(ctx *fiber.Ctx) error {
 	id, err := utils.ParseUUIDParam(ctx, "id")
 	if err != nil {
 		return err
@@ -133,7 +141,7 @@ func (c *TBookController) UpdateBook(ctx *fiber.Ctx) error {
 		return errors.NewBadRequestError("ISBN cannot be updated once set")
 	}
 
-	updatedBook, err := c.bookService.UpdateBook(id, &requestData)
+	updatedBook, err := c.service.UpdateBook(id, &requestData)
 	if err != nil {
 		return err
 	}
@@ -153,13 +161,13 @@ func (c *TBookController) UpdateBook(ctx *fiber.Ctx) error {
 // @Failure 400 {object} errors.ErrorResponse "Invalid ID format"
 // @Failure 404 {object} errors.ErrorResponse "Book not found"
 // @Router /books/{id} [delete]
-func (c *TBookController) DeleteBook(ctx *fiber.Ctx) error {
+func (c *bookController) DeleteBook(ctx *fiber.Ctx) error {
 	id, err := utils.ParseUUIDParam(ctx, "id")
 	if err != nil {
 		return err
 	}
 
-	if err := c.bookService.DeleteBook(id); err != nil {
+	if err := c.service.DeleteBook(id); err != nil {
 		return err
 	}
 
