@@ -1,4 +1,282 @@
+basePath: /api
+definitions:
+  dtos.BookCreateRequest:
+    properties:
+      author_name:
+        type: string
+      category:
+        type: string
+      description:
+        type: string
+      image:
+        type: string
+      isbn:
+        type: string
+      pages:
+        type: integer
+      publication_year:
+        type: integer
+      rating:
+        type: number
+      title:
+        type: string
+    required:
+    - author_name
+    - category
+    - title
+    type: object
+  dtos.BookListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/dtos.BookResponse'
+        type: array
+      meta:
+        $ref: '#/definitions/dtos.PaginationMeta'
+    type: object
+  dtos.BookResponse:
+    properties:
+      author_name:
+        type: string
+      category:
+        type: string
+      created_at:
+        type: integer
+      description:
+        type: string
+      id:
+        type: string
+      image:
+        type: string
+      isbn:
+        type: string
+      pages:
+        type: integer
+      publication_year:
+        type: integer
+      rating:
+        type: number
+      title:
+        type: string
+      updated_at:
+        type: integer
+    type: object
+  dtos.BookUpdateRequest:
+    properties:
+      author_name:
+        type: string
+      category:
+        type: string
+      description:
+        type: string
+      image:
+        type: string
+      isbn:
+        type: string
+      pages:
+        type: integer
+      publication_year:
+        type: integer
+      rating:
+        type: number
+      title:
+        type: string
+    type: object
+  dtos.PaginationMeta:
+    properties:
+      limit:
+        type: integer
+      offset:
+        type: integer
+      total_count:
+        type: integer
+    type: object
+  errors.ErrorResponse:
+    properties:
+      code:
+        example: 400
+        type: integer
+      message:
+        example: Invalid ID format
+        type: string
+    type: object
+host: localhost:8080
 info:
   contact: {}
-paths: {}
+  description: API documentation for Honya - an online book library.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Honya API
+  version: "1.0"
+paths:
+  /books:
+    get:
+      consumes:
+      - application/json
+      description: Get paginated list of books with optional filters
+      parameters:
+      - description: Search query
+        in: query
+        name: query
+        type: string
+      - default: 0
+        description: Offset for pagination
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: Limit for pagination
+        in: query
+        name: limit
+        type: integer
+      - description: Filter by category
+        in: query
+        name: category
+        type: string
+      - description: Filter by publication year
+        in: query
+        name: publication_year
+        type: integer
+      - description: Filter by rating
+        in: query
+        name: rating
+        type: number
+      - description: Filter by number of pages
+        in: query
+        name: pages
+        type: integer
+      - description: Sort order (asc/desc)
+        in: query
+        name: sort
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Books fetched successfully
+          schema:
+            $ref: '#/definitions/dtos.BookListResponse'
+      summary: Get list of all books
+      tags:
+      - books
+    post:
+      consumes:
+      - application/json
+      description: Create a new book with the provided details
+      parameters:
+      - description: Book creation payload
+        in: body
+        name: book
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.BookCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Book created successfully
+          schema:
+            $ref: '#/definitions/dtos.BookResponse'
+        "400":
+          description: Invalid input data
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      summary: Create a new book
+      tags:
+      - books
+  /books/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a book by its ID
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Book deleted successfully
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Invalid ID format
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+        "404":
+          description: Book not found
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      summary: Delete a book
+      tags:
+      - books
+    get:
+      consumes:
+      - application/json
+      description: Get a single book by its ID
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Book fetched successfully
+          schema:
+            $ref: '#/definitions/dtos.BookResponse'
+        "400":
+          description: Invalid ID format
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+        "404":
+          description: Book not found
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      summary: Get book by ID
+      tags:
+      - books
+    put:
+      consumes:
+      - application/json
+      description: Update book details by its ID
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Book update payload
+        in: body
+        name: book
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.BookUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Book updated successfully
+          schema:
+            $ref: '#/definitions/dtos.BookResponse'
+        "400":
+          description: Invalid input data
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+        "404":
+          description: Book not found
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      summary: Update an existing book
+      tags:
+      - books
 swagger: "2.0"

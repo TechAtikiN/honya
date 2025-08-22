@@ -1,7 +1,6 @@
 package dtos
 
 import (
-	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 	"github.com/techatikin/backend/model"
 )
@@ -62,6 +61,11 @@ type BookResponse struct {
 	UpdatedAt       int64     `json:"updated_at"`
 }
 
+type BookListResponse struct {
+	Meta PaginationMeta `json:"meta"`
+	Data []BookResponse `json:"data"`
+}
+
 func ToBookResponse(book *model.Book) *BookResponse {
 	return &BookResponse{
 		ID:              book.ID,
@@ -79,14 +83,14 @@ func ToBookResponse(book *model.Book) *BookResponse {
 	}
 }
 
-func ToBookListResponse(books []model.Book, meta PaginationMeta) fiber.Map {
+func ToBookListResponse(books []model.Book, meta PaginationMeta) BookListResponse {
 	bookResponses := make([]BookResponse, 0)
 	for _, book := range books {
 		bookResponses = append(bookResponses, *ToBookResponse(&book))
 	}
 
-	return fiber.Map{
-		"meta": meta,
-		"data": bookResponses,
+	return BookListResponse{
+		Meta: meta,
+		Data: bookResponses,
 	}
 }

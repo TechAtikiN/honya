@@ -5,6 +5,11 @@ import (
 	"fmt"
 )
 
+type ErrorResponse struct {
+	Code    int    `json:"code" example:"400"`
+	Message string `json:"message" example:"Invalid ID format"`
+}
+
 // Custom error types
 type AppError struct {
 	Code    int

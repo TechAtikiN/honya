@@ -3,11 +3,12 @@ package main
 import (
 	"log"
 
+	"github.com/gofiber/contrib/swagger"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
 	"github.com/techatikin/backend/config"
-	"github.com/techatikin/backend/errors"
+	"github.com/techatikin/backend/middleware"
 	"github.com/techatikin/backend/router"
 )
 
@@ -23,19 +24,19 @@ func main() {
 	_ = godotenv.Load()
 
 	app := fiber.New(fiber.Config{
-		ErrorHandler: func(ctx *fiber.Ctx, err error) error {
-			if appErr, ok := err.(*errors.AppError); ok {
-				return ctx.Status(appErr.Code).JSON(fiber.Map{
-					"error":   appErr.Message,
-					"details": appErr.Err.Error(),
-				})
-			}
-
-			return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-				"error": "Something went wrong",
-			})
-		},
+		AppName:      "Honya API",
+		ErrorHandler: middleware.ErrorHandler,
 	})
+
+	cfg := swagger.Config{
+		BasePath: "/",
+		FilePath: "./docs/swagger.json",
+		Path:     "swagger",
+		Title:    "Swagger API Docs",
+		CacheAge: 60,
+	}
+
+	app.Use(swagger.New(cfg))
 
 	app.Use(cors.New())
 
