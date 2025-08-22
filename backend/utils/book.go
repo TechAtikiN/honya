@@ -5,10 +5,10 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/techatikin/backend/dtos"
+	"github.com/techatikin/backend/dto"
 )
 
-func ValidateBookCreateRequest(request *dtos.BookCreateRequest) error {
+func ValidateBookCreateRequest(request *dto.BookCreateRequest) error {
 	if request.Title == "" {
 		return errors.New("title is required")
 	}
@@ -31,7 +31,7 @@ func ValidateBookCreateRequest(request *dtos.BookCreateRequest) error {
 	return nil
 }
 
-func ValidateBookUpdateRequest(request *dtos.BookUpdateRequest) error {
+func ValidateBookUpdateRequest(request *dto.BookUpdateRequest) error {
 	currentYear := time.Now().Year()
 
 	if request.Title != nil && *request.Title == "" {

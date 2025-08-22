@@ -1,6 +1,9 @@
 package model
 
-import "github.com/google/uuid"
+import (
+	"github.com/google/uuid"
+	"gorm.io/gorm"
+)
 
 type Review struct {
 	ID        uuid.UUID `gorm:"type:uuid;primaryKey" json:"id"`
@@ -12,4 +15,11 @@ type Review struct {
 	UpdatedAt int64     `gorm:"autoUpdateTime" json:"updated_at"`
 
 	Book Book `gorm:"foreignKey:BookID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;" json:"-"`
+}
+
+func (r *Review) BeforeCreate(tx *gorm.DB) (err error) {
+	if r.ID == uuid.Nil {
+		r.ID = uuid.New()
+	}
+	return nil
 }

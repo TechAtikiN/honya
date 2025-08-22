@@ -1,6 +1,6 @@
 basePath: /api
 definitions:
-  dtos.BookCreateRequest:
+  dto.BookCreateRequest:
     properties:
       author_name:
         type: string
@@ -25,16 +25,16 @@ definitions:
     - category
     - title
     type: object
-  dtos.BookListResponse:
+  dto.BookListResponse:
     properties:
       data:
         items:
-          $ref: '#/definitions/dtos.BookResponse'
+          $ref: '#/definitions/dto.BookResponse'
         type: array
       meta:
-        $ref: '#/definitions/dtos.PaginationMeta'
+        $ref: '#/definitions/dto.PaginationMeta'
     type: object
-  dtos.BookResponse:
+  dto.BookResponse:
     properties:
       author_name:
         type: string
@@ -61,7 +61,7 @@ definitions:
       updated_at:
         type: integer
     type: object
-  dtos.BookUpdateRequest:
+  dto.BookUpdateRequest:
     properties:
       author_name:
         type: string
@@ -82,7 +82,7 @@ definitions:
       title:
         type: string
     type: object
-  dtos.PaginationMeta:
+  dto.PaginationMeta:
     properties:
       limit:
         type: integer
@@ -90,6 +90,57 @@ definitions:
         type: integer
       total_count:
         type: integer
+    type: object
+  dto.ReviewCreateRequest:
+    properties:
+      book_id:
+        type: string
+      content:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+    required:
+    - book_id
+    - content
+    - email
+    - name
+    type: object
+  dto.ReviewListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/dto.ReviewResponse'
+        type: array
+      meta:
+        $ref: '#/definitions/dto.PaginationMeta'
+    type: object
+  dto.ReviewResponse:
+    properties:
+      book_id:
+        type: string
+      content:
+        type: string
+      created_at:
+        type: integer
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      updated_at:
+        type: integer
+    type: object
+  dto.ReviewUpdateRequest:
+    properties:
+      content:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
     type: object
   errors.ErrorResponse:
     properties:
@@ -157,7 +208,7 @@ paths:
         "200":
           description: Books fetched successfully
           schema:
-            $ref: '#/definitions/dtos.BookListResponse'
+            $ref: '#/definitions/dto.BookListResponse'
       summary: Get list of all books
       tags:
       - books
@@ -171,14 +222,14 @@ paths:
         name: book
         required: true
         schema:
-          $ref: '#/definitions/dtos.BookCreateRequest'
+          $ref: '#/definitions/dto.BookCreateRequest'
       produces:
       - application/json
       responses:
         "201":
           description: Book created successfully
           schema:
-            $ref: '#/definitions/dtos.BookResponse'
+            $ref: '#/definitions/dto.BookResponse'
         "400":
           description: Invalid input data
           schema:
@@ -186,6 +237,50 @@ paths:
       summary: Create a new book
       tags:
       - books
+  /books/{book_id}/reviews:
+    get:
+      consumes:
+      - application/json
+      description: Get paginated list of reviews for a given book ID with optional
+        search query
+      parameters:
+      - description: Book ID
+        in: path
+        name: book_id
+        required: true
+        type: string
+      - description: Search query
+        in: query
+        name: query
+        type: string
+      - default: 0
+        description: Offset for pagination
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: Limit for pagination
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Reviews fetched successfully
+          schema:
+            $ref: '#/definitions/dto.ReviewListResponse'
+        "400":
+          description: Invalid ID format
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+        "404":
+          description: Book not found
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      summary: Get reviews for a specific book
+      tags:
+      - reviews
   /books/{id}:
     delete:
       consumes:
@@ -233,7 +328,7 @@ paths:
         "200":
           description: Book fetched successfully
           schema:
-            $ref: '#/definitions/dtos.BookResponse'
+            $ref: '#/definitions/dto.BookResponse'
         "400":
           description: Invalid ID format
           schema:
@@ -260,14 +355,14 @@ paths:
         name: book
         required: true
         schema:
-          $ref: '#/definitions/dtos.BookUpdateRequest'
+          $ref: '#/definitions/dto.BookUpdateRequest'
       produces:
       - application/json
       responses:
         "200":
           description: Book updated successfully
           schema:
-            $ref: '#/definitions/dtos.BookResponse'
+            $ref: '#/definitions/dto.BookResponse'
         "400":
           description: Invalid input data
           schema:
@@ -279,4 +374,156 @@ paths:
       summary: Update an existing book
       tags:
       - books
+  /reviews:
+    get:
+      consumes:
+      - application/json
+      description: Get paginated list of reviews with optional search query
+      parameters:
+      - description: Search query
+        in: query
+        name: query
+        type: string
+      - default: 0
+        description: Offset for pagination
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: Limit for pagination
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Reviews fetched successfully
+          schema:
+            $ref: '#/definitions/dto.ReviewListResponse'
+      summary: Get list of all reviews
+      tags:
+      - reviews
+    post:
+      consumes:
+      - application/json
+      description: Create a new review for a book
+      parameters:
+      - description: Review creation payload
+        in: body
+        name: review
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ReviewCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Review created successfully
+          schema:
+            $ref: '#/definitions/dto.ReviewResponse'
+        "400":
+          description: Invalid input data
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+        "404":
+          description: Book not found
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      summary: Create a new review
+      tags:
+      - reviews
+  /reviews/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a review by its ID
+      parameters:
+      - description: Review ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Review deleted successfully
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Invalid ID format
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+        "404":
+          description: Review not found
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      summary: Delete a review
+      tags:
+      - reviews
+    get:
+      consumes:
+      - application/json
+      description: Get a single review by its ID
+      parameters:
+      - description: Review ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Review fetched successfully
+          schema:
+            $ref: '#/definitions/dto.ReviewResponse'
+        "400":
+          description: Invalid ID format
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+        "404":
+          description: Review not found
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      summary: Get a review by ID
+      tags:
+      - reviews
+    put:
+      consumes:
+      - application/json
+      description: Update a review by its ID
+      parameters:
+      - description: Review ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Review update payload
+        in: body
+        name: review
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ReviewUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Review updated successfully
+          schema:
+            $ref: '#/definitions/dto.ReviewResponse'
+        "400":
+          description: Invalid input data
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+        "404":
+          description: Review not found
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      summary: Update an existing review
+      tags:
+      - reviews
 swagger: "2.0"

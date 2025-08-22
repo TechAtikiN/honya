@@ -3,7 +3,7 @@ package api
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/techatikin/backend/controller"
-	"github.com/techatikin/backend/repositories"
+	"github.com/techatikin/backend/repository"
 	"github.com/techatikin/backend/service"
 )
 
@@ -13,7 +13,7 @@ type BookRouter struct {
 }
 
 func NewBookRouter(app *fiber.App) *BookRouter {
-	repo := repositories.NewBookRepository()
+	repo := repository.NewBookRepository()
 	service := service.NewBookService(repo)
 	ctrl := controller.NewBookController(service)
 

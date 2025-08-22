@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/techatikin/backend/dtos"
+	"github.com/techatikin/backend/dto"
 	"github.com/techatikin/backend/errors"
 	"github.com/techatikin/backend/service"
 	"github.com/techatikin/backend/utils"
@@ -40,10 +40,10 @@ func NewBookController(service service.BookService) BookController {
 // @Param rating query number false "Filter by rating"
 // @Param pages query integer false "Filter by number of pages"
 // @Param sort query string false "Sort order (asc/desc)"
-// @Success 200 {object} dtos.BookListResponse "Books fetched successfully"
+// @Success 200 {object} dto.BookListResponse "Books fetched successfully"
 // @Router /books [get]
 func (c *bookController) GetBooks(ctx *fiber.Ctx) error {
-	params := dtos.BookQueryParams{
+	params := dto.BookQueryParams{
 		Query:           ctx.Query("query"),
 		Offset:          utils.ParseInt(ctx.Query("offset"), utils.DefaultOffset),
 		Limit:           utils.ParseInt(ctx.Query("limit"), utils.DefaultLimit),
@@ -59,7 +59,7 @@ func (c *bookController) GetBooks(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	result := dtos.ToBookListResponse(books, *meta)
+	result := dto.ToBookListResponse(books, *meta)
 	return ctx.Status(fiber.StatusOK).JSON(result)
 }
 
@@ -70,7 +70,7 @@ func (c *bookController) GetBooks(ctx *fiber.Ctx) error {
 // @Accept json
 // @Produce json
 // @Param id path string true "Book ID"
-// @Success 200 {object} dtos.BookResponse "Book fetched successfully"
+// @Success 200 {object} dto.BookResponse "Book fetched successfully"
 // @Failure 400 {object} errors.ErrorResponse "Invalid ID format"
 // @Failure 404 {object} errors.ErrorResponse "Book not found"
 // @Router /books/{id} [get]
@@ -85,7 +85,7 @@ func (c *bookController) GetBookByID(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	result := dtos.ToBookResponse(book)
+	result := dto.ToBookResponse(book)
 	return ctx.Status(fiber.StatusOK).JSON(result)
 }
 
@@ -95,12 +95,12 @@ func (c *bookController) GetBookByID(ctx *fiber.Ctx) error {
 // @Tags books
 // @Accept json
 // @Produce json
-// @Param book body dtos.BookCreateRequest true "Book creation payload"
-// @Success 201 {object} dtos.BookResponse "Book created successfully"
+// @Param book body dto.BookCreateRequest true "Book creation payload"
+// @Success 201 {object} dto.BookResponse "Book created successfully"
 // @Failure 400 {object} errors.ErrorResponse "Invalid input data"
 // @Router /books [post]
 func (c *bookController) CreateBook(ctx *fiber.Ctx) error {
-	var reqData dtos.BookCreateRequest
+	var reqData dto.BookCreateRequest
 	if err := ctx.BodyParser(&reqData); err != nil {
 		return errors.NewBadRequestError("Invalid JSON body")
 	}
@@ -110,7 +110,7 @@ func (c *bookController) CreateBook(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	result := dtos.ToBookResponse(book)
+	result := dto.ToBookResponse(book)
 	return ctx.Status(fiber.StatusCreated).JSON(result)
 }
 
@@ -121,8 +121,8 @@ func (c *bookController) CreateBook(ctx *fiber.Ctx) error {
 // @Accept json
 // @Produce json
 // @Param id path string true "Book ID"
-// @Param book body dtos.BookUpdateRequest true "Book update payload"
-// @Success 200 {object} dtos.BookResponse "Book updated successfully"
+// @Param book body dto.BookUpdateRequest true "Book update payload"
+// @Success 200 {object} dto.BookResponse "Book updated successfully"
 // @Failure 400 {object} errors.ErrorResponse "Invalid input data"
 // @Failure 404 {object} errors.ErrorResponse "Book not found"
 // @Router /books/{id} [put]
@@ -132,7 +132,7 @@ func (c *bookController) UpdateBook(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	var requestData dtos.BookUpdateRequest
+	var requestData dto.BookUpdateRequest
 	if err := ctx.BodyParser(&requestData); err != nil {
 		return errors.NewBadRequestError("Invalid JSON body")
 	}
@@ -146,7 +146,7 @@ func (c *bookController) UpdateBook(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	result := dtos.ToBookResponse(updatedBook)
+	result := dto.ToBookResponse(updatedBook)
 	return ctx.Status(fiber.StatusOK).JSON(result)
 }
 

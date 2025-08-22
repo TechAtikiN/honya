@@ -4,39 +4,39 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
-	"github.com/techatikin/backend/dtos"
+	"github.com/techatikin/backend/dto"
 	"github.com/techatikin/backend/errors"
 	"github.com/techatikin/backend/model"
-	"github.com/techatikin/backend/repositories"
+	"github.com/techatikin/backend/repository"
 	"github.com/techatikin/backend/utils"
 )
 
 // BookService defines the interface for book-related services.
 type BookService interface {
-	GetBooks(params dtos.BookQueryParams) ([]model.Book, *dtos.PaginationMeta, error)
+	GetBooks(params dto.BookQueryParams) ([]model.Book, *dto.PaginationMeta, error)
 	GetBookByID(id uuid.UUID) (*model.Book, error)
-	CreateBook(book *dtos.BookCreateRequest) (*model.Book, error)
-	UpdateBook(id uuid.UUID, updateData *dtos.BookUpdateRequest) (*model.Book, error)
+	CreateBook(book *dto.BookCreateRequest) (*model.Book, error)
+	UpdateBook(id uuid.UUID, updateData *dto.BookUpdateRequest) (*model.Book, error)
 	DeleteBook(id uuid.UUID) error
 }
 
 type bookService struct {
-	repo repositories.BookRepository
-	// s3repo repositories.TS3Repository // S3 repository for handling images
+	repo repository.BookRepository
+	// s3repo repository.TS3Repository // S3 repository for handling images
 }
 
-func NewBookService(repo repositories.BookRepository) BookService {
+func NewBookService(repo repository.BookRepository) BookService {
 	return &bookService{repo}
 }
 
-func (s *bookService) GetBooks(params dtos.BookQueryParams) ([]model.Book, *dtos.PaginationMeta, error) {
+func (s *bookService) GetBooks(params dto.BookQueryParams) ([]model.Book, *dto.PaginationMeta, error) {
 	books, meta, err := s.repo.FindAll(params)
 	if err != nil {
 		return nil, nil, errors.NewInternalError(err)
 	}
 
 	if len(books) == 0 {
-		return books, &dtos.PaginationMeta{
+		return books, &dto.PaginationMeta{
 			TotalCount: 0,
 			Offset:     params.Offset,
 			Limit:      params.Limit,
@@ -59,7 +59,7 @@ func (s *bookService) GetBookByID(id uuid.UUID) (*model.Book, error) {
 	return book, nil
 }
 
-func (s *bookService) CreateBook(book *dtos.BookCreateRequest) (*model.Book, error) {
+func (s *bookService) CreateBook(book *dto.BookCreateRequest) (*model.Book, error) {
 	// Validate the book creation request
 	if err := utils.ValidateBookCreateRequest(book); err != nil {
 		return nil, errors.NewBadRequestError(err.Error())
@@ -98,7 +98,7 @@ func (s *bookService) CreateBook(book *dtos.BookCreateRequest) (*model.Book, err
 	return resource, nil
 }
 
-func (s *bookService) UpdateBook(id uuid.UUID, updateData *dtos.BookUpdateRequest) (*model.Book, error) {
+func (s *bookService) UpdateBook(id uuid.UUID, updateData *dto.BookUpdateRequest) (*model.Book, error) {
 	if updateData.Isbn != nil {
 		return nil, errors.NewBadRequestError("ISBN cannot be updated once set")
 	}
