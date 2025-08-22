@@ -25,7 +25,7 @@ func SeedBooks(db *gorm.DB) error {
 	}
 
 	// Read seed JSON file
-	file, err := os.ReadFile("utils/books.json")
+	file, err := os.ReadFile("scripts/seed/data/books.json")
 	if err != nil {
 		return errors.New("failed to read books.json")
 	}

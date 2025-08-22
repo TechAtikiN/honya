@@ -16,3 +16,4 @@ go.work
 README.md
 Dockerfile
 .dockerignore
+/docs/*

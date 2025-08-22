@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/gofiber/contrib/swagger"
 	"github.com/gofiber/fiber/v2"
@@ -42,10 +43,12 @@ func main() {
 
 	app.Use(cors.New())
 
+	app.Use(config.SetupLogger())
+
 	config.ConnectToDatabase()
 
 	router.Setup(app)
 
 	log.Println("Server starting on port 8080...")
-	log.Fatal(app.Listen(":8080"))
+	log.Fatal(app.Listen(os.Getenv("SERVER_PORT")))
 }
