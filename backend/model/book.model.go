@@ -6,8 +6,8 @@ import (
 )
 
 type Book struct {
-	Title           string    `gorm:"type:varchar(255);not null" json:"title"`
 	ID              uuid.UUID `gorm:"type:uuid;primaryKey" json:"id"`
+	Title           string    `gorm:"type:varchar(255);not null" json:"title"`
 	Description     string    `gorm:"type:text" json:"description"`
 	Category        string    `gorm:"type:varchar(100)" json:"category"`
 	Image           string    `gorm:"type:varchar(255)" json:"image"`
@@ -18,6 +18,8 @@ type Book struct {
 	CreatedAt       int64     `gorm:"autoCreateTime" json:"created_at"`
 	UpdatedAt       int64     `gorm:"autoUpdateTime" json:"updated_at"`
 	AuthorName      string    `gorm:"type:varchar(100)" json:"author_name"`
+
+	Reviews []Review `gorm:"foreignKey:BookID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;" json:"reviews,omitempty"`
 }
 
 func (b *Book) BeforeCreate(tx *gorm.DB) (err error) {
