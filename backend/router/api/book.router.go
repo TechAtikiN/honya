@@ -4,7 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/techatikin/backend/controller"
 	"github.com/techatikin/backend/repositories"
-	services "github.com/techatikin/backend/service"
+	"github.com/techatikin/backend/service"
 )
 
 type BookRouter struct {
@@ -14,7 +14,7 @@ type BookRouter struct {
 
 func NewBookRouter(app *fiber.App) *BookRouter {
 	bookRepo := repositories.BookRepository()
-	bookService := services.BookService(bookRepo)
+	bookService := service.BookService(bookRepo)
 	bookController := controller.BookController(bookService)
 
 	return &BookRouter{

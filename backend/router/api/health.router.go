@@ -18,7 +18,7 @@ func (r *HealthRouter) Setup(api fiber.Router) {
 
 func (r *HealthRouter) handleHealthCheck(ctx *fiber.Ctx) error {
 	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
-		"status":  "success",
-		"message": "API is running",
+		"status":  "ok",
+		"message": "API is running!",
 	})
 }

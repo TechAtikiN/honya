@@ -23,11 +23,13 @@ import (
 func main() {
 	_ = godotenv.Load()
 
+	// Initialize Fiber app
 	app := fiber.New(fiber.Config{
 		AppName:      "Honya API",
 		ErrorHandler: middleware.ErrorHandler,
 	})
 
+	// Swagger configuration
 	cfg := swagger.Config{
 		BasePath: "/",
 		FilePath: "./docs/swagger.json",

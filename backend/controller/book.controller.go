@@ -11,7 +11,7 @@ import (
 )
 
 type TBookController struct {
-	service service.TBookService
+	bookService service.TBookService
 }
 
 func BookController(service service.TBookService) TBookController {
@@ -46,7 +46,7 @@ func (c *TBookController) GetBooks(ctx *fiber.Ctx) error {
 		Sort:            strings.ToLower(ctx.Query("sort")),
 	}
 
-	books, meta, err := c.service.GetBooks(params)
+	books, meta, err := c.bookService.GetBooks(params)
 	if err != nil {
 		return err
 	}
@@ -72,7 +72,7 @@ func (c *TBookController) GetBookByID(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	book, err := c.service.GetBookByID(id)
+	book, err := c.bookService.GetBookByID(id)
 	if err != nil {
 		return err
 	}
@@ -97,7 +97,7 @@ func (c *TBookController) CreateBook(ctx *fiber.Ctx) error {
 		return errors.NewBadRequestError("Invalid JSON body")
 	}
 
-	book, err := c.service.CreateBook(&reqData)
+	book, err := c.bookService.CreateBook(&reqData)
 	if err != nil {
 		return err
 	}
@@ -133,7 +133,7 @@ func (c *TBookController) UpdateBook(ctx *fiber.Ctx) error {
 		return errors.NewBadRequestError("ISBN cannot be updated once set")
 	}
 
-	updatedBook, err := c.service.UpdateBook(id, &requestData)
+	updatedBook, err := c.bookService.UpdateBook(id, &requestData)
 	if err != nil {
 		return err
 	}
@@ -159,7 +159,7 @@ func (c *TBookController) DeleteBook(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	if err := c.service.DeleteBook(id); err != nil {
+	if err := c.bookService.DeleteBook(id); err != nil {
 		return err
 	}
 

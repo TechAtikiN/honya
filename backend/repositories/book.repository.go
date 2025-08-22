@@ -22,7 +22,6 @@ type bookRepository struct {
 }
 
 func BookRepository() TBookRepository {
-
 	return &bookRepository{
 		db: config.DB.Db,
 	}
@@ -99,6 +98,7 @@ func (r *bookRepository) FindByID(id uuid.UUID) (*model.Book, error) {
 		}
 		return nil, err
 	}
+
 	return &book, nil
 }
 
@@ -107,11 +107,13 @@ func (r *bookRepository) Create(book *model.Book) (*model.Book, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	return book, nil
 }
 
 func (r *bookRepository) Update(id uuid.UUID, updateData *dtos.BookUpdateRequest) (*model.Book, error) {
 	book, err := r.FindByID(id)
+
 	if err != nil {
 		return nil, err
 	}

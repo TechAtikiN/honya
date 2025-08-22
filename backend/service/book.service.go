@@ -21,7 +21,7 @@ type TBookService interface {
 }
 
 type bookService struct {
-	repo repositories.TBookRepository
+	bookRepo repositories.TBookRepository
 	// s3repo repositories.TS3Repository // S3 repository for handling images
 }
 
@@ -30,7 +30,7 @@ func BookService(repo repositories.TBookRepository) TBookService {
 }
 
 func (s *bookService) GetBooks(params dtos.BookQueryParams) ([]model.Book, *dtos.PaginationMeta, error) {
-	books, meta, err := s.repo.FindAll(params)
+	books, meta, err := s.bookRepo.FindAll(params)
 	if err != nil {
 		return nil, nil, errors.NewInternalError(err)
 	}
@@ -48,7 +48,7 @@ func (s *bookService) GetBooks(params dtos.BookQueryParams) ([]model.Book, *dtos
 
 func (s *bookService) GetBookByID(id uuid.UUID) (*model.Book, error) {
 
-	book, err := s.repo.FindByID(id)
+	book, err := s.bookRepo.FindByID(id)
 	if err != nil {
 		return nil, errors.NewInternalError(err)
 	}
@@ -85,7 +85,7 @@ func (s *bookService) CreateBook(book *dtos.BookCreateRequest) (*model.Book, err
 	}
 
 	// Call repository to create the book
-	resource, err := s.repo.Create(&newBook)
+	resource, err := s.bookRepo.Create(&newBook)
 	if err != nil {
 		if strings.Contains(err.Error(), "unique constraint") {
 			return nil, errors.NewConflictError("Book with this ISBN already exists")
@@ -107,7 +107,7 @@ func (s *bookService) UpdateBook(id uuid.UUID, updateData *dtos.BookUpdateReques
 		return nil, errors.NewBadRequestError(err.Error())
 	}
 
-	existingBook, err := s.repo.FindByID(id)
+	existingBook, err := s.bookRepo.FindByID(id)
 	if err != nil {
 		return nil, errors.NewInternalError(err)
 	}
@@ -115,7 +115,7 @@ func (s *bookService) UpdateBook(id uuid.UUID, updateData *dtos.BookUpdateReques
 		return nil, errors.NewNotFoundError("Book not found")
 	}
 
-	resource, err := s.repo.Update(id, updateData)
+	resource, err := s.bookRepo.Update(id, updateData)
 	if err != nil {
 		return nil, errors.NewInternalError(err)
 	}
@@ -124,7 +124,7 @@ func (s *bookService) UpdateBook(id uuid.UUID, updateData *dtos.BookUpdateReques
 }
 
 func (s *bookService) DeleteBook(id uuid.UUID) error {
-	existingBook, err := s.repo.FindByID(id)
+	existingBook, err := s.bookRepo.FindByID(id)
 	if err != nil {
 		return errors.NewInternalError(err)
 	}
@@ -133,5 +133,5 @@ func (s *bookService) DeleteBook(id uuid.UUID) error {
 		return errors.NewNotFoundError("Book not found")
 	}
 
-	return s.repo.Delete(id)
+	return s.bookRepo.Delete(id)
 }

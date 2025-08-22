@@ -21,9 +21,7 @@ func New(app *fiber.App) *Router {
 
 func Setup(app *fiber.App) {
 	router := New(app)
-	app.Stack()
 
-	// Setup API routes with rate limiter
 	api := app.Group("/api")
 
 	router.healthRouter.Setup(api)
