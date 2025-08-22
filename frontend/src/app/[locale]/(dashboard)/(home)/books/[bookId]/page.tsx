@@ -7,7 +7,6 @@ import { getDictionary } from "@/lib/locales";
 import { formatToAgo } from "@/lib/utils";
 import { ArrowLeft, UserStar } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link"
 
 interface BookDetailPageProps {
   params: Promise<{ locale: string; bookId: string }>;
@@ -16,7 +15,7 @@ interface BookDetailPageProps {
 export default async function BookDetailPage({ params }: BookDetailPageProps) {
   const locale = await params;
   const lang = getLocale(locale.locale);
-  const { page } = await getDictionary(lang);
+
   return (
     <div className="flex flex-col space-y-10 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar px-2 pb-32">
       {/* back button */}
@@ -98,7 +97,7 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
               MOCK_BOOK_DATA.reviews.map((review, index) => (
                 <div key={index} className="flex flex-col items-start justify-start space-y-2 bg-white p-4 rounded-lg shadow-md">
                   <p className="text-lg font-semibold text-primary">{review.reviewerName}</p>
-                  <p className="text-sm text-primary/70">"{review.reviewText}"</p>
+                  <p className="text-sm text-primary/70">&quot;{review.reviewText}&quot;</p>
                 </div>
               ))
             }

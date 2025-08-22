@@ -1,0 +1,55 @@
+services:
+  db:
+    container_name: db
+    image: postgres:15.4-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    container_name: api
+    build: ./backend
+    environment:
+      - DATABASE_URL=host=db user=postgres password=postgres dbname=postgres sslmode=disable
+      - PORT=8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app_network
+    restart: unless-stopped
+
+  ui:
+    container_name: ui
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8080
+      - API_URL=http://api:8080
+    depends_on:
+      - api
+    networks:
+      - app_network
+    restart: unless-stopped
+
+volumes:
+  pgdata: {}
+
+networks:
+  app_network:
+    driver: bridge

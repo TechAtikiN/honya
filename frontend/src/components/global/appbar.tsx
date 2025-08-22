@@ -1,5 +1,4 @@
 import { Locale } from "@/i18n.config";
-import { LocaleDict } from "@/lib/locales";
 import MobileSidebar from "./mobile-sidebar";
 
 interface AppbarProps {

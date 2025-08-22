@@ -1,8 +1,6 @@
 'use client';
 
 import { Locale } from '@/i18n.config';
-import { LocaleDict } from '@/lib/locales';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import CustomLink from './custom-link';
 

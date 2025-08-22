@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '../ui/button'
-import { BookDashed, BookPlus } from 'lucide-react'
+import { BookDashed } from 'lucide-react'
 import {
   Dialog,
   DialogTrigger,
@@ -32,7 +32,6 @@ export default function AddNewBook() {
     handleSubmit,
     control,
     reset,
-    setValue,
     formState: { errors, isSubmitting },
   } = useForm<BookFormData>({
     resolver: zodResolver(createBookFormSchema),

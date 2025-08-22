@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Upload, X } from "lucide-react";
+import Image from "next/image";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
@@ -38,7 +39,9 @@ export default function UploadBookImage() {
           {filePreview ? (
             <div className="flex flex-col items-center justify-center space-y-2">
               <div className="relative">
-                <img
+                <Image
+                  width={56}
+                  height={56}
                   src={filePreview as string}
                   alt="preview"
                   className="w-14 h-14 rounded-full shadow-md object-cover border"

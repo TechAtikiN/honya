@@ -17,6 +17,7 @@ export default async function Home({
 
   return (
     <div className="flex flex-col space-y-6 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar">
+      <p>{page.home.title}</p>
       {/* Search input and Add button */}
       <Header />
 
