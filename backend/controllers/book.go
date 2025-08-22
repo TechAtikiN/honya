@@ -21,12 +21,12 @@ func BookController(service services.TBookService) *TBookController {
 func (c *TBookController) GetBooks(ctx *fiber.Ctx) error {
 	params := dtos.BookQueryParams{
 		Query:           ctx.Query("query"),
-		Offset:          utils.ParseInt(ctx.Query("offset"), 0),
-		Limit:           utils.ParseInt(ctx.Query("limit"), 10),
+		Offset:          utils.ParseInt(ctx.Query("offset"), utils.DefaultOffset),
+		Limit:           utils.ParseInt(ctx.Query("limit"), utils.DefaultLimit),
 		Category:        strings.ToLower(ctx.Query("category")),
-		PublicationYear: utils.ParseInt(ctx.Query("publication_year"), 2025),
-		Rating:          utils.ParseFloat(ctx.Query("rating"), 0),
-		Pages:           utils.ParseInt(ctx.Query("pages"), 0),
+		PublicationYear: utils.ParseInt(ctx.Query("publication_year"), utils.DefaultPublicationYear),
+		Rating:          utils.ParseFloat(ctx.Query("rating"), utils.DefaultRating),
+		Pages:           utils.ParseInt(ctx.Query("pages"), utils.DefaultPages),
 		Sort:            strings.ToLower(ctx.Query("sort")),
 	}
 
@@ -35,10 +35,8 @@ func (c *TBookController) GetBooks(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
-		"meta": meta,
-		"data": books,
-	})
+	result := dtos.ToBookListResponse(books, *meta)
+	return ctx.Status(fiber.StatusOK).JSON(result)
 }
 
 func (c *TBookController) GetBookByID(ctx *fiber.Ctx) error {
@@ -52,21 +50,7 @@ func (c *TBookController) GetBookByID(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	result := dtos.BookResponse{
-		ID:              book.ID,
-		Title:           book.Title,
-		Description:     book.Description,
-		Category:        book.Category,
-		Image:           book.Image,
-		PublicationYear: book.PublicationYear,
-		Rating:          book.Rating,
-		Pages:           book.Pages,
-		Isbn:            book.Isbn,
-		AuthorName:      book.AuthorName,
-		CreatedAt:       book.CreatedAt,
-		UpdatedAt:       book.UpdatedAt,
-	}
-
+	result := dtos.ToBookResponse(book)
 	return ctx.Status(fiber.StatusOK).JSON(result)
 }
 
@@ -81,21 +65,7 @@ func (c *TBookController) CreateBook(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	result := dtos.BookResponse{
-		ID:              book.ID,
-		Title:           book.Title,
-		Description:     book.Description,
-		Category:        book.Category,
-		Image:           book.Image,
-		PublicationYear: book.PublicationYear,
-		Rating:          book.Rating,
-		Pages:           book.Pages,
-		Isbn:            book.Isbn,
-		AuthorName:      book.AuthorName,
-		CreatedAt:       book.CreatedAt,
-		UpdatedAt:       book.UpdatedAt,
-	}
-
+	result := dtos.ToBookResponse(book)
 	return ctx.Status(fiber.StatusCreated).JSON(result)
 }
 
@@ -119,21 +89,7 @@ func (c *TBookController) UpdateBook(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	result := dtos.BookResponse{
-		ID:              updatedBook.ID,
-		Title:           updatedBook.Title,
-		Description:     updatedBook.Description,
-		Category:        updatedBook.Category,
-		Image:           updatedBook.Image,
-		PublicationYear: updatedBook.PublicationYear,
-		Rating:          updatedBook.Rating,
-		Pages:           updatedBook.Pages,
-		Isbn:            updatedBook.Isbn,
-		AuthorName:      updatedBook.AuthorName,
-		CreatedAt:       updatedBook.CreatedAt,
-		UpdatedAt:       updatedBook.UpdatedAt,
-	}
-
+	result := dtos.ToBookResponse(updatedBook)
 	return ctx.Status(fiber.StatusOK).JSON(result)
 }
 
