@@ -1,10 +1,14 @@
-import { MOCK_BOOKS_DATA } from '@/constants/books'
 import BookListItem from './BookListItem'
+import { Book } from '@/types/book'
 
-export default function BookList() {
+interface BookListProps {
+  books: Book[]
+}
+
+export default function BookList({ books }: BookListProps) {
   return (
-    <div className="grid max-[420px]:grid-cols-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 m-0 xl:-mx-9 ">
-      {MOCK_BOOKS_DATA.map((book) => (
+    <div className="grid max-[420px]:grid-cols-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+      {books.map((book) => (
         <BookListItem
           key={book.id}
           book={book}

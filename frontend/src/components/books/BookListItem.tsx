@@ -1,5 +1,4 @@
 import { Book } from "@/types/book"
-import Image from "next/image"
 import Link from "next/link"
 import HintLabel from "../global/hint-label"
 
@@ -16,12 +15,11 @@ export default function BookListItem({
       className="flex flex-col items-center justify-center space-y-3"
     >
       <div className="mx-auto">
-        <div className="relative w-[200px] h-[250px]  md:w-[160px] md:h-[220px] rounded-md overflow-hidden drop-shadow-md shadow-lg">
-          <Image
+        <div className="relative w-[200px] h-[250px]  md:w-[180px] md:h-[230px] rounded-md overflow-hidden drop-shadow-md shadow-lg">
+          <img
             src={book.image || "/placeholder.png"}
             alt={book.title}
-            fill
-            className="object-fill"
+            className="object-cover"
           />
         </div>
       </div>
@@ -40,7 +38,8 @@ export default function BookListItem({
             {book.title}
           </p>
         )}
-        <p className="font-medium text-sm text-primary/50">{book.authorName}</p>
+        <p className="font-medium text-sm text-primary/50">{book.author_name}</p>
+        <p>{book.rating}</p>
       </div>
     </Link>
   )

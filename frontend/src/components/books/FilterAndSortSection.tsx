@@ -18,7 +18,7 @@ export default function FilterAndSortSection() {
         />
         <DropdownFilter
           label="Sort"
-          searchParamKey="sort_by"
+          searchParamKey="sort"
           defaultValue="recently_added"
           list={BOOK_SORT_OPTIONS}
         />

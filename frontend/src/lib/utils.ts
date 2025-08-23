@@ -21,3 +21,16 @@ export function formatToAgo(date: Date | string | number) {
   const days = Math.floor(hours / 24);
   return `${days} days ago`;
 }
+
+export function getFilters(searchParams: { [key: string]: string | string[] | undefined }) {
+  const filters: { [key: string]: string } = {};
+
+  for (const key in searchParams) {
+    const value = searchParams[key];
+    if (typeof value === 'string' && value.trim() !== '') {
+      filters[key] = value;
+    }
+  }
+
+  return filters;
+}

@@ -55,17 +55,17 @@ func (r *bookRepository) FindAll(params dto.BookQueryParams) ([]model.Book, dto.
 	}
 
 	switch params.Sort {
-	case "title_asc":
+	case "title":
 		query = query.Order("title ASC")
-	case "rating_desc":
+	case "rating":
 		query = query.Order("rating DESC")
-	case "created_at_desc":
+	case "recently_added":
 		query = query.Order("created_at DESC")
-	case "updated_at_desc":
+	case "recently_updated":
 		query = query.Order("updated_at DESC")
-	case "pages_desc":
+	case "pages":
 		query = query.Order("pages DESC")
-	case "publication_year_desc":
+	case "publication_year":
 		query = query.Order("publication_year DESC")
 	default:
 		query = query.Order("created_at DESC")

@@ -3,7 +3,7 @@ import { Aperture, Atom, AudioWaveform, BadgeQuestionMark, BellDot, BellRing, Bo
 
 export const BOOK_CATEGORIES = [
   {
-    value: 'all',
+    value: '',
     label: "All Categories",
     icon: <SquareLibrary className="h-4 w-4" />
   },
@@ -13,7 +13,7 @@ export const BOOK_CATEGORIES = [
     icon: <Aperture className="h-4 w-4" />
   },
   {
-    value: 'non-fiction',
+    value: 'non_fiction',
     label: "Non-Fiction",
     icon: <AudioWaveform className="h-4 w-4" />
   },
