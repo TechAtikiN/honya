@@ -15,20 +15,40 @@ import { z } from "zod";
 import { createBookFormSchema } from '@/lib/validation';
 import { BOOK_CATEGORIES } from '@/constants/books';
 import { Slider } from '../ui/slider';
-import { useState } from 'react';
+import { useState, useTransition, useEffect } from 'react';
 import { BookPlus, PencilLine } from 'lucide-react';
 import UploadBookImage from './UploadBookImage';
+import { createBook, updateBook } from '@/actions/book.actions';
+import { toast } from 'sonner';
+import { Book } from '@/types/book';
 
-type BookFormData = z.infer<typeof createBookFormSchema>;
+export type BookFormData = z.infer<typeof createBookFormSchema>;
 
 interface BookFormProps {
+  bookDetails?: Book;
   isOpen?: boolean;
   setIsOpen: (open: boolean) => void;
   isEdit?: boolean;
 }
 
-export default function BookForm({ isOpen = false, setIsOpen, isEdit = false }: BookFormProps) {
-  const [rating, setRating] = useState([4]);
+export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdit = false }: BookFormProps) {
+  const [bookImagePreview, setbookImagePreview] = useState<string | ArrayBuffer | null>(null);
+  const [bookImageInfo, setBookImageInfo] = useState<{ name: string; size: number } | null>(null);
+  const [bookImageError, setbookImageError] = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [isPending, startTransition] = useTransition();
+
+  // Helper function to get default values
+  const getDefaultValues = (book?: Book) => ({
+    rating: book?.rating || 4,
+    category: book?.category || BOOK_CATEGORIES[0].value,
+    publicationYear: book?.publication_year || new Date().getFullYear(),
+    pages: book?.pages || 100,
+    title: book?.title || '',
+    isbn: book?.isbn || '',
+    description: book?.description || '',
+    authorName: book?.author_name || '',
+  });
 
   const {
     register,
@@ -38,32 +58,70 @@ export default function BookForm({ isOpen = false, setIsOpen, isEdit = false }: 
     formState: { errors, isSubmitting },
   } = useForm<BookFormData>({
     resolver: zodResolver(createBookFormSchema),
-    mode: "onChange",
-    defaultValues: {
-      rating: 4,
-      category: BOOK_CATEGORIES[0]?.value as BookFormData['category'],
-      publicationYear: new Date().getFullYear(),
-      pages: 1,
-    }
+    mode: 'onChange',
+    defaultValues: getDefaultValues(bookDetails),
   });
+
+  // Reset form when bookDetails changes (after successful update)
+  useEffect(() => {
+    if (bookDetails && isEdit) {
+      reset(getDefaultValues(bookDetails));
+      // Reset image-related states to show current book image
+      setImageFile(null);
+      setbookImagePreview(null);
+      setBookImageInfo(null);
+      setbookImageError(null);
+    }
+  }, [bookDetails, isEdit, reset]);
 
   const onSubmit = async (data: BookFormData) => {
     try {
-      console.log(data);
-      // Handle form submission logic here
-
-      // Reset form and close dialog on success
-      reset();
-      setRating([4]);
-      setIsOpen(false);
+      if (isEdit) {
+        startTransition(async () => {
+          const response = await updateBook({ ...data, id: bookDetails?.id || '' }, imageFile || undefined);
+          if (response?.success) {
+            toast.success(response.message || 'Book updated successfully');
+            // Don't reset here - let useEffect handle it when new data comes in
+            setIsOpen(false);
+          } else {
+            console.error('Error updating book:', response?.message);
+            toast.error(response?.message || 'Failed to update book');
+          }
+        });
+      } else {
+        startTransition(async () => {
+          const response = await createBook(data, imageFile || undefined);
+          if (response?.success) {
+            toast.success(response.message || 'Book created successfully');
+            reset();
+            setImageFile(null);
+            setbookImagePreview(null);
+            setBookImageInfo(null);
+            setbookImageError(null);
+            setIsOpen(false);
+          } else {
+            console.error('Error creating book:', response?.message);
+            toast.error(response?.message || 'Failed to create book');
+          }
+        });
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
+      toast.error('An error occurred while submitting the form. Please try again.');
     }
   };
 
   const handleCancel = () => {
-    reset();
-    setRating([4]);
+    // Reset to current book details when canceling
+    if (isEdit && bookDetails) {
+      reset(getDefaultValues(bookDetails));
+    } else {
+      reset();
+    }
+    setImageFile(null);
+    setbookImagePreview(null);
+    setBookImageInfo(null);
+    setbookImageError(null);
     setIsOpen(false);
   };
 
@@ -95,7 +153,16 @@ export default function BookForm({ isOpen = false, setIsOpen, isEdit = false }: 
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col space-y-4 full h-[600px] md:h-auto overflow-auto invisible-scrollbar'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             <div className='flex flex-col space-y-4 border-r border-secondary pr-4'>
-              <UploadBookImage />
+              <UploadBookImage
+                bookImagePreview={bookImagePreview}
+                setbookImagePreview={setbookImagePreview}
+                bookImageInfo={bookImageInfo}
+                setBookImageInfo={setBookImageInfo}
+                bookImageError={bookImageError}
+                setbookImageError={setbookImageError}
+                setImageFile={setImageFile}
+                imageURL={bookDetails?.image || null}
+              />
 
               <div className='flex flex-col space-y-1'>
                 <label className='form-label'>Title</label>
@@ -193,21 +260,21 @@ export default function BookForm({ isOpen = false, setIsOpen, isEdit = false }: 
 
               <div className='flex flex-col space-y-1'>
                 <label htmlFor="rating" className='form-label'>
-                  Rating: {rating[0]}
+                  Rating
                 </label>
                 <Controller
                   name="rating"
                   control={control}
                   render={({ field }) => (
                     <Slider
-                      value={rating}
                       onValueChange={(value) => {
-                        setRating(value);
                         field.onChange(value[0]);
                       }}
                       max={5}
                       min={0}
                       step={0.5}
+                      defaultValue={[field.value]}
+                      value={[field.value]}
                       className="w-full"
                     />
                   )}
@@ -229,14 +296,13 @@ export default function BookForm({ isOpen = false, setIsOpen, isEdit = false }: 
             </DialogClose>
             <Button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || isPending}
             >
-              {isSubmitting ? 'Adding...' : 'Add Book'}
+              {isSubmitting || isPending ? (isEdit ? 'Updating...' : 'Adding...') : (isEdit ? 'Update Book' : 'Add Book')}
             </Button>
           </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
-
   )
 }

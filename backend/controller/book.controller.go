@@ -131,10 +131,14 @@ func (c *bookController) CreateBook(ctx *fiber.Ctx) error {
 	// Call service
 	book, err := c.service.CreateBook(&reqData, fileHeader)
 	if err != nil {
+		if strings.Contains(err.Error(), "duplicate key value violates unique constraint") && strings.Contains(err.Error(), "uni_books_isbn") {
+			return errors.NewConflictError("A book with this ISBN already exists")
+		}
 		return err
 	}
 
 	result := dto.ToBookResponse(book)
+
 	return ctx.Status(fiber.StatusCreated).JSON(result)
 }
 
@@ -195,24 +199,20 @@ func (c *bookController) UpdateBook(ctx *fiber.Ctx) error {
 			requestData.AuthorName = &author
 		}
 
-		// Parse file
 		file, err := ctx.FormFile("image")
 		if err == nil {
 			fileHeader = file
 		}
 	} else {
-		// JSON body
 		if err := ctx.BodyParser(&requestData); err != nil {
 			return errors.NewBadRequestError("Invalid JSON body")
 		}
 	}
 
-	// ISBN cannot be updated
 	if requestData.Isbn != nil {
 		return errors.NewBadRequestError("ISBN cannot be updated once set")
 	}
 
-	// ✅ Run your validator
 	if err := utils.ValidateBookUpdateRequest(&requestData); err != nil {
 		return errors.NewBadRequestError(err.Error())
 	}

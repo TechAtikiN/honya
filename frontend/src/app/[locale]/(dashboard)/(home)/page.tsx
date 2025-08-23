@@ -35,41 +35,47 @@ export default async function Home({
       {/* Filters and Sort */}
       <FilterAndSortSection />
 
-      {/* Book List */}
-      <div className="w-full flex flex-col justify-between h-full gap-y-3">
-        <BookList books={data} />
+      {!data || data.length === 0 ? (
+        <div className="flex flex-col items-center justify-center h-full space-y-3">
+          <p className="text-primary text-lg">No books found.</p>
 
-        {/* Pagination */}
-        <div className="flex items-center justify-center space-x-5 -ml-28">
-          {currentPage > 1 ? (
-            <CustomLink
-              locale={lang}
-              href={`?page=${currentPage - 1}`}
-              className="flex items-center justify-center space-x-1 min-w-24"
-            >
-              <ChevronLeft className="h-5 w-5 text-primary" />
-              <span className="font-medium">Previous</span>
-            </CustomLink>
-          ) : (
-            <div className="min-w-24"></div>
-          )}
-          <p className="text-primary font-normal text-sm">
-            Page {currentPage} of {Math.ceil(meta.total_count / limit)}
-          </p>
-          {(currentPage * limit) < meta.total_count ? (
-            <CustomLink
-              locale={lang}
-              href={`?page=${currentPage + 1}`}
-              className="flex items-center justify-center space-x-1 min-w-24"
-            >
-              <span className="font-medium">Next</span>
-              <ChevronRight className="h-5 w-5 text-primary" />
-            </CustomLink>
-          ) : (
-            <div className="min-w-24"></div>
-          )}
         </div>
-      </div>
+      ) : (
+        <div className="w-full flex flex-col justify-between h-full gap-y-3">
+          <BookList books={data} />
+
+          {/* Pagination */}
+          <div className="flex items-center justify-center space-x-5 -ml-28">
+            {currentPage > 1 ? (
+              <CustomLink
+                locale={lang}
+                href={`?page=${currentPage - 1}`}
+                className="flex items-center justify-center space-x-1 min-w-24"
+              >
+                <ChevronLeft className="h-5 w-5 text-primary" />
+                <span className="font-medium">Previous</span>
+              </CustomLink>
+            ) : (
+              <div className="min-w-24"></div>
+            )}
+            <p className="text-primary font-normal text-sm">
+              Page {currentPage} of {Math.ceil(meta.total_count / limit)}
+            </p>
+            {(currentPage * limit) < meta.total_count ? (
+              <CustomLink
+                locale={lang}
+                href={`?page=${currentPage + 1}`}
+                className="flex items-center justify-center space-x-1 min-w-24"
+              >
+                <span className="font-medium">Next</span>
+                <ChevronRight className="h-5 w-5 text-primary" />
+              </CustomLink>
+            ) : (
+              <div className="min-w-24"></div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

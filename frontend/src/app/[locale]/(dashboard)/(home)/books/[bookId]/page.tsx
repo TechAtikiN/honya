@@ -1,3 +1,4 @@
+import { getBookDetails } from "@/actions/book.actions";
 import DeleteBook from "@/components/book-details/DeleteBook";
 import StarRating from "@/components/book-details/StarRating";
 import UpdateBook from "@/components/books/UpdateBook";
@@ -14,8 +15,10 @@ interface BookDetailPageProps {
 }
 
 export default async function BookDetailPage({ params }: BookDetailPageProps) {
-  const locale = await params;
-  const lang = getLocale(locale.locale);
+  const { locale, bookId } = await params;
+  const lang = getLocale(locale);
+
+  const bookDetails = await getBookDetails(bookId)
 
   return (
     <div className="flex flex-col space-y-10 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar px-2 pb-10">
@@ -29,7 +32,7 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
           <ArrowLeft className="h-4 w-4" />
           <span className="font-medium text-primary hover:underline underline-offset-4">View all books</span>
         </CustomLink>
-        <UpdateBook />
+        <UpdateBook bookDetails={bookDetails} />
       </div>
 
       <div className="flex flex-col md:flex-row items-start justify-center space-x-0 md:space-x-10 space-y-5 md:space-y-0">
@@ -37,8 +40,8 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
         <div className="relative flex items-center justify-center w-full md:w-1/2">
           <div className="hidden md:block md:absolute md:h-[520px] md:w-[520px] md:rounded-full md:bg-secondary/35 md:z-0 shadow-lg" />
           <Image
-            src={MOCK_BOOK_DATA.image || "/placeholder.png"}
-            alt={MOCK_BOOK_DATA.title}
+            src={bookDetails.image || '/assets/books/book-placeholder.png'}
+            alt={bookDetails.title || 'Book Image'}
             width={350}
             height={520}
             className="rounded-md object-cover z-10 shadow-xl"
@@ -47,40 +50,40 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
 
         {/* Right section */}
         <div className="flex flex-col items-start justify-center space-y-4 w-full md:w-1/2">
-          <p className="bg-secondary border border-primary rounded-xl font-bold px-3 text-primary">{MOCK_BOOK_DATA.category}</p>
-          <p className="text-5xl font-extrabold text-primary">{MOCK_BOOK_DATA.title}</p>
-          <p className="text-lg font-medium text-primary/50 mt-2">- by {MOCK_BOOK_DATA.authorName}</p>
-          <p className="text-justify text-lg font-normal text-primary mt-2">{MOCK_BOOK_DATA.description}</p>
+          <p className="bg-secondary border border-primary rounded-xl font-bold px-3 text-primary">{bookDetails.category}</p>
+          <p className="text-5xl font-extrabold text-primary">{bookDetails.title}</p>
+          <p className="text-lg font-medium text-primary/50 mt-2">- by {bookDetails.authorName}</p>
+          <p className="text-justify text-lg font-normal text-primary mt-2">{bookDetails.description}</p>
         </div>
       </div>
 
 
       <div className='flex items-center justify-start w-full space-x-5 font-semibold text-primary/50'>
-        <p>Created {formatToAgo(Number(MOCK_BOOK_DATA.createdAt))}</p>
+        <p>Created {formatToAgo(Number(bookDetails.created_at))}</p>
         <p>|</p>
-        <p>Updated {formatToAgo(Number(MOCK_BOOK_DATA.updatedAt))}</p>
+        <p>Updated {formatToAgo(Number(bookDetails.updated_at))}</p>
       </div>
 
       {/* bottom  */}
       <div className="flex flex-col space-y-10">
         <div className="flex flex-col md:flex-row items-start justify-between">
           <div className="flex flex-col items-center justify-between space-y-1">
-            <StarRating rating={MOCK_BOOK_DATA.rating} />
+            <StarRating rating={bookDetails.rating} />
             <p className="">Rating</p>
           </div>
 
           <div className="flex flex-col items-center justify-between space-y-1">
-            <p className="text-lg text-primary font-semibold">{MOCK_BOOK_DATA.publicationYear}</p>
+            <p className="text-lg text-primary font-semibold">{bookDetails.publication_year}</p>
             <p className="font-normal text-primary">Publication Year</p>
           </div>
 
           <div className="flex flex-col items-center justify-between space-y-1">
-            <p className="text-lg text-primary font-semibold">{MOCK_BOOK_DATA.pages}</p>
+            <p className="text-lg text-primary font-semibold">{bookDetails.pages}</p>
             <p className="font-normal text-primary">Pages</p>
           </div>
 
           <div className="flex flex-col items-center justify-between space-y-1">
-            <p className="text-lg text-primary font-semibold">{MOCK_BOOK_DATA.isbn}</p>
+            <p className="text-lg text-primary font-semibold">{bookDetails.isbn}</p>
             <p className="font-normal text-primary">ISBN</p>
           </div>
         </div>

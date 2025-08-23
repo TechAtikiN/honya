@@ -1,4 +1,4 @@
-import { getBooks } from "@/actions/book.actions";
+import { getBookDetails, getBooks } from "@/actions/book.actions";
 
 export enum bookCategory {
   FICTION = "fiction",
@@ -12,22 +12,6 @@ export enum bookCategory {
   TRAVEL = "travel",
   CLASSICS = "classics",
 }
-
-export type Book = {
-  id: string;
-  title: string;
-  description: string;
-  author_name: string;
-  category: bookCategory;
-  image: string;
-  publication_year: number;
-  rating: number;
-  pages: number;
-  isbn: string;
-  created_at: Date;
-  updated_at: Date;
-}
-
 export interface Filters {
   publication_year?: string
   category?: string
@@ -37,7 +21,7 @@ export interface Filters {
   rating?: string
 }
 
-
+export type Book = Awaited<ReturnType<typeof getBookDetails>>;
 export interface BooksResponse {
   data: Book[]
   meta: {

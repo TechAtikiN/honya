@@ -5,7 +5,7 @@ import SearchInput from './SearchInput'
 
 export default function Header() {
   return (
-    <div className="flex items-center justify-between gap-x-2">
+    <div className="flex items-center justify-between">
       <div className="flex w-full md:w-2/3 items-center gap-x-2 md:gap-x-4">
         <SearchInput />
         <AddNewBook />
@@ -14,7 +14,7 @@ export default function Header() {
       <Link
         className='bg-primary rounded-full p-2 hover:opacity-80 transition'
         href="https://github.com/TechAtikiN" target='_blank'>
-        <Github className="h-5 w-5 text-white" />
+        <Github className="h-5 w-5 text-white fill-white" />
       </Link>
     </div>
   )

@@ -1,24 +1,199 @@
 'use server'
 
-import { BooksResponse, Filters } from "@/types/book"
+import { BookFormData } from "@/components/books/BookForm";
+import { bookCategory, BooksResponse, Filters } from "@/types/book"
+import { revalidatePath } from "next/cache";
 
 const BACKEND_API_URL = process.env.BACKEND_API_URL || 'http://localhost:8080/api'
 
 export async function getBooks(filters: Filters, page: number = 1, limit: number = 10): Promise<BooksResponse> {
-  const offset = (page - 1) * limit;
+  try {
+    const offset = (page - 1) * limit;
 
-  const URL = `${BACKEND_API_URL}/books?limit=${limit}&offset=${offset}&` + new URLSearchParams(filters as Record<string, string>);
+    const URL = `${BACKEND_API_URL}/books?limit=${limit}&offset=${offset}&` + new URLSearchParams(filters as Record<string, string>);
 
-  console.log('Fetching books from URL:', URL);
+    const res = await fetch(URL, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
 
-  const res = await fetch(URL, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    cache: 'no-store',
-  });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching books:', error);
+    throw error;
+  }
+}
 
-  const data = await res.json();
-  return data;
+export async function getBookDetails(id: string) {
+  try {
+    const res = await fetch(`${BACKEND_API_URL}/books/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    } else {
+      console.error('Error fetching book:', res.statusText);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching book:', error);
+    throw error;
+  }
+}
+
+export async function createBook(data: BookFormData, imageFile?: File) {
+  try {
+    const formData = new FormData();
+
+    formData.append('title', data.title);
+    formData.append('isbn', data.isbn);
+    formData.append('description', data.description);
+    formData.append('author_name', data.authorName);
+    formData.append('category', data.category);
+    formData.append('publication_year', data.publicationYear.toString());
+    formData.append('pages', data.pages.toString());
+    formData.append('rating', data.rating.toString());
+
+    if (imageFile) {
+      formData.append('image', imageFile);
+    }
+
+    const res = await fetch(`${BACKEND_API_URL}/books`, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (res.ok) {
+      revalidatePath('/');
+      return {
+        success: true,
+        message: 'Book created successfully',
+      }
+    } else {
+      const errorData = await res.json();
+      if (errorData.error.includes('A book with this ISBN already exists')) {
+        return {
+          success: false,
+          message: 'A book with this ISBN already exists.',
+        }
+      }
+      if (res.status === 400) {
+        console.error(errorData.error);
+        return {
+          success: false,
+          message: errorData.error,
+        }
+      } else if (res.status === 500) {
+        console.error(errorData.error);
+        return {
+          success: false,
+          message: errorData.error,
+        }
+      } else if (res.status === 409) {
+        console.error(errorData.error);
+        return {
+          success: false,
+          message: errorData.error,
+        }
+      } else if (res.status === 404) {
+        console.error(errorData.error);
+        return {
+          success: false,
+          message: errorData.error,
+        }
+      } else {
+        console.error('Unexpected error:', errorData);
+        return {
+          success: false,
+          message: 'Unexpected error occurred',
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Error creating book:', error);
+    throw error;
+  }
+}
+
+export async function updateBook(data: Partial<BookFormData> & { id: string }, imageFile?: File) {
+  try {
+    const formData = new FormData();
+
+    if (data.title) formData.append('title', data.title);
+    if (data.isbn) formData.append('isbn', data.isbn);
+    if (data.description) formData.append('description', data.description);
+    if (data.authorName) formData.append('author_name', data.authorName);
+    if (data.category) formData.append('category', data.category);
+    if (data.publicationYear) formData.append('publication_year', data.publicationYear.toString());
+    if (data.pages) formData.append('pages', data.pages.toString());
+    if (data.rating) formData.append('rating', data.rating.toString());
+
+    if (imageFile) {
+      formData.append('image', imageFile);
+    }
+
+    const res = await fetch(`${BACKEND_API_URL}/books/${data.id}`, {
+      method: 'PATCH',
+      body: formData,
+    });
+
+    if (res.ok) {
+      revalidatePath(`/books/${data.id}`);
+      return {
+        success: true,
+        message: 'Book updated successfully',
+      }
+    } else {
+      const errorData = await res.json();
+      if (errorData.error.includes('A book with this ISBN already exists')) {
+        return {
+          success: false,
+          message: 'A book with this ISBN already exists.',
+        }
+      }
+      if (res.status === 400) {
+        console.error(errorData.error);
+        return {
+          success: false,
+          message: errorData.error,
+        }
+      } else if (res.status === 500) {
+        console.error(errorData.error);
+        return {
+          success: false,
+          message: errorData.error,
+        }
+      } else if (res.status === 409) {
+        console.error(errorData.error);
+        return {
+          success: false,
+          message: errorData.error,
+        }
+      } else if (res.status === 404) {
+        console.error(errorData.error);
+        return {
+          success: false,
+          message: errorData.error,
+        }
+      } else {
+        console.error('Unexpected error:', errorData);
+        return {
+          success: false,
+          message: 'Unexpected error occurred',
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Error updating book:', error);
+    throw error;
+  }
 }

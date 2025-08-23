@@ -310,3 +310,31 @@
 {"timestamp":"2025-08-23 13:54:58", "status":200, "latency":"    3.64125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
 
 {"timestamp":"2025-08-23 13:55:01", "status":200, "latency":"   6.422584ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:01:57", "status":200, "latency":"     5.8275ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:02:05", "status":200, "latency":"   2.847708ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:14:28", "status":400, "latency":"    236.125µs", "method":"POST", "path":"/api/books", "error":"author ID is required: bad request", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:14:28", "status":400, "latency":"    236.125µs", "method":"POST", "path":"/api/books", "error":"author ID is required: bad request", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:15:02", "status":500, "latency":" 147.370917ms", "method":"POST", "path":"/api/books", "error":"Internal server error: ERROR: duplicate key value violates unique constraint "uni_books_isbn" (SQLSTATE 23505)", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:15:02", "status":500, "latency":" 147.370917ms", "method":"POST", "path":"/api/books", "error":"Internal server error: ERROR: duplicate key value violates unique constraint "uni_books_isbn" (SQLSTATE 23505)", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:24:12", "status":400, "latency":"     34.416µs", "method":"POST", "path":"/api/books", "error":"author ID is required: bad request", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:24:12", "status":400, "latency":"     34.416µs", "method":"POST", "path":"/api/books", "error":"author ID is required: bad request", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:27:21", "status":200, "latency":"   8.942041ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:27:41", "status":400, "latency":"         39µs", "method":"POST", "path":"/api/books", "error":"author ID is required: bad request", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:27:41", "status":400, "latency":"         39µs", "method":"POST", "path":"/api/books", "error":"author ID is required: bad request", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:28:54", "status":200, "latency":"    7.45125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:30:27", "status":400, "latency":"     96.334µs", "method":"POST", "path":"/api/books", "error":"author ID is required: bad request", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-23 14:30:27", "status":400, "latency":"     96.334µs", "method":"POST", "path":"/api/books", "error":"author ID is required: bad request", "response":[], "ip":"127.0.0.1"}

@@ -17,7 +17,7 @@ export default function BookListItem({
       <div className="mx-auto">
         <div className="relative w-[200px] h-[250px]  md:w-[180px] md:h-[230px] rounded-md overflow-hidden drop-shadow-md shadow-lg">
           <img
-            src={book.image || "/placeholder.png"}
+            src={book.image || "/assets/books/book-placeholder.png"}
             alt={book.title}
             className="object-cover"
           />
