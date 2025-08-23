@@ -8,6 +8,8 @@ import {
 import { Button } from '../ui/button'
 import RangeFilter from './RangeFilter'
 import { ListFilterPlus } from 'lucide-react'
+import { LocaleDict } from '@/lib/locales'
+import { Locale } from '@/i18n.config'
 
 interface SelectedFilter {
   key: string
@@ -15,7 +17,12 @@ interface SelectedFilter {
   value: number
 }
 
-export default function Filters() {
+interface FiltersProps {
+  translations: LocaleDict
+  locale: Locale
+}
+
+export default function Filters({ translations, locale }: FiltersProps) {
   const [selectedFilters, setSelectedFilters] = useState<SelectedFilter[]>([])
 
   const handleFilterChange = (key: string, label: string, value: number) => {
@@ -30,12 +37,12 @@ export default function Filters() {
   }
 
   const getButtonLabel = () => {
-    if (selectedFilters.length === 0) return 'Filters'
+    if (selectedFilters.length === 0) return translations.page.home.filters.filters
     if (selectedFilters.length === 1) {
       const { label, value } = selectedFilters[0]
       return `${label}: ${value}`
     }
-    return `${selectedFilters.length} selected`
+    return `${selectedFilters.length} ${translations.page.home.filters.selected} `
   }
 
   return (
@@ -51,7 +58,7 @@ export default function Filters() {
           <DropdownMenuItem className="flex flex-col gap-4">
             <RangeFilter
               searchParamKey="publication_year"
-              label="Publication Year"
+              label={translations.page.home.filters.publicationYear}
               defaultValue={new Date().getFullYear()}
               max={new Date().getFullYear()}
               step={10}
@@ -60,7 +67,7 @@ export default function Filters() {
             />
             <RangeFilter
               searchParamKey="rating"
-              label="Minimum Rating"
+              label={translations.page.home.filters.rating}
               defaultValue={0}
               max={5}
               step={0.5}
@@ -69,7 +76,7 @@ export default function Filters() {
             />
             <RangeFilter
               searchParamKey="pages"
-              label="Number of Pages"
+              label={translations.page.home.filters.pages}
               defaultValue={10000}
               max={10000}
               step={1000}

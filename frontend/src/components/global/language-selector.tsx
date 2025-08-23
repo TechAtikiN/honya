@@ -44,10 +44,8 @@ export default function LanguageSelector({
   };
 
   const setLocaleAndReload = (loc: string) => {
-    // Set the locale in a cookie to persist the user's choice
-    document.cookie = `NEXT_LOCALE=${loc}; path=/; max-age=31536000`; // 1 year cookie
+    document.cookie = `NEXT_LOCALE=${loc}; path=/; max-age=31536000`;
 
-    // Redirect to the new locale and reload the page to apply changes
     const newPath = getRedirectPathName(loc);
     window.location.href = newPath;
   };
@@ -63,7 +61,7 @@ export default function LanguageSelector({
             className={`text-white transition-all duration-200 ease-in-out whitespace-nowrap overflow-hidden ${collapse ? 'opacity-0 w-0' : 'opacity-100 w-auto'
               }`}
           >
-            Select Language
+            {locale === Locale.EN ? 'English' : '日本語'}
           </p>
           <Globe className='-ml-2 h-5 w-5' />
         </Button>

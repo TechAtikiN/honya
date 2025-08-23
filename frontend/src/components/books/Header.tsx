@@ -2,13 +2,29 @@ import { Github } from 'lucide-react'
 import AddNewBook from './AddNewBook'
 import Link from 'next/link'
 import SearchInput from './SearchInput'
+import { LocaleDict } from '@/lib/locales'
+import { Locale } from '@/i18n.config'
 
-export default function Header() {
+interface HeaderProps {
+  translations: LocaleDict
+  locale: Locale
+}
+
+export default function Header({
+  translations,
+  locale
+}: HeaderProps) {
   return (
     <div className="flex items-center justify-between">
       <div className="flex w-full md:w-2/3 items-center gap-x-2 md:gap-x-4">
-        <SearchInput />
-        <AddNewBook />
+        <SearchInput
+          translations={translations}
+          locale={locale}
+        />
+        <AddNewBook
+          translations={translations}
+          locale={locale}
+        />
       </div>
 
       <Link

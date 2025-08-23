@@ -7,6 +7,7 @@ import { Locale } from "@/i18n.config";
 import SidebarLink from "./sidebar-link";
 import BrandLogo from "./brand-logo";
 import LanguageSelector from "./language-selector";
+import { LocaleDict } from "@/lib/locales";
 
 interface SidebarProps {
   locale: Locale;

@@ -10,12 +10,15 @@ import { Button } from '../ui/button'
 import { ChevronDown } from 'lucide-react'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { useMemo } from 'react'
+import { Locale } from "@/i18n.config"
 
 interface DropdownFilterProps {
   label: string
   searchParamKey: string
   defaultValue: string
-  list: { value: string; label: string; icon: React.ReactNode }[]
+  list: { value: string; label_en: string; label_ja: string; icon: React.ReactNode }[]
+  locale: Locale
+
 }
 
 export default function DropdownFilter({
@@ -23,6 +26,7 @@ export default function DropdownFilter({
   searchParamKey,
   defaultValue,
   list,
+  locale
 }: DropdownFilterProps) {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -48,7 +52,7 @@ export default function DropdownFilter({
         `}
       >
         <Button variant="secondary" className="flex items-center justify-between min-w-[160px]">
-          <span>{selectedItem?.label || label}</span>
+          <span>{selectedItem ? selectedItem[`label_${locale}` as keyof typeof selectedItem] : label}</span>
           <ChevronDown className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
@@ -62,7 +66,7 @@ export default function DropdownFilter({
                 ${currentValue === category.value ? 'bg-secondary text-primary' : 'text-muted-foreground'}
                 `}
           >
-            <p className="font-medium text-primary">{category.label}</p>
+            <p className="font-medium text-primary">{category[`label_${locale}` as keyof typeof category]}</p>
             <div>{category.icon}</div>
           </DropdownMenuItem>
         ))}

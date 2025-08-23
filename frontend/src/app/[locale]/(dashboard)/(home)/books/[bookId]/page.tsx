@@ -9,6 +9,8 @@ import DeleteBook from "@/components/book-details/DeleteBook";
 import StarRating from "@/components/book-details/StarRating";
 import UpdateBook from "@/components/books/UpdateBook";
 import CustomLink from "@/components/global/custom-link";
+import { getDictionary } from "@/lib/locales";
+import { BOOK_CATEGORIES } from "@/constants/books";
 
 interface BookDetailPageProps {
   params: Promise<{ locale: string; bookId: string }>;
@@ -17,6 +19,8 @@ interface BookDetailPageProps {
 export default async function BookDetailPage({ params }: BookDetailPageProps) {
   const { locale, bookId } = await params;
   const lang = getLocale(locale);
+  const translations = await getDictionary(lang);
+  const bookDetailsTranslations = translations?.page?.bookDetails;
 
   const bookDetails = await getBookDetails(bookId)
 
@@ -25,21 +29,23 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
       <div className="flex flex-col items-center justify-center gap-y-5 h-[calc(100vh-30px)]">
         <div className="flex flex-col items-center justify-center gap-2">
           <BookAlert className="h-16 w-16 text-primary mx-auto mb-4" />
-          <p className="text-2xl font-bold text-primary">Book not found</p>
+          <p className="text-2xl font-bold text-primary">
+            {bookDetailsTranslations.bookNotFound}
+          </p>
         </div>
         <CustomLink
           href={`/`}
           locale={lang}
           className={cn(buttonVariants({ variant: 'default' }), '')}
         >
-          Go back to Library
+          {bookDetailsTranslations.goBackToLibrary}
         </CustomLink>
       </div>
     )
   }
 
   return (
-    <div className="flex flex-col space-y-10 min-h-[calc(100vh-30px)] overflow-auto invisible-scrollbar px-2 pb-10">
+    <div className="flex flex-col space-y-10 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar px-2 pb-10">
       {/* back button */}
       <div className="flex items-center justify-between w-full">
         <CustomLink
@@ -48,9 +54,11 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
           className="flex items-center space-x-2"
         >
           <ArrowLeft className="h-4 w-4" />
-          <span className="font-medium text-primary hover:underline underline-offset-4">View all books</span>
+          <span className="font-medium text-primary hover:underline underline-offset-4">
+            {bookDetailsTranslations.viewAllBooks}
+          </span>
         </CustomLink>
-        <UpdateBook bookDetails={bookDetails} />
+        <UpdateBook bookDetails={bookDetails} translations={translations} locale={lang} />
       </div>
 
       <div className="flex flex-col md:flex-row items-start justify-center space-x-0 md:space-x-10 space-y-5 md:space-y-0">
@@ -68,18 +76,20 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
 
         {/* Right section */}
         <div className="flex flex-col items-start justify-center space-y-4 w-full md:w-1/2">
-          <p className="bg-secondary border border-primary rounded-xl font-bold px-3 text-primary">{formatTitleCase(bookDetails.category)}</p>
+          <p className="bg-secondary border border-primary rounded-xl font-bold px-3 text-primary">
+            {BOOK_CATEGORIES.find(cat => cat.value === bookDetails.category)?.[`label_${locale}` as keyof typeof BOOK_CATEGORIES[0]] || formatTitleCase(bookDetails.category)}
+          </p>
           <p className="text-5xl font-extrabold text-primary">{bookDetails.title}</p>
-          <p className="text-lg font-medium text-primary/50 mt-2">- by {bookDetails.author_name}</p>
+          <p className="text-lg font-medium text-primary/50 mt-2">- {bookDetailsTranslations.by} {bookDetails.author_name}</p>
           <p className="text-justify text-lg font-normal text-primary mt-2">{bookDetails.description}</p>
         </div>
       </div>
 
 
       <div className='flex items-center justify-start w-full space-x-5 font-semibold text-primary/50'>
-        <p>Created {formatToAgo(Number(bookDetails.created_at))}</p>
+        <p>{bookDetailsTranslations.created} {formatToAgo(Number(bookDetails.created_at), translations)}</p>
         <p>|</p>
-        <p>Updated {formatToAgo(Number(bookDetails.updated_at))}</p>
+        <p>{bookDetailsTranslations.updated} {formatToAgo(Number(bookDetails.updated_at), translations)}</p>
       </div>
 
       {/* bottom  */}
@@ -87,22 +97,30 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
         <div className="flex flex-col md:flex-row items-start justify-between">
           <div className="flex flex-col items-center justify-between space-y-1">
             <StarRating rating={bookDetails.rating} />
-            <p className="">Rating</p>
+            <p className="">
+              {bookDetailsTranslations.rating}
+            </p>
           </div>
 
           <div className="flex flex-col items-center justify-between space-y-1">
             <p className="text-lg text-primary font-semibold">{bookDetails.publication_year}</p>
-            <p className="font-normal text-primary">Publication Year</p>
+            <p className="font-normal text-primary">
+              {bookDetailsTranslations.publicationYear}
+            </p>
           </div>
 
           <div className="flex flex-col items-center justify-between space-y-1">
             <p className="text-lg text-primary font-semibold">{bookDetails.pages}</p>
-            <p className="font-normal text-primary">Pages</p>
+            <p className="font-normal text-primary">
+              {bookDetailsTranslations.numberOfPages}
+            </p>
           </div>
 
           <div className="flex flex-col items-center justify-between space-y-1">
             <p className="text-lg text-primary font-semibold">{bookDetails.isbn}</p>
-            <p className="font-normal text-primary">ISBN</p>
+            <p className="font-normal text-primary">
+              {bookDetailsTranslations.isbn}
+            </p>
           </div>
         </div>
         <hr />
@@ -111,8 +129,14 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
         {/* reviews */}
         <div className="flex flex-col space-y-3">
           <div className="flex items-center justify-between">
-            <p className="text-2xl font-bold text-primary">Reviews</p>
-            <AddReview bookId={bookDetails.id} />
+            <p className="text-2xl font-bold text-primary">
+              {bookDetailsTranslations.reviews} ({bookDetails.reviews?.data.length || 0})
+            </p>
+            <AddReview
+              bookId={bookDetails.id}
+              translations={translations}
+              locale={lang}
+            />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {bookDetails?.reviews && bookDetails.reviews.data.length > 0 ?
@@ -126,13 +150,15 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
                       <p className="text-lg font-semibold text-primary">
                         {review.name}
                       </p>
-                      <p className="text-sm text-primary/50 font-normal">{formatToAgo(review.created_at)}</p>
+                      <p className="text-sm text-primary/50 font-normal">{formatToAgo(review.created_at, translations)}</p>
                     </div>
                   </div>
                   <p className="text-sm text-primary/70">&quot;{review.content}&quot;</p>
                 </div>
               )) : (
-                <p className="text-primary/70">No reviews yet.</p>
+                <p className="text-primary/70">
+                  {bookDetailsTranslations.noReviews}
+                </p>
               )
             }
           </div>
@@ -141,6 +167,8 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
 
       <DeleteBook
         bookId={bookDetails.id}
+        translations={translations}
+        locale={lang}
       />
     </div>
   )

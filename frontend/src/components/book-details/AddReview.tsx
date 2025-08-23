@@ -20,14 +20,19 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { addReview } from '@/actions/reviews.action';
 import { useReviewStore } from '@/stores/review.store';
+import { getNestedTranslation, resolveActionMessage } from '@/lib/utils';
+import { LocaleDict } from '@/lib/locales';
+import { Locale } from '@/i18n.config';
 
 interface AddReviewProps {
   bookId: string;
+  translations: LocaleDict;
+  locale: Locale
 }
 
 export type ReviewFormData = z.infer<typeof reviewFormSchema>;
 
-export default function AddReview({ bookId }: AddReviewProps) {
+export default function AddReview({ bookId, translations }: AddReviewProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
@@ -49,18 +54,16 @@ export default function AddReview({ bookId }: AddReviewProps) {
         const response = await addReview(data, bookId);
 
         if (response?.success) {
-          toast.success(response.message || 'Review added successfully');
+          toast.success(resolveActionMessage(response.messageKey, translations));
           markReviewSubmitted(bookId);
           reset();
           setIsOpen(false);
         } else {
-          console.error('Failed to create review:', response?.message);
-          toast.error(response?.message || 'Failed to add review. Please try again.');
+          toast.error(resolveActionMessage(response?.messageKey || 'actions.review.unexpectedError', translations));
         }
       });
     } catch (error) {
-      console.error('Error submitting form:', error);
-      toast.error('An error occurred while submitting the form. Please try again.');
+      toast.error(resolveActionMessage('actions.review.submissionError', translations));
     }
   };
 
@@ -77,18 +80,17 @@ export default function AddReview({ bookId }: AddReviewProps) {
             disabled={alreadySubmitted}
           >
             <UserStar className="h-4 w-4" />
-            <span>{alreadySubmitted ? 'Review Submitted' : 'Add Review'}</span>
+            <span>{alreadySubmitted ? translations.page.bookDetails.reviewSubmitted : translations.page.bookDetails.addReview}</span>
           </Button>
         </DialogTrigger>
         <DialogContent className="w-full md:min-w-[350px]">
           <DialogHeader>
             <DialogTitle className="flex items-center space-x-2 justify-start">
               <UserStar className="h-5 w-5" />
-              <p>Add Review</p>
+              <p>
+                {translations.page.bookDetails.addReview}
+              </p>
             </DialogTitle>
-            <DialogDescription className="sr-only">
-              Add your review for this book.
-            </DialogDescription>
           </DialogHeader>
           <hr />
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
@@ -100,36 +102,46 @@ export default function AddReview({ bookId }: AddReviewProps) {
                   required
                   {...register("name")}
                   className="form-input"
-                  placeholder="Daisy Jones"
+                  placeholder={translations.page.bookDetails.reviewForm.namePlaceholder}
                 />
                 {errors.name && (
-                  <p className="text-destructive text-xs">{errors.name.message}</p>
+                  <p className="text-destructive text-xs">
+                    {translations ? getNestedTranslation(errors.name.message, translations, 'review') : errors.name.message}
+                  </p>
                 )}
               </div>
               <div className="flex flex-col space-y-1 col-span-2 md:col-span-1">
-                <label htmlFor="email" className="form-label">Email</label>
+                <label htmlFor="email" className="form-label">
+                  {translations.page.bookDetails.reviewForm.email}
+                </label>
                 <input
                   type="email"
                   required
                   {...register("email")}
                   className="form-input"
-                  placeholder="jones@gmail.com"
+                  placeholder={translations.page.bookDetails.reviewForm.emailPlaceholder}
                 />
                 {errors.email && (
-                  <p className="text-destructive text-xs">{errors.email.message}</p>
+                  <p className="text-destructive text-xs">
+                    {translations ? getNestedTranslation(errors.email.message, translations, 'review') : errors.email.message}
+                  </p>
                 )}
               </div>
               <div className="flex flex-col space-y-1 col-span-2">
-                <label htmlFor="content" className="form-label">Review Content</label>
+                <label htmlFor="content" className="form-label">
+                  {translations.page.bookDetails.reviewForm.content}
+                </label>
                 <textarea
                   {...register("content")}
                   className="form-input"
-                  placeholder="Your review..."
+                  placeholder={translations.page.bookDetails.reviewForm.contentPlaceholder}
                   rows={4}
                   style={{ resize: 'none' }}
                 ></textarea>
                 {errors.content && (
-                  <p className="text-destructive text-xs">{errors.content.message}</p>
+                  <p className="text-destructive text-xs">
+                    {translations ? getNestedTranslation(errors.content.message, translations, 'review') : errors.content.message}
+                  </p>
                 )}
               </div>
             </div>
@@ -143,11 +155,11 @@ export default function AddReview({ bookId }: AddReviewProps) {
                     setIsOpen(false);
                   }}
                 >
-                  Cancel
+                  {translations.page.bookDetails.reviewForm.cancel}
                 </Button>
               </DialogClose>
               <Button type="submit" disabled={isSubmitting || isPending}>
-                {isSubmitting || isPending ? 'Submitting...' : 'Submit Review'}
+                {isSubmitting || isPending ? `${translations.page.bookDetails.reviewForm.submitting}...` : translations.page.bookDetails.reviewForm.submit}
               </Button>
             </DialogFooter>
           </form>

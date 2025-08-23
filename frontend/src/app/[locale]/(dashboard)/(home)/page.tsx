@@ -7,6 +7,7 @@ import { getFilters, getPagination } from "@/lib/utils";
 import CustomLink from "@/components/global/custom-link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Book, Filters } from "@/types/book";
+import { getDictionary } from "@/lib/locales";
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
@@ -19,6 +20,7 @@ export default async function Home({
 }: HomePageProps) {
   const locale = await params;
   const lang = getLocale(locale.locale);
+  const translations = await getDictionary(lang)
 
   const filters = await searchParams;
   const formattedFilters: Filters = getFilters(filters);
@@ -31,11 +33,16 @@ export default async function Home({
   return (
     <div className="flex flex-col space-y-6 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar pb-5">
       {/* Search input and Add button */}
-      <Header />
+      <Header
+        translations={translations}
+        locale={lang}
+      />
 
       {/* Filters and Sort */}
       <FilterAndSortSection
         filters={formattedFilters}
+        translations={translations}
+        locale={lang}
       />
 
       {!data || data.length === 0 ? (

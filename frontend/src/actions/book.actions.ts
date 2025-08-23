@@ -86,41 +86,41 @@ export async function addBook(data: BookFormData, imageFile?: File) {
       revalidatePath('/');
       return {
         success: true,
-        message: 'Book created successfully',
+        messageKey: 'actions.book.addSuccess',
       }
     } else {
       const errorData = await res.json();
       if (errorData.error.includes('A book with this ISBN already exists')) {
         return {
           success: false,
-          message: 'A book with this ISBN already exists.',
+          messageKey: 'actions.book.isbnExists',
         }
       }
       if (res.status === 400) {
         return {
           success: false,
-          message: 'Invalid data provided. Please try again.',
+          messageKey: 'actions.book.invalidData',
         }
       } else if (res.status === 500) {
         return {
           success: false,
-          message: "Server error, Please try again later.",
+          messageKey: 'actions.book.serverError',
         }
       } else if (res.status === 409) {
         return {
           success: false,
-          message: "Conflict error, Please try again later.",
+          messageKey: 'actions.book.conflictError',
         }
       } else if (res.status === 404) {
         return {
           success: false,
-          message: "Not found, Please try again later.",
+          messageKey: 'actions.book.notFound',
         }
       } else {
         console.error('Unexpected error:', errorData);
         return {
           success: false,
-          message: 'Unexpected error occurred',
+          messageKey: 'actions.book.unexpectedError',
         }
       }
     }
@@ -156,45 +156,45 @@ export async function updateBook(data: Partial<BookFormData> & { id: string }, i
       revalidatePath(`/books/${data.id}`);
       return {
         success: true,
-        message: 'Book updated successfully',
+        messageKey: 'actions.book.updateSuccess',
       }
     } else {
       const errorData = await res.json();
       if (errorData.error.includes('A book with this ISBN already exists')) {
         return {
           success: false,
-          message: 'A book with this ISBN already exists.',
+          messageKey: 'actions.book.isbnExists',
         }
       }
       if (res.status === 400) {
         console.error(errorData.error);
         return {
           success: false,
-          message: errorData.error,
+          messageKey: 'actions.book.invalidData',
         }
       } else if (res.status === 500) {
         console.error(errorData.error);
         return {
           success: false,
-          message: errorData.error,
+          messageKey: 'actions.book.serverError',
         }
       } else if (res.status === 409) {
         console.error(errorData.error);
         return {
           success: false,
-          message: errorData.error,
+          messageKey: 'actions.book.conflictError',
         }
       } else if (res.status === 404) {
         console.error(errorData.error);
         return {
           success: false,
-          message: errorData.error,
+          messageKey: 'actions.book.notFound',
         }
       } else {
         console.error('Unexpected error:', errorData);
         return {
           success: false,
-          message: 'Unexpected error occurred',
+          messageKey: 'actions.book.unexpectedError',
         }
       }
     }
@@ -214,35 +214,35 @@ export async function deleteBook(id: string) {
       revalidatePath('/');
       return {
         success: true,
-        message: 'Book deleted successfully',
+        messageKey: 'actions.book.deleteSuccess',
       }
     } else {
       const errorData = await res.json();
       if (res.status === 400) {
         return {
           success: false,
-          message: 'Invalid data provided. Please try again.',
+          messageKey: 'actions.book.invalidData',
         }
       } else if (res.status === 500) {
         return {
           success: false,
-          message: "Server error, Please try again later.",
+          messageKey: 'actions.book.serverError',
         }
       } else if (res.status === 409) {
         return {
           success: false,
-          message: "Conflict error, Please try again later.",
+          messageKey: 'actions.book.conflictError',
         }
       } else if (res.status === 404) {
         return {
           success: false,
-          message: "Not found, Please try again later.",
+          messageKey: 'actions.book.notFound',
         }
       } else {
         console.error('Unexpected error:', errorData);
         return {
           success: false,
-          message: 'Unexpected error occurred',
+          messageKey: 'actions.book.unexpectedError',
         }
       }
     }

@@ -4,57 +4,68 @@ import { Aperture, Atom, AudioWaveform, BadgeQuestionMark, BellDot, BellRing, Bo
 export const BOOK_CATEGORIES = [
   {
     value: '',
-    label: "All Categories",
+    label_en: "All Categories",
+    label_ja: "すべてのカテゴリ",
     icon: <SquareLibrary className="h-4 w-4" />
   },
   {
     value: 'fiction',
-    label: "Fiction",
+    label_en: "Fiction",
+    label_ja: "フィクション",
     icon: <Aperture className="h-4 w-4" />
   },
   {
     value: 'non_fiction',
-    label: "Non-Fiction",
+    label_en: "Non-Fiction",
+    label_ja: "ノンフィクション",
     icon: <AudioWaveform className="h-4 w-4" />
   },
   {
     value: 'science',
-    label: "Science",
+    label_en: "Science",
+    label_ja: "科学",
     icon: <Atom className="h-4 w-4" />
   },
   {
     value: 'history',
-    label: "History",
+    label_en: "History",
+    label_ja: "歴史",
     icon: <History className="h-4 w-4" />
   },
   {
     value: 'fantasy',
-    label: "Fantasy",
+    label_en: "Fantasy",
+    label_ja: "ファンタジー",
     icon: <Component className='h-4 w-4' />
   },
   {
     value: 'mystery',
-    label: "Mystery",
+    label_en: "Mystery",
+    label_ja: "ミステリー",
     icon: <BadgeQuestionMark className="h-4 w-4" />
   },
   {
     value: 'thriller',
-    label: "Thriller",
+    label_en: "Thriller",
+    label_ja: "スリラー",
     icon: <BellRing className="h-4 w-4" />
   },
   {
     value: 'cooking',
-    label: "Cooking",
+    label_en: "Cooking",
+    label_ja: "料理",
     icon: <CookingPot className="h-4 w-4" />
   },
   {
     value: 'travel',
-    label: "Travel",
+    label_en: "Travel",
+    label_ja: "旅行",
     icon: <MapPlus className="h-4 w-4" />
   },
   {
     value: 'classics',
-    label: "Classics",
+    label_en: "Classics",
+    label_ja: "古典",
     icon: <Zap className="h-4 w-4" />
   },
 ];
@@ -62,32 +73,38 @@ export const BOOK_CATEGORIES = [
 export const BOOK_SORT_OPTIONS = [
   {
     value: 'title',
-    label: "Title",
+    label_en: "Title",
+    label_ja: "タイトル",
     icon: <BookType className="h-4 w-4" />
   },
   {
     value: 'rating',
-    label: "Rating",
+    label_en: "Rating",
+    label_ja: "評価",
     icon: <Star className="h-4 w-4" />
   },
   {
     value: 'recently_added',
-    label: "Recently Added",
+    label_en: "Recently Added",
+    label_ja: "最近追加された",
     icon: <BookPlus className="h-4 w-4" />
   },
   {
     value: 'recently_updated',
-    label: "Recently Updated",
+    label_en: "Recently Updated",
+    label_ja: "最近更新された",
     icon: <BellDot className="h-4 w-4" />
   },
   {
     value: 'publication_year',
-    label: "Publication Year",
+    label_en: "Publication Year",
+    label_ja: "出版年",
     icon: <CalendarClock className="h-4 w-4" />
   },
   {
     value: "pages",
-    label: "Number of Pages",
+    label_en: "Number of Pages",
+    label_ja: "ページ数",
     icon: <Layers className="h-4 w-4" />
   }
 

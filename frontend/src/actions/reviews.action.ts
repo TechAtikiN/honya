@@ -41,34 +41,34 @@ export async function addReview(data: ReviewFormData, bookId: string) {
 
     if (res.ok) {
       revalidatePath(`/books/${bookId}`);
-      return { success: true, message: 'Review added successfully' };
+      return { success: true, messageKey: 'actions.review.addSuccess' };
 
     } else {
       if (res.status === 400) {
         return {
           success: false,
-          message: 'Invalid data provided. Please try again.',
+          messageKey: 'actions.review.invalidData',
         }
       } else if (res.status === 500) {
         return {
           success: false,
-          message: "Server error, Please try again later.",
+          messageKey: 'actions.review.serverError',
         }
       } else if (res.status === 409) {
         return {
           success: false,
-          message: "Conflict error, Please try again later.",
+          messageKey: 'actions.review.conflictError',
         }
       } else if (res.status === 404) {
         return {
           success: false,
-          message: "Not found, Please try again later.",
+          messageKey: 'actions.review.notFound',
         }
       } else {
         console.error('Unexpected error:', res.statusText);
         return {
           success: false,
-          message: 'Unexpected error occurred',
+          messageKey: 'actions.review.unexpectedError',
         }
       }
     }

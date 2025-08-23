@@ -7,25 +7,34 @@ import { Button } from "../ui/button";
 import { Trash2 } from "lucide-react";
 import HintLabel from "../global/hint-label";
 import { Filters as TFilters } from "@/types/book";
+import { LocaleDict } from "@/lib/locales";
+import { Locale } from "@/i18n.config";
 
 interface FiltersAndSortSectionProps {
   filters: TFilters
+  translations: LocaleDict
+  locale: Locale
 }
 
 export default function FilterAndSortSection({
-  filters
+  filters,
+  translations,
+  locale
 }: FiltersAndSortSectionProps) {
   const router = useRouter()
   return (
     <div className="flex flex-wrap items-center justify-between gap-2">
       <div className="flex flex-wrap items-center justify-start gap-2">
-        <Filters />
+        <Filters
+          translations={translations}
+          locale={locale}
+        />
       </div>
 
       <div className="flex items-center justify-start gap-2">
         {filters && Object.keys(filters).length > 0 && (
           <HintLabel
-            label="Clear all filters"
+            label={translations.page.home.filters.clearAllFilters}
             side="bottom"
           >
             <Button
@@ -41,16 +50,18 @@ export default function FilterAndSortSection({
         )}
 
         <DropdownFilter
-          label="Category"
+          label={translations.page.home.filters.category}
           searchParamKey="category"
           defaultValue="all"
           list={BOOK_CATEGORIES}
+          locale={locale}
         />
         <DropdownFilter
           label="Sort"
           searchParamKey="sort"
           defaultValue="recently_added"
           list={BOOK_SORT_OPTIONS}
+          locale={locale}
         />
       </div>
     </div>

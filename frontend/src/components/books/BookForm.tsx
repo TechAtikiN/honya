@@ -21,6 +21,9 @@ import UploadBookImage from './UploadBookImage';
 import { addBook, updateBook } from '@/actions/book.actions';
 import { toast } from 'sonner';
 import { Book } from '@/types/book';
+import { LocaleDict } from '@/lib/locales';
+import { Locale } from '@/i18n.config';
+import { getNestedTranslation, resolveActionMessage } from '@/lib/utils';
 
 export type BookFormData = z.infer<typeof bookFormSchema>;
 
@@ -29,14 +32,14 @@ interface BookFormProps {
   isOpen?: boolean;
   setIsOpen: (open: boolean) => void;
   isEdit?: boolean;
+  translations: LocaleDict
+  locale: Locale
 }
 
-export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdit = false }: BookFormProps) {
-  const [bookImagePreview, setbookImagePreview] = useState<string | ArrayBuffer | null>(null);
-  const [bookImageInfo, setBookImageInfo] = useState<{ name: string; size: number } | null>(null);
-  const [bookImageError, setbookImageError] = useState<string | null>(null);
+export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdit = false, translations, locale }: BookFormProps) {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isPending, startTransition] = useTransition();
+  const bookFormTranslations = translations.page.home.bookForm;
 
   const getDefaultValues = (book?: Book): Partial<BookFormData> => ({
     rating: book?.rating || 4,
@@ -66,9 +69,6 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
     if (bookDetails && isEdit) {
       reset(getDefaultValues(bookDetails));
       setImageFile(null);
-      setbookImagePreview(null);
-      setBookImageInfo(null);
-      setbookImageError(null);
     }
   }, [bookDetails, isEdit, reset]);
 
@@ -78,48 +78,37 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
         startTransition(async () => {
           const response = await updateBook({ ...data, id: bookDetails?.id || '' }, imageFile || undefined);
           if (response?.success) {
-            toast.success(response.message || 'Book updated successfully');
-            // Don't reset here - let useEffect handle it when new data comes in
+            toast.success(resolveActionMessage(response.messageKey, translations));
             setIsOpen(false);
           } else {
-            console.error('Error updating book:', response?.message);
-            toast.error(response?.message || 'Failed to update book');
+            toast.error(resolveActionMessage(response?.messageKey || 'actions.book.unexpectedError', translations));
           }
         });
       } else {
         startTransition(async () => {
           const response = await addBook(data, imageFile || undefined);
           if (response?.success) {
-            toast.success(response.message || 'Book created successfully');
+            toast.success(resolveActionMessage(response.messageKey, translations));
             reset();
             setImageFile(null);
-            setbookImagePreview(null);
-            setBookImageInfo(null);
-            setbookImageError(null);
             setIsOpen(false);
           } else {
-            console.error('Error creating book:', response?.message);
-            toast.error(response?.message || 'Failed to create book');
+            toast.error(resolveActionMessage(response?.messageKey || 'actions.book.unexpectedError', translations));
           }
         });
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
-      toast.error('An error occurred while submitting the form. Please try again.');
+      toast.error(resolveActionMessage('actions.book.unexpectedError', translations));
     }
   };
 
   const handleCancel = () => {
-    // Reset to current book details when canceling
     if (isEdit && bookDetails) {
       reset(getDefaultValues(bookDetails));
     } else {
       reset();
     }
     setImageFile(null);
-    setbookImagePreview(null);
-    setBookImageInfo(null);
-    setbookImageError(null);
     setIsOpen(false);
   };
 
@@ -129,7 +118,7 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
         <Button className="flex items-center justify-center md:min-w-40">
           {isEdit ? <PencilLine className="h-4 w-4" /> : <BookPlus className="h-4 w-4" />}
           <span className='hidden md:block'>
-            {isEdit ? 'Edit Book' : 'Add Book'}
+            {isEdit ? bookFormTranslations.editBook : bookFormTranslations.addBook}
           </span>
         </Button>
       </DialogTrigger>
@@ -138,11 +127,11 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
           <DialogTitle className="flex items-center space-x-2 justify-start">
             <BookPlus className="h-5 w-5" />
             <p>
-              {isEdit ? 'Edit Book' : 'Add New Book'}
+              {isEdit ? bookFormTranslations.editBook : bookFormTranslations.addNewBook}
             </p>
           </DialogTitle>
           <DialogDescription className="sr-only">
-            {isEdit ? 'Edit book details' : 'Add a new book to your collection'}
+            {isEdit ? bookFormTranslations.editBookDescription : bookFormTranslations.addBookDescription}
           </DialogDescription>
         </DialogHeader>
 
@@ -152,34 +141,39 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             <div className='flex flex-col space-y-4 border-r border-secondary pr-4'>
               <UploadBookImage
-                bookImagePreview={bookImagePreview}
-                setbookImagePreview={setbookImagePreview}
-                bookImageInfo={bookImageInfo}
-                setBookImageInfo={setBookImageInfo}
-                bookImageError={bookImageError}
-                setbookImageError={setbookImageError}
+                imageFile={imageFile}
                 setImageFile={setImageFile}
                 imageURL={bookDetails?.image || null}
+                translations={translations}
+                locale={locale}
               />
 
               <div className='flex flex-col space-y-1'>
                 <label
                   htmlFor='title'
-                  className='form-label'>Title</label>
+                  className='form-label'>
+                  {bookFormTranslations.title}
+                </label>
                 <input
                   type="text"
                   required
                   {...register("title")}
                   className='form-input'
-                  placeholder="Harry Potter and the Philosopher's Stone"
+                  placeholder={bookFormTranslations.titlePlaceholder}
                 />
-                {errors.title && <p className='text-destructive text-xs'>{errors.title.message}</p>}
+                {errors.title && (
+                  <p className='text-destructive text-xs'>
+                    {getNestedTranslation(errors.title.message, translations)}
+                  </p>
+                )}
               </div>
 
               <div className='flex flex-col space-y-1'>
                 <label
                   htmlFor='isbn'
-                  className='form-label'>ISBN</label>
+                  className='form-label'>
+                  {bookFormTranslations.isbn}
+                </label>
                 <input
                   type="text"
                   required
@@ -188,22 +182,32 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
                   placeholder='978-3-16-148410-0'
                   disabled={isEdit}
                 />
-                {errors.isbn && <p className='text-destructive text-xs'>{errors.isbn.message}</p>}
+                {errors.isbn && (
+                  <p className='text-destructive text-xs'>
+                    {getNestedTranslation(errors.isbn.message, translations)}
+                  </p>
+                )}
               </div>
 
               <div className='flex flex-col space-y-1'>
                 <label
                   htmlFor='description'
-                  className='form-label'>Description</label>
+                  className='form-label'>
+                  {bookFormTranslations.description}
+                </label>
                 <textarea
                   required
                   {...register("description")}
                   className='form-input'
                   rows={3}
                   style={{ resize: 'none' }}
-                  placeholder='A brief description of the book...'
+                  placeholder={bookFormTranslations.descriptionPlaceholder}
                 ></textarea>
-                {errors.description && <p className='text-destructive text-xs'>{errors.description.message}</p>}
+                {errors.description && (
+                  <p className='text-destructive text-xs'>
+                    {getNestedTranslation(errors.description.message, translations)}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -211,21 +215,29 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
               <div className='flex flex-col space-y-1'>
                 <label
                   htmlFor='authorName'
-                  className='form-label'>Author Name</label>
+                  className='form-label'>
+                  {bookFormTranslations.authorName}
+                </label>
                 <input
                   required
                   type="text"
                   {...register("authorName")}
                   className='form-input'
-                  placeholder='JK Rowling'
+                  placeholder={bookFormTranslations.authorNamePlaceholder}
                 />
-                {errors.authorName && <p className='text-destructive text-xs'>{errors.authorName.message}</p>}
+                {errors.authorName && (
+                  <p className='text-destructive text-xs'>
+                    {getNestedTranslation(errors.authorName.message, translations)}
+                  </p>
+                )}
               </div>
 
               <div className='flex flex-col space-y-1'>
                 <label
                   htmlFor='category'
-                  className='form-label'>Category</label>
+                  className='form-label'>
+                  {bookFormTranslations.category}
+                </label>
                 <select
                   required
                   {...register("category")}
@@ -233,17 +245,23 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
                 >
                   {BOOK_CATEGORIES.map((category) => (
                     <option key={category.value} value={category.value}>
-                      {category.label}
+                      {category[`label_${locale}`]}
                     </option>
                   ))}
                 </select>
-                {errors.category && <p className='text-destructive text-xs'>{errors.category.message}</p>}
+                {errors.category && (
+                  <p className='text-destructive text-xs'>
+                    {getNestedTranslation(errors.category.message, translations)}
+                  </p>
+                )}
               </div>
 
               <div className='flex flex-col space-y-1'>
                 <label
                   htmlFor='publicationYear'
-                  className='form-label'>Publication Year</label>
+                  className='form-label'>
+                  {bookFormTranslations.publicationYear}
+                </label>
                 <input
                   required
                   type="number"
@@ -256,13 +274,19 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
                   min="1950"
                   max={new Date().getFullYear()}
                 />
-                {errors.publicationYear && <p className='text-destructive text-xs'>{errors.publicationYear.message}</p>}
+                {errors.publicationYear && (
+                  <p className='text-destructive text-xs'>
+                    {getNestedTranslation(errors.publicationYear.message, translations)}
+                  </p>
+                )}
               </div>
 
               <div className='flex flex-col space-y-1'>
                 <label
                   htmlFor='pages'
-                  className='form-label'>Number of pages</label>
+                  className='form-label'>
+                  {bookFormTranslations.numberOfPages}
+                </label>
                 <input
                   required
                   type="number"
@@ -274,12 +298,16 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
                   placeholder='300'
                   min="1"
                 />
-                {errors.pages && <p className='text-destructive text-xs'>{errors.pages.message}</p>}
+                {errors.pages && (
+                  <p className='text-destructive text-xs'>
+                    {getNestedTranslation(errors.pages.message, translations)}
+                  </p>
+                )}
               </div>
 
               <div className='flex flex-col space-y-1'>
                 <label htmlFor="rating" className='form-label'>
-                  Rating
+                  {bookFormTranslations.rating}
                 </label>
                 <Controller
                   name="rating"
@@ -298,7 +326,11 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
                     />
                   )}
                 />
-                {errors.rating && <p className='text-destructive text-xs'>{errors.rating.message}</p>}
+                {errors.rating && (
+                  <p className='text-destructive text-xs'>
+                    {getNestedTranslation(errors.rating.message, translations)}
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -310,14 +342,20 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
                 variant="outline"
                 onClick={handleCancel}
               >
-                Cancel
+                {bookFormTranslations.cancel}
               </Button>
             </DialogClose>
             <Button
               type="submit"
               disabled={isSubmitting || isPending}
             >
-              {isSubmitting || isPending ? (isEdit ? 'Updating...' : 'Adding...') : (isEdit ? 'Update Book' : 'Add Book')}
+              {isSubmitting || isPending ? (isEdit ?
+                `${bookFormTranslations.updating}...`
+                : `${bookFormTranslations.adding}...`)
+                :
+                (isEdit ?
+                  `${bookFormTranslations.update}`
+                  : `${bookFormTranslations.addBook}`)}
             </Button>
           </DialogFooter>
         </form>

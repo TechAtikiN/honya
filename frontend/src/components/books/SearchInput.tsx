@@ -4,7 +4,18 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Search } from 'lucide-react';
 import debounce from 'lodash.debounce';
 
-const SearchInput: React.FC = () => {
+import { LocaleDict } from '@/lib/locales';
+import { Locale } from '@/i18n.config';
+
+interface SearchInputProps {
+  translations: LocaleDict
+  locale: Locale
+}
+
+export default function SearchInput({
+  translations,
+  locale
+}: SearchInputProps) {
   const [query, setQuery] = useState<string>('');
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -38,12 +49,10 @@ const SearchInput: React.FC = () => {
         type="text"
         value={query}
         onChange={handleInputChange}
-        placeholder="Search books..."
+        placeholder={translations.page.home.filters?.searchBooksPlaceholder || "Search books..."}
         className="w-full form-input"
       />
       <Search className="text-muted-foreground h-4 w-4" />
     </div>
   );
-};
-
-export default SearchInput;
+} 
