@@ -5,14 +5,10 @@ export enum bookCategory {
     HISTORY = "history",
     FANTASY = "fantasy",
     MYSTERY = "mystery",
-    BIOGRAPHY = "biography",
-    ROMANCE = "romance",
     THRILLER = "thriller",
-    SELF_HELP = "self_help",
     COOKING = "cooking",
     TRAVEL = "travel",
     CLASSICS = "classics",
-    COMICS = "comics",
 }
 
 export type Book = {

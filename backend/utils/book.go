@@ -10,6 +10,19 @@ import (
 	"github.com/techatikin/backend/dto"
 )
 
+var allowedCategories = map[string]struct{}{
+	"fiction":     {},
+	"non_fiction": {},
+	"science":     {},
+	"history":     {},
+	"fantasy":     {},
+	"mystery":     {},
+	"thriller":    {},
+	"cooking":     {},
+	"travel":      {},
+	"classics":    {},
+}
+
 func ValidateBookCreateRequest(request *dto.BookCreateRequest) error {
 	if request.Title == "" {
 		return errors.New("title is required")
@@ -17,6 +30,15 @@ func ValidateBookCreateRequest(request *dto.BookCreateRequest) error {
 	if request.AuthorName == "" {
 		return errors.New("author ID is required")
 	}
+
+	// Category validation
+	if request.Category == "" {
+		return errors.New("category is required")
+	}
+	if _, valid := allowedCategories[request.Category]; !valid {
+		return fmt.Errorf("invalid category: %s. Allowed categories are: fiction, non_fiction, science, history, fantasy, mystery, thriller, cooking, travel, classics", request.Category)
+	}
+
 	currentYear := time.Now().Year()
 	if request.PublicationYear < 1950 || request.PublicationYear > currentYear {
 		return errors.New("publication year must be between 1950 and " + strconv.Itoa(currentYear))
@@ -41,6 +63,12 @@ func ValidateBookUpdateRequest(request *dto.BookUpdateRequest) error {
 	}
 	if request.AuthorName != nil && *request.AuthorName == "" {
 		return errors.New("author name cannot be empty")
+	}
+	if request.Category != nil && *request.Category != "" {
+		// Category validation
+		if _, valid := allowedCategories[*request.Category]; !valid {
+			return fmt.Errorf("invalid category: %s. Allowed categories are: fiction, non_fiction, science, history, fantasy, mystery, biography, romance, thriller, self_help, cooking, travel, classics, comics", *request.Category)
+		}
 	}
 	if request.PublicationYear != nil {
 		if *request.PublicationYear < 1950 || *request.PublicationYear > currentYear {

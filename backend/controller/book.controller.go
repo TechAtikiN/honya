@@ -29,20 +29,21 @@ func NewBookController(service service.BookService) BookController {
 }
 
 // GetBooks godoc
-// @Summary Get list of all books
-// @Description Get paginated list of books with optional filters
+// @Summary Get a list of books
+// @Description Retrieve a list of books with optional filtering, sorting, and pagination
 // @Tags books
 // @Accept json
 // @Produce json
 // @Param query query string false "Search query"
-// @Param offset query integer false "Offset for pagination" default(0)
-// @Param limit query integer false "Limit for pagination" default(10)
-// @Param category query string false "Filter by category"
-// @Param publication_year query integer false "Filter by publication year"
-// @Param rating query number false "Filter by rating"
-// @Param pages query integer false "Filter by number of pages"
-// @Param sort query string false "Sort order (asc/desc)"
-// @Success 200 {object} dto.BookListResponse "Books fetched successfully"
+// @Param offset query int false "Pagination offset" default(0)
+// @Param limit query int false "Pagination limit" default(10)
+// @Param category query string false "Book category (Available categories: fiction, non_fiction, science, history, fantasy, mystery, thriller, cooking, travel, classics)"
+// @Param publication_year query int false "Publication year"
+// @Param rating query number false "Minimum rating"
+// @Param pages query int false "Number of pages"
+// @Param sort query string false "Sort by field (e.g., title, publication_year, rating)"
+// @Success 200 {object} dto.BookListResponse "List of books fetched successfully"
+// @Failure 400 {object} errors.ErrorResponse "Invalid query parameters"
 // @Router /books [get]
 func (c *bookController) GetBooks(ctx *fiber.Ctx) error {
 	params := dto.BookQueryParams{
@@ -66,8 +67,8 @@ func (c *bookController) GetBooks(ctx *fiber.Ctx) error {
 }
 
 // GetBookByID godoc
-// @Summary Get book by ID
-// @Description Get a single book by its ID
+// @Summary Get a book by ID
+// @Description Retrieve detailed information about a specific book by its ID
 // @Tags books
 // @Accept json
 // @Produce json
@@ -95,14 +96,21 @@ func (c *bookController) GetBookByID(ctx *fiber.Ctx) error {
 // @Summary Create a new book
 // @Description Create a new book with the provided details
 // @Tags books
-// @Accept json
+// @Accept multipart/form-data
 // @Produce json
-// @Param book body dto.BookCreateRequest true "Book creation payload"
+// @Param title formData string true "Book title"
+// @Param description formData string false "Book description"
+// @Param category formData string true "Book category (Available categories: fiction, non_fiction, science, history, fantasy, mystery, thriller, cooking, travel, classics)"
+// @Param publication_year formData int true "Publication year"
+// @Param rating formData number true "Book rating"
+// @Param pages formData int true "Number of pages"
+// @Param isbn formData string true "ISBN number"
+// @Param author_name formData string true "Author name"
+// @Param image formData file false "Book cover image"
 // @Success 201 {object} dto.BookResponse "Book created successfully"
 // @Failure 400 {object} errors.ErrorResponse "Invalid input data"
 // @Router /books [post]
 func (c *bookController) CreateBook(ctx *fiber.Ctx) error {
-	// Extract form values instead of BodyParser
 	var reqData dto.BookCreateRequest
 	reqData.Title = ctx.FormValue("title")
 	reqData.Description = ctx.FormValue("description")
@@ -132,12 +140,19 @@ func (c *bookController) CreateBook(ctx *fiber.Ctx) error {
 
 // UpdateBook godoc
 // @Summary Update an existing book
-// @Description Update book details by its ID
+// @Description Update the details of an existing book by its ID
 // @Tags books
-// @Accept json
+// @Accept multipart/form-data
 // @Produce json
 // @Param id path string true "Book ID"
-// @Param book body dto.BookUpdateRequest true "Book update payload"
+// @Param title formData string false "Book title"
+// @Param description formData string false "Book description"
+// @Param category formData string false "Book category (Available categories: fiction, non_fiction, science, history, fantasy, mystery, thriller, cooking, travel, classics)"
+// @Param publication_year formData int false "Publication year"
+// @Param rating formData number false "Book rating"
+// @Param pages formData int false "Number of pages"
+// @Param author_name formData string false "Author name"
+// @Param image formData file false "Book cover image"
 // @Success 200 {object} dto.BookResponse "Book updated successfully"
 // @Failure 400 {object} errors.ErrorResponse "Invalid input data"
 // @Failure 404 {object} errors.ErrorResponse "Book not found"

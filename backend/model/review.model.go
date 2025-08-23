@@ -21,5 +21,6 @@ func (r *Review) BeforeCreate(tx *gorm.DB) (err error) {
 	if r.ID == uuid.Nil {
 		r.ID = uuid.New()
 	}
+
 	return nil
 }

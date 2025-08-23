@@ -26,5 +26,6 @@ func (b *Book) BeforeCreate(tx *gorm.DB) (err error) {
 	if b.ID == uuid.Nil {
 		b.ID = uuid.New()
 	}
+
 	return
 }

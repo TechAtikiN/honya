@@ -1,5 +1,5 @@
 import { bookCategory } from "@/types/book";
-import { Aperture, Atom, AudioWaveform, BadgeQuestionMark, BellDot, BellRing, BookHeart, BookPlus, BookType, CalendarClock, Component, CookingPot, HeartHandshake, History, Laugh, Layers, MapPlus, SquareLibrary, Star, UserRoundPen, Zap } from "lucide-react";
+import { Aperture, Atom, AudioWaveform, BadgeQuestionMark, BellDot, BellRing, BookPlus, BookType, CalendarClock, Component, CookingPot, History, Layers, MapPlus, SquareLibrary, Star, Zap } from "lucide-react";
 
 export const BOOK_CATEGORIES = [
   {
@@ -38,24 +38,9 @@ export const BOOK_CATEGORIES = [
     icon: <BadgeQuestionMark className="h-4 w-4" />
   },
   {
-    value: 'biography',
-    label: "Biography",
-    icon: <UserRoundPen className="h-4 w-4" />
-  },
-  {
-    value: 'romance',
-    label: "Romance",
-    icon: <BookHeart className="h-4 w-4" />
-  },
-  {
     value: 'thriller',
     label: "Thriller",
     icon: <BellRing className="h-4 w-4" />
-  },
-  {
-    value: 'self-help',
-    label: "Self Help",
-    icon: <HeartHandshake className="h-4 w-4" />
   },
   {
     value: 'cooking',
@@ -72,11 +57,6 @@ export const BOOK_CATEGORIES = [
     label: "Classics",
     icon: <Zap className="h-4 w-4" />
   },
-  {
-    value: 'comics',
-    label: "Comics",
-    icon: <Laugh className="h-4 w-4" />
-  }
 ];
 
 export const BOOK_SORT_OPTIONS = [

@@ -1,9 +1,10 @@
+import DeleteBook from "@/components/book-details/DeleteBook";
 import StarRating from "@/components/book-details/StarRating";
+import UpdateBook from "@/components/books/UpdateBook";
 import CustomLink from "@/components/global/custom-link";
 import { Button } from "@/components/ui/button";
 import { MOCK_BOOK_DATA } from "@/constants/books";
 import { getLocale } from "@/i18n.config";
-import { getDictionary } from "@/lib/locales";
 import { formatToAgo } from "@/lib/utils";
 import { ArrowLeft, UserStar } from "lucide-react";
 import Image from "next/image";
@@ -17,16 +18,19 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
   const lang = getLocale(locale.locale);
 
   return (
-    <div className="flex flex-col space-y-10 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar px-2 pb-32">
+    <div className="flex flex-col space-y-10 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar px-2 pb-10">
       {/* back button */}
-      <CustomLink
-        href={`/`}
-        locale={lang}
-        className="flex items-center space-x-2"
-      >
-        <ArrowLeft className="h-4 w-4" />
-        <span className="font-medium text-primary hover:underline underline-offset-4">View all books</span>
-      </CustomLink>
+      <div className="flex items-center justify-between w-full">
+        <CustomLink
+          href={`/`}
+          locale={lang}
+          className="flex items-center space-x-2"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          <span className="font-medium text-primary hover:underline underline-offset-4">View all books</span>
+        </CustomLink>
+        <UpdateBook />
+      </div>
 
       <div className="flex flex-col md:flex-row items-start justify-center space-x-0 md:space-x-10 space-y-5 md:space-y-0">
         {/* Left section  */}
@@ -46,7 +50,7 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
           <p className="bg-secondary border border-primary rounded-xl font-bold px-3 text-primary">{MOCK_BOOK_DATA.category}</p>
           <p className="text-5xl font-extrabold text-primary">{MOCK_BOOK_DATA.title}</p>
           <p className="text-lg font-medium text-primary/50 mt-2">- by {MOCK_BOOK_DATA.authorName}</p>
-          <p className="text-lg font-normal text-primary mt-2">{MOCK_BOOK_DATA.description}</p>
+          <p className="text-justify text-lg font-normal text-primary mt-2">{MOCK_BOOK_DATA.description}</p>
         </div>
       </div>
 
@@ -105,6 +109,7 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
         </div>
       </div>
 
+      <DeleteBook />
     </div>
   )
 }

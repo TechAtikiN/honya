@@ -21,22 +21,21 @@ export default function SidebarLink({
 }: SidebarLinkProps) {
   const pathname = usePathname();
 
-  const isHome = link.href === '/';
-  const isActive = isHome
-    ? pathname === '/'
-    : pathname === link.href || pathname.startsWith(link.href + '/');
+  const isBookHomePage = pathname === `/`
+  const isBookDetailPage = pathname?.startsWith(`/books/`)
+  const isActive = link.href === pathname || (link.href === '/' && (isBookHomePage || isBookDetailPage));
 
   return (
     <CustomLink
       locale={locale}
       href={link.href}
       className={`flex items-center justify-start space-x-3 p-2 rounded-sm
-        ${isActive ? 'bg-secondary font-medium border border-primary/60' : 'font-normal'}
+        ${isActive ? 'bg-secondary border font-medium border-primary/60' : 'font-normal'}
         `}
     >
       <div>{link.icon}</div>
       <p
-        className={`transition-all duration-200 ease-in-out whitespace-nowrap overflow-hidden ${collapse ? 'opacity-0 w-0' : 'opacity-100 w-auto'
+        className={`${collapse ? 'opacity-0 w-0' : 'opacity-100 w-auto'
           }`}
       >
         {link.name}
