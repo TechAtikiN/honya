@@ -14,7 +14,8 @@ type BookRouter struct {
 
 func NewBookRouter(app *fiber.App) *BookRouter {
 	repo := repository.NewBookRepository()
-	service := service.NewBookService(repo)
+	s3repo := repository.NewS3Repository()
+	service := service.NewBookService(repo, s3repo)
 	ctrl := controller.NewBookController(service)
 
 	return &BookRouter{
@@ -29,7 +30,6 @@ func (r *BookRouter) Setup(api fiber.Router) {
 	booksRoutes.Get("/", r.ctrl.GetBooks)
 	booksRoutes.Get("/:id", r.ctrl.GetBookByID)
 	booksRoutes.Post("/", r.ctrl.CreateBook)
-	// add put endpoint
 	booksRoutes.Patch("/:id", r.ctrl.UpdateBook)
 	booksRoutes.Delete("/:id", r.ctrl.DeleteBook)
 }

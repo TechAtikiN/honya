@@ -41,30 +41,28 @@ export default function DropdownFilter({
   }
 
   return (
-    <div>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="secondary" className="flex items-center justify-between min-w-[160px]">
-            <span>{selectedItem?.label || label}</span>
-            <ChevronDown className="h-4 w-4 ml-2" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56 mr-5" align="center" side="bottom" sideOffset={4}>
-          {list.map((category) => (
-            <DropdownMenuItem
-              key={category.value}
-              onSelect={() => handleSelect(category.value)}
-              className={`
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="secondary" className="flex items-center justify-between min-w-[160px]">
+          <span>{selectedItem?.label || label}</span>
+          <ChevronDown className="h-4 w-4 ml-2" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56 mr-5" align="center" side="bottom" sideOffset={4}>
+        {list.map((category) => (
+          <DropdownMenuItem
+            key={category.value}
+            onSelect={() => handleSelect(category.value)}
+            className={`
                 cursor-pointer flex items-center justify-between
                 ${currentValue === category.value ? 'bg-secondary text-primary' : 'text-muted-foreground'}
                 `}
-            >
-              <p className="font-medium text-primary">{category.label}</p>
-              <div>{category.icon}</div>
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+          >
+            <p className="font-medium text-primary">{category.label}</p>
+            <div>{category.icon}</div>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }

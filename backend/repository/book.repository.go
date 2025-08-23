@@ -18,12 +18,12 @@ type BookRepository interface {
 }
 
 type bookRepository struct {
-	db *gorm.DB
+	*BaseRepository[model.Book]
 }
 
 func NewBookRepository() BookRepository {
 	return &bookRepository{
-		db: config.DB.Db,
+		BaseRepository: NewBaseRepository[model.Book](config.DB.Db),
 	}
 }
 
@@ -88,32 +88,8 @@ func (r *bookRepository) FindAll(params dto.BookQueryParams) ([]model.Book, dto.
 	return books, meta, nil
 }
 
-func (r *bookRepository) FindByID(id uuid.UUID) (*model.Book, error) {
-	var book model.Book
-
-	err := r.db.First(&book, "id = ?", id).Error
-	if err != nil {
-		if err == gorm.ErrRecordNotFound {
-			return nil, nil
-		}
-		return nil, err
-	}
-
-	return &book, nil
-}
-
-func (r *bookRepository) Create(book *model.Book) (*model.Book, error) {
-	err := r.db.Create(book).Error
-	if err != nil {
-		return nil, err
-	}
-
-	return book, nil
-}
-
 func (r *bookRepository) Update(id uuid.UUID, updateData *dto.BookUpdateRequest) (*model.Book, error) {
 	book, err := r.FindByID(id)
-
 	if err != nil {
 		return nil, err
 	}
@@ -161,8 +137,4 @@ func (r *bookRepository) Update(id uuid.UUID, updateData *dto.BookUpdateRequest)
 	}
 
 	return book, nil
-}
-
-func (r *bookRepository) Delete(id uuid.UUID) error {
-	return r.db.Delete(&model.Book{}, "id = ?", id).Error
 }

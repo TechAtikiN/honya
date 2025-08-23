@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"mime/multipart"
+	"strconv"
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
@@ -100,12 +102,26 @@ func (c *bookController) GetBookByID(ctx *fiber.Ctx) error {
 // @Failure 400 {object} errors.ErrorResponse "Invalid input data"
 // @Router /books [post]
 func (c *bookController) CreateBook(ctx *fiber.Ctx) error {
+	// Extract form values instead of BodyParser
 	var reqData dto.BookCreateRequest
-	if err := ctx.BodyParser(&reqData); err != nil {
-		return errors.NewBadRequestError("Invalid JSON body")
+	reqData.Title = ctx.FormValue("title")
+	reqData.Description = ctx.FormValue("description")
+	reqData.Category = ctx.FormValue("category")
+	reqData.PublicationYear, _ = strconv.Atoi(ctx.FormValue("publication_year"))
+	reqData.Rating, _ = strconv.ParseFloat(ctx.FormValue("rating"), 64)
+	reqData.Pages, _ = strconv.Atoi(ctx.FormValue("pages"))
+	reqData.Isbn = ctx.FormValue("isbn")
+	reqData.AuthorName = ctx.FormValue("author_name")
+
+	// Get uploaded file
+	var fileHeader *multipart.FileHeader
+	file, err := ctx.FormFile("image")
+	if err == nil {
+		fileHeader = file
 	}
 
-	book, err := c.service.CreateBook(&reqData)
+	// Call service
+	book, err := c.service.CreateBook(&reqData, fileHeader)
 	if err != nil {
 		return err
 	}
@@ -133,15 +149,60 @@ func (c *bookController) UpdateBook(ctx *fiber.Ctx) error {
 	}
 
 	var requestData dto.BookUpdateRequest
-	if err := ctx.BodyParser(&requestData); err != nil {
-		return errors.NewBadRequestError("Invalid JSON body")
+	var fileHeader *multipart.FileHeader
+
+	contentType := ctx.Get("Content-Type")
+
+	if strings.HasPrefix(contentType, "multipart/form-data") {
+		// Parse text fields from form-data
+		if title := ctx.FormValue("title"); title != "" {
+			requestData.Title = &title
+		}
+		if description := ctx.FormValue("description"); description != "" {
+			requestData.Description = &description
+		}
+		if category := ctx.FormValue("category"); category != "" {
+			requestData.Category = &category
+		}
+		if year := ctx.FormValue("publication_year"); year != "" {
+			yearInt, _ := strconv.Atoi(year)
+			requestData.PublicationYear = &yearInt
+		}
+		if rating := ctx.FormValue("rating"); rating != "" {
+			ratingFloat, _ := strconv.ParseFloat(rating, 64)
+			requestData.Rating = &ratingFloat
+		}
+		if pages := ctx.FormValue("pages"); pages != "" {
+			pagesInt, _ := strconv.Atoi(pages)
+			requestData.Pages = &pagesInt
+		}
+		if author := ctx.FormValue("author_name"); author != "" {
+			requestData.AuthorName = &author
+		}
+
+		// Parse file
+		file, err := ctx.FormFile("image")
+		if err == nil {
+			fileHeader = file
+		}
+	} else {
+		// JSON body
+		if err := ctx.BodyParser(&requestData); err != nil {
+			return errors.NewBadRequestError("Invalid JSON body")
+		}
 	}
 
+	// ISBN cannot be updated
 	if requestData.Isbn != nil {
 		return errors.NewBadRequestError("ISBN cannot be updated once set")
 	}
 
-	updatedBook, err := c.service.UpdateBook(id, &requestData)
+	// ✅ Run your validator
+	if err := utils.ValidateBookUpdateRequest(&requestData); err != nil {
+		return errors.NewBadRequestError(err.Error())
+	}
+
+	updatedBook, err := c.service.UpdateBook(id, &requestData, fileHeader)
 	if err != nil {
 		return err
 	}

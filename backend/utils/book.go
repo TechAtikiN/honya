@@ -2,7 +2,9 @@ package utils
 
 import (
 	"errors"
+	"fmt"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/techatikin/backend/dto"
@@ -55,4 +57,9 @@ func ValidateBookUpdateRequest(request *dto.BookUpdateRequest) error {
 	}
 
 	return nil
+}
+
+func ExtractS3Key(url, bucket, region string) string {
+	prefix := fmt.Sprintf("https://%s.s3.%s.amazonaws.com/", bucket, region)
+	return strings.TrimPrefix(url, prefix)
 }

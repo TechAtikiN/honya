@@ -50,5 +50,5 @@ func main() {
 	router.Setup(app)
 
 	log.Println("Server starting on port 8080...")
-	log.Fatal(app.Listen(os.Getenv("SERVER_PORT")))
+	log.Fatal(app.Listen(":" + os.Getenv("SERVER_PORT")))
 }

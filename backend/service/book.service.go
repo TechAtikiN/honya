@@ -1,7 +1,7 @@
 package service
 
 import (
-	"strings"
+	"mime/multipart"
 
 	"github.com/google/uuid"
 	"github.com/techatikin/backend/dto"
@@ -15,18 +15,18 @@ import (
 type BookService interface {
 	GetBooks(params dto.BookQueryParams) ([]model.Book, *dto.PaginationMeta, error)
 	GetBookByID(id uuid.UUID) (*model.Book, error)
-	CreateBook(book *dto.BookCreateRequest) (*model.Book, error)
-	UpdateBook(id uuid.UUID, updateData *dto.BookUpdateRequest) (*model.Book, error)
+	CreateBook(book *dto.BookCreateRequest, fileHeader *multipart.FileHeader) (*model.Book, error)
+	UpdateBook(id uuid.UUID, updateData *dto.BookUpdateRequest, fileHeader *multipart.FileHeader) (*model.Book, error)
 	DeleteBook(id uuid.UUID) error
 }
 
 type bookService struct {
-	repo repository.BookRepository
-	// s3repo repository.TS3Repository // S3 repository for handling images
+	repo   repository.BookRepository
+	s3repo repository.S3Repository
 }
 
-func NewBookService(repo repository.BookRepository) BookService {
-	return &bookService{repo}
+func NewBookService(repo repository.BookRepository, s3repo repository.S3Repository) BookService {
+	return &bookService{repo, s3repo}
 }
 
 func (s *bookService) GetBooks(params dto.BookQueryParams) ([]model.Book, *dto.PaginationMeta, error) {
@@ -59,24 +59,25 @@ func (s *bookService) GetBookByID(id uuid.UUID) (*model.Book, error) {
 	return book, nil
 }
 
-func (s *bookService) CreateBook(book *dto.BookCreateRequest) (*model.Book, error) {
-	// Validate the book creation request
+func (s *bookService) CreateBook(book *dto.BookCreateRequest, fileHeader *multipart.FileHeader) (*model.Book, error) {
 	if err := utils.ValidateBookCreateRequest(book); err != nil {
 		return nil, errors.NewBadRequestError(err.Error())
 	}
 
-	// Call S3 repository to upload the image
-	// imageURL, err := s.s3repo.UploadImage(book.Image)
-	// if err != nil {
-	// 	return nil, errors.NewInternalError(err)
-	// }
+	var imageURL string
+	if fileHeader != nil {
+		url, err := s.s3repo.UploadImage(fileHeader)
+		if err != nil {
+			return nil, errors.NewInternalError(err)
+		}
+		imageURL = url
+	}
 
-	// Create a new book model
 	newBook := model.Book{
 		Title:           book.Title,
 		Description:     book.Description,
 		Category:        book.Category,
-		Image:           book.Image, // imageURL,
+		Image:           imageURL,
 		PublicationYear: book.PublicationYear,
 		Rating:          book.Rating,
 		Pages:           book.Pages,
@@ -84,35 +85,38 @@ func (s *bookService) CreateBook(book *dto.BookCreateRequest) (*model.Book, erro
 		AuthorName:      book.AuthorName,
 	}
 
-	// Call repository to create the book
 	resource, err := s.repo.Create(&newBook)
 	if err != nil {
-		if strings.Contains(err.Error(), "unique constraint") {
-			return nil, errors.NewConflictError("Book with this ISBN already exists")
+		if imageURL != "" {
+			// Rollback uploaded image if DB create fails
+			_ = s.s3repo.DeleteImage(imageURL)
 		}
-		// Delete the uploaded image if book creation fails
-		// s.s3repo.DeleteImage(imageURL)
 		return nil, errors.NewInternalError(err)
 	}
 
 	return resource, nil
 }
 
-func (s *bookService) UpdateBook(id uuid.UUID, updateData *dto.BookUpdateRequest) (*model.Book, error) {
-	if updateData.Isbn != nil {
-		return nil, errors.NewBadRequestError("ISBN cannot be updated once set")
-	}
-
-	if err := utils.ValidateBookUpdateRequest(updateData); err != nil {
-		return nil, errors.NewBadRequestError(err.Error())
-	}
-
+func (s *bookService) UpdateBook(id uuid.UUID, updateData *dto.BookUpdateRequest, fileHeader *multipart.FileHeader) (*model.Book, error) {
 	existingBook, err := s.repo.FindByID(id)
 	if err != nil {
 		return nil, errors.NewInternalError(err)
 	}
 	if existingBook == nil {
 		return nil, errors.NewNotFoundError("Book not found")
+	}
+
+	// If new image uploaded, replace old one
+	if fileHeader != nil {
+		url, err := s.s3repo.UploadImage(fileHeader)
+		if err != nil {
+			return nil, errors.NewInternalError(err)
+		}
+		updateData.Image = &url
+
+		if existingBook.Image != "" {
+			_ = s.s3repo.DeleteImage(existingBook.Image)
+		}
 	}
 
 	resource, err := s.repo.Update(id, updateData)
@@ -133,5 +137,13 @@ func (s *bookService) DeleteBook(id uuid.UUID) error {
 		return errors.NewNotFoundError("Book not found")
 	}
 
+	// Delete image from S3 if exists
+	if existingBook.Image != "" {
+		// Extract key from URL
+		key := utils.ExtractS3Key(existingBook.Image, "honya-books", "ap-south-1")
+		_ = s.s3repo.DeleteImage(key)
+	}
+
+	// Delete book from DB
 	return s.repo.Delete(id)
 }
