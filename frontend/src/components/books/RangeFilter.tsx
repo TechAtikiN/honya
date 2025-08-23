@@ -1,5 +1,4 @@
 'use client'
-
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Slider } from '../ui/slider'
 import { useState, useEffect } from 'react'

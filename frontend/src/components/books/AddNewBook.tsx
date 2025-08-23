@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '../ui/button'
-import { BookDashed } from 'lucide-react'
+import { BookDashed, BookPlus } from 'lucide-react'
 import {
   Dialog,
   DialogTrigger,
@@ -68,15 +68,15 @@ export default function AddNewBook() {
     <div>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
-          <Button className="flex items-start justify-start min-w-40">
-            <BookDashed className="h-4 w-4" />
-            <span> Add New Book</span>
+          <Button className="flex items-center justify-center md:min-w-40">
+            <BookPlus className="h-4 w-4" />
+            <span className='hidden md:block'>Add New Book</span>
           </Button>
         </DialogTrigger>
         <DialogContent className="w-full md:min-w-[750px]">
           <DialogHeader>
-            <DialogTitle className="flex items-center space-x-2 justify-center">
-              <BookDashed className="h-5 w-5" />
+            <DialogTitle className="flex items-center space-x-2 justify-start">
+              <BookPlus className="h-5 w-5" />
               <p>Add New Book</p>
             </DialogTitle>
             <DialogDescription className="sr-only">

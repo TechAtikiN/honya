@@ -88,7 +88,6 @@ func (s *bookService) CreateBook(book *dto.BookCreateRequest, fileHeader *multip
 	resource, err := s.repo.Create(&newBook)
 	if err != nil {
 		if imageURL != "" {
-			// Rollback uploaded image if DB create fails
 			_ = s.s3repo.DeleteImage(imageURL)
 		}
 		return nil, errors.NewInternalError(err)
@@ -139,7 +138,6 @@ func (s *bookService) DeleteBook(id uuid.UUID) error {
 
 	// Delete image from S3 if exists
 	if existingBook.Image != "" {
-		// Extract key from URL
 		key := utils.ExtractS3Key(existingBook.Image, "honya-books", "ap-south-1")
 		_ = s.s3repo.DeleteImage(key)
 	}

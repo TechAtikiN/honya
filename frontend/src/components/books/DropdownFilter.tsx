@@ -42,10 +42,14 @@ export default function DropdownFilter({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild
+        className={`
+        ${currentValue !== defaultValue ? 'border border-primary/60' : ''}
+        `}
+      >
         <Button variant="secondary" className="flex items-center justify-between min-w-[160px]">
           <span>{selectedItem?.label || label}</span>
-          <ChevronDown className="h-4 w-4 ml-2" />
+          <ChevronDown className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 mr-5" align="center" side="bottom" sideOffset={4}>
