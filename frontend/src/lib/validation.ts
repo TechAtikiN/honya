@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { bookCategory } from "@/types/book";
 
-export const createBookFormSchema = z.object({
+export const bookFormSchema = z.object({
   title: z
     .string()
     .trim()
@@ -72,5 +72,22 @@ export const createBookFormSchema = z.object({
     .regex(/^[a-zA-Z\s\.\-']+$/, "Author name can only contain letters, spaces, periods, hyphens, and apostrophes"),
 });
 
-// Type for form data
-export type CreateBookFormData = z.infer<typeof createBookFormSchema>;
+export const reviewFormSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(1, "Name is required")
+    .min(2, "Name must be at least 2 characters long")
+    .max(100, "Name cannot exceed 100 characters"),
+  email: z
+    .string()
+    .trim()
+    .min(1, "Email is required")
+    .email("Email must be a valid email address")
+    .max(100, "Email cannot exceed 100 characters"),
+  content: z
+    .string()
+    .trim()
+    .min(1, "Review content is required")
+    .max(1000, "Review content cannot exceed 1000 characters"),
+});

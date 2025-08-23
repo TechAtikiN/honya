@@ -1,16 +1,17 @@
 'use server'
 
 import { BookFormData } from "@/components/books/BookForm";
-import { bookCategory, BooksResponse, Filters } from "@/types/book"
+import { BookDetailsResponse, BooksResponse, Filters } from "@/types/book"
 import { revalidatePath } from "next/cache";
+import { getBookReviews } from "./reviews.action";
 
 const BACKEND_API_URL = process.env.BACKEND_API_URL || 'http://localhost:8080/api'
 
-export async function getBooks(filters: Filters, page: number = 1, limit: number = 10): Promise<BooksResponse> {
+export async function getBooks(filters: Filters, pagination: { currentPage: number, limit: number }): Promise<BooksResponse | null> {
   try {
-    const offset = (page - 1) * limit;
+    const offset = (pagination.currentPage - 1) * pagination.limit;
 
-    const URL = `${BACKEND_API_URL}/books?limit=${limit}&offset=${offset}&` + new URLSearchParams(filters as Record<string, string>);
+    const URL = `${BACKEND_API_URL}/books?limit=${pagination.limit}&offset=${offset}&` + new URLSearchParams(filters as Record<string, string>);
 
     const res = await fetch(URL, {
       method: 'GET',
@@ -20,15 +21,21 @@ export async function getBooks(filters: Filters, page: number = 1, limit: number
       cache: 'no-store',
     });
 
-    const data = await res.json();
-    return data;
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    } else {
+      console.error('Error fetching books', res.statusText);
+      return null
+    }
+
   } catch (error) {
     console.error('Error fetching books:', error);
     throw error;
   }
 }
 
-export async function getBookDetails(id: string) {
+export async function getBookDetails(id: string): Promise<BookDetailsResponse | null> {
   try {
     const res = await fetch(`${BACKEND_API_URL}/books/${id}`, {
       method: 'GET',
@@ -37,9 +44,12 @@ export async function getBookDetails(id: string) {
       },
       cache: 'no-store',
     });
+
+    const bookReviews = await getBookReviews(id);
+
     if (res.ok) {
-      const data = await res.json();
-      return data;
+      const bookDetails = await res.json();
+      return { ...bookDetails, reviews: bookReviews };
     } else {
       console.error('Error fetching book:', res.statusText);
       return null;
@@ -50,7 +60,7 @@ export async function getBookDetails(id: string) {
   }
 }
 
-export async function createBook(data: BookFormData, imageFile?: File) {
+export async function addBook(data: BookFormData, imageFile?: File) {
   try {
     const formData = new FormData();
 
@@ -87,28 +97,24 @@ export async function createBook(data: BookFormData, imageFile?: File) {
         }
       }
       if (res.status === 400) {
-        console.error(errorData.error);
         return {
           success: false,
-          message: errorData.error,
+          message: 'Invalid data provided. Please try again.',
         }
       } else if (res.status === 500) {
-        console.error(errorData.error);
         return {
           success: false,
-          message: errorData.error,
+          message: "Server error, Please try again later.",
         }
       } else if (res.status === 409) {
-        console.error(errorData.error);
         return {
           success: false,
-          message: errorData.error,
+          message: "Conflict error, Please try again later.",
         }
       } else if (res.status === 404) {
-        console.error(errorData.error);
         return {
           success: false,
-          message: errorData.error,
+          message: "Not found, Please try again later.",
         }
       } else {
         console.error('Unexpected error:', errorData);
@@ -194,6 +200,54 @@ export async function updateBook(data: Partial<BookFormData> & { id: string }, i
     }
   } catch (error) {
     console.error('Error updating book:', error);
+    throw error;
+  }
+}
+
+export async function deleteBook(id: string) {
+  try {
+    const res = await fetch(`${BACKEND_API_URL}/books/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (res.ok) {
+      revalidatePath('/');
+      return {
+        success: true,
+        message: 'Book deleted successfully',
+      }
+    } else {
+      const errorData = await res.json();
+      if (res.status === 400) {
+        return {
+          success: false,
+          message: 'Invalid data provided. Please try again.',
+        }
+      } else if (res.status === 500) {
+        return {
+          success: false,
+          message: "Server error, Please try again later.",
+        }
+      } else if (res.status === 409) {
+        return {
+          success: false,
+          message: "Conflict error, Please try again later.",
+        }
+      } else if (res.status === 404) {
+        return {
+          success: false,
+          message: "Not found, Please try again later.",
+        }
+      } else {
+        console.error('Unexpected error:', errorData);
+        return {
+          success: false,
+          message: 'Unexpected error occurred',
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Error deleting book:', error);
     throw error;
   }
 }

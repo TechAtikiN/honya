@@ -1,4 +1,5 @@
 import { getBookDetails, getBooks } from "@/actions/book.actions";
+import { getBookReviews } from "@/actions/reviews.action";
 
 export enum bookCategory {
   FICTION = "fiction",
@@ -12,6 +13,7 @@ export enum bookCategory {
   TRAVEL = "travel",
   CLASSICS = "classics",
 }
+
 export interface Filters {
   publication_year?: string
   category?: string
@@ -19,9 +21,16 @@ export interface Filters {
   sort?: string
   pages?: string
   rating?: string
+  page?: string
+
 }
 
 export type Book = Awaited<ReturnType<typeof getBookDetails>>;
+
+export type BooksDetails = Awaited<ReturnType<typeof getBooks>>;
+
+export type Reviews = Awaited<ReturnType<typeof getBookReviews>>;
+
 export interface BooksResponse {
   data: Book[]
   meta: {
@@ -31,4 +40,35 @@ export interface BooksResponse {
   }
 }
 
-export type BooksDetails = Awaited<ReturnType<typeof getBooks>>;
+export interface BookDetailsResponse {
+  id: string
+  title: string
+  author_name: string
+  description: string
+  category: bookCategory
+  publication_year: number
+  pages: number
+  isbn: string
+  rating: number
+  image?: string
+  created_at: string
+  updated_at: string
+  reviews: Reviews
+}
+
+export interface ReviewsResponse {
+  data: {
+    id: string
+    book_id: string
+    name: string
+    email: string
+    content: string
+    created_at: string
+    updated_at: string
+  }[]
+  meta: {
+    total_count: number
+    limit: number
+    offset: number
+  }
+}

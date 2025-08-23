@@ -3,12 +3,13 @@ import Link from "next/link"
 import HintLabel from "../global/hint-label"
 
 interface BookListItemProps {
-  book: Book
+  book: Book | null
 }
 
 export default function BookListItem({
   book
 }: BookListItemProps) {
+  if (!book) return null
   return (
     <Link
       href={`/books/${book.id}`}
@@ -39,7 +40,6 @@ export default function BookListItem({
           </p>
         )}
         <p className="font-medium text-sm text-primary/50">{book.author_name}</p>
-        <p>{book.rating}</p>
       </div>
     </Link>
   )

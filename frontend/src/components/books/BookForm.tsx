@@ -12,17 +12,17 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { createBookFormSchema } from '@/lib/validation';
+import { bookFormSchema } from '@/lib/validation';
 import { BOOK_CATEGORIES } from '@/constants/books';
 import { Slider } from '../ui/slider';
 import { useState, useTransition, useEffect } from 'react';
 import { BookPlus, PencilLine } from 'lucide-react';
 import UploadBookImage from './UploadBookImage';
-import { createBook, updateBook } from '@/actions/book.actions';
+import { addBook, updateBook } from '@/actions/book.actions';
 import { toast } from 'sonner';
 import { Book } from '@/types/book';
 
-export type BookFormData = z.infer<typeof createBookFormSchema>;
+export type BookFormData = z.infer<typeof bookFormSchema>;
 
 interface BookFormProps {
   bookDetails?: Book;
@@ -38,10 +38,9 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  // Helper function to get default values
-  const getDefaultValues = (book?: Book) => ({
+  const getDefaultValues = (book?: Book): Partial<BookFormData> => ({
     rating: book?.rating || 4,
-    category: book?.category || BOOK_CATEGORIES[0].value,
+    category: (book?.category || BOOK_CATEGORIES[0].value) as BookFormData['category'],
     publicationYear: book?.publication_year || new Date().getFullYear(),
     pages: book?.pages || 100,
     title: book?.title || '',
@@ -57,7 +56,7 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
     reset,
     formState: { errors, isSubmitting },
   } = useForm<BookFormData>({
-    resolver: zodResolver(createBookFormSchema),
+    resolver: zodResolver(bookFormSchema),
     mode: 'onChange',
     defaultValues: getDefaultValues(bookDetails),
   });
@@ -66,7 +65,6 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
   useEffect(() => {
     if (bookDetails && isEdit) {
       reset(getDefaultValues(bookDetails));
-      // Reset image-related states to show current book image
       setImageFile(null);
       setbookImagePreview(null);
       setBookImageInfo(null);
@@ -90,7 +88,7 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
         });
       } else {
         startTransition(async () => {
-          const response = await createBook(data, imageFile || undefined);
+          const response = await addBook(data, imageFile || undefined);
           if (response?.success) {
             toast.success(response.message || 'Book created successfully');
             reset();
@@ -131,7 +129,7 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
         <Button className="flex items-center justify-center md:min-w-40">
           {isEdit ? <PencilLine className="h-4 w-4" /> : <BookPlus className="h-4 w-4" />}
           <span className='hidden md:block'>
-            {isEdit ? 'Edit Book' : 'Add New Book'}
+            {isEdit ? 'Edit Book' : 'Add Book'}
           </span>
         </Button>
       </DialogTrigger>
@@ -165,9 +163,12 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
               />
 
               <div className='flex flex-col space-y-1'>
-                <label className='form-label'>Title</label>
+                <label
+                  htmlFor='title'
+                  className='form-label'>Title</label>
                 <input
                   type="text"
+                  required
                   {...register("title")}
                   className='form-input'
                   placeholder="Harry Potter and the Philosopher's Stone"
@@ -176,9 +177,12 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
               </div>
 
               <div className='flex flex-col space-y-1'>
-                <label className='form-label'>ISBN</label>
+                <label
+                  htmlFor='isbn'
+                  className='form-label'>ISBN</label>
                 <input
                   type="text"
+                  required
                   {...register("isbn")}
                   className='form-input disabled:bg-secondary/50 disabled:cursor-not-allowed'
                   placeholder='978-3-16-148410-0'
@@ -188,8 +192,11 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
               </div>
 
               <div className='flex flex-col space-y-1'>
-                <label className='form-label'>Description</label>
+                <label
+                  htmlFor='description'
+                  className='form-label'>Description</label>
                 <textarea
+                  required
                   {...register("description")}
                   className='form-input'
                   rows={3}
@@ -202,8 +209,11 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
 
             <div className='flex flex-col space-y-4'>
               <div className='flex flex-col space-y-1'>
-                <label className='form-label'>Author Name</label>
+                <label
+                  htmlFor='authorName'
+                  className='form-label'>Author Name</label>
                 <input
+                  required
                   type="text"
                   {...register("authorName")}
                   className='form-input'
@@ -213,8 +223,11 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
               </div>
 
               <div className='flex flex-col space-y-1'>
-                <label className='form-label'>Category</label>
+                <label
+                  htmlFor='category'
+                  className='form-label'>Category</label>
                 <select
+                  required
                   {...register("category")}
                   className='form-input'
                 >
@@ -228,8 +241,11 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
               </div>
 
               <div className='flex flex-col space-y-1'>
-                <label className='form-label'>Publication Year</label>
+                <label
+                  htmlFor='publicationYear'
+                  className='form-label'>Publication Year</label>
                 <input
+                  required
                   type="number"
                   {...register("publicationYear", {
                     setValueAs: (value) => parseInt(value, 10),
@@ -244,8 +260,11 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
               </div>
 
               <div className='flex flex-col space-y-1'>
-                <label className='form-label'>Number of pages</label>
+                <label
+                  htmlFor='pages'
+                  className='form-label'>Number of pages</label>
                 <input
+                  required
                   type="number"
                   {...register("pages", {
                     setValueAs: (value) => parseInt(value, 10),

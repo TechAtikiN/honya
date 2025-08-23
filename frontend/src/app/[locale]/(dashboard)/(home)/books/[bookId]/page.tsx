@@ -1,14 +1,14 @@
 import { getBookDetails } from "@/actions/book.actions";
+import { buttonVariants } from "@/components/ui/button";
+import { getLocale } from "@/i18n.config";
+import { cn, formatTitleCase, formatToAgo } from "@/lib/utils";
+import { ArrowLeft, BookAlert } from "lucide-react";
+import Image from "next/image";
+import AddReview from "@/components/book-details/AddReview";
 import DeleteBook from "@/components/book-details/DeleteBook";
 import StarRating from "@/components/book-details/StarRating";
 import UpdateBook from "@/components/books/UpdateBook";
 import CustomLink from "@/components/global/custom-link";
-import { Button } from "@/components/ui/button";
-import { MOCK_BOOK_DATA } from "@/constants/books";
-import { getLocale } from "@/i18n.config";
-import { formatToAgo } from "@/lib/utils";
-import { ArrowLeft, UserStar } from "lucide-react";
-import Image from "next/image";
 
 interface BookDetailPageProps {
   params: Promise<{ locale: string; bookId: string }>;
@@ -20,8 +20,26 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
 
   const bookDetails = await getBookDetails(bookId)
 
+  if (!bookDetails) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-y-5 h-[calc(100vh-30px)]">
+        <div className="flex flex-col items-center justify-center gap-2">
+          <BookAlert className="h-16 w-16 text-primary mx-auto mb-4" />
+          <p className="text-2xl font-bold text-primary">Book not found</p>
+        </div>
+        <CustomLink
+          href={`/`}
+          locale={lang}
+          className={cn(buttonVariants({ variant: 'default' }), '')}
+        >
+          Go back to Library
+        </CustomLink>
+      </div>
+    )
+  }
+
   return (
-    <div className="flex flex-col space-y-10 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar px-2 pb-10">
+    <div className="flex flex-col space-y-10 min-h-[calc(100vh-30px)] overflow-auto invisible-scrollbar px-2 pb-10">
       {/* back button */}
       <div className="flex items-center justify-between w-full">
         <CustomLink
@@ -50,9 +68,9 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
 
         {/* Right section */}
         <div className="flex flex-col items-start justify-center space-y-4 w-full md:w-1/2">
-          <p className="bg-secondary border border-primary rounded-xl font-bold px-3 text-primary">{bookDetails.category}</p>
+          <p className="bg-secondary border border-primary rounded-xl font-bold px-3 text-primary">{formatTitleCase(bookDetails.category)}</p>
           <p className="text-5xl font-extrabold text-primary">{bookDetails.title}</p>
-          <p className="text-lg font-medium text-primary/50 mt-2">- by {bookDetails.authorName}</p>
+          <p className="text-lg font-medium text-primary/50 mt-2">- by {bookDetails.author_name}</p>
           <p className="text-justify text-lg font-normal text-primary mt-2">{bookDetails.description}</p>
         </div>
       </div>
@@ -94,25 +112,36 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
         <div className="flex flex-col space-y-3">
           <div className="flex items-center justify-between">
             <p className="text-2xl font-bold text-primary">Reviews</p>
-            <Button variant="secondary" className="flex items-center">
-              <UserStar className="h-4 w-4" />
-              <span>Add Review</span>
-            </Button>
+            <AddReview bookId={bookDetails.id} />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {MOCK_BOOK_DATA.reviews.length > 0 &&
-              MOCK_BOOK_DATA.reviews.map((review, index) => (
-                <div key={index} className="flex flex-col items-start justify-start space-y-2 bg-white p-4 rounded-lg shadow-md">
-                  <p className="text-lg font-semibold text-primary">{review.reviewerName}</p>
-                  <p className="text-sm text-primary/70">&quot;{review.reviewText}&quot;</p>
+            {bookDetails?.reviews && bookDetails.reviews.data.length > 0 ?
+              bookDetails.reviews.data.map((review, index) => (
+                <div key={index} className="flex flex-col items-start justify-start space-y-2 bg-accent p-4 rounded-md shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center rounded-full bg-primary h-9 w-9 justify-center text-white font-bold">
+                      {review.name.charAt(0).toUpperCase()}
+                    </div>
+                    <div>
+                      <p className="text-lg font-semibold text-primary">
+                        {review.name}
+                      </p>
+                      <p className="text-sm text-primary/50 font-normal">{formatToAgo(review.created_at)}</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-primary/70">&quot;{review.content}&quot;</p>
                 </div>
-              ))
+              )) : (
+                <p className="text-primary/70">No reviews yet.</p>
+              )
             }
           </div>
         </div>
       </div>
 
-      <DeleteBook />
+      <DeleteBook
+        bookId={bookDetails.id}
+      />
     </div>
   )
 }

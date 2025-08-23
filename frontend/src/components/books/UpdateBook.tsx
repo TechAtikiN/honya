@@ -11,10 +11,9 @@ export default function UpdateBook({ bookDetails }: UpdateBookProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
-      <BookForm
-        bookDetails={bookDetails}
-        setIsOpen={setIsOpen} isOpen={isOpen} isEdit={true} />
-    </div>
+    <BookForm
+      bookDetails={bookDetails}
+      setIsOpen={setIsOpen} isOpen={isOpen} isEdit={true}
+    />
   )
 }

@@ -1,4 +1,5 @@
 'use client'
+
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Slider } from '../ui/slider'
 import { useState, useEffect } from 'react'
@@ -10,6 +11,7 @@ interface RangeFilterProps {
   max: number
   step: number
   fromLabel: number
+  onFilterChange?: (key: string, label: string, value: number) => void
 }
 
 export default function RangeFilter({
@@ -19,6 +21,7 @@ export default function RangeFilter({
   max,
   step,
   fromLabel,
+  onFilterChange
 }: RangeFilterProps) {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -43,6 +46,10 @@ export default function RangeFilter({
     const params = new URLSearchParams(searchParams.toString())
     params.set(searchParamKey, newValue.toString())
     router.push(`${pathname}?${params.toString()}`)
+
+    if (onFilterChange) {
+      onFilterChange(searchParamKey, label, newValue)
+    }
   }
 
   const toLabel = hasChanged ? currentValue : max
