@@ -1,6 +1,8 @@
 package api
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+)
 
 type HealthRouter struct {
 	app *fiber.App

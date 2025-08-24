@@ -12,3 +12,5 @@
 {"timestamp":"2025-08-24 19:20:29", "status":200, "latency":"    141.625µs", "method":"GET", "path":"/api/process-url", "error":"-", "response":[], "ip":"127.0.0.1"}
 
 {"timestamp":"2025-08-24 19:20:37", "status":200, "latency":"    145.833µs", "method":"GET", "path":"/api/process-url", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-24 20:18:12", "status":200, "latency":"    452.333µs", "method":"GET", "path":"/api/health", "error":"-", "response":[], "ip":"127.0.0.1"}
