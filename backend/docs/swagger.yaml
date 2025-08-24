@@ -1,30 +1,5 @@
 basePath: /api
 definitions:
-  dto.BookCreateRequest:
-    properties:
-      author_name:
-        type: string
-      category:
-        type: string
-      description:
-        type: string
-      image:
-        type: string
-      isbn:
-        type: string
-      pages:
-        type: integer
-      publication_year:
-        type: integer
-      rating:
-        type: number
-      title:
-        type: string
-    required:
-    - author_name
-    - category
-    - title
-    type: object
   dto.BookListResponse:
     properties:
       data:
@@ -61,27 +36,6 @@ definitions:
       updated_at:
         type: integer
     type: object
-  dto.BookUpdateRequest:
-    properties:
-      author_name:
-        type: string
-      category:
-        type: string
-      description:
-        type: string
-      image:
-        type: string
-      isbn:
-        type: string
-      pages:
-        type: integer
-      publication_year:
-        type: integer
-      rating:
-        type: number
-      title:
-        type: string
-    type: object
   dto.PaginationMeta:
     properties:
       limit:
@@ -90,6 +44,25 @@ definitions:
         type: integer
       total_count:
         type: integer
+    type: object
+  dto.ProcessUrlRequest:
+    properties:
+      operation:
+        enum:
+        - redirection
+        - canonical
+        - all
+        type: string
+      url:
+        type: string
+    required:
+    - operation
+    - url
+    type: object
+  dto.ProcessUrlResponse:
+    properties:
+      processed_url:
+        type: string
     type: object
   dto.ReviewCreateRequest:
     properties:
@@ -166,39 +139,41 @@ paths:
     get:
       consumes:
       - application/json
-      description: Get paginated list of books with optional filters
+      description: Retrieve a list of books with optional filtering, sorting, and
+        pagination
       parameters:
       - description: Search query
         in: query
         name: query
         type: string
       - default: 0
-        description: Offset for pagination
+        description: Pagination offset
         in: query
         name: offset
         type: integer
       - default: 10
-        description: Limit for pagination
+        description: Pagination limit
         in: query
         name: limit
         type: integer
-      - description: Filter by category
+      - description: 'Book category (Available categories: fiction, non_fiction, science,
+          history, fantasy, mystery, thriller, cooking, travel, classics)'
         in: query
         name: category
         type: string
-      - description: Filter by publication year
+      - description: Publication year
         in: query
         name: publication_year
         type: integer
-      - description: Filter by rating
+      - description: Minimum rating
         in: query
         name: rating
         type: number
-      - description: Filter by number of pages
+      - description: Number of pages
         in: query
         name: pages
         type: integer
-      - description: Sort order (asc/desc)
+      - description: Sort by field (e.g., title, publication_year, rating)
         in: query
         name: sort
         type: string
@@ -206,23 +181,65 @@ paths:
       - application/json
       responses:
         "200":
-          description: Books fetched successfully
+          description: List of books fetched successfully
           schema:
             $ref: '#/definitions/dto.BookListResponse'
-      summary: Get list of all books
+        "400":
+          description: Invalid query parameters
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      summary: Get a list of books
       tags:
       - books
     post:
       consumes:
-      - application/json
+      - multipart/form-data
       description: Create a new book with the provided details
       parameters:
-      - description: Book creation payload
-        in: body
-        name: book
+      - description: Book title
+        in: formData
+        name: title
         required: true
-        schema:
-          $ref: '#/definitions/dto.BookCreateRequest'
+        type: string
+      - description: Book description
+        in: formData
+        name: description
+        type: string
+      - description: 'Book category (Available categories: fiction, non_fiction, science,
+          history, fantasy, mystery, thriller, cooking, travel, classics)'
+        in: formData
+        name: category
+        required: true
+        type: string
+      - description: Publication year
+        in: formData
+        name: publication_year
+        required: true
+        type: integer
+      - description: Book rating
+        in: formData
+        name: rating
+        required: true
+        type: number
+      - description: Number of pages
+        in: formData
+        name: pages
+        required: true
+        type: integer
+      - description: ISBN number
+        in: formData
+        name: isbn
+        required: true
+        type: string
+      - description: Author name
+        in: formData
+        name: author_name
+        required: true
+        type: string
+      - description: Book cover image
+        in: formData
+        name: image
+        type: file
       produces:
       - application/json
       responses:
@@ -315,7 +332,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: Get a single book by its ID
+      description: Retrieve detailed information about a specific book by its ID
       parameters:
       - description: Book ID
         in: path
@@ -337,25 +354,52 @@ paths:
           description: Book not found
           schema:
             $ref: '#/definitions/errors.ErrorResponse'
-      summary: Get book by ID
+      summary: Get a book by ID
       tags:
       - books
     put:
       consumes:
-      - application/json
-      description: Update book details by its ID
+      - multipart/form-data
+      description: Update the details of an existing book by its ID
       parameters:
       - description: Book ID
         in: path
         name: id
         required: true
         type: string
-      - description: Book update payload
-        in: body
-        name: book
-        required: true
-        schema:
-          $ref: '#/definitions/dto.BookUpdateRequest'
+      - description: Book title
+        in: formData
+        name: title
+        type: string
+      - description: Book description
+        in: formData
+        name: description
+        type: string
+      - description: 'Book category (Available categories: fiction, non_fiction, science,
+          history, fantasy, mystery, thriller, cooking, travel, classics)'
+        in: formData
+        name: category
+        type: string
+      - description: Publication year
+        in: formData
+        name: publication_year
+        type: integer
+      - description: Book rating
+        in: formData
+        name: rating
+        type: number
+      - description: Number of pages
+        in: formData
+        name: pages
+        type: integer
+      - description: Author name
+        in: formData
+        name: author_name
+        type: string
+      - description: Book cover image
+        in: formData
+        name: image
+        type: file
       produces:
       - application/json
       responses:
@@ -374,6 +418,37 @@ paths:
       summary: Update an existing book
       tags:
       - books
+  /process-url:
+    get:
+      consumes:
+      - application/json
+      description: Process a given URL to retrieve its redirection URL, canonical
+        URL, or both
+      parameters:
+      - description: Process URL Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ProcessUrlRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ProcessUrlResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      summary: Process a URL to get its redirection or canonical form
+      tags:
+      - URL
   /reviews:
     get:
       consumes:
