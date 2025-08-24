@@ -12,6 +12,7 @@ type Router struct {
 	bookRouter   *api.BookRouter
 	reviewRouter *api.ReviewRouter
 	seedRouter   *api.SeedRouter
+	urlRouter    *api.UrlRouter
 }
 
 func New(app *fiber.App) *Router {
@@ -21,6 +22,7 @@ func New(app *fiber.App) *Router {
 		bookRouter:   api.NewBookRouter(app),
 		reviewRouter: api.NewReviewRouter(app),
 		seedRouter:   api.NewSeedRouter(app),
+		urlRouter:    api.NewUrlRouter(app),
 	}
 }
 
@@ -33,4 +35,5 @@ func Setup(app *fiber.App) {
 	router.bookRouter.Setup(api)
 	router.reviewRouter.Setup(api)
 	router.seedRouter.Setup(api)
+	router.urlRouter.Setup(api)
 }

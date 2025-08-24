@@ -8,7 +8,6 @@ FRONTEND_DIR := frontend
 BACKEND_DIR := backend
 SEED_SCRIPT := scripts/seed/main.go
 
-
 # =========== Install =============
 
 install-fe: ## Install frontend dependencies

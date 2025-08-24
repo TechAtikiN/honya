@@ -43,7 +43,7 @@ func main() {
 
 	app.Use(cors.New())
 
-	// app.Use(config.SetupLogger())
+	app.Use(config.SetupLogger())
 
 	config.ConnectToDatabase()
 
