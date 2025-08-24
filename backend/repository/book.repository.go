@@ -17,17 +17,17 @@ type BookRepository interface {
 	Delete(id uuid.UUID) error
 }
 
-type bookRepository struct {
+type BookRepositoryImpl struct {
 	*BaseRepository[model.Book]
 }
 
 func NewBookRepository() BookRepository {
-	return &bookRepository{
+	return &BookRepositoryImpl{
 		BaseRepository: NewBaseRepository[model.Book](config.DB.Db),
 	}
 }
 
-func (r *bookRepository) FindAll(params dto.BookQueryParams) ([]model.Book, dto.PaginationMeta, error) {
+func (r *BookRepositoryImpl) FindAll(params dto.BookQueryParams) ([]model.Book, dto.PaginationMeta, error) {
 	var books []model.Book
 	var totalCount int64
 
@@ -88,7 +88,7 @@ func (r *bookRepository) FindAll(params dto.BookQueryParams) ([]model.Book, dto.
 	return books, meta, nil
 }
 
-func (r *bookRepository) Update(id uuid.UUID, updateData *dto.BookUpdateRequest) (*model.Book, error) {
+func (r *BookRepositoryImpl) Update(id uuid.UUID, updateData *dto.BookUpdateRequest) (*model.Book, error) {
 	book, err := r.FindByID(id)
 	if err != nil {
 		return nil, err

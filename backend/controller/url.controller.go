@@ -42,16 +42,15 @@ func (c *urlController) ProcessUrl(ctx *fiber.Ctx) error {
 		return errors.NewBadRequestError(err.Error())
 	}
 
-	// TODO: Make operations as enum
 	switch req.Operation {
-	case "redirection":
+	case utils.OpRedirection:
 		return handleUrlRedirection(ctx, req.Url, c.service)
-	case "canonical":
+	case utils.OpCanonical:
 		return handleUrlCanonical(ctx, req.Url, c.service)
-	case "all":
+	case utils.OpAll:
 		return handleUrlAll(ctx, req.Url, c.service)
 	default:
-		return errors.NewBadRequestError("falana")
+		return errors.NewBadRequestError("Invalid operation")
 	}
 }
 

@@ -16,17 +16,17 @@ type ReviewRepository interface {
 	FindByBookID(bookID uuid.UUID, params dto.QueryParams) ([]model.Review, dto.PaginationMeta, error)
 }
 
-type reviewRepository struct {
+type ReviewRepositoryImpl struct {
 	*BaseRepository[model.Review]
 }
 
 func NewReviewRepository() ReviewRepository {
-	return &reviewRepository{
+	return &ReviewRepositoryImpl{
 		BaseRepository: NewBaseRepository[model.Review](config.DB.Db),
 	}
 }
 
-func (r *reviewRepository) FindByBookID(bookID uuid.UUID, params dto.QueryParams) ([]model.Review, dto.PaginationMeta, error) {
+func (r *ReviewRepositoryImpl) FindByBookID(bookID uuid.UUID, params dto.QueryParams) ([]model.Review, dto.PaginationMeta, error) {
 	var results []model.Review
 	var totalCount int64
 

@@ -9,13 +9,14 @@ import (
 	"github.com/techatikin/backend/utils"
 )
 
-// ReviewService defines the interface for review-related operations.
+// ReviewService defines service-level operations for reviews
 type ReviewService interface {
 	GetAllReviews(params dto.QueryParams) ([]model.Review, *dto.PaginationMeta, error)
 	GetReviewByID(id uuid.UUID) (*model.Review, error)
 	CreateReview(req *dto.ReviewCreateRequest) (*model.Review, error)
 	UpdateReview(id uuid.UUID, req *dto.ReviewUpdateRequest) (*model.Review, error)
 	DeleteReview(id uuid.UUID) error
+	FindByBookID(bookID uuid.UUID, params dto.QueryParams) ([]model.Review, dto.PaginationMeta, error)
 	GetReviewsByBookID(bookID uuid.UUID, params dto.QueryParams) ([]model.Review, *dto.PaginationMeta, error)
 }
 
@@ -24,7 +25,15 @@ type reviewService struct {
 }
 
 func NewReviewService(repo repository.ReviewRepository) ReviewService {
-	return &reviewService{repo}
+	return &reviewService{repo: repo}
+}
+
+func (s *reviewService) FindByBookID(bookID uuid.UUID, params dto.QueryParams) ([]model.Review, dto.PaginationMeta, error) {
+	reviews, meta, err := s.repo.FindByBookID(bookID, params)
+	if err != nil {
+		return nil, dto.PaginationMeta{}, errors.NewInternalError(err)
+	}
+	return reviews, meta, nil
 }
 
 func (s *reviewService) GetAllReviews(params dto.QueryParams) ([]model.Review, *dto.PaginationMeta, error) {

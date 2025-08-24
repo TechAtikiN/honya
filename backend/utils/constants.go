@@ -14,3 +14,9 @@ const (
 	RateLimitMaxRequests    = 20
 	RateLimitExpiryDuration = 1 * time.Minute
 )
+
+const (
+	OpRedirection = "redirection"
+	OpCanonical   = "canonical"
+	OpAll         = "all"
+)

@@ -128,7 +128,6 @@ func (c *bookController) CreateBook(ctx *fiber.Ctx) error {
 		fileHeader = file
 	}
 
-	// Call service
 	book, err := c.service.CreateBook(&reqData, fileHeader)
 	if err != nil {
 		if strings.Contains(err.Error(), "duplicate key value violates unique constraint") && strings.Contains(err.Error(), "uni_books_isbn") {

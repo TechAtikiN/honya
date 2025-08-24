@@ -51,10 +51,8 @@ func (s *urlService) GetCanonicalUrl(rawUrl string) (string, error) {
 		return "", errors.NewBadRequestError("Failed to parse URL")
 	}
 
-	// Remove query params
+	// Remove query params and trailing slashes from path
 	parsed.RawQuery = ""
-
-	// Remove trailing slash
 	parsed.Path = strings.TrimRight(parsed.Path, "/")
 
 	return parsed.String(), nil
