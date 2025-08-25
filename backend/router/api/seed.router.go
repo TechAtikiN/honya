@@ -16,7 +16,7 @@ func NewSeedController() *SeedController {
 	return &SeedController{}
 }
 
-func (s *SeedController) SeedBooks(ctx *fiber.Ctx) error {
+func (s *SeedController) SeedData(ctx *fiber.Ctx) error {
 	return controller.SeedBooksAPI(ctx)
 }
 
@@ -31,5 +31,5 @@ func NewSeedRouter(app *fiber.App) *SeedRouter {
 func (r *SeedRouter) Setup(api fiber.Router) {
 	seedRoutes := api.Group("/seed")
 
-	seedRoutes.Post("/", r.ctrl.SeedBooks)
+	seedRoutes.Post("/", r.ctrl.SeedData)
 }

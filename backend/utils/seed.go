@@ -12,46 +12,77 @@ import (
 	"gorm.io/gorm"
 )
 
-func SeedBooks(db *gorm.DB) error {
-	var count int64
-	if err := db.Model(&model.Book{}).Count(&count).Error; err != nil {
+func SeedBooksAndReviews(db *gorm.DB) error {
+	var bookCount int64
+	if err := db.Model(&model.Book{}).Count(&bookCount).Error; err != nil {
 		return err
 	}
 
-	if count > 0 {
-		// Books already exist, no seeding needed
+	if bookCount == 0 {
+		bookFile, err := os.ReadFile("scripts/seed/data/books.json")
+		if err != nil {
+			return errors.New("failed to read books.json")
+		}
+
+		var books []model.Book
+		if err := json.Unmarshal(bookFile, &books); err != nil {
+			return errors.New("failed to parse books.json")
+		}
+
+		now := time.Now().Unix()
+		for i := range books {
+			if books[i].ID == uuid.Nil {
+				books[i].ID = uuid.New()
+			}
+			books[i].CreatedAt = now
+			books[i].UpdatedAt = now
+		}
+
+		if err := db.Create(&books).Error; err != nil {
+			return err
+		}
+
+		fmt.Println("Seeded", len(books), "books successfully.")
+	} else {
 		fmt.Println("Books already exist in database. Skipping seeding.")
+	}
+
+	var reviewCount int64
+	if err := db.Model(&model.Review{}).Count(&reviewCount).Error; err != nil {
+		return err
+	}
+
+	if reviewCount > 0 {
+		fmt.Println("Reviews already exist in database. Skipping seeding.")
 		return nil
 	}
 
-	// Read seed JSON file
-	file, err := os.ReadFile("scripts/seed/data/books.json")
+	reviewFile, err := os.ReadFile("scripts/seed/data/reviews.json")
 	if err != nil {
-		return errors.New("failed to read books.json")
+		return errors.New("failed to read reviews.json")
 	}
 
-	var books []model.Book
-	if err := json.Unmarshal(file, &books); err != nil {
-		fmt.Println("Error unmarshalling JSON:", err)
-		return errors.New("failed to parse books.json")
+	var reviews []model.Review
+	if err := json.Unmarshal(reviewFile, &reviews); err != nil {
+		return errors.New("failed to parse reviews.json")
 	}
 
 	now := time.Now().Unix()
-	for i := range books {
-		// Generate a new UUID for each book instead of using the one from the JSON
-		if books[i].ID == uuid.Nil {
-			books[i].ID = uuid.New() // Generate new UUID
+	for i := range reviews {
+		if reviews[i].ID == uuid.Nil {
+			reviews[i].ID = uuid.New()
 		}
-		// Set CreatedAt and UpdatedAt to current Unix timestamp
-		books[i].CreatedAt = now
-		books[i].UpdatedAt = now
+		if reviews[i].BookID == uuid.Nil {
+			return fmt.Errorf("review at index %d does not have a valid BookID", i)
+		}
+		reviews[i].CreatedAt = now
+		reviews[i].UpdatedAt = now
 	}
 
-	// Insert all books into the database
-	if err := db.Create(&books).Error; err != nil {
+	if err := db.Create(&reviews).Error; err != nil {
 		return err
 	}
 
-	fmt.Println("Seeded", len(books), "books successfully.")
+	fmt.Println("Seeded", len(reviews), "reviews successfully.")
 	return nil
 }

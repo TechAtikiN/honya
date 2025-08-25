@@ -51,8 +51,9 @@ type MockS3Repo struct {
 	mock.Mock
 }
 
-func (m *MockS3Repo) UploadImage(fileHeader *multipart.FileHeader) (string, error) {
-	args := m.Called(fileHeader)
+// UPDATED: UploadImage now requires fileHeader and bookName only
+func (m *MockS3Repo) UploadImage(fileHeader *multipart.FileHeader, bookName string) (string, error) {
+	args := m.Called(fileHeader, bookName)
 	return args.String(0), args.Error(1)
 }
 
@@ -117,8 +118,13 @@ func TestBookService_CreateBook_WithImage(t *testing.T) {
 	}
 
 	fileHeader := &multipart.FileHeader{}
-	mockS3.On("UploadImage", fileHeader).Return("s3://bucket/book.png", nil)
-	mockRepo.On("Create", mock.AnythingOfType("*model.Book")).Return(&model.Book{Title: req.Title, Image: "s3://bucket/book.png"}, nil)
+
+	// Expect UploadImage with fileHeader and book title only
+	mockS3.On("UploadImage", fileHeader, req.Title).
+		Return("s3://bucket/book.png", nil)
+
+	mockRepo.On("Create", mock.AnythingOfType("*model.Book")).
+		Return(&model.Book{Title: req.Title, Image: "s3://bucket/book.png"}, nil)
 
 	book, err := svc.CreateBook(req, fileHeader)
 	assert.NoError(t, err)

@@ -4,11 +4,17 @@ import (
 	"mime/multipart"
 
 	"github.com/google/uuid"
+	"github.com/techatikin/backend/config"
 	"github.com/techatikin/backend/dto"
 	"github.com/techatikin/backend/errors"
 	"github.com/techatikin/backend/model"
 	"github.com/techatikin/backend/repository"
 	"github.com/techatikin/backend/utils"
+)
+
+// extract s3 config from GetS3Config
+var (
+	bucket, region, _, _, _ = config.GetS3Config()
 )
 
 // BookService defines the interface for book-related services.
@@ -66,7 +72,7 @@ func (s *bookService) CreateBook(book *dto.BookCreateRequest, fileHeader *multip
 
 	var imageURL string
 	if fileHeader != nil {
-		url, err := s.s3repo.UploadImage(fileHeader)
+		url, err := s.s3repo.UploadImage(fileHeader, book.Title)
 		if err != nil {
 			return nil, errors.NewInternalError(err)
 		}
@@ -88,7 +94,8 @@ func (s *bookService) CreateBook(book *dto.BookCreateRequest, fileHeader *multip
 	resource, err := s.repo.Create(&newBook)
 	if err != nil {
 		if imageURL != "" {
-			_ = s.s3repo.DeleteImage(imageURL)
+			key := utils.ExtractS3Key(imageURL, bucket, region)
+			_ = s.s3repo.DeleteImage(key)
 		}
 		return nil, errors.NewInternalError(err)
 	}
@@ -107,19 +114,24 @@ func (s *bookService) UpdateBook(id uuid.UUID, updateData *dto.BookUpdateRequest
 
 	// If new image uploaded, replace old one
 	if fileHeader != nil {
-		url, err := s.s3repo.UploadImage(fileHeader)
+		url, err := s.s3repo.UploadImage(fileHeader, existingBook.Title)
 		if err != nil {
 			return nil, errors.NewInternalError(err)
 		}
 		updateData.Image = &url
 
 		if existingBook.Image != "" {
-			_ = s.s3repo.DeleteImage(existingBook.Image)
+			key := utils.ExtractS3Key(existingBook.Image, bucket, region)
+			_ = s.s3repo.DeleteImage(key)
 		}
 	}
 
 	resource, err := s.repo.Update(id, updateData)
 	if err != nil {
+		if updateData.Image != nil && *updateData.Image != "" {
+			key := utils.ExtractS3Key(*updateData.Image, bucket, region)
+			_ = s.s3repo.DeleteImage(key)
+		}
 		return nil, errors.NewInternalError(err)
 	}
 
@@ -138,7 +150,7 @@ func (s *bookService) DeleteBook(id uuid.UUID) error {
 
 	// Delete image from S3 if exists
 	if existingBook.Image != "" {
-		key := utils.ExtractS3Key(existingBook.Image, "honya-books", "ap-south-1")
+		key := utils.ExtractS3Key(existingBook.Image, bucket, region)
 		_ = s.s3repo.DeleteImage(key)
 	}
 

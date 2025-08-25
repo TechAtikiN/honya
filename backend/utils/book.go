@@ -3,6 +3,7 @@ package utils
 import (
 	"errors"
 	"fmt"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -64,7 +65,7 @@ func ValidateBookUpdateRequest(request *dto.BookUpdateRequest) error {
 	if request.Category != nil && *request.Category != "" {
 		// Category validation
 		if _, valid := allowedCategories[*request.Category]; !valid {
-			return fmt.Errorf("invalid category: %s. Allowed categories are: fiction, non_fiction, science, history, fantasy, mystery, biography, romance, thriller, self_help, cooking, travel, classics, comics", *request.Category)
+			return fmt.Errorf("invalid category: %s. Allowed categories are: fiction, non_fiction, science, history, fantasy, mystery, thriller, cooking, travel, classics", *request.Category)
 		}
 	}
 	if request.PublicationYear != nil {
@@ -84,7 +85,15 @@ func ValidateBookUpdateRequest(request *dto.BookUpdateRequest) error {
 	return nil
 }
 
-func ExtractS3Key(url, bucket, region string) string {
-	prefix := fmt.Sprintf("https://%s.s3.%s.amazonaws.com/", bucket, region)
+func Slugify(s string) string {
+	s = strings.TrimSpace(s)
+	s = strings.ReplaceAll(s, " ", "-")
+	re := regexp.MustCompile(`[^\p{L}\p{N}\-_]+`) // keep letters, numbers, dash, underscore
+	s = re.ReplaceAllString(s, "")
+	return s
+}
+
+func ExtractS3Key(url, bucketName, region string) string {
+	prefix := "https://" + bucketName + ".s3." + region + ".amazonaws.com/"
 	return strings.TrimPrefix(url, prefix)
 }

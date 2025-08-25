@@ -77,9 +77,9 @@ export default function Filters({ translations, locale }: FiltersProps) {
             <RangeFilter
               searchParamKey="pages"
               label={translations.page.home.filters.pages}
-              defaultValue={10000}
-              max={10000}
-              step={1000}
+              defaultValue={1000}
+              max={1000}
+              step={100}
               fromLabel={1}
               onFilterChange={handleFilterChange}
             />

@@ -11,14 +11,14 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/credentials"
-	"github.com/joho/godotenv"
-
 	"github.com/aws/aws-sdk-go-v2/feature/s3/manager"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/joho/godotenv"
+	"github.com/techatikin/backend/utils"
 )
 
 type S3Repository interface {
-	UploadImage(fileHeader *multipart.FileHeader) (string, error)
+	UploadImage(fileHeader *multipart.FileHeader, bookName string) (string, error)
 	DeleteImage(key string) error
 }
 
@@ -46,7 +46,6 @@ func NewS3Repository() S3Repository {
 			credentials.NewStaticCredentialsProvider(accessKey, secretKey, ""),
 		),
 	)
-
 	if err != nil {
 		return nil
 	}
@@ -55,14 +54,16 @@ func NewS3Repository() S3Repository {
 	return &s3Repository{client: client, bucketName: bucket, region: region}
 }
 
-func (r *s3Repository) UploadImage(fileHeader *multipart.FileHeader) (string, error) {
+func (r *s3Repository) UploadImage(fileHeader *multipart.FileHeader, bookName string) (string, error) {
 	file, err := fileHeader.Open()
 	if err != nil {
 		return "", err
 	}
 	defer file.Close()
 
-	key := fmt.Sprintf("books/%d%s", time.Now().UnixNano(), filepath.Ext(fileHeader.Filename))
+	// Create safe key
+	bookSlug := utils.Slugify(bookName)
+	key := fmt.Sprintf("books/%s-%d%s", bookSlug, time.Now().Unix(), filepath.Ext(fileHeader.Filename))
 
 	uploader := manager.NewUploader(r.client)
 	_, err = uploader.Upload(context.TODO(), &s3.PutObjectInput{

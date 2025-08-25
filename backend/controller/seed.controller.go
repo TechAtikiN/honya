@@ -17,8 +17,7 @@ func SeedBooksAPI(ctx *fiber.Ctx) error {
 		})
 	}
 
-	// Call SeedBooks function
-	if err := utils.SeedBooks(config.DB.Db); err != nil {
+	if err := utils.SeedBooksAndReviews(config.DB.Db); err != nil {
 		log.Printf("Error seeding books: %v", err) // Log error for debugging
 		return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"message": err.Error(),

@@ -11,7 +11,7 @@ import (
 func main() {
 	config.ConnectToDatabase()
 
-	if err := utils.SeedBooks(config.DB.Db); err != nil {
+	if err := utils.SeedBooksAndReviews(config.DB.Db); err != nil {
 		log.Fatalf("Failed to seed books: %v", err)
 	}
 
