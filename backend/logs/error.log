@@ -2,3 +2,53 @@
 {"timestamp":"2025-08-26 00:53:33", "status":200, "latency":"   7.446083ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
 
 {"timestamp":"2025-08-26 00:53:55", "status":200, "latency":"   3.905458ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 01:56:27", "status":200, "latency":"   8.943917ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 01:56:38", "status":200, "latency":"   3.677042ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 01:56:41", "status":200, "latency":"   5.614792ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 01:56:41", "status":200, "latency":"  14.411166ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 01:56:41", "status":200, "latency":"  16.002917ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 01:57:15", "status":200, "latency":"  20.744375ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 01:58:47", "status":200, "latency":"   6.597667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 01:58:58", "status":200, "latency":"    4.49975ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 01:59:07", "status":200, "latency":"   7.367791ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 01:59:08", "status":200, "latency":"   2.570875ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 01:59:59", "status":200, "latency":"   6.120209ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:00:00", "status":200, "latency":"   2.632542ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:01:06", "status":200, "latency":"    5.83725ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:01:10", "status":200, "latency":"   3.254292ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:02:16", "status":200, "latency":"   3.936709ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:02:20", "status":200, "latency":"   3.981667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:02:23", "status":200, "latency":"   2.496958ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:02:24", "status":200, "latency":"   2.854875ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:06:28", "status":200, "latency":"  14.823958ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:06:33", "status":200, "latency":"   6.973667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:06:37", "status":200, "latency":"   3.682167ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:07:47", "status":200, "latency":"   9.706542ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:09:12", "status":200, "latency":"   8.838458ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:09:45", "status":200, "latency":"   2.557417ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 02:09:50", "status":200, "latency":"   4.837917ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}

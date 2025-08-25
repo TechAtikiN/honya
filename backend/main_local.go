@@ -14,6 +14,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
+//go:embed docs/swagger.json
 var swaggerJson []byte
 
 func main() {
@@ -29,7 +30,7 @@ func main() {
 
 	cfg := swagger.Config{
 		BasePath:    "/",
-		FileContent: swaggerJson, // Use the embedded file content
+		FileContent: swaggerJson,
 		Path:        "docs",
 		Title:       "Honya | API Documentation",
 		CacheAge:    60,

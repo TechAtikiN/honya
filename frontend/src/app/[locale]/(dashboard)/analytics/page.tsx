@@ -45,7 +45,7 @@ export default async function Analytics({
   };
 
   return (
-    <div className='flex flex-col h-[calc(100vh-30px)] overflow-auto invisible-scrollbar pb-5 py-2'>
+    <div className='flex flex-col space-y-3 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar pb-5 py-2'>
       <p className='text-2xl font-bold text-primary'>
         {translations.page.analytics.titleName}
       </p>
