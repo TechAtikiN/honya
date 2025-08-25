@@ -1,15 +1,16 @@
 package service
 
 import (
+	"honya/backend/config"
+	"honya/backend/dto"
+	"honya/backend/model"
+	"honya/backend/repository"
+	"honya/backend/utils"
 	"mime/multipart"
 
+	"honya/backend/errors"
+
 	"github.com/google/uuid"
-	"github.com/techatikin/backend/config"
-	"github.com/techatikin/backend/dto"
-	"github.com/techatikin/backend/errors"
-	"github.com/techatikin/backend/model"
-	"github.com/techatikin/backend/repository"
-	"github.com/techatikin/backend/utils"
 )
 
 var (

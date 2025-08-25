@@ -2,11 +2,11 @@ package repository
 
 import (
 	"errors"
+	"honya/backend/config"
+	"honya/backend/dto"
+	"honya/backend/model"
 
 	"github.com/google/uuid"
-	"github.com/techatikin/backend/config"
-	"github.com/techatikin/backend/dto"
-	"github.com/techatikin/backend/model"
 )
 
 // ReviewRepository defines methods for interacting with the reviews in the database.

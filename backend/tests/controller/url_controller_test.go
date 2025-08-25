@@ -3,6 +3,9 @@ package controller_test
 import (
 	"bytes"
 	"encoding/json"
+	"honya/backend/controller"
+	"honya/backend/dto"
+	"honya/backend/middleware"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -10,10 +13,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-
-	"github.com/techatikin/backend/controller"
-	"github.com/techatikin/backend/dto"
-	"github.com/techatikin/backend/middleware"
 )
 
 type MockUrlService struct {

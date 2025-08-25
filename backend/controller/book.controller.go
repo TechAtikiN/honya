@@ -1,15 +1,15 @@
 package controller
 
 import (
+	"honya/backend/dto"
+	"honya/backend/errors"
+	"honya/backend/service"
+	"honya/backend/utils"
 	"mime/multipart"
 	"strconv"
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/techatikin/backend/dto"
-	"github.com/techatikin/backend/errors"
-	"github.com/techatikin/backend/service"
-	"github.com/techatikin/backend/utils"
 )
 
 type BookController interface {

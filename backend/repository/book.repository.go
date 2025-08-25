@@ -3,11 +3,11 @@ package repository
 import (
 	"errors"
 	"fmt"
+	"honya/backend/config"
+	"honya/backend/dto"
+	"honya/backend/model"
 
 	"github.com/google/uuid"
-	"github.com/techatikin/backend/config"
-	"github.com/techatikin/backend/dto"
-	"github.com/techatikin/backend/model"
 	"gorm.io/gorm"
 )
 

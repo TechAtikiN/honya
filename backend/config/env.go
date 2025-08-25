@@ -3,8 +3,9 @@ package config
 import (
 	"os"
 
+	"honya/backend/errors"
+
 	"github.com/joho/godotenv"
-	"github.com/techatikin/backend/errors"
 )
 
 type EnvConfig struct {

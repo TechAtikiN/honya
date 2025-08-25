@@ -1,11 +1,11 @@
 package utils
 
 import (
+	"honya/backend/errors"
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
-	"github.com/techatikin/backend/errors"
 )
 
 func ParseInt(val string, defaultValue int) int {

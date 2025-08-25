@@ -4,7 +4,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/techatikin/backend/model"
+	"honya/backend/model"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

@@ -3,12 +3,11 @@ package utils
 import (
 	"errors"
 	"fmt"
+	"honya/backend/dto"
 	"regexp"
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/techatikin/backend/dto"
 )
 
 var allowedCategories = map[string]struct{}{

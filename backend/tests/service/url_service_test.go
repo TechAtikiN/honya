@@ -1,11 +1,11 @@
 package service_test
 
 import (
+	"honya/backend/errors"
+	"honya/backend/service"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/techatikin/backend/errors"
-	"github.com/techatikin/backend/service"
 )
 
 func TestUrlService_GetRedirectionUrl(t *testing.T) {

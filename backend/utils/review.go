@@ -2,10 +2,10 @@ package utils
 
 import (
 	"errors"
+	"honya/backend/dto"
 	"net/mail"
 
 	"github.com/google/uuid"
-	"github.com/techatikin/backend/dto"
 )
 
 func ValidateReviewCreateRequest(request *dto.ReviewCreateRequest) error {

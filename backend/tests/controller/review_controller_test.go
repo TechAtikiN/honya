@@ -3,6 +3,9 @@ package controller_test
 import (
 	"bytes"
 	"encoding/json"
+	"honya/backend/controller"
+	"honya/backend/dto"
+	"honya/backend/model"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -12,10 +15,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-
-	"github.com/techatikin/backend/controller"
-	"github.com/techatikin/backend/dto"
-	"github.com/techatikin/backend/model"
 )
 
 type MockReviewService struct {

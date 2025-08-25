@@ -1,8 +1,9 @@
 package api
 
 import (
+	"honya/backend/controller"
+
 	"github.com/gofiber/fiber/v2"
-	"github.com/techatikin/backend/controller"
 )
 
 type SeedRouter struct {

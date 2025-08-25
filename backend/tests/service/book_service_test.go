@@ -1,16 +1,16 @@
 package service_test
 
 import (
+	"honya/backend/dto"
+	"honya/backend/errors"
+	"honya/backend/model"
+	"honya/backend/service"
 	"mime/multipart"
 	"testing"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"github.com/techatikin/backend/dto"
-	"github.com/techatikin/backend/errors"
-	"github.com/techatikin/backend/model"
-	"github.com/techatikin/backend/service"
 )
 
 type MockBookRepo struct {

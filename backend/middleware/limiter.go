@@ -1,9 +1,10 @@
 package middleware
 
 import (
+	"honya/backend/utils"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/limiter"
-	"github.com/techatikin/backend/utils"
 )
 
 func RateLimiter() fiber.Handler {

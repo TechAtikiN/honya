@@ -1,11 +1,11 @@
 package controller
 
 import (
+	"honya/backend/config"
+	"honya/backend/utils"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/techatikin/backend/config"
-	"github.com/techatikin/backend/utils"
 )
 
 func SeedBooksAPI(ctx *fiber.Ctx) error {

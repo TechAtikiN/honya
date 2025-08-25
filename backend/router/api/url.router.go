@@ -1,10 +1,11 @@
 package api
 
 import (
+	"honya/backend/config"
+	"honya/backend/controller"
+	"honya/backend/service"
+
 	"github.com/gofiber/fiber/v2"
-	"github.com/techatikin/backend/config"
-	"github.com/techatikin/backend/controller"
-	"github.com/techatikin/backend/service"
 )
 
 type UrlRouter struct {

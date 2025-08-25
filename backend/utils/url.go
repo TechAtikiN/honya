@@ -3,8 +3,8 @@ package utils
 import (
 	"regexp"
 
-	"github.com/techatikin/backend/dto"
-	"github.com/techatikin/backend/errors"
+	"honya/backend/dto"
+	"honya/backend/errors"
 )
 
 var AllowedOperations = map[string]struct{}{

@@ -1,11 +1,11 @@
 package controller
 
 import (
+	"honya/backend/service"
+	"honya/backend/utils"
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/techatikin/backend/service"
-	"github.com/techatikin/backend/utils"
 )
 
 type DashboardController interface {

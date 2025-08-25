@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
+	"honya/backend/config"
+	"honya/backend/utils"
 	"log"
-
-	"github.com/techatikin/backend/config"
-	"github.com/techatikin/backend/utils"
 )
 
 func main() {

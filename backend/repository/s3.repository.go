@@ -3,6 +3,8 @@ package repository
 import (
 	"context"
 	"fmt"
+	"honya/backend/config"
+	"honya/backend/utils"
 	"mime/multipart"
 	"path/filepath"
 	"time"
@@ -12,8 +14,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/feature/s3/manager"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
-	config "github.com/techatikin/backend/config"
-	"github.com/techatikin/backend/utils"
 )
 
 type S3Repository interface {

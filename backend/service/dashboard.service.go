@@ -2,10 +2,9 @@ package service
 
 import (
 	"fmt"
-
-	"github.com/techatikin/backend/dto"
-	"github.com/techatikin/backend/errors"
-	"github.com/techatikin/backend/repository"
+	"honya/backend/dto"
+	"honya/backend/errors"
+	"honya/backend/repository"
 )
 
 type DashboardService interface {

@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help install install-fe install-be lint lint-fe lint-be test test-fe test-be docker-up docker-down docker-clean seed
+.PHONY: help install install-fe install-be lint lint-fe lint-be test-be docker-up docker-down docker-clean seed
 
 # ============= Variables =============
 
@@ -38,17 +38,17 @@ lint: ## Lint all code
 
 # ============= Test =============
 
-test-fe: ## Test frontend code
-	cd ${FRONTEND_DIR} && pnpm test
+# test-fe: ## Test frontend code
+# 	cd ${FRONTEND_DIR} && pnpm test
 
 test-be: ## Test backend code
 	cd ${BACKEND_DIR} && go test ./...
 
-test: ## Test all code 
-	@echo "Running frontend and backend tests..."
-	@$(MAKE) test-fe
-	@$(MAKE) test-be
-	@echo "All tests completed successfully."
+# test: ## Test all code 
+# 	@echo "Running frontend and backend tests..."
+# 	@$(MAKE) test-fe
+# 	@$(MAKE) test-be
+# 	@echo "All tests completed successfully."
 
 # ============= Docker =============
 

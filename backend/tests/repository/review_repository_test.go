@@ -1,16 +1,16 @@
 package repository_test
 
 import (
+	"honya/backend/dto"
+	"honya/backend/model"
+	"honya/backend/repository"
+	"honya/backend/utils"
 	"regexp"
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
-	"github.com/techatikin/backend/dto"
-	"github.com/techatikin/backend/model"
-	"github.com/techatikin/backend/repository"
-	"github.com/techatikin/backend/utils"
 )
 
 func NewMockReviewRepository(t *testing.T) (*repository.ReviewRepositoryImpl, sqlmock.Sqlmock, func()) {

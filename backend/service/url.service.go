@@ -4,8 +4,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/techatikin/backend/errors"
-	"github.com/techatikin/backend/utils"
+	"honya/backend/errors"
+	"honya/backend/utils"
 )
 
 type UrlService interface {

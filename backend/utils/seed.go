@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"honya/backend/model"
 	"os"
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/techatikin/backend/model"
 	"gorm.io/gorm"
 )
 

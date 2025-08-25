@@ -1,8 +1,9 @@
 package repository
 
 import (
+	"honya/backend/dto"
+
 	"github.com/google/uuid"
-	"github.com/techatikin/backend/dto"
 	"gorm.io/gorm"
 )
 

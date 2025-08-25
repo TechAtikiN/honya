@@ -1,10 +1,11 @@
 package api
 
 import (
+	"honya/backend/controller"
+	"honya/backend/repository"
+	"honya/backend/service"
+
 	"github.com/gofiber/fiber/v2"
-	"github.com/techatikin/backend/controller"
-	"github.com/techatikin/backend/repository"
-	"github.com/techatikin/backend/service"
 )
 
 type BookRouter struct {

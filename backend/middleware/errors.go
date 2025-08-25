@@ -1,8 +1,9 @@
 package middleware
 
 import (
+	"honya/backend/errors"
+
 	"github.com/gofiber/fiber/v2"
-	"github.com/techatikin/backend/errors"
 )
 
 func ErrorHandler(c *fiber.Ctx, err error) error {

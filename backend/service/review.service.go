@@ -1,12 +1,13 @@
 package service
 
 import (
+	"honya/backend/dto"
+	"honya/backend/errors"
+	"honya/backend/model"
+	"honya/backend/repository"
+	"honya/backend/utils"
+
 	"github.com/google/uuid"
-	"github.com/techatikin/backend/dto"
-	"github.com/techatikin/backend/errors"
-	"github.com/techatikin/backend/model"
-	"github.com/techatikin/backend/repository"
-	"github.com/techatikin/backend/utils"
 )
 
 // ReviewService defines service-level operations for reviews

@@ -1,8 +1,9 @@
 package dto
 
 import (
+	"honya/backend/model"
+
 	"github.com/google/uuid"
-	"github.com/techatikin/backend/model"
 )
 
 // Request payload for creating a review

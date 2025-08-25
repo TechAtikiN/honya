@@ -1,15 +1,15 @@
 package main
 
 import (
+	"honya/backend/config"
+	"honya/backend/middleware"
+	"honya/backend/router"
 	"log"
 	"os"
 
 	"github.com/gofiber/contrib/swagger"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
-	"github.com/techatikin/backend/config"
-	"github.com/techatikin/backend/middleware"
-	"github.com/techatikin/backend/router"
 )
 
 func main() {

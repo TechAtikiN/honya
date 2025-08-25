@@ -1,9 +1,10 @@
 package router
 
 import (
+	"honya/backend/middleware"
+	"honya/backend/router/api"
+
 	"github.com/gofiber/fiber/v2"
-	"github.com/techatikin/backend/middleware"
-	"github.com/techatikin/backend/router/api"
 )
 
 type Router struct {
