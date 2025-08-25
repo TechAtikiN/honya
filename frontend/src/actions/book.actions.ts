@@ -5,7 +5,7 @@ import { BookDetailsResponse, BooksResponse, Filters } from "@/types/book"
 import { revalidatePath } from "next/cache";
 import { getBookReviews } from "./reviews.action";
 
-const BACKEND_API_URL = process.env.BACKEND_API_URL || 'http://localhost:8080/api'
+const BACKEND_API_URL = process.env.BACKEND_API_URL
 
 export async function getBooks(filters: Filters, pagination: { currentPage: number, limit: number }): Promise<BooksResponse | null> {
   try {

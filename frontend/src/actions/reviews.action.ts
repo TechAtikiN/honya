@@ -4,7 +4,7 @@ import { ReviewFormData } from "@/components/book-details/AddReview";
 import { ReviewsResponse } from "@/types/book";
 import { revalidatePath } from "next/cache";
 
-const BACKEND_API_URL = process.env.BACKEND_API_URL || 'http://localhost:8080/api'
+const BACKEND_API_URL = process.env.BACKEND_API_URL
 
 export async function getBookReviews(bookId: string): Promise<ReviewsResponse | null> {
   try {

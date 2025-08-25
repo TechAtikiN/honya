@@ -1,4 +1,4 @@
-import { getBookData, getReviewsData } from "@/actions/analytics";
+import { getBookData, getReviewsData } from "@/actions/analytics.actions";
 import { getBooks } from "@/actions/book.actions";
 import BooksChart from "@/components/analytics/BooksChart";
 import ReviewsChart from "@/components/analytics/ReviewsChart";

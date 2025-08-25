@@ -18,7 +18,7 @@ type Dbinstance struct {
 var DB Dbinstance
 
 func ConnectToDatabase() {
-	err := godotenv.Load(".env.local", ".env")
+	err := godotenv.Load()
 	if err != nil {
 		log.Fatalf("Error loading .env file: %v", err)
 	}

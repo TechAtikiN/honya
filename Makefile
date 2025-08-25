@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help install install-fe install-be lint lint-fe lint-be test test-fe test-be docker-up docker-down seed
+.PHONY: help install install-fe install-be lint lint-fe lint-be test test-fe test-be docker-up docker-down docker-clean seed
 
 # ============= Variables =============
 
@@ -58,6 +58,8 @@ docker-up: ## Start Docker containers
 docker-down: ## Stop Docker containers
 	docker compose -f ${DOCKER_COMPOSE_FILE} stop
 
+docker-clean : ## Stop and remove Docker containers, networks, images, and volumes
+	docker compose -f ${DOCKER_COMPOSE_FILE} down --rmi all -v --remove-orphans
 
 # ============= Seed =============
 
