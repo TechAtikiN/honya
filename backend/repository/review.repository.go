@@ -1,12 +1,15 @@
 package repository
 
 import (
+	"errors"
+
 	"github.com/google/uuid"
 	"github.com/techatikin/backend/config"
 	"github.com/techatikin/backend/dto"
 	"github.com/techatikin/backend/model"
 )
 
+// ReviewRepository defines methods for interacting with the reviews in the database.
 type ReviewRepository interface {
 	FindAll(params dto.QueryParams) ([]model.Review, dto.PaginationMeta, error)
 	FindByID(id uuid.UUID) (*model.Review, error)
@@ -14,6 +17,7 @@ type ReviewRepository interface {
 	Update(id uuid.UUID, updates map[string]interface{}) (*model.Review, error)
 	Delete(id uuid.UUID) error
 	FindByBookID(bookID uuid.UUID, params dto.QueryParams) ([]model.Review, dto.PaginationMeta, error)
+	GetTopReviewers(limit int) ([]dto.ReviewerStats, error)
 }
 
 type ReviewRepositoryImpl struct {
@@ -58,4 +62,43 @@ func (r *ReviewRepositoryImpl) FindByBookID(bookID uuid.UUID, params dto.QueryPa
 	}
 
 	return results, meta, nil
+}
+
+func (r *ReviewRepositoryImpl) GetTopReviewers(limit int) ([]dto.ReviewerStats, error) {
+	var results []struct {
+		Name  *string `gorm:"column:name"`
+		Count int64   `gorm:"column:count"`
+	}
+
+	if limit <= 0 {
+		limit = 10
+	}
+
+	query := r.db.Model(&model.Review{}).
+		Select("name, COUNT(*) as count").
+		Where("name IS NOT NULL AND name != ''").
+		Group("name").
+		Order("count DESC").
+		Limit(limit)
+
+	if err := query.Scan(&results).Error; err != nil {
+		return nil, errors.New("failed to fetch top reviewers: " + err.Error())
+	}
+
+	reviewerStats := make([]dto.ReviewerStats, 0, len(results))
+	for _, result := range results {
+		var name string
+		if result.Name == nil || *result.Name == "" {
+			name = "Anonymous"
+		} else {
+			name = *result.Name
+		}
+
+		reviewerStats = append(reviewerStats, dto.ReviewerStats{
+			Name:  name,
+			Count: result.Count,
+		})
+	}
+
+	return reviewerStats, nil
 }

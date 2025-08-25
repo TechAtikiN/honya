@@ -42,6 +42,11 @@ func (m *MockBookRepo) Delete(id uuid.UUID) error {
 	return args.Error(0)
 }
 
+func (m *MockBookRepo) CountByField(field string) (map[string]int64, error) {
+	args := m.Called(field)
+	return args.Get(0).(map[string]int64), args.Error(1)
+}
+
 type MockS3Repo struct {
 	mock.Mock
 }

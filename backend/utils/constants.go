@@ -20,3 +20,7 @@ const (
 	OpCanonical   = "canonical"
 	OpAll         = "all"
 )
+
+const (
+	DefaultDonutChartFilterBy = "category"
+)

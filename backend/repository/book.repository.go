@@ -1,6 +1,9 @@
 package repository
 
 import (
+	"errors"
+	"fmt"
+
 	"github.com/google/uuid"
 	"github.com/techatikin/backend/config"
 	"github.com/techatikin/backend/dto"
@@ -8,13 +11,14 @@ import (
 	"gorm.io/gorm"
 )
 
-// BookRepository defines the interface for book-related database operations.
+// BookRepository defines the interface for book data operations
 type BookRepository interface {
 	FindAll(params dto.BookQueryParams) ([]model.Book, dto.PaginationMeta, error)
 	FindByID(id uuid.UUID) (*model.Book, error)
 	Create(book *model.Book) (*model.Book, error)
 	Update(id uuid.UUID, updateData *dto.BookUpdateRequest) (*model.Book, error)
 	Delete(id uuid.UUID) error
+	CountByField(field string) (map[string]int64, error)
 }
 
 type BookRepositoryImpl struct {
@@ -137,4 +141,52 @@ func (r *BookRepositoryImpl) Update(id uuid.UUID, updateData *dto.BookUpdateRequ
 	}
 
 	return book, nil
+}
+
+func (r *BookRepositoryImpl) CountByField(field string) (map[string]int64, error) {
+	var results []struct {
+		Key   *string `gorm:"column:key"`
+		Count int64   `gorm:"column:count"`
+	}
+
+	allowedFields := map[string]bool{
+		"category":    true,
+		"rating":      true,
+		"author_name": true,
+	}
+
+	if !allowedFields[field] {
+		return nil, errors.New("invalid field for aggregation")
+	}
+
+	query := r.db.Model(&model.Book{}).
+		Select(fmt.Sprintf("%s as key, COUNT(*) as count", field)).
+		Group(field)
+
+	if field == "rating" {
+		query = query.Where(fmt.Sprintf("%s IS NOT NULL", field))
+	}
+
+	if err := query.Scan(&results).Error; err != nil {
+		return nil, errors.New("failed to execute aggregation query")
+	}
+
+	counts := make(map[string]int64)
+	for _, result := range results {
+		var keyStr string
+
+		if result.Key == nil {
+			keyStr = "Unknown"
+		} else {
+			keyStr = *result.Key
+
+			if keyStr == "" {
+				keyStr = "Unknown"
+			}
+		}
+
+		counts[keyStr] = result.Count
+	}
+
+	return counts, nil
 }

@@ -15,6 +15,8 @@ import (
 
 const logDir = "./logs"
 
+var logFile *os.File
+
 func removeOlderLogs() {
 	_ = godotenv.Load()
 
@@ -26,7 +28,7 @@ func removeOlderLogs() {
 
 	LOG_RETENTION, err := strconv.Atoi(os.Getenv("LOG_RETENTION"))
 	if err != nil {
-		LOG_RETENTION = 7 // Default to 7 days if not set or invalid
+		LOG_RETENTION = 7 // Default to 7 days
 	}
 
 	cutoffDate := time.Now().AddDate(0, 0, -LOG_RETENTION)
@@ -36,7 +38,6 @@ func removeOlderLogs() {
 			continue
 		}
 
-		// Parse the date from filename (assuming format: YYYY-MM-DD.log)
 		fileDate, err := time.Parse("2006-01-02", file.Name()[:10])
 		if err != nil {
 			continue
@@ -59,7 +60,6 @@ func getLogFile() (*os.File, error) {
 		return nil, fmt.Errorf("failed to create logs directory: %v", err)
 	}
 
-	// Clean up old logs before creating a new log file
 	removeOlderLogs()
 
 	var logPath string
@@ -75,7 +75,8 @@ func getLogFile() (*os.File, error) {
 }
 
 func SetupLogger() fiber.Handler {
-	logFile, err := getLogFile()
+	var err error
+	logFile, err = getLogFile()
 	if err != nil {
 		log.Fatalf("error opening log file: %v", err)
 	}
@@ -87,10 +88,20 @@ func SetupLogger() fiber.Handler {
 		Output:     logFile,
 		Done: func(c *fiber.Ctx, logString []byte) {
 			if c.Response().StatusCode() >= 400 {
-				fmt.Println("printing to log file")
-				logFile.Write(logString)
-				defer logFile.Close()
+				_, err := logFile.Write(logString)
+				if err != nil {
+					log.Printf("Error writing to log file: %v", err)
+				}
 			}
 		},
 	})
+}
+
+func CloseLogFile() {
+	if logFile != nil {
+		err := logFile.Close()
+		if err != nil {
+			log.Printf("Error closing log file: %v", err)
+		}
+	}
 }

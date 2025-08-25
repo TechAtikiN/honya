@@ -46,6 +46,11 @@ func (m *MockReviewRepo) FindByBookID(bookID uuid.UUID, params dto.QueryParams) 
 	return args.Get(0).([]model.Review), args.Get(1).(dto.PaginationMeta), args.Error(2)
 }
 
+func (m *MockReviewRepo) GetTopReviewers(limit int) ([]dto.ReviewerStats, error) {
+	args := m.Called(limit)
+	return args.Get(0).([]dto.ReviewerStats), args.Error(1)
+}
+
 func TestReviewService_CreateReview(t *testing.T) {
 	mockRepo := new(MockReviewRepo)
 	svc := service.NewReviewService(mockRepo)

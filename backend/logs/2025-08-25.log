@@ -1,0 +1,10 @@
+
+{"timestamp":"2025-08-25 08:12:06", "status":200, "latency":"   7.460458ms", "method":"GET", "path":"/api/dashboard/bar-chart", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 08:12:17", "status":405, "latency":"     76.666µs", "method":"GET", "path":"/api/dashboard", "error":"Cannot GET /api/dashboard", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 08:12:17", "status":405, "latency":"     76.666µs", "method":"GET", "path":"/api/dashboard", "error":"Cannot GET /api/dashboard", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 08:37:05", "status":200, "latency":"   6.002292ms", "method":"GET", "path":"/api/dashboard/donut-chart", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 08:37:37", "status":200, "latency":"   7.866792ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
