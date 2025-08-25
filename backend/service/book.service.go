@@ -12,9 +12,10 @@ import (
 	"github.com/techatikin/backend/utils"
 )
 
-// extract s3 config from GetS3Config
 var (
-	bucket, region, _, _, _ = config.GetS3Config()
+	env, _     = config.GetEnvConfig()
+	AWS_BUCKET = env.AWSBucket
+	AWS_REGION = env.AWSRegion
 )
 
 // BookService defines the interface for book-related services.
@@ -94,7 +95,7 @@ func (s *bookService) CreateBook(book *dto.BookCreateRequest, fileHeader *multip
 	resource, err := s.repo.Create(&newBook)
 	if err != nil {
 		if imageURL != "" {
-			key := utils.ExtractS3Key(imageURL, bucket, region)
+			key := utils.ExtractS3Key(imageURL, AWS_BUCKET, AWS_REGION)
 			_ = s.s3repo.DeleteImage(key)
 		}
 		return nil, errors.NewInternalError(err)
@@ -121,7 +122,7 @@ func (s *bookService) UpdateBook(id uuid.UUID, updateData *dto.BookUpdateRequest
 		updateData.Image = &url
 
 		if existingBook.Image != "" {
-			key := utils.ExtractS3Key(existingBook.Image, bucket, region)
+			key := utils.ExtractS3Key(existingBook.Image, AWS_BUCKET, AWS_REGION)
 			_ = s.s3repo.DeleteImage(key)
 		}
 	}
@@ -129,7 +130,7 @@ func (s *bookService) UpdateBook(id uuid.UUID, updateData *dto.BookUpdateRequest
 	resource, err := s.repo.Update(id, updateData)
 	if err != nil {
 		if updateData.Image != nil && *updateData.Image != "" {
-			key := utils.ExtractS3Key(*updateData.Image, bucket, region)
+			key := utils.ExtractS3Key(*updateData.Image, AWS_BUCKET, AWS_REGION)
 			_ = s.s3repo.DeleteImage(key)
 		}
 		return nil, errors.NewInternalError(err)
@@ -150,7 +151,7 @@ func (s *bookService) DeleteBook(id uuid.UUID) error {
 
 	// Delete image from S3 if exists
 	if existingBook.Image != "" {
-		key := utils.ExtractS3Key(existingBook.Image, bucket, region)
+		key := utils.ExtractS3Key(existingBook.Image, AWS_BUCKET, AWS_REGION)
 		_ = s.s3repo.DeleteImage(key)
 	}
 

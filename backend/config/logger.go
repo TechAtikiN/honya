@@ -10,25 +10,22 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
-	"github.com/joho/godotenv"
 )
 
 const logDir = "./logs"
 
 var logFile *os.File
 
-func removeOlderLogs() {
-	_ = godotenv.Load()
-
+func removeOlderLogs(logRetention string) {
 	files, err := os.ReadDir(logDir)
 	if err != nil {
 		log.Printf("Error reading logs directory: %v", err)
 		return
 	}
 
-	LOG_RETENTION, err := strconv.Atoi(os.Getenv("LOG_RETENTION"))
-	if err != nil {
-		LOG_RETENTION = 7 // Default to 7 days
+	LOG_RETENTION, err := strconv.Atoi(logRetention)
+	if err != nil || LOG_RETENTION <= 0 {
+		LOG_RETENTION = 7 // Default to 7 days if parsing fails or invalid
 	}
 
 	cutoffDate := time.Now().AddDate(0, 0, -LOG_RETENTION)
@@ -54,16 +51,15 @@ func removeOlderLogs() {
 	}
 }
 
-func getLogFile() (*os.File, error) {
-	_ = godotenv.Load()
+func getLogFile(logRetention string) (*os.File, error) {
 	if err := os.MkdirAll(logDir, 0755); err != nil {
 		return nil, fmt.Errorf("failed to create logs directory: %v", err)
 	}
 
-	removeOlderLogs()
+	removeOlderLogs(logRetention)
 
 	var logPath string
-	if os.Getenv("LOG_STACK") == "daily" {
+	if logRetention == "daily" {
 		currentTime := time.Now()
 		fileName := fmt.Sprintf("%s.log", currentTime.Format("2006-01-02"))
 		logPath = filepath.Join(logDir, fileName)
@@ -74,9 +70,9 @@ func getLogFile() (*os.File, error) {
 	return os.OpenFile(logPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 }
 
-func SetupLogger() fiber.Handler {
+func SetupLogger(logStack string, logRetention string) fiber.Handler {
 	var err error
-	logFile, err = getLogFile()
+	logFile, err = getLogFile(logRetention)
 	if err != nil {
 		log.Fatalf("error opening log file: %v", err)
 	}

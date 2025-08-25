@@ -9,7 +9,12 @@ import (
 )
 
 func main() {
-	config.ConnectToDatabase()
+	env, err := config.GetEnvConfig()
+	if err != nil {
+		log.Fatalf("Failed to get environment configuration: %v", err)
+	}
+
+	config.ConnectToDatabase(env.DatabaseURL)
 
 	if err := utils.SeedBooksAndReviews(config.DB.Db); err != nil {
 		log.Fatalf("Failed to seed books: %v", err)

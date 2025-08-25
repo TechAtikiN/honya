@@ -2,10 +2,8 @@ package config
 
 import (
 	"log"
-	"os"
 	"time"
 
-	"github.com/joho/godotenv"
 	"github.com/techatikin/backend/model"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -17,17 +15,7 @@ type Dbinstance struct {
 
 var DB Dbinstance
 
-func ConnectToDatabase() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatalf("Error loading .env file: %v", err)
-	}
-
-	dsn := os.Getenv("DATABASE_URL")
-	if dsn == "" {
-		log.Fatal("DATABASE_URL environment variable is not set")
-	}
-
+func ConnectToDatabase(dsn string) {
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Failed to connect to the database: %v", err)

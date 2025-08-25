@@ -4,16 +4,15 @@ import (
 	"context"
 	"fmt"
 	"mime/multipart"
-	"os"
 	"path/filepath"
 	"time"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/aws/aws-sdk-go-v2/config"
+	s3_config "github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/feature/s3/manager"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
-	"github.com/joho/godotenv"
+	config "github.com/techatikin/backend/config"
 	"github.com/techatikin/backend/utils"
 )
 
@@ -29,21 +28,21 @@ type s3Repository struct {
 }
 
 func NewS3Repository() S3Repository {
-	err := godotenv.Load(".env")
+	env, err := config.GetEnvConfig()
 	if err != nil {
-		fmt.Println("Error loading .env file")
+		fmt.Println("Failed to get environment configuration:", err)
 		return nil
 	}
 
-	bucket := os.Getenv("AWS_BUCKET_NAME")
-	region := os.Getenv("AWS_REGION")
-	accessKey := os.Getenv("AWS_ACCESS_KEY_ID")
-	secretKey := os.Getenv("AWS_SECRET_ACCESS_KEY")
+	AWS_BUCKET := env.AWSBucket
+	AWS_REGION := env.AWSRegion
+	AWS_ACCESS_KEY := env.AWSAccessKey
+	AWS_SECRET_KEY := env.AWSSecretKey
 
-	cfg, err := config.LoadDefaultConfig(context.TODO(),
-		config.WithRegion(region),
-		config.WithCredentialsProvider(
-			credentials.NewStaticCredentialsProvider(accessKey, secretKey, ""),
+	cfg, err := s3_config.LoadDefaultConfig(context.TODO(),
+		s3_config.WithRegion(AWS_REGION),
+		s3_config.WithCredentialsProvider(
+			credentials.NewStaticCredentialsProvider(AWS_ACCESS_KEY, AWS_SECRET_KEY, ""),
 		),
 	)
 	if err != nil {
@@ -51,7 +50,7 @@ func NewS3Repository() S3Repository {
 	}
 
 	client := s3.NewFromConfig(cfg)
-	return &s3Repository{client: client, bucketName: bucket, region: region}
+	return &s3Repository{client: client, bucketName: AWS_BUCKET, region: AWS_REGION}
 }
 
 func (r *s3Repository) UploadImage(fileHeader *multipart.FileHeader, bookName string) (string, error) {

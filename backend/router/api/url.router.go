@@ -13,9 +13,9 @@ type UrlRouter struct {
 }
 
 func NewUrlRouter(app *fiber.App) *UrlRouter {
-	originalDomain, _ := config.GetOriginalDomain()
+	env, _ := config.GetEnvConfig()
 
-	service := service.NewUrlService(originalDomain)
+	service := service.NewUrlService(env.UrlCleanupOriginalDomain)
 	ctrl := controller.NewUrlController(service)
 
 	return &UrlRouter{
