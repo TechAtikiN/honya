@@ -138,7 +138,7 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
               locale={lang}
             />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 min-h-20">
             {bookDetails?.reviews && bookDetails.reviews.data.length > 0 ?
               bookDetails.reviews.data.map((review, index) => (
                 <div key={index} className="flex flex-col items-start justify-start space-y-2 bg-accent p-4 rounded-md shadow-sm">

@@ -39,7 +39,7 @@ export default async function Analytics({ params, searchParams }: HomePageProps)
   return (
     <div className="flex flex-col space-y-6 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar pb-5">
       {/* Charts */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 min-[850px]:grid-cols-2 gap-5">
         <div className="p-3 rounded-md border border-primary/20 flex">
           {!booksData ? (
             <div className="">

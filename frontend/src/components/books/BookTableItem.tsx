@@ -14,22 +14,22 @@ export default function BookTableItem({ book, locale }: BookTableItemProps) {
   if (!book) return null
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-      <th scope="row" className="px-6 py-4 text-left  font-medium text-gray-900 dark:text-white whitespace-nowrap">
+      <th scope="row" className="table-data  font-medium text-gray-900 dark:text-white whitespace-nowrap">
         {book.title}
       </th>
-      <td className="px-6 py-4 text-left">
+      <td className="table-data">
         {book.author_name}
       </td>
-      <td className="px-6 py-4 text-left">
+      <td className="table-data">
         {book.category}
       </td>
-      <td className="px-6 py-4 text-left">
+      <td className="table-data">
         {book.rating}
       </td>
-      <td className="px-6 py-4 text-left">
+      <td className="table-data">
         {book.publication_year}
       </td>
-      <td className="px-6 py-4 text-left pl-7">
+      <td className="table-data pl-7">
         <CustomLink
           target="_blank"
           locale={locale}

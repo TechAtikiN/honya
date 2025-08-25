@@ -18,22 +18,22 @@ export default function BookTable({ books, locale, translations }: BookListProps
           <table className="w-full text-sm">
             <thead className="text-sm bg-secondary rounded-md font-medium text-primary uppercase">
               <tr>
-                <th scope="col" className="px-6 py-3 text-left">
+                <th scope="col" className="table-header">
                   {translations.page.analytics.title}
                 </th>
-                <th scope="col" className="px-6 py-3 text-left">
+                <th scope="col" className="table-header">
                   {translations.page.analytics.author}
                 </th>
-                <th scope="col" className="px-6 py-3 text-left">
+                <th scope="col" className="table-header">
                   {translations.page.analytics.category}
                 </th>
-                <th scope="col" className="px-6 py-3 text-left">
+                <th scope="col" className="table-header">
                   {translations.page.analytics.rating}
                 </th>
-                <th scope="col" className="px-6 py-3 text-left">
+                <th scope="col" className="table-header">
                   {translations.page.analytics.publicationYear}
                 </th>
-                <th scope="col" className="px-6 py-3 text-left">
+                <th scope="col" className="table-header">
                   {translations.page.analytics.view}
                 </th>
 

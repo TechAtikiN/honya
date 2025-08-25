@@ -24,6 +24,7 @@ export default function BookListItem({
             src={book.image || "/assets/books/book-placeholder.png"}
             alt={book.title}
             className="object-fill w-full h-full"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
       </div>

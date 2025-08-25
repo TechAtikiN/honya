@@ -39,6 +39,7 @@ interface BookFormProps {
 export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdit = false, translations, locale }: BookFormProps) {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [currentRating, setCurrentRating] = useState<number>(bookDetails?.rating || 4);
   const bookFormTranslations = translations.page.home.bookForm;
 
   const getDefaultValues = (book?: Book): Partial<BookFormData> => ({
@@ -305,9 +306,15 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
               </div>
 
               <div className='flex flex-col space-y-1'>
-                <label htmlFor="rating" className='form-label'>
-                  {bookFormTranslations.rating}
-                </label>
+                <div className='flex items-center justify-between'>
+                  <label htmlFor="rating" className='form-label'>
+                    {bookFormTranslations.rating}
+                  </label>
+                  <p className='text-sm font-medium'>
+                    {currentRating} / 5
+                  </p>
+
+                </div>
                 <Controller
                   name="rating"
                   control={control}
@@ -315,6 +322,7 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
                     <Slider
                       onValueChange={(value) => {
                         field.onChange(value[0]);
+                        setCurrentRating(value[0]);
                       }}
                       max={5}
                       min={0}

@@ -40,7 +40,8 @@ export default function FilterAndSortSection({
           >
             <Button
               type="button"
-              variant={'destructive'}
+              className="border border-destructive hover:bg-destructive/10"
+              variant={'outline'}
               onClick={() => {
                 const params = new URLSearchParams(searchParams.toString());
                 params.delete('category');
@@ -54,7 +55,7 @@ export default function FilterAndSortSection({
                 window.location.href = newPath;
               }}
             >
-              <Trash2 className="h-4 w-4" />
+              <Trash2 className="h-4 w-4 text-destructive" />
             </Button>
           </HintLabel>
         )}
