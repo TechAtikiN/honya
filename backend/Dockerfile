@@ -2,10 +2,15 @@ FROM golang:alpine AS builder
 
 WORKDIR /app
 
-COPY go.mod go.sum ./
+# Copy go.mod and go.sum from the 'backend' subdirectory of the build context
+COPY backend/go.mod backend/go.sum ./
+
 RUN go mod download
 
-COPY . .
+# Copy the docs directory from the project root
+COPY docs ./docs
+# Copy the rest of the backend source code
+COPY backend/ .
 
 RUN go build -o main ./main_local.go
 
@@ -14,8 +19,7 @@ FROM alpine:latest
 WORKDIR /app
 
 COPY --from=builder /app/main .
-
-COPY --from=builder /app/docs ./docs 
+COPY --from=builder /app/docs ./docs
 
 EXPOSE 8080
 
