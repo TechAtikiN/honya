@@ -1,8 +1,7 @@
-// honya/backend/api/index.go
-package main
+package handler
 
 import (
-	_ "embed" // <-- Don't forget this import
+	_ "embed"
 	"log"
 	"net/http"
 
@@ -17,7 +16,7 @@ import (
 )
 
 //go:embed swagger/swagger.json
-var swaggerJson []byte // Embed the swagger.json file into a byte slice
+var swaggerJson []byte
 
 // Handler is the entry point for Vercel Serverless Functions.
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -34,8 +33,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	})
 
 	cfg := swagger.Config{
-		BasePath: "/",
-		// Pass the embedded file content directly to FileContent
+		BasePath:    "/",
 		FileContent: swaggerJson,
 		Path:        "docs",
 		Title:       "Honya | API Documentation",
