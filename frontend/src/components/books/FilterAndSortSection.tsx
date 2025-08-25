@@ -2,7 +2,7 @@
 import { BOOK_CATEGORIES, BOOK_SORT_OPTIONS } from '@/constants/books';
 import DropdownFilter from './DropdownFilter';
 import Filters from './Filters';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { Button } from '../ui/button';
 import { Trash2 } from 'lucide-react';
 import HintLabel from '../global/hint-label';
@@ -23,6 +23,25 @@ export default function FilterAndSortSection({
 }: FiltersAndSortSectionProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleClearAllFilters = () => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    params.delete('category');
+    params.delete('publication_year');
+    params.delete('query');
+    params.delete('rating');
+    params.delete('pages');
+    params.delete('page');
+    params.delete('filter_by');
+    params.delete('sort');
+
+    const queryString = params.toString();
+    const newPath = queryString ? `${pathname}?${queryString}` : pathname;
+
+    router.push(newPath);
+  };
 
   return (
     <div className='flex flex-wrap items-center justify-between gap-2'>
@@ -40,22 +59,7 @@ export default function FilterAndSortSection({
               type='button'
               className='border border-destructive hover:bg-destructive/10'
               variant={'outline'}
-              onClick={() => {
-                const params = new URLSearchParams(searchParams.toString());
-                params.delete('category');
-                params.delete('publication_year');
-                params.delete('query');
-                params.delete('rating');
-                params.delete('pages');
-                params.delete('page');
-                params.delete('filter_by');
-                params.delete('sort');
-                const queryString = params.toString();
-                const newPath = queryString
-                  ? `${pathname}?${queryString}`
-                  : pathname;
-                window.location.href = newPath;
-              }}
+              onClick={handleClearAllFilters}
             >
               <Trash2 className='h-4 w-4 text-destructive' />
             </Button>

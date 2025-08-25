@@ -1,10 +1,10 @@
 'use client';
 
 import { Globe } from 'lucide-react';
+import { i18n, Locale } from '@/i18n.config';
+import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '../ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { i18n, Locale } from '@/i18n.config';
-import { usePathname } from 'next/navigation';
 
 interface LanguageSelectorProps {
   collapse: boolean;
@@ -16,6 +16,7 @@ export default function LanguageSelector({
   locale,
 }: LanguageSelectorProps) {
   const pathname = usePathname();
+  const router = useRouter();
 
   const getRedirectPathName = (loc: string) => {
     if (!pathname) return '/';
@@ -43,11 +44,18 @@ export default function LanguageSelector({
     return segments.join('/');
   };
 
-  const setLocaleAndReload = (loc: string) => {
+  const setLocaleAndNavigate = (loc: string) => {
+    // Set the cookie for locale preference
     document.cookie = `NEXT_LOCALE=${loc}; path=/; max-age=31536000`;
 
     const newPath = getRedirectPathName(loc);
-    window.location.href = newPath;
+
+    // Use Next.js router for navigation
+    router.push(newPath);
+
+    // Optional: Use router.refresh() to ensure the locale change is fully applied
+    // This might be needed depending on your i18n setup
+    router.refresh();
   };
 
   return (
@@ -58,8 +66,9 @@ export default function LanguageSelector({
           className='flex items-center justify-between w-full hover:cursor-pointer p-5'
         >
           <p
-            className={`text-white transition-all duration-200 ease-in-out whitespace-nowrap overflow-hidden ${collapse ? 'opacity-0 w-0' : 'opacity-100 w-auto'
-              }`}
+            className={`text-white transition-all duration-200 ease-in-out whitespace-nowrap overflow-hidden ${
+              collapse ? 'opacity-0 w-0' : 'opacity-100 w-auto'
+            }`}
           >
             {locale === Locale.EN ? 'English' : '日本語'}
           </p>
@@ -78,9 +87,10 @@ export default function LanguageSelector({
             <Button
               key={lang}
               variant={'link'}
-              className={`justify-start w-full hover:no-underline ${lang === locale ? 'bg-neutral-200' : ''
-                }`}
-              onClick={() => setLocaleAndReload(lang)}
+              className={`justify-start w-full hover:no-underline ${
+                lang === locale ? 'bg-neutral-200' : ''
+              }`}
+              onClick={() => setLocaleAndNavigate(lang)}
             >
               {lang === Locale.EN ? 'English' : '日本語'}
             </Button>
