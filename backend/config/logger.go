@@ -35,6 +35,11 @@ func removeOlderLogs(logRetention string) {
 			continue
 		}
 
+		// Ensure the filename is long enough
+		if len(file.Name()) < 10 {
+			continue // Skip files that don't have a valid date in the name
+		}
+
 		fileDate, err := time.Parse("2006-01-02", file.Name()[:10])
 		if err != nil {
 			continue
@@ -49,6 +54,7 @@ func removeOlderLogs(logRetention string) {
 			}
 		}
 	}
+
 }
 
 func getLogFile(logRetention string) (*os.File, error) {

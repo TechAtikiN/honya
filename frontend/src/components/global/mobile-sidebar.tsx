@@ -1,4 +1,5 @@
-import { Menu } from "lucide-react";
+'use client';
+import { Menu } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -6,10 +7,12 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../ui/sheet";
-import { Locale } from "@/i18n.config";
-import BrandLogo from "./brand-logo";
-import SidebarLink from "./sidebar-link";
+} from '../ui/sheet';
+import { Locale } from '@/i18n.config';
+import BrandLogo from './brand-logo';
+import SidebarLink from './sidebar-link';
+import { useSidebarStore } from '@/stores/sidebar.store';
+import LanguageSelector from './language-selector';
 
 interface MobileSidebarProps {
   locale: Locale;
@@ -24,34 +27,34 @@ export default function MobileSidebar({
   locale,
   sidebarLinks,
 }: MobileSidebarProps) {
-
+  const { collapse } = useSidebarStore();
   return (
-    <div className="md:hidden flex items-center justify-between w-full">
+    <div className='md:hidden flex items-center justify-between w-full p-2 py-4'>
       {/* Logo  */}
       <BrandLogo collapse={false} />
 
       {/* Mobile Sidebar Trigger and Content */}
       <Sheet>
         <SheetTrigger>
-          <Menu className="text-primary h-5 w-5" />
+          <Menu className='text-primary h-5 w-5' />
         </SheetTrigger>
-        <SheetContent side="left" className="w-11/12 h-full">
-          <SheetHeader className="hidden">
-            <SheetTitle className="sr-only">Sidebar</SheetTitle>
-            <SheetDescription className="sr-only">
+        <SheetContent side='left' className='w-11/12 h-full p-3'>
+          <SheetHeader className='hidden'>
+            <SheetTitle className='sr-only'>Sidebar</SheetTitle>
+            <SheetDescription className='sr-only'>
               Honya, your personal library.
             </SheetDescription>
           </SheetHeader>
 
           <div
-            className={`h-full block md:hidden flex-col items-start justify-between p-3
+            className={`h-full block md:hidden flex-col items-start justify-between
    `}
           >
-            <div className="space-y-5 w-full">
+            <div className='space-y-5 w-full'>
               {/* logo  */}
               <BrandLogo />
               {/* links */}
-              <div className="space-y-2">
+              <div className='space-y-2'>
                 {sidebarLinks.map((link) => (
                   <SidebarLink key={link.name} link={link} locale={locale} />
                 ))}
@@ -60,7 +63,7 @@ export default function MobileSidebar({
           </div>
 
           {/* footer */}
-          <div>footer</div>
+          <LanguageSelector locale={locale} collapse={collapse} />
         </SheetContent>
       </Sheet>
     </div>

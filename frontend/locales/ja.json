@@ -30,7 +30,7 @@
   },
   "page": {
     "home": {
-      "title": "ホーム",
+      "titleName": "本",
       "filters": {
         "category": "カテゴリー",
         "filters": "フィルター",
@@ -167,7 +167,8 @@
       "publicationYear": "出版年",
       "view": "表示",
       "rating": "評価",
-      "noDataFound": "データが見つかりません"
+      "noDataFound": "データが見つかりません",
+      "titleName": "分析"
     }
   }
 }

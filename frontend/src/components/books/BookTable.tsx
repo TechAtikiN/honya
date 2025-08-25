@@ -1,52 +1,52 @@
-import { Book } from '@/types/book'
-import BookTableItem from './BookTableItem'
-import { Locale } from '@/i18n.config'
-import { LocaleDict } from '@/lib/locales'
+import { Book } from '@/types/book';
+import BookTableItem from './BookTableItem';
+import { Locale } from '@/i18n.config';
+import { LocaleDict } from '@/lib/locales';
 
 interface BookListProps {
-  books: Book[] | null
-  locale: Locale
-  translations: LocaleDict
+  books: Book[] | null;
+  locale: Locale;
+  translations: LocaleDict;
 }
 
-export default function BookTable({ books, locale, translations }: BookListProps) {
-  if (!books) return null
+export default function BookTable({
+  books,
+  locale,
+  translations,
+}: BookListProps) {
+  if (!books) return null;
   return (
-    <div className="">
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className=''>
+      <div className='relative overflow-x-auto shadow-sm sm:rounded-lg'>
         {books.length > 0 ? (
-          <table className="w-full text-sm">
-            <thead className="text-sm bg-secondary rounded-md font-medium text-primary uppercase">
+          <table className='w-full text-sm'>
+            <thead className='text-sm bg-secondary rounded-md font-medium text-primary uppercase'>
               <tr>
-                <th scope="col" className="table-header">
+                <th scope='col' className='table-header'>
                   {translations.page.analytics.title}
                 </th>
-                <th scope="col" className="table-header">
+                <th scope='col' className='table-header'>
                   {translations.page.analytics.author}
                 </th>
-                <th scope="col" className="table-header">
+                <th scope='col' className='table-header'>
                   {translations.page.analytics.category}
                 </th>
-                <th scope="col" className="table-header">
+                <th scope='col' className='table-header'>
                   {translations.page.analytics.rating}
                 </th>
-                <th scope="col" className="table-header">
+                <th scope='col' className='table-header'>
                   {translations.page.analytics.publicationYear}
                 </th>
-                <th scope="col" className="table-header">
+                <th scope='col' className='table-header'>
                   {translations.page.analytics.view}
                 </th>
-
               </tr>
             </thead>
             <tbody className=''>
-              {books.length > 0 && books.map((book) => (
-                <BookTableItem
-                  key={book?.id}
-                  book={book}
-                  locale={locale}
-                />
-              ))}
+              {books.length > 0 &&
+                books.map((book) => (
+                  <BookTableItem key={book?.id} book={book} locale={locale} />
+                ))}
             </tbody>
           </table>
         ) : (
@@ -55,7 +55,6 @@ export default function BookTable({ books, locale, translations }: BookListProps
           </div>
         )}
       </div>
-
     </div>
-  )
+  );
 }

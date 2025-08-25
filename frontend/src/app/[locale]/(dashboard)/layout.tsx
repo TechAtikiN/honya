@@ -1,4 +1,5 @@
 import Appbar from '@/components/global/appbar';
+import MobileSidebar from '@/components/global/mobile-sidebar';
 import Sidebar from '@/components/global/sidebar';
 import { getSidebarLinks } from '@/constants/sidebar';
 import { getLocale } from '@/i18n.config';
@@ -14,7 +15,7 @@ export default async function MainLayout({
   const { locale } = await params;
   const lang = getLocale(locale);
   const translations = await getDictionary(lang);
-  const sidebarLinks = getSidebarLinks(translations)
+  const sidebarLinks = getSidebarLinks(translations);
 
   return (
     <div className='w-full flex bg-accent'>
@@ -25,7 +26,7 @@ export default async function MainLayout({
 
       <div className='w-full bg-white rounded-sm md:m-3 md:mr-0 md:mb-0 overflow-auto invisible-scrollbar'>
         {/* Appbar */}
-        <Appbar locale={lang} sidebarLinks={sidebarLinks} />
+        <MobileSidebar locale={lang} sidebarLinks={sidebarLinks} />
 
         {/* Content */}
         <main className='max-w-7xl mx-auto w-full px-2 md:px-6'>

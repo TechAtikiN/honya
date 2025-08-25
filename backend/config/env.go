@@ -32,9 +32,17 @@ var NewEnvConfig struct {
 }
 
 func GetEnvConfig() (EnvConfig, error) {
-	err := godotenv.Load(".env.local", ".env")
-	if err != nil {
-		return NewEnvConfig, errors.NewBadRequestError("Error loading .env file")
+	if _, err := os.Stat(".env.local"); err == nil {
+		err := godotenv.Load(".env.local", ".env")
+
+		if err != nil {
+			return NewEnvConfig, errors.NewBadRequestError("Error loading .env.local file")
+		}
+	} else {
+		err := godotenv.Load(".env")
+		if err != nil {
+			return NewEnvConfig, errors.NewBadRequestError("Error loading .env file")
+		}
 	}
 
 	NewEnvConfig.DatabaseURL = os.Getenv("DATABASE_URL")

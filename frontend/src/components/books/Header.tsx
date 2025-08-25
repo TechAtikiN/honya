@@ -1,36 +1,33 @@
-import { Github } from 'lucide-react'
-import AddNewBook from './AddNewBook'
-import Link from 'next/link'
-import SearchInput from './SearchInput'
-import { LocaleDict } from '@/lib/locales'
-import { Locale } from '@/i18n.config'
+import AddNewBook from './AddNewBook';
+import Link from 'next/link';
+import SearchInput from './SearchInput';
+import { LocaleDict } from '@/lib/locales';
+import { Locale } from '@/i18n.config';
+import Image from 'next/image';
 
 interface HeaderProps {
-  translations: LocaleDict
-  locale: Locale
+  translations: LocaleDict;
+  locale: Locale;
 }
 
-export default function Header({
-  translations,
-  locale
-}: HeaderProps) {
+export default function Header({ translations, locale }: HeaderProps) {
   return (
-    <div className="flex items-center justify-between space-x-3 md:space-x-0">
-      <div className="flex w-full md:w-2/3 items-center gap-x-2 md:gap-x-4">
-        <SearchInput
-          translations={translations}
-        />
-        <AddNewBook
-          translations={translations}
-          locale={locale}
-        />
-      </div>
-
+    <div className='flex items-center justify-between space-x-3 md:space-x-3 w-2/3'>
+      <SearchInput translations={translations} />
+      <AddNewBook translations={translations} locale={locale} />
       <Link
-        className='bg-primary rounded-full p-2 hover:opacity-80 transition'
-        href="https://github.com/TechAtikiN" target='_blank'>
-        <Github className="h-5 w-5 ml-[2px] text-white fill-white" />
+        className='rounded-full p-[1px] border border-primary'
+        href='https://github.com/TechAtikiN'
+        target='_blank'
+      >
+        <Image
+          src='/assets/github-logo.png'
+          alt='GitHub'
+          width={24}
+          height={24}
+          className='h-9 w-9 object-contain'
+        />
       </Link>
     </div>
-  )
+  );
 }

@@ -30,7 +30,7 @@
   },
   "page": {
     "home": {
-      "title": "Home",
+      "titleName": "Books",
       "filters": {
         "category": "Category",
         "filters": "Filters",
@@ -167,7 +167,8 @@
       "publicationYear": "Publication Year",
       "rating": "Rating",
       "noDataFound": "No data found",
-      "view": "View"
+      "view": "View",
+      "titleName": "Analytics"
     }
   }
 }

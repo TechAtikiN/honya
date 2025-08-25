@@ -1,15 +1,17 @@
+import Image from 'next/image';
+
 export default function BrandLogo({
   collapse = false,
 }: {
   collapse?: boolean;
 }) {
   return (
-    <p
-      className={`text-primary text-3xl font-bold transition-all duration-200 ease-in-out whitespace-nowrap overflow-hidden ${
-        collapse ? 'opacity-0 w-0' : 'opacity-100 w-auto'
-      }`}
-    >
-      Honya
-    </p>
+    <Image
+      src={'/assets/logo.png'}
+      alt='Honya Logo'
+      width={100}
+      height={100}
+      className={`${collapse ? 'w-0 h-0' : 'w-auto h-auto'}`}
+    />
   );
 }

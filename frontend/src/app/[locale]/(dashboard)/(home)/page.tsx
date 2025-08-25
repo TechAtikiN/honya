@@ -1,25 +1,22 @@
-import { getLocale } from "@/i18n.config";
-import { getBooks } from "@/actions/book.actions";
-import Header from "@/components/books/Header";
-import BookList from "@/components/books/BookList";
-import FilterAndSortSection from "@/components/books/FilterAndSortSection";
-import { getFilters, getPagination } from "@/lib/utils";
-import { Book, Filters } from "@/types/book";
-import { getDictionary } from "@/lib/locales";
-import BooksPagination from "@/components/books/BooksPagination";
+import { getLocale } from '@/i18n.config';
+import { getBooks } from '@/actions/book.actions';
+import Header from '@/components/books/Header';
+import BookList from '@/components/books/BookList';
+import FilterAndSortSection from '@/components/books/FilterAndSortSection';
+import { getFilters, getPagination } from '@/lib/utils';
+import { Book, Filters } from '@/types/book';
+import { getDictionary } from '@/lib/locales';
+import BooksPagination from '@/components/books/BooksPagination';
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-export default async function Home({
-  params,
-  searchParams
-}: HomePageProps) {
+export default async function Home({ params, searchParams }: HomePageProps) {
   const locale = await params;
   const lang = getLocale(locale.locale);
-  const translations = await getDictionary(lang)
+  const translations = await getDictionary(lang);
 
   const filters = await searchParams;
   const formattedFilters: Filters = getFilters(filters);
@@ -27,47 +24,51 @@ export default async function Home({
 
   const response = await getBooks(formattedFilters, pagination);
 
-  const { data, meta } = response || { data: [], meta: { total_count: 0 } }
+  const { data, meta } = response || { data: [], meta: { total_count: 0 } };
 
   return (
-    <div className="flex flex-col justify-between gap-y-8 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar pb-4">
-      {/* Search input and Add button */}
-      <div className="flex flex-col gap-y-6">
-        <div className="flex flex-col gap-y-4">
-          <Header
-            translations={translations}
-            locale={lang}
-          />
-
-          {/* Filters and Sort */}
-          <FilterAndSortSection
-            filters={formattedFilters}
-            translations={translations}
-            locale={lang}
-          />
-        </div>
-
-        <div>
-          {!data || data.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full space-y-3">
-              <p className="text-primary text-lg">No books found.</p>
-            </div>
-          ) : (
-            <div className="w-full flex flex-col justify-between h-full gap-y-6">
-              <BookList books={data as Book[]} />
-            </div>
-          )}
-        </div>
+    <div className='flex flex-col gap-y-8 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar pb-4 py-2'>
+      <div className='flex items-center justify-between w-full'>
+        <p className='text-2xl font-bold text-primary'>
+          {translations.page.home.titleName}
+        </p>
+        <Header translations={translations} locale={lang} />
       </div>
 
-      {meta && meta.total_count > 0 && (
-        <BooksPagination
-          totalCount={meta?.total_count || 0}
-          locale={lang}
-          pagination={pagination}
-          translations={translations}
-        />
-      )}
+      <div className='flex flex-col items-center justify-between h-full gap-y-6'>
+        {/* Search input and Add button */}
+        <div className='flex flex-col gap-y-6 w-full'>
+          <div className='flex flex-col gap-y-4'>
+            {/* Filters and Sort */}
+            <FilterAndSortSection
+              filters={formattedFilters}
+              translations={translations}
+              locale={lang}
+            />
+          </div>
+
+          <div>
+            {!data || data.length === 0 ? (
+              <div className='flex flex-col items-center justify-center h-full space-y-3'>
+                <p className='text-primary text-lg'>No books found.</p>
+              </div>
+            ) : (
+              <div className='w-full flex flex-col justify-between h-full gap-y-6'>
+                <BookList books={data as Book[]} />
+              </div>
+            )}
+          </div>
+        </div>
+
+        {meta && meta.total_count > 0 && (
+          <BooksPagination
+            totalCount={meta?.total_count || 0}
+            locale={lang}
+            pagination={pagination}
+            translations={translations}
+          />
+        )}
+      </div>
     </div>
   );
 }
