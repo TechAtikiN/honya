@@ -8,6 +8,8 @@ import { Book, Filters } from '@/types/book';
 import { getDictionary } from '@/lib/locales';
 import BooksPagination from '@/components/books/BooksPagination';
 
+export const dynamic = 'force-dynamic';
+
 interface HomePageProps {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

@@ -12,6 +12,8 @@ import CustomLink from '@/components/global/custom-link';
 import { getDictionary } from '@/lib/locales';
 import { BOOK_CATEGORIES } from '@/constants/books';
 
+export const dynamic = 'force-dynamic';
+
 interface BookDetailPageProps {
   params: Promise<{ locale: string; bookId: string }>;
 }

@@ -11,6 +11,8 @@ import { getDictionary } from '@/lib/locales';
 import { getFilters, getPagination } from '@/lib/utils';
 import { Book, Filters } from '@/types/book';
 
+export const dynamic = 'force-dynamic';
+
 interface HomePageProps {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

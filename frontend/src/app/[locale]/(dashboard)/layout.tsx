@@ -5,6 +5,8 @@ import { getSidebarLinks } from '@/constants/sidebar';
 import { getLocale } from '@/i18n.config';
 import { getDictionary } from '@/lib/locales';
 
+export const dynamic = 'force-dynamic';
+
 export default async function MainLayout({
   children,
   params,
