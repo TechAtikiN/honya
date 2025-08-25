@@ -23,7 +23,6 @@ services:
       - ./backend/.env
     volumes:
       - ./backend/.env:/app/.env
-      - ./backend/docs:/app/docs
     networks:
       - app_network
     depends_on:

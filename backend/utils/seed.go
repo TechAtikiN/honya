@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"honya/backend/model"
-	"os"
 	"time"
 
 	"github.com/google/uuid"
@@ -19,14 +18,13 @@ func SeedBooksAndReviews(db *gorm.DB) error {
 	}
 
 	if bookCount == 0 {
-		bookFile, err := os.ReadFile("scripts/seed/data/books.json")
-		if err != nil {
-			return errors.New("failed to read books.json")
-		}
-
 		var books []model.Book
-		if err := json.Unmarshal(bookFile, &books); err != nil {
-			return errors.New("failed to parse books.json")
+		booksJSON, err := json.Marshal(BooksDummyData)
+		if err != nil {
+			return errors.New("failed to marshal books dummy data")
+		}
+		if err := json.Unmarshal(booksJSON, &books); err != nil {
+			return errors.New("failed to parse hardcoded books data")
 		}
 
 		now := time.Now().Unix()
@@ -57,14 +55,15 @@ func SeedBooksAndReviews(db *gorm.DB) error {
 		return nil
 	}
 
-	reviewFile, err := os.ReadFile("scripts/seed/data/reviews.json")
-	if err != nil {
-		return errors.New("failed to read reviews.json")
-	}
-
 	var reviews []model.Review
-	if err := json.Unmarshal(reviewFile, &reviews); err != nil {
-		return errors.New("failed to parse reviews.json")
+	// Convert ReviewsDummyData to JSON bytes first
+	reviewsJSON, err := json.Marshal(ReviewsDummyData)
+	if err != nil {
+		return errors.New("failed to marshal reviews dummy data")
+	}
+	// Unmarshal the JSON bytes into reviews slice
+	if err := json.Unmarshal(reviewsJSON, &reviews); err != nil {
+		return errors.New("failed to parse hardcoded reviews data")
 	}
 
 	now := time.Now().Unix()

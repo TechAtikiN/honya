@@ -1,16 +1,20 @@
 package main
 
 import (
+	_ "embed"
+	"log"
+	"os"
+
 	"honya/backend/config"
 	"honya/backend/middleware"
 	"honya/backend/router"
-	"log"
-	"os"
 
 	"github.com/gofiber/contrib/swagger"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
+
+var swaggerJson []byte
 
 func main() {
 	env, err := config.GetEnvConfig()
@@ -24,11 +28,11 @@ func main() {
 	})
 
 	cfg := swagger.Config{
-		BasePath: "/",
-		FilePath: "./docs/swagger.json",
-		Path:     "docs",
-		Title:    "Honya | API Documentation",
-		CacheAge: 60,
+		BasePath:    "/",
+		FileContent: swaggerJson, // Use the embedded file content
+		Path:        "docs",
+		Title:       "Honya | API Documentation",
+		CacheAge:    60,
 	}
 
 	app.Use(swagger.New(cfg))
