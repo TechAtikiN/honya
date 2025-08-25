@@ -55,7 +55,7 @@ export default function Filters({ translations, locale }: FiltersProps) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent side='bottom' align='start' sideOffset={10}>
-          <DropdownMenuItem className="flex flex-col gap-4">
+          <DropdownMenuItem className="flex flex-col gap-4 py-3">
             <RangeFilter
               searchParamKey="publication_year"
               label={translations.page.home.filters.publicationYear}

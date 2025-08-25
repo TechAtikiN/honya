@@ -18,7 +18,7 @@
     "category": "science",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/Sapiens-A-Brief-History-of-Humankind-1756096767.jpg",
     "publication_year": 2011,
-    "rating": 4.7,
+    "rating": 3,
     "pages": 443,
     "isbn": "9780062316097",
     "author_name": "Yuval Noah Harari"
@@ -30,7 +30,7 @@
     "category": "fiction",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/The-Catcher-in-the-Rye-1756096832.jpg",
     "publication_year": 1951,
-    "rating": 4.1,
+    "rating": 2,
     "pages": 214,
     "isbn": "9780316769488",
     "author_name": "J.D. Salinger"
@@ -42,7 +42,7 @@
     "category": "fiction",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/Norwegian-Wood-1756096895.jpg",
     "publication_year": 1987,
-    "rating": 4.4,
+    "rating": 3.5,
     "pages": 296,
     "isbn": "9780375704024",
     "author_name": "Haruki Murakami"
@@ -54,7 +54,7 @@
     "category": "fiction",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/The-Road-1756097042.jpg",
     "publication_year": 2006,
-    "rating": 4.3,
+    "rating": 2.5,
     "pages": 287,
     "isbn": "9780307387899",
     "author_name": "Cormac McCarthy"
@@ -66,7 +66,7 @@
     "category": "science",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/Thinking-Fast-and-Slow-1756097205.jpg",
     "publication_year": 2011,
-    "rating": 4.6,
+    "rating": 4.5,
     "pages": 499,
     "isbn": "9780374275631",
     "author_name": "Daniel Kahneman"
@@ -78,7 +78,7 @@
     "category": "fiction",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/The-Silent-Patient-1756099679.jpeg",
     "publication_year": 2019,
-    "rating": 4.2,
+    "rating": 3,
     "pages": 325,
     "isbn": "9781250301697",
     "author_name": "Alex Michaelides"
@@ -102,7 +102,7 @@
     "category": "fiction",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/to-kill-a-mockingbird-1756095452.jpg",
     "publication_year": 1960,
-    "rating": 4.9,
+    "rating": 52,
     "pages": 281,
     "isbn": "9780061120084",
     "author_name": "Harper Lee"
@@ -114,7 +114,7 @@
     "category": "fiction",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/1984-1756099706.jpg",
     "publication_year": 1949,
-    "rating": 4.8,
+    "rating": 4.5,
     "pages": 328,
     "isbn": "9780451524935",
     "author_name": "George Orwell"
@@ -126,7 +126,7 @@
     "category": "science",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/a-brief-history-of-time-1756095602.jpg",
     "publication_year": 1988,
-    "rating": 4.6,
+    "rating": 4.5,
     "pages": 212,
     "isbn": "9780553380163",
     "author_name": "Stephen Hawking"
@@ -138,7 +138,7 @@
     "category": "fantasy",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/%E9%A2%A8%E3%81%AE%E8%B0%B7%E3%81%AE%E3%83%8A%E3%82%A6%E3%82%B7%E3%82%AB-1756101308.jpg",
     "publication_year": 1982,
-    "rating": 4.8,
+    "rating": 4.5,
     "pages": 320,
     "isbn": "9784091410000",
     "author_name": "宮崎 駿"
@@ -150,7 +150,7 @@
     "category": "fiction",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/%E3%83%8E%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A4%E3%81%AE%E6%A3%AE-1756096157.jpg",
     "publication_year": 1987,
-    "rating": 4.7,
+    "rating": 3,
     "pages": 296,
     "isbn": "9784062748681",
     "author_name": "村上 春樹"
@@ -162,7 +162,7 @@
     "category": "fantasy",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/The-Hobbit-1756100468.jpg",
     "publication_year": 1950,
-    "rating": 4.8,
+    "rating": 4.5,
     "pages": 310,
     "isbn": "9780547928227",
     "author_name": "J.R.R. Tolkien"
@@ -198,7 +198,7 @@
     "category": "mystery",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/The-Da-Vinci-Code-1756100540.jpg",
     "publication_year": 2003,
-    "rating": 4.1,
+    "rating": 2,
     "pages": 489,
     "isbn": "9780307474278",
     "author_name": "Dan Brown"
@@ -210,7 +210,7 @@
     "category": "fiction",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/%E5%90%9B%E3%81%AE%E5%90%8D%E3%81%AF-1756101494.jpg",
     "publication_year": 2016,
-    "rating": 4.6,
+    "rating": 4.5,
     "pages": 250,
     "isbn": "9784041059806",
     "author_name": "新海 誠"
@@ -222,7 +222,7 @@
     "category": "cooking",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/Kitchen-1756100798.jpeg",
     "publication_year": 1988,
-    "rating": 4.3,
+    "rating": 2.5,
     "pages": 182,
     "isbn": "9780804119328",
     "author_name": "吉本 ばなな"
@@ -234,7 +234,7 @@
     "category": "thriller",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/The-Girl-with-the-Dragon-Tattoo-1756100631.jpeg",
     "publication_year": 2005,
-    "rating": 4.4,
+    "rating": 3.5,
     "pages": 465,
     "isbn": "9780307454546",
     "author_name": "Stieg Larsson"
@@ -246,7 +246,7 @@
     "category": "history",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/Sh%C5%8Dgun-1756100724.jpeg",
     "publication_year": 1975,
-    "rating": 4.6,
+    "rating": 4.5,
     "pages": 1150,
     "isbn": "9780553293030",
     "author_name": "James Clavell"
@@ -258,7 +258,7 @@
     "category": "fiction",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/%E7%81%AB%E8%8A%B1-1756101565.jpg",
     "publication_year": 2015,
-    "rating": 4.4,
+    "rating": 3.5,
     "pages": 234,
     "isbn": "9784103534231",
     "author_name": "又吉 直樹"
@@ -270,7 +270,7 @@
     "category": "classics",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/Journey-to-the-West-1756100994.jpg",
     "publication_year": 1960,
-    "rating": 4.2,
+    "rating": 3,
     "pages": 650,
     "isbn": "9780140449266",
     "author_name": "Wu Chengen"
@@ -294,7 +294,7 @@
     "category": "non_fiction",
     "image": "https://honya-books.s3.ap-south-1.amazonaws.com/books/Into-the-Wild-1756100759.jpg",
     "publication_year": 1996,
-    "rating": 4.3,
+    "rating": 2.5,
     "pages": 207,
     "isbn": "9780385486804",
     "author_name": "Jon Krakauer"

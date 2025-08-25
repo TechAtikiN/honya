@@ -27,6 +27,6 @@ func NewDashboardRouter(app *fiber.App) *DashboardRouter {
 func (r *DashboardRouter) Setup(api fiber.Router) {
 	dashboardRoutes := api.Group("/dashboard")
 
-	dashboardRoutes.Get("/donut-chart", r.ctrl.GetDonutChart)
-	dashboardRoutes.Get("/bar-chart", r.ctrl.GetBarChart)
+	dashboardRoutes.Get("/books-data", r.ctrl.GetBooksData)
+	dashboardRoutes.Get("/reviews-data", r.ctrl.GetReviewsData)
 }

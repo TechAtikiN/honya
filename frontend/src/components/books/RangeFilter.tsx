@@ -45,6 +45,7 @@ export default function RangeFilter({
 
     const params = new URLSearchParams(searchParams.toString())
     params.set(searchParamKey, newValue.toString())
+    params.delete('page')
     router.push(`${pathname}?${params.toString()}`)
 
     if (onFilterChange) {

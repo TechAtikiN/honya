@@ -10,7 +10,7 @@ export default function BookListItem({
   book
 }: BookListItemProps) {
   if (!book) return null
-  console.log(book.title, book.image)
+
   return (
     <Link
       href={`/books/${book.id}`}

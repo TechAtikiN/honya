@@ -9,8 +9,8 @@ import (
 )
 
 type DashboardService interface {
-	GetDonutChartData(filterBy string) (*dto.DonutChartData, error)
-	GetBarChartData(limit int) (*dto.BarChartData, error)
+	GetBooksData(filterBy string) (*dto.DonutChartData, error)
+	GetReviewsData(limit int) (*dto.BarChartData, error)
 }
 
 type dashboardService struct {
@@ -25,7 +25,7 @@ func NewDashboardService(bookRepo repository.BookRepository, reviewRepo reposito
 	}
 }
 
-func (s *dashboardService) GetDonutChartData(filterBy string) (*dto.DonutChartData, error) {
+func (s *dashboardService) GetBooksData(filterBy string) (*dto.DonutChartData, error) {
 	var field string
 	switch filterBy {
 	case "category":
@@ -49,7 +49,7 @@ func (s *dashboardService) GetDonutChartData(filterBy string) (*dto.DonutChartDa
 	}, nil
 }
 
-func (s *dashboardService) GetBarChartData(limit int) (*dto.BarChartData, error) {
+func (s *dashboardService) GetReviewsData(limit int) (*dto.BarChartData, error) {
 	if limit < 0 {
 		return nil, errors.NewBadRequestError("Invalid limit value")
 	}

@@ -1050,3 +1050,817 @@
 {"timestamp":"2025-08-25 11:45:41", "status":200, "latency":"     1.5755ms", "method":"GET", "path":"/api/books/bb7c2a58-8d29-42ab-99d8-5b3cb34ea6aa", "error":"-", "response":[], "ip":"127.0.0.1"}
 
 {"timestamp":"2025-08-25 11:45:41", "status":200, "latency":"   1.193625ms", "method":"GET", "path":"/api/reviews/book/bb7c2a58-8d29-42ab-99d8-5b3cb34ea6aa", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 12:00:18", "status":200, "latency":"     355.25µs", "method":"GET", "path":"/api/process-url", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 12:00:32", "status":200, "latency":"   7.226791ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 12:08:02", "status":200, "latency":"   6.132041ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 12:14:06", "status":200, "latency":"  12.888125ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 12:14:31", "status":200, "latency":"   2.419292ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 12:28:11", "status":200, "latency":"   8.522709ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:03:11", "status":200, "latency":"  11.660625ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:03:15", "status":200, "latency":"   2.748666ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:03:17", "status":200, "latency":"    1.61425ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:03:21", "status":200, "latency":"     2.5575ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:04:39", "status":200, "latency":"   3.988542ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:10:33", "status":200, "latency":"    4.20025ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:10:33", "status":200, "latency":"   3.273541ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:11:18", "status":200, "latency":"      2.653ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:11:18", "status":200, "latency":"   1.898208ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:17:13", "status":200, "latency":"   2.789083ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:17:13", "status":200, "latency":"   2.809458ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:17:48", "status":200, "latency":"   4.219416ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:17:49", "status":200, "latency":"   1.536209ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:06", "status":200, "latency":"      2.145ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:06", "status":200, "latency":"   4.799792ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:17", "status":200, "latency":"   1.929833ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:17", "status":200, "latency":"    994.917µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:27", "status":200, "latency":"   3.265209ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:27", "status":200, "latency":"     933.25µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:35", "status":200, "latency":"   5.364416ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:36", "status":200, "latency":"   4.216125ms", "method":"GET", "path":"/api/books/5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:36", "status":200, "latency":"   4.493666ms", "method":"GET", "path":"/api/reviews/book/5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:42", "status":200, "latency":"  15.161625ms", "method":"PATCH", "path":"/api/books/5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:42", "status":200, "latency":"   1.842291ms", "method":"GET", "path":"/api/books/5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:42", "status":200, "latency":"   2.288125ms", "method":"GET", "path":"/api/reviews/book/5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:43", "status":200, "latency":"   3.998542ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:44", "status":200, "latency":"   2.485417ms", "method":"GET", "path":"/api/books/a1e5f0b3-6b29-44d8-91c9-640a56c90b2c", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:44", "status":200, "latency":"   1.351791ms", "method":"GET", "path":"/api/reviews/book/a1e5f0b3-6b29-44d8-91c9-640a56c90b2c", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:57", "status":200, "latency":"   7.447167ms", "method":"PATCH", "path":"/api/books/a1e5f0b3-6b29-44d8-91c9-640a56c90b2c", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:57", "status":200, "latency":"   1.281917ms", "method":"GET", "path":"/api/books/a1e5f0b3-6b29-44d8-91c9-640a56c90b2c", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:57", "status":200, "latency":"   1.894083ms", "method":"GET", "path":"/api/reviews/book/a1e5f0b3-6b29-44d8-91c9-640a56c90b2c", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:18:59", "status":200, "latency":"   2.628875ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:00", "status":200, "latency":"   2.424625ms", "method":"GET", "path":"/api/books/3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:00", "status":200, "latency":"      2.173ms", "method":"GET", "path":"/api/reviews/book/3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:05", "status":200, "latency":"   6.250917ms", "method":"PATCH", "path":"/api/books/3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:05", "status":429, "latency":"     38.542µs", "method":"GET", "path":"/api/books/3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:05", "status":429, "latency":"     38.542µs", "method":"GET", "path":"/api/books/3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:05", "status":429, "latency":"     14.083µs", "method":"GET", "path":"/api/reviews/book/3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:05", "status":429, "latency":"     14.083µs", "method":"GET", "path":"/api/reviews/book/3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:10", "status":429, "latency":"     19.208µs", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:10", "status":429, "latency":"     19.208µs", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:13", "status":429, "latency":"     12.583µs", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:13", "status":429, "latency":"     12.583µs", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:14", "status":429, "latency":"     12.417µs", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:14", "status":429, "latency":"     12.417µs", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:15", "status":429, "latency":"     19.541µs", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:15", "status":429, "latency":"     19.541µs", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:16", "status":429, "latency":"     29.666µs", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:16", "status":429, "latency":"     29.666µs", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:22", "status":200, "latency":"    3.56225ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:26", "status":200, "latency":"   5.157958ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:19:26", "status":200, "latency":"      1.385ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:20:58", "status":200, "latency":"      6.879ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:20:58", "status":200, "latency":"     2.7515ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:21:02", "status":200, "latency":"   2.745584ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:21:02", "status":200, "latency":"   1.265291ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:23:33", "status":200, "latency":"      5.929ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:23:33", "status":200, "latency":"   2.722917ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:23:38", "status":200, "latency":"   1.631625ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:23:38", "status":200, "latency":"   1.170875ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:23:40", "status":200, "latency":"   2.804625ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:23:40", "status":200, "latency":"     1.1505ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:23:45", "status":200, "latency":"     2.0965ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:23:45", "status":200, "latency":"   1.139375ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:24:23", "status":200, "latency":"    2.43825ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:24:23", "status":200, "latency":"   1.089292ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:24:36", "status":200, "latency":"   3.836375ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:24:36", "status":200, "latency":"   1.305166ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:26:34", "status":200, "latency":"   5.290875ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:26:34", "status":200, "latency":"   1.983458ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:26:41", "status":200, "latency":"   7.371584ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:26:43", "status":200, "latency":"   2.151042ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:26:43", "status":200, "latency":"    983.375µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:27:17", "status":200, "latency":"   5.087792ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:27:19", "status":200, "latency":"   3.040625ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:27:19", "status":200, "latency":"    1.33575ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:27:19", "status":200, "latency":"   1.756083ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:27:19", "status":200, "latency":"   1.069084ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:27:26", "status":200, "latency":"      2.567ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:27:26", "status":200, "latency":"    1.09925ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:27:29", "status":200, "latency":"   1.859166ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:27:29", "status":200, "latency":"    936.292µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:29:44", "status":200, "latency":"   2.964583ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:29:44", "status":200, "latency":"   2.500666ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:32:55", "status":200, "latency":"   2.828417ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:32:55", "status":200, "latency":"   1.962584ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:32:57", "status":200, "latency":"   3.144917ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:32:57", "status":200, "latency":"        876µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:35:54", "status":200, "latency":"   3.399666ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:35:54", "status":200, "latency":"   1.310291ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:35:58", "status":200, "latency":"   2.524084ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:35:58", "status":200, "latency":"   1.121958ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:36:05", "status":200, "latency":"   2.085084ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:36:05", "status":200, "latency":"        945µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:36:51", "status":200, "latency":"   6.753416ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:36:51", "status":200, "latency":"   2.036166ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:36:56", "status":200, "latency":"   2.750375ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:36:56", "status":200, "latency":"   1.400709ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:37:58", "status":200, "latency":"   3.399167ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:37:58", "status":200, "latency":"   1.004125ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:38:54", "status":200, "latency":"   2.651083ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:38:54", "status":200, "latency":"   1.053709ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:38:58", "status":200, "latency":"   2.164542ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:38:58", "status":200, "latency":"   1.204459ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:39:00", "status":200, "latency":"   3.002041ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:39:00", "status":200, "latency":"   2.036333ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:39:01", "status":200, "latency":"      1.655ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:39:01", "status":200, "latency":"   1.745208ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:41:00", "status":200, "latency":"   6.099125ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:41:00", "status":200, "latency":"    2.65325ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:44:20", "status":200, "latency":"   3.957459ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:44:20", "status":200, "latency":"   1.160375ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:44:29", "status":200, "latency":"       1.69ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:44:29", "status":200, "latency":"    954.209µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:45:07", "status":200, "latency":"   3.441708ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:45:07", "status":200, "latency":"    985.625µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:45:10", "status":200, "latency":"   2.443625ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:45:10", "status":200, "latency":"   1.171708ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:45:35", "status":200, "latency":"      7.836ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:45:35", "status":200, "latency":"   1.322208ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:45:41", "status":200, "latency":"   2.716417ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:45:41", "status":200, "latency":"      974.5µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:45:53", "status":200, "latency":"   3.730625ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:45:53", "status":200, "latency":"    1.22525ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:46:01", "status":200, "latency":"    8.29125ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:46:01", "status":200, "latency":"   1.297959ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:46:04", "status":200, "latency":"   3.900667ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:46:04", "status":200, "latency":"    785.416µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:47:26", "status":200, "latency":"   4.542583ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:47:26", "status":200, "latency":"   1.264542ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:47:29", "status":200, "latency":"   3.326875ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:47:29", "status":200, "latency":"    967.625µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:50:13", "status":200, "latency":"   2.611042ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:50:13", "status":200, "latency":"   1.506875ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:50:58", "status":200, "latency":"   5.967041ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:53:55", "status":400, "latency":"   2.515875ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:53:55", "status":400, "latency":"   2.515875ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:54:02", "status":400, "latency":"     16.125µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:54:02", "status":400, "latency":"     16.125µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:54:07", "status":400, "latency":"         47µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:54:07", "status":400, "latency":"         47µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:55:00", "status":400, "latency":"         50µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:55:00", "status":400, "latency":"         50µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:56:49", "status":400, "latency":"     61.833µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 13:56:49", "status":400, "latency":"     61.833µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:00:07", "status":400, "latency":"     235.75µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:00:07", "status":400, "latency":"     235.75µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:00:19", "status":400, "latency":"     40.167µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:00:19", "status":400, "latency":"     40.167µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:00:23", "status":400, "latency":"     30.209µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:00:23", "status":400, "latency":"     30.209µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:00:31", "status":400, "latency":"     16.083µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:00:31", "status":400, "latency":"     16.083µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:00:56", "status":400, "latency":"     76.125µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:00:56", "status":400, "latency":"     76.125µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:00:56", "status":200, "latency":"   4.055417ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:00:56", "status":200, "latency":"     2.6745ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:01:16", "status":400, "latency":"     22.667µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:01:16", "status":400, "latency":"     22.667µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:01:16", "status":200, "latency":"   3.894167ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:01:16", "status":200, "latency":"   19.01975ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:02:04", "status":400, "latency":"      49.75µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:02:04", "status":400, "latency":"      49.75µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:02:04", "status":200, "latency":"   5.499083ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:02:04", "status":200, "latency":"      7.164ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:02:20", "status":400, "latency":"         20µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:02:20", "status":400, "latency":"         20µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:02:44", "status":400, "latency":"    140.917µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:02:44", "status":400, "latency":"    140.917µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:03:09", "status":200, "latency":"    6.29525ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:03:12", "status":200, "latency":"   3.379334ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:03:12", "status":200, "latency":"   1.694667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:03:12", "status":200, "latency":"   1.883875ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:03:16", "status":200, "latency":"   5.022291ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:03:37", "status":200, "latency":"   4.193834ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:03:43", "status":200, "latency":"   4.568042ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:03:43", "status":200, "latency":"  12.852625ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:03:43", "status":200, "latency":"  17.059208ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:26:57", "status":200, "latency":"   9.619875ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:26:57", "status":200, "latency":"   9.913875ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:26:57", "status":200, "latency":"   11.96975ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:12", "status":200, "latency":"      3.319ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:12", "status":200, "latency":"   3.619917ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:12", "status":200, "latency":"   4.366917ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:12", "status":200, "latency":"   2.984042ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:12", "status":200, "latency":"   3.337292ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:12", "status":200, "latency":"   4.263333ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:12", "status":200, "latency":"   1.795667ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:12", "status":200, "latency":"   2.102334ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:12", "status":200, "latency":"   7.454667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:14", "status":200, "latency":"   3.280625ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:14", "status":200, "latency":"    3.64975ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:14", "status":200, "latency":"   5.012084ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:14", "status":200, "latency":"   2.035583ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:14", "status":200, "latency":"   3.300125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:27:14", "status":200, "latency":"   5.105792ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:29:19", "status":200, "latency":"  13.808125ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:29:19", "status":200, "latency":"   14.98475ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:29:19", "status":200, "latency":"  17.000208ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:02", "status":200, "latency":"    8.07925ms", "method":"GET", "path":"/api/books/c9f4a6b8-1c7d-4b29-9d1e-bf5f7c8e58a1", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:02", "status":200, "latency":"   4.740416ms", "method":"GET", "path":"/api/reviews/book/c9f4a6b8-1c7d-4b29-9d1e-bf5f7c8e58a1", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:09", "status":200, "latency":"   6.135041ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:10", "status":200, "latency":"      3.705ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:14", "status":200, "latency":"   3.178209ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:14", "status":200, "latency":"   3.260791ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:14", "status":200, "latency":"   4.658167ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:17", "status":200, "latency":"   5.902625ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:42", "status":200, "latency":"   7.230875ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:42", "status":200, "latency":"  10.500625ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:42", "status":200, "latency":"  11.630833ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:43", "status":200, "latency":"   2.288625ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:43", "status":200, "latency":"   2.513833ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:43", "status":200, "latency":"    4.60525ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:43", "status":200, "latency":"     1.2175ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:43", "status":200, "latency":"   1.571166ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:43", "status":200, "latency":"   2.399125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:43", "status":200, "latency":"   1.025208ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:43", "status":200, "latency":"   1.724084ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:43", "status":200, "latency":"    2.61225ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:50", "status":200, "latency":"   2.347583ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:50", "status":200, "latency":"   2.675958ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:50", "status":200, "latency":"   3.758375ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:50", "status":200, "latency":"   1.182375ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:50", "status":200, "latency":"     1.4425ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:50", "status":200, "latency":"   2.014917ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   4.090834ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   4.065375ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   5.980042ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   2.309875ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   2.053667ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   3.172083ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"    887.666µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   1.134333ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   1.816333ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"      1.518ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   1.715875ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   2.272167ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"    1.85375ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"    2.03375ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   2.462083ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   1.868834ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   2.034667ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:55", "status":200, "latency":"   5.825083ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:57", "status":200, "latency":"   4.078542ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:57", "status":200, "latency":"   4.525083ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:57", "status":200, "latency":"     6.5375ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:57", "status":200, "latency":"   2.120417ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:57", "status":200, "latency":"   2.302209ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:57", "status":200, "latency":"   3.870417ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:57", "status":200, "latency":"   1.921125ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:57", "status":200, "latency":"    1.80875ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:57", "status":200, "latency":"     3.9095ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:57", "status":200, "latency":"   1.928834ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:57", "status":200, "latency":"      2.125ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:34:57", "status":200, "latency":"   2.959458ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:35:24", "status":200, "latency":"   4.333083ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:35:24", "status":200, "latency":"   4.340834ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:35:24", "status":200, "latency":"     5.1555ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:35:26", "status":200, "latency":"   4.341084ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:30", "status":200, "latency":"   5.987667ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:30", "status":200, "latency":"   5.691583ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:30", "status":200, "latency":"   7.030458ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:30", "status":200, "latency":"   14.28975ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:30", "status":200, "latency":"  14.312542ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:30", "status":200, "latency":"  16.507208ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:30", "status":200, "latency":"   1.715208ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:30", "status":200, "latency":"   3.432709ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:30", "status":200, "latency":"   4.317292ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:30", "status":200, "latency":"   2.723292ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:30", "status":200, "latency":"   3.994958ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:30", "status":200, "latency":"   4.840667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:31", "status":200, "latency":"      4.727ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:31", "status":200, "latency":"    5.72625ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:36:31", "status":200, "latency":"   7.116625ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:37:06", "status":200, "latency":"   6.324209ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:37:06", "status":200, "latency":"   7.282708ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:37:06", "status":200, "latency":"  11.866917ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:37:20", "status":200, "latency":"   3.149292ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:37:20", "status":200, "latency":"    3.57575ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:37:20", "status":200, "latency":"    4.99175ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:37:28", "status":200, "latency":"   3.494291ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:37:28", "status":200, "latency":"   3.825875ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:37:28", "status":200, "latency":"      6.984ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:37:31", "status":200, "latency":"   4.095208ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:37:31", "status":200, "latency":"   4.417208ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:37:31", "status":200, "latency":"   8.174584ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:07", "status":200, "latency":"   4.608416ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:07", "status":200, "latency":"   5.486958ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:07", "status":200, "latency":"   8.383334ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:07", "status":200, "latency":"   2.816541ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:07", "status":200, "latency":"   3.011417ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:07", "status":200, "latency":"   5.587208ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:07", "status":200, "latency":"   1.457208ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:07", "status":200, "latency":"   1.834417ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:07", "status":200, "latency":"   2.616125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:07", "status":200, "latency":"   1.259334ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:07", "status":200, "latency":"   1.081166ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:07", "status":200, "latency":"   3.629875ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:10", "status":200, "latency":"   2.459583ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:10", "status":200, "latency":"   2.719458ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:38:10", "status":200, "latency":"   5.294917ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:43:19", "status":200, "latency":"   3.160667ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:43:19", "status":200, "latency":"      3.969ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:43:19", "status":200, "latency":"   4.476708ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:45:02", "status":200, "latency":"   5.413959ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:45:02", "status":200, "latency":"   6.301667ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:45:02", "status":200, "latency":"   6.840209ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:46:50", "status":200, "latency":"   4.675417ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:46:50", "status":200, "latency":"   5.386458ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:46:50", "status":200, "latency":"    5.95075ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:13", "status":200, "latency":"   4.390083ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:13", "status":200, "latency":"   4.243458ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:13", "status":200, "latency":"   6.157667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:15", "status":200, "latency":"   2.339709ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:15", "status":200, "latency":"      2.664ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:15", "status":200, "latency":"   2.949667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:17", "status":200, "latency":"   3.052709ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:17", "status":200, "latency":"   3.248084ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:17", "status":200, "latency":"     4.7785ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:18", "status":200, "latency":"   3.985959ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:18", "status":200, "latency":"   4.324625ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:18", "status":200, "latency":"   6.221084ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:20", "status":200, "latency":"   3.099959ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:20", "status":200, "latency":"   3.384708ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:20", "status":200, "latency":"   3.736667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:21", "status":200, "latency":"   1.232792ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:21", "status":200, "latency":"    1.54975ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:21", "status":200, "latency":"   3.032208ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:31", "status":200, "latency":"      4.085ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:31", "status":200, "latency":"   4.762167ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:31", "status":200, "latency":"   5.696834ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:38", "status":200, "latency":"   2.710917ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:38", "status":200, "latency":"   2.813916ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:47:38", "status":200, "latency":"   3.967917ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"   5.293458ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"   2.242709ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"   6.882208ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"      1.415ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"   2.041375ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"    4.76125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"     795.25µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"     1.1115ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"   1.360209ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"   1.741125ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"   2.176833ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"   4.650083ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"    820.458µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"   1.213208ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"   1.592916ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"    951.916µs", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"   1.176334ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:18", "status":200, "latency":"   1.506542ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:54", "status":200, "latency":"   3.337875ms", "method":"GET", "path":"/api/books/f8d7bde0-5292-42d5-a8ad-fc0e70cf82f9", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:54", "status":200, "latency":"   2.084584ms", "method":"GET", "path":"/api/reviews/book/f8d7bde0-5292-42d5-a8ad-fc0e70cf82f9", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:58", "status":200, "latency":"   3.591333ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:58", "status":200, "latency":"     4.4055ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:51:58", "status":200, "latency":"   4.447209ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:52:01", "status":200, "latency":"   4.482417ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:52:01", "status":200, "latency":"   5.453792ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:52:01", "status":200, "latency":"   5.957666ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:52:11", "status":200, "latency":"   2.871666ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:53:02", "status":200, "latency":"   4.898083ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:55:16", "status":200, "latency":"   8.509583ms", "method":"GET", "path":"/api/books/e8f90123-4567-89ab-cdef-0123456789ab", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:55:16", "status":200, "latency":"  12.284917ms", "method":"GET", "path":"/api/reviews/book/e8f90123-4567-89ab-cdef-0123456789ab", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:55:25", "status":200, "latency":"     1.7575ms", "method":"GET", "path":"/api/books/f3a4b5c6-d7e8-9f01-2345-6789abcdef01", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:55:25", "status":200, "latency":"   1.829417ms", "method":"GET", "path":"/api/reviews/book/f3a4b5c6-d7e8-9f01-2345-6789abcdef01", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:55:27", "status":200, "latency":"   4.519416ms", "method":"GET", "path":"/api/books/e56789ab-cdef-0123-4567-89abcdef0123", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:55:27", "status":200, "latency":"       2.45ms", "method":"GET", "path":"/api/reviews/book/e56789ab-cdef-0123-4567-89abcdef0123", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:55:30", "status":200, "latency":"   3.643417ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:55:32", "status":200, "latency":"    3.53425ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:55:33", "status":200, "latency":"   3.301625ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:55:34", "status":200, "latency":"   2.862208ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:55:41", "status":200, "latency":"   3.691125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:56:30", "status":200, "latency":"   7.529583ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:56:30", "status":200, "latency":"   2.187667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:56:30", "status":200, "latency":"   2.260208ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:56:30", "status":200, "latency":"   1.598833ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:56:34", "status":200, "latency":"     4.5285ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:56:36", "status":200, "latency":"    3.69275ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:00", "status":200, "latency":"   4.772708ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:00", "status":200, "latency":"   1.802083ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:00", "status":200, "latency":"       1.43ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:00", "status":200, "latency":"   2.308791ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:00", "status":200, "latency":"   1.489042ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:00", "status":200, "latency":"   1.631709ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:00", "status":200, "latency":"   2.075292ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:04", "status":200, "latency":"   4.278333ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:06", "status":200, "latency":"   3.147667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:07", "status":200, "latency":"   2.625833ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:07", "status":200, "latency":"   2.715167ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:09", "status":200, "latency":"   2.686667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:13", "status":200, "latency":"   3.776083ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:35", "status":200, "latency":"   4.573125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:37", "status":200, "latency":"      3.045ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:37", "status":200, "latency":"   2.007667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:37", "status":200, "latency":"   2.558209ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:37", "status":200, "latency":"   3.137334ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:37", "status":200, "latency":"   2.749541ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:45", "status":200, "latency":"   3.874417ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:56", "status":200, "latency":"   4.560958ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 14:57:59", "status":200, "latency":"   3.465709ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}

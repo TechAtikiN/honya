@@ -2,7 +2,7 @@
 import { BOOK_CATEGORIES, BOOK_SORT_OPTIONS } from "@/constants/books"
 import DropdownFilter from "./DropdownFilter"
 import Filters from "./Filters"
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "../ui/button";
 import { Trash2 } from "lucide-react";
 import HintLabel from "../global/hint-label";
@@ -21,7 +21,9 @@ export default function FilterAndSortSection({
   translations,
   locale
 }: FiltersAndSortSectionProps) {
-  const router = useRouter()
+  const searchParams = useSearchParams();
+  const pathname = usePathname()
+
   return (
     <div className="flex flex-wrap items-center justify-between gap-2">
       <div className="flex flex-wrap items-center justify-start gap-2">
@@ -41,7 +43,16 @@ export default function FilterAndSortSection({
               type="button"
               variant={'destructive'}
               onClick={() => {
-                router.push('/')
+                const params = new URLSearchParams(searchParams.toString());
+                params.delete('category');
+                params.delete('publication_year');
+                params.delete('sort');
+                params.delete('page');
+                params.delete('filter_by');
+                params.delete("sort")
+                const queryString = params.toString();
+                const newPath = queryString ? `${pathname}?${queryString}` : pathname;
+                window.location.href = newPath;
               }}
             >
               <Trash2 className="h-4 w-4" />

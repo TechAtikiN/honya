@@ -9,8 +9,8 @@ import (
 )
 
 type DashboardController interface {
-	GetDonutChart(ctx *fiber.Ctx) error
-	GetBarChart(ctx *fiber.Ctx) error
+	GetBooksData(ctx *fiber.Ctx) error
+	GetReviewsData(ctx *fiber.Ctx) error
 }
 
 type dashboardController struct {
@@ -21,10 +21,10 @@ func NewDashboardController(service service.DashboardService) DashboardControlle
 	return &dashboardController{service}
 }
 
-func (c *dashboardController) GetDonutChart(ctx *fiber.Ctx) error {
+func (c *dashboardController) GetBooksData(ctx *fiber.Ctx) error {
 	filterBy := ctx.Query("filter_by", utils.DefaultDonutChartFilterBy)
 
-	data, err := c.service.GetDonutChartData(filterBy)
+	data, err := c.service.GetBooksData(filterBy)
 	if err != nil {
 		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error":   "Failed to retrieve dashboard data",
@@ -35,7 +35,7 @@ func (c *dashboardController) GetDonutChart(ctx *fiber.Ctx) error {
 	return ctx.Status(fiber.StatusOK).JSON(data)
 }
 
-func (c *dashboardController) GetBarChart(ctx *fiber.Ctx) error {
+func (c *dashboardController) GetReviewsData(ctx *fiber.Ctx) error {
 	limitStr := ctx.Query("limit", "10")
 	limit, err := strconv.Atoi(limitStr)
 
@@ -46,7 +46,7 @@ func (c *dashboardController) GetBarChart(ctx *fiber.Ctx) error {
 		})
 	}
 
-	data, err := c.service.GetBarChartData(limit)
+	data, err := c.service.GetReviewsData(limit)
 	if err != nil {
 
 		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{

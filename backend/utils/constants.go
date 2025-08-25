@@ -11,7 +11,7 @@ const (
 )
 
 const (
-	RateLimitMaxRequests    = 20
+	RateLimitMaxRequests    = 100
 	RateLimitExpiryDuration = 1 * time.Minute
 )
 
