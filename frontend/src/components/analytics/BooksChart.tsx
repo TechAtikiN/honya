@@ -9,6 +9,7 @@ import { Tooltip } from "../ui/tooltip"
 import DropdownFilter from "../books/DropdownFilter"
 import { BOOKS_DATA_FILTER_OPTIONS } from "@/constants/analytics"
 import { BOOK_CATEGORIES } from "@/constants/books"
+import { LocaleDict } from "@/lib/locales"
 
 const COLORS = [
   "#4F6D7A", //
@@ -32,6 +33,7 @@ interface BooksDonutChartProps {
   locale: Locale;
   booksData?: { name: string; count: number }[] | Record<string, number>;
   filterBy: string;
+  translations: LocaleDict;
 }
 
 const ChartTooltipContent = ({ active, payload, locale }: any) => {
@@ -61,11 +63,12 @@ export default function BooksDonutChart({
   locale,
   booksData,
   filterBy,
+  translations
 }: BooksDonutChartProps) {
   if (!booksData) {
     return (
       <div className="flex items-center justify-center text-muted-foreground">
-        No data available
+        {translations.page.analytics.noBooks}
       </div>
     );
   }
@@ -124,7 +127,15 @@ export default function BooksDonutChart({
   return (
     <div className="flex flex-col items-center justify-center gap-y-4 w-full">
       <div className="flex items-center justify-between w-full">
-        <p className="font-bold text-primary text-lg text-center">Books</p>
+        <p className="font-bold text-primary text-lg text-center">
+          {filterBy === 'category'
+            ? translations.page.analytics.booksByCategory
+            : filterBy === 'rating'
+              ? translations.page.analytics.booksByRating
+              : filterBy === 'author'
+                ? translations.page.analytics.booksByAuthor
+                : 'Books'}
+        </p>
         <DropdownFilter
           locale={locale}
           label={"Filter"}
@@ -156,7 +167,6 @@ export default function BooksDonutChart({
 
           <ChartTooltip content={<ChartTooltipContent locale={locale} />} />
 
-          {/* */}
         </PieChart>
       </ChartContainer>
     </div>

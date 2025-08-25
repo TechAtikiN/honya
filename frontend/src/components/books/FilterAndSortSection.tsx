@@ -33,7 +33,7 @@ export default function FilterAndSortSection({
         />
       </div>
 
-      <div className="flex items-center justify-start gap-2">
+      <div className="flex items-center justify-start flex-wrap gap-2">
         {filters && Object.keys(filters).length > 0 && (
           <HintLabel
             label={translations.page.home.filters.clearAllFilters}

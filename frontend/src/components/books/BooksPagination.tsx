@@ -1,6 +1,7 @@
 import { Locale } from '@/i18n.config'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import CustomLink from '../global/custom-link'
+import { LocaleDict } from '@/lib/locales'
 
 interface BooksPaginationProps {
   totalCount: number
@@ -8,13 +9,15 @@ interface BooksPaginationProps {
   pagination: {
     currentPage: number
     limit: number
-  }
+  },
+  translations: LocaleDict
 }
 
 export default function BooksPagination({
   totalCount,
   locale: lang,
-  pagination
+  pagination,
+  translations
 }: BooksPaginationProps) {
   return (
     <div className="flex items-center justify-center space-x-5 -ml-28">
@@ -25,14 +28,22 @@ export default function BooksPagination({
           className="flex items-center justify-center space-x-1 min-w-24"
         >
           <ChevronLeft className="h-5 w-5 text-primary" />
-          <span className="font-medium">Previous</span>
+          <span className="font-medium">
+            {translations.page.home.pagination.previous}
+          </span>
         </CustomLink>
       ) : (
         <div className="min-w-24"></div>
       )}
 
       <p className="text-primary font-normal text-sm">
-        ({totalCount} Results)  Page {pagination.currentPage} of {Math.ceil((totalCount || 0) / pagination.limit)}
+        ({totalCount}&nbsp;
+        {translations.page.home.pagination.results}
+        )&nbsp;
+        {translations.page.home.pagination.page}&nbsp;
+        {pagination.currentPage}&nbsp;
+        {translations.page.home.pagination.of}&nbsp;
+        {Math.ceil((totalCount || 0) / pagination.limit)}
       </p>
 
       {(pagination.currentPage * pagination.limit) < totalCount ? (
@@ -41,7 +52,9 @@ export default function BooksPagination({
           href={`?page=${pagination.currentPage + 1}`}
           className="flex items-center justify-center space-x-1 min-w-24"
         >
-          <span className="font-medium">Next</span>
+          <span className="font-medium">
+            {translations.page.home.pagination.next}
+          </span>
           <ChevronRight className="h-5 w-5 text-primary" />
         </CustomLink>
       ) : (

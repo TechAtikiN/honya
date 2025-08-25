@@ -44,26 +44,30 @@ export default async function Analytics({ params, searchParams }: HomePageProps)
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="p-3 rounded-md border border-primary/20 flex">
           {!booksData ? (
-            <div className="">No books data available</div>
+            <div className="">
+              {translations.page.analytics.noBooks}
+            </div>
           ) : (
-            <BooksChart locale={lang} booksData={booksData} filterBy={filterBy} />
+            <BooksChart locale={lang} booksData={booksData} filterBy={filterBy} translations={translations} />
           )}
         </div>
         <div className="p-3 rounded-md border border-primary/20 flex">
           {!reviewsData ? (
-            <div className="">No reviews data available</div>
+            <div className="">
+              {translations.page.analytics.noReviews}
+            </div>
           ) : (
-            <ReviewsChart locale={lang} reviewsData={reviewsData} />
+            <ReviewsChart locale={lang} reviewsData={reviewsData} translations={translations} />
           )}
         </div>
       </div>
 
       {/* Books Table */}
       <div className="w-full flex flex-col justify-between h-full gap-y-5 border border-primary/20 rounded-md p-3">
-        <div className="gap-y-3">
+        <div className="flex flex-col gap-y-3">
           <div className="flex items-center justify-between">
             <p className="text-lg font-bold text-primary">
-              Books
+              {translations.page.analytics.booksTable}
             </p>
             <AddNewBook
               translations={translations}
@@ -81,7 +85,7 @@ export default async function Analytics({ params, searchParams }: HomePageProps)
         </div>
         <div className="flex flex-col gap-y-5">
           {/* Books Table */}
-          <BookTable books={data as Book[]} locale={lang} />
+          <BookTable books={data as Book[]} locale={lang} translations={translations} />
 
           {/* Pagination */}
           {meta && meta.total_count > 0 && (
@@ -89,6 +93,7 @@ export default async function Analytics({ params, searchParams }: HomePageProps)
               totalCount={meta?.total_count || 0}
               locale={lang}
               pagination={pagination}
+              translations={translations}
             />
           )}
         </div>

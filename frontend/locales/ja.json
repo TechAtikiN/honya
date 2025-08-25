@@ -94,6 +94,13 @@
         "addSuccess": "本が正常に追加されました",
         "addFailed": "本の追加中にエラーが発生しました",
         "submissionError": "フォームの送信中にエラーが発生しました"
+      },
+      "pagination": {
+        "previous": "前へ",
+        "next": "次へ",
+        "page": "ページ",
+        "of": "の",
+        "results": "件"
       }
     },
     "bookDetails": {
@@ -147,7 +154,20 @@
       "cancel": "キャンセル"
     },
     "analytics": {
-      "title": "分析"
+      "noReviews": "レビューのデータがありません",
+      "noBooks": "本のデータがありません",
+      "booksByCategory": "カテゴリー別の本",
+      "booksByRating": "評価別の本",
+      "booksByAuthor": "著者別の本",
+      "Reviews": "レビュー",
+      "booksTable": "本の一覧",
+      "title": "分析",
+      "author": "著者",
+      "category": "カテゴリー",
+      "publicationYear": "出版年",
+      "view": "表示",
+      "rating": "評価",
+      "noDataFound": "データが見つかりません"
     }
   }
 }

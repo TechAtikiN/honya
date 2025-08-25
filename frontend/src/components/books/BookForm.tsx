@@ -43,7 +43,7 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
 
   const getDefaultValues = (book?: Book): Partial<BookFormData> => ({
     rating: book?.rating || 4,
-    category: (book?.category || BOOK_CATEGORIES[0].value) as BookFormData['category'],
+    category: (book?.category || BOOK_CATEGORIES[1].value) as BookFormData['category'],
     publicationYear: book?.publication_year || new Date().getFullYear(),
     pages: book?.pages || 100,
     title: book?.title || '',
@@ -243,7 +243,7 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
                   {...register("category")}
                   className='form-input'
                 >
-                  {BOOK_CATEGORIES.map((category) => (
+                  {BOOK_CATEGORIES.slice(1).map((category) => (
                     <option key={category.value} value={category.value}>
                       {category[`label_${locale}`]}
                     </option>

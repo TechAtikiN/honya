@@ -9,10 +9,12 @@ import {
   ChartTooltip,
 } from "@/components/ui/chart"
 import { Locale } from "@/i18n.config";
+import { LocaleDict } from "@/lib/locales";
 
 interface ReviewsChartProps {
   locale: Locale;
   reviewsData: { name: string; count: number }[];
+  translations: LocaleDict
 }
 
 const chartConfig = {
@@ -22,14 +24,17 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-const ChartTooltipContent = ({ active, payload }: any) => {
+const ChartTooltipContent = ({ active, payload, translations }:
+  { active?: boolean; payload?: any; translations: LocaleDict }
+) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
       <div className="bg-background border border-secondary ring-2 ring-primary/50 rounded-md p-2 shadow-lg">
         <p className="font-medium text-foreground">{data.name}</p>
         <p className="text-sm text-muted-foreground">
-          Reviews: <span className="font-medium text-primary">{data.count}</span>
+          {translations.page.analytics.Reviews}:
+          <span className="font-medium text-primary">{data.count}</span>
         </p>
       </div>
     );
@@ -37,15 +42,17 @@ const ChartTooltipContent = ({ active, payload }: any) => {
   return null;
 }
 
-export default function ReviewsChart({ reviewsData }: ReviewsChartProps) {
+export default function ReviewsChart({ reviewsData, translations }: ReviewsChartProps) {
   const chartData = reviewsData.map((item) => ({
     name: item.name,
     count: item.count,
   }));
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 w-full">
-      <p className="font-bold text-primary text-xl">Reviews by User</p>
+    <div className="flex flex-col items-start justify-center gap-4 w-full">
+      <p className="font-bold text-primary text-xl">
+        {translations.page.analytics.Reviews}
+      </p>
       <ChartContainer config={chartConfig} className="p-0 w-full">
         <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#ddd" />
@@ -68,7 +75,7 @@ export default function ReviewsChart({ reviewsData }: ReviewsChartProps) {
             style={{ fontSize: "12px", fill: "#6b7280" }}
           />
 
-          <ChartTooltip content={<ChartTooltipContent />} />
+          <ChartTooltip content={(props) => <ChartTooltipContent {...props} translations={translations} />} />
 
           <ChartLegend content={<ChartLegendContent />} />
 

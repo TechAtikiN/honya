@@ -17,11 +17,11 @@ export default function BookListItem({
       className="flex flex-col items-center justify-center space-y-3"
     >
       <div className="mx-auto">
-        <div className="relative w-[200px] h-[250px]  md:w-[180px] md:h-[230px] rounded-md overflow-hidden drop-shadow-md shadow-lg">
+        <div className="relative w-[200px] h-[250px] object-fill  md:w-[165px] md:h-[250px] rounded-md overflow-hidden drop-shadow-md shadow-lg">
           <img
             src={book.image || "/assets/books/book-placeholder.png"}
             alt={book.title}
-            className="object-cover"
+            className="object-fill w-full h-full"
           />
         </div>
       </div>

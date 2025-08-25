@@ -211,7 +211,7 @@ export async function deleteBook(id: string) {
     });
 
     if (res.ok) {
-      revalidatePath('/');
+      // revalidatePath('/');
       return {
         success: true,
         messageKey: 'actions.book.deleteSuccess',

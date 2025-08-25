@@ -15,7 +15,7 @@ export default function Header({
   locale
 }: HeaderProps) {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between space-x-3 md:space-x-0">
       <div className="flex w-full md:w-2/3 items-center gap-x-2 md:gap-x-4">
         <SearchInput
           translations={translations}
@@ -30,7 +30,7 @@ export default function Header({
       <Link
         className='bg-primary rounded-full p-2 hover:opacity-80 transition'
         href="https://github.com/TechAtikiN" target='_blank'>
-        <Github className="h-5 w-5 text-white fill-white" />
+        <Github className="h-5 w-5 ml-[2px] text-white fill-white" />
       </Link>
     </div>
   )

@@ -94,6 +94,13 @@
         "addSuccess": "Book added successfully",
         "addFailed": "Error adding book",
         "submissionError": "Error submitting form"
+      },
+      "pagination": {
+        "previous": "Previous",
+        "next": "Next",
+        "page": "Page",
+        "of": "of",
+        "results": "Results"
       }
     },
     "bookDetails": {
@@ -147,7 +154,20 @@
       "cancel": "Cancel"
     },
     "analytics": {
-      "title": "Analytics"
+      "noReviews": "No reviews data available",
+      "noBooks": "No books data available",
+      "booksByCategory": "Books by Category",
+      "booksByRating": "Books by Rating",
+      "booksByAuthor": "Books by Author",
+      "Reviews": "Reviews",
+      "booksTable": "Books Table",
+      "title": "Title",
+      "author": "Author",
+      "category": "Category",
+      "publicationYear": "Publication Year",
+      "rating": "Rating",
+      "noDataFound": "No data found",
+      "view": "View"
     }
   }
 }
