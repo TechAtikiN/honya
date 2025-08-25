@@ -1,54 +1,95 @@
-package handler
+package config
 
 import (
-	"honya/backend/config"
-	"honya/backend/middleware"
-	"honya/backend/router"
-	"log"
-	"net/http"
+	"os"
 
-	"github.com/gofiber/adaptor/v2"
-	"github.com/gofiber/contrib/swagger"
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
+	"honya/backend/errors"
+
+	"github.com/joho/godotenv"
 )
 
-// Handler is the entry point for Vercel Serverless Functions.
-func Handler(w http.ResponseWriter, r *http.Request) {
-	// The logic is similar to your main.go, but without the server startup.
-	// You may want to handle environment config and database connections more gracefully
-	// in a serverless context (e.g., connect on-demand or use connection pooling).
-	env, err := config.GetEnvConfig()
-	if err != nil {
-		log.Printf("Failed to get environment configuration: %v", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
+type EnvConfig struct {
+	DatabaseURL              string
+	ServerPort               string
+	LogStack                 string
+	LogRetention             string
+	UrlCleanupOriginalDomain string
+	AWSBucket                string
+	AWSRegion                string
+	AWSAccessKey             string
+	AWSSecretKey             string
+}
+
+// NOTE: In production, we will use the environment variables set by Vercel.
+// In development, we will use the .env.local file.
+// This is because Vercel will automatically set the environment variables for us.
+// We can use the .env.local file to set the environment variables for our local development.
+// We can use the .env file to set the environment variables for our production environment.
+
+// Global variable for storing environment config; could also pass via context
+var NewEnvConfig EnvConfig
+
+func GetEnvConfig() (EnvConfig, error) {
+	if os.Getenv("VERCEL_ENV") == "" {
+
+		if _, err := os.Stat(".env.local"); err == nil {
+			err := godotenv.Load(".env.local", ".env")
+			if err != nil {
+
+				return NewEnvConfig, errors.NewBadRequestError("Error loading .env.local file")
+			}
+		} else {
+			err := godotenv.Load(".env")
+			if err != nil {
+				return NewEnvConfig, errors.NewBadRequestError("Error loading .env file")
+			}
+		}
 	}
 
-	app := fiber.New(fiber.Config{
-		AppName:      "Honya API",
-		ErrorHandler: middleware.ErrorHandler,
-	})
-
-	cfg := swagger.Config{
-		BasePath: "/",
-		FilePath: "./docs/swagger.json",
-		Path:     "docs",
-		Title:    "Honya | API Documentation",
-		CacheAge: 60,
+	NewEnvConfig.DatabaseURL = os.Getenv("DATABASE_URL")
+	if NewEnvConfig.DatabaseURL == "" {
+		return NewEnvConfig, errors.NewBadRequestError("DATABASE_URL environment variable is not set")
 	}
 
-	app.Use(swagger.New(cfg))
-	app.Use(cors.New())
+	NewEnvConfig.ServerPort = os.Getenv("SERVER_PORT")
+	if NewEnvConfig.ServerPort == "" {
+		NewEnvConfig.ServerPort = "8080"
+	}
 
-	// Note: Centralized logging like this may not be necessary on Vercel
-	// as it handles logging automatically.
-	app.Use(config.SetupLogger(env.LogStack, env.LogRetention))
+	NewEnvConfig.LogStack = os.Getenv("LOG_STACK")
+	if NewEnvConfig.LogStack == "" {
+		NewEnvConfig.LogStack = "daily"
+	}
 
-	config.ConnectToDatabase(env.DatabaseURL)
+	NewEnvConfig.LogRetention = os.Getenv("LOG_RETENTION")
+	if NewEnvConfig.LogRetention == "" {
+		NewEnvConfig.LogRetention = "7"
+	}
 
-	router.Setup(app)
+	NewEnvConfig.UrlCleanupOriginalDomain = os.Getenv("URL_CLEANUP_ORIGINAL_DOMAIN")
+	if NewEnvConfig.UrlCleanupOriginalDomain == "" {
+		return NewEnvConfig, errors.NewBadRequestError("URL_CLEANUP_ORIGINAL_DOMAIN environment variable is not set")
+	}
 
-	// Use the Fiber adapter to process the request and write the response
-	adaptor.FiberApp(app)(w, r)
+	NewEnvConfig.AWSBucket = os.Getenv("AWS_BUCKET_NAME")
+	if NewEnvConfig.AWSBucket == "" {
+		return NewEnvConfig, errors.NewBadRequestError("AWS_BUCKET_NAME environment variable is not set")
+	}
+
+	NewEnvConfig.AWSRegion = os.Getenv("AWS_REGION")
+	if NewEnvConfig.AWSRegion == "" {
+		return NewEnvConfig, errors.NewBadRequestError("AWS_REGION environment variable is not set")
+	}
+
+	NewEnvConfig.AWSAccessKey = os.Getenv("AWS_ACCESS_KEY_ID")
+	if NewEnvConfig.AWSAccessKey == "" {
+		return NewEnvConfig, errors.NewBadRequestError("AWS_ACCESS_KEY_ID environment variable is not set")
+	}
+
+	NewEnvConfig.AWSSecretKey = os.Getenv("AWS_SECRET_ACCESS_KEY")
+	if NewEnvConfig.AWSSecretKey == "" {
+		return NewEnvConfig, errors.NewBadRequestError("AWS_SECRET_ACCESS_KEY environment variable is not set")
+	}
+
+	return NewEnvConfig, nil
 }
