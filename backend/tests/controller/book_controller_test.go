@@ -145,7 +145,9 @@ func TestCreateBook_MultipartFormData(t *testing.T) {
 	_ = writer.WriteField("author_name", "John Doe")
 
 	fileWriter, _ := writer.CreateFormFile("image", "dummy.jpg")
-	fileWriter.Write([]byte("dummy file content"))
+	if _, err := fileWriter.Write([]byte("dummy file content")); err != nil {
+		t.Fatalf("failed to write file content: %v", err)
+	}
 
 	writer.Close()
 
@@ -216,7 +218,9 @@ func TestUpdateBook_MultipartFormData(t *testing.T) {
 	_ = writer.WriteField("pages", strconv.Itoa(updatedPages))
 
 	fileWriter, _ := writer.CreateFormFile("image", "dummy.jpg")
-	fileWriter.Write([]byte("dummy content"))
+	if _, err := fileWriter.Write([]byte("dummy content")); err != nil {
+		t.Fatalf("failed to write file content: %v", err)
+	}
 
 	writer.Close()
 

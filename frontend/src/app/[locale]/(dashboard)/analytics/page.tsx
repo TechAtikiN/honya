@@ -6,8 +6,6 @@ import AddNewBook from "@/components/books/AddNewBook";
 import BooksPagination from "@/components/books/BooksPagination";
 import BookTable from "@/components/books/BookTable";
 import FilterAndSortSection from "@/components/books/FilterAndSortSection";
-import Header from "@/components/books/Header";
-import SearchInput from "@/components/books/SearchInput";
 import { getLocale } from "@/i18n.config";
 import { getDictionary } from "@/lib/locales";
 import { getFilters, getPagination } from "@/lib/utils";

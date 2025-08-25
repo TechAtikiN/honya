@@ -145,7 +145,6 @@ export default function BookForm({ bookDetails, isOpen = false, setIsOpen, isEdi
                 setImageFile={setImageFile}
                 imageURL={bookDetails?.image || null}
                 translations={translations}
-                locale={locale}
               />
 
               <div className='flex flex-col space-y-1'>

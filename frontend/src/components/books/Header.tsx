@@ -19,7 +19,6 @@ export default function Header({
       <div className="flex w-full md:w-2/3 items-center gap-x-2 md:gap-x-4">
         <SearchInput
           translations={translations}
-          locale={locale}
         />
         <AddNewBook
           translations={translations}

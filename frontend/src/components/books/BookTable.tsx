@@ -1,4 +1,3 @@
-import BookListItem from './BookListItem'
 import { Book } from '@/types/book'
 import BookTableItem from './BookTableItem'
 import { Locale } from '@/i18n.config'

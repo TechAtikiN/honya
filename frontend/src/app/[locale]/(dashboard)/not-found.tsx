@@ -2,9 +2,7 @@ import Link from "next/link"
 import { BookOpen, Home } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-export default async function NotFound({ params }: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function NotFound() {
   return (
     <div className="min-h-screen bg-neutral-50 flex items-center justify-center px-4">
       <div className="max-w-md w-full text-center">
@@ -23,7 +21,7 @@ export default async function NotFound({ params }: {
 
         {/* Description */}
         <p className="text-neutral-600 mb-8 leading-relaxed">
-          The page you're looking for doesn't exist in our library. It might have been moved, deleted, or you entered
+          The page you&apos;re looking for doesn&apos;t exist in our library. It might have been moved, deleted, or you entered
           the wrong URL.
         </p>
 

@@ -5,16 +5,13 @@ import { Search } from 'lucide-react';
 import debounce from 'lodash.debounce';
 
 import { LocaleDict } from '@/lib/locales';
-import { Locale } from '@/i18n.config';
 
 interface SearchInputProps {
   translations: LocaleDict
-  locale: Locale
 }
 
 export default function SearchInput({
   translations,
-  locale
 }: SearchInputProps) {
   const [query, setQuery] = useState<string>('');
   const router = useRouter();

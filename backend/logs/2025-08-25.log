@@ -1864,3 +1864,163 @@
 {"timestamp":"2025-08-25 14:57:56", "status":200, "latency":"   4.560958ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
 
 {"timestamp":"2025-08-25 14:57:59", "status":200, "latency":"   3.465709ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:00:59", "status":200, "latency":"    4.15525ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:02:11", "status":200, "latency":"   1.950875ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:02:11", "status":200, "latency":"   1.837875ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:02:11", "status":200, "latency":"    2.75225ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:10:23", "status":200, "latency":"   2.975667ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:10:23", "status":200, "latency":"    3.26075ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:10:23", "status":200, "latency":"   2.808916ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:15:02", "status":200, "latency":"   5.145916ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:15:02", "status":200, "latency":"   5.116417ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:15:02", "status":200, "latency":"    6.35625ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:17:17", "status":200, "latency":"   3.426375ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:17:17", "status":200, "latency":"   3.721166ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:17:17", "status":200, "latency":"    3.26675ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:18:22", "status":200, "latency":"   3.382459ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:18:22", "status":200, "latency":"   3.958791ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:18:22", "status":200, "latency":"    3.92525ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:18:26", "status":200, "latency":"   1.944625ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:18:26", "status":200, "latency":"   2.161083ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:18:26", "status":200, "latency":"   3.186791ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:19:57", "status":200, "latency":"   4.788333ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:19:57", "status":200, "latency":"   5.719334ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:19:57", "status":200, "latency":"   5.944417ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:20:34", "status":200, "latency":"    2.50925ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:20:37", "status":200, "latency":"   5.355792ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:20:40", "status":200, "latency":"   4.552042ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:23:03", "status":200, "latency":"     11.829ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:25:08", "status":200, "latency":"   2.932542ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:25:09", "status":200, "latency":"   2.269916ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:27:18", "status":200, "latency":"    6.97125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:27:19", "status":200, "latency":"   2.343084ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:28:29", "status":200, "latency":"   5.175834ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:29:20", "status":200, "latency":"   4.269417ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:29:59", "status":200, "latency":"    3.55325ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:31:47", "status":200, "latency":"   4.540625ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:36:38", "status":200, "latency":"  16.475833ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:37:00", "status":200, "latency":"    8.18375ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:38:55", "status":200, "latency":"  15.094167ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:38:56", "status":200, "latency":"   3.318959ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:39:30", "status":200, "latency":"      4.905ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:39:50", "status":200, "latency":"   7.602042ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:39:53", "status":200, "latency":"   2.962833ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:39:54", "status":200, "latency":"   4.186041ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:40:30", "status":200, "latency":"      4.718ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:40:32", "status":200, "latency":"   4.985625ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:41:40", "status":200, "latency":"   3.796333ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:46:12", "status":200, "latency":"   4.812375ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:48:11", "status":200, "latency":"   5.231959ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:52:29", "status":200, "latency":"   4.793875ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:53:14", "status":200, "latency":"    5.24275ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:53:54", "status":201, "latency":" 379.361708ms", "method":"POST", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:53:55", "status":200, "latency":"   4.240333ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:53:57", "status":200, "latency":"   4.741625ms", "method":"GET", "path":"/api/books/3218e46c-97e8-4c6f-ae07-479314c1fa07", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:53:57", "status":200, "latency":"   2.703209ms", "method":"GET", "path":"/api/reviews/book/3218e46c-97e8-4c6f-ae07-479314c1fa07", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:54:12", "status":201, "latency":"   7.117917ms", "method":"POST", "path":"/api/reviews", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:54:12", "status":200, "latency":"   1.717958ms", "method":"GET", "path":"/api/books/3218e46c-97e8-4c6f-ae07-479314c1fa07", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:54:12", "status":200, "latency":"   3.195833ms", "method":"GET", "path":"/api/reviews/book/3218e46c-97e8-4c6f-ae07-479314c1fa07", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:54:16", "status":200, "latency":"    71.1515ms", "method":"DELETE", "path":"/api/books/3218e46c-97e8-4c6f-ae07-479314c1fa07", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:54:16", "status":404, "latency":"    3.67125ms", "method":"GET", "path":"/api/books/3218e46c-97e8-4c6f-ae07-479314c1fa07", "error":"Book not found: not found", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:54:16", "status":404, "latency":"    3.67125ms", "method":"GET", "path":"/api/books/3218e46c-97e8-4c6f-ae07-479314c1fa07", "error":"Book not found: not found", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:54:16", "status":200, "latency":"   1.995833ms", "method":"GET", "path":"/api/reviews/book/3218e46c-97e8-4c6f-ae07-479314c1fa07", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:54:16", "status":200, "latency":"   2.438667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:54:40", "status":200, "latency":"   7.515167ms", "method":"GET", "path":"/api/books/f9012345-6789-abcd-ef01-23456789abcd", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:54:40", "status":200, "latency":"   1.846292ms", "method":"GET", "path":"/api/reviews/book/f9012345-6789-abcd-ef01-23456789abcd", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:55:24", "status":200, "latency":"   4.110167ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:55:37", "status":201, "latency":" 352.714208ms", "method":"POST", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:55:37", "status":200, "latency":"    2.48975ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:55:39", "status":200, "latency":"   1.829791ms", "method":"GET", "path":"/api/books/5c9b844d-f12d-4848-8530-2815f6353a45", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:55:39", "status":200, "latency":"   1.394291ms", "method":"GET", "path":"/api/reviews/book/5c9b844d-f12d-4848-8530-2815f6353a45", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:55:44", "status":200, "latency":"  55.784833ms", "method":"DELETE", "path":"/api/books/5c9b844d-f12d-4848-8530-2815f6353a45", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:55:44", "status":200, "latency":"   2.609042ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 15:56:44", "status":200, "latency":"   2.580875ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 16:12:45", "status":200, "latency":"   3.939791ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 16:12:48", "status":200, "latency":"      2.291ms", "method":"GET", "path":"/api/books/f9012345-6789-abcd-ef01-23456789abcd", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 16:12:48", "status":200, "latency":"   1.426666ms", "method":"GET", "path":"/api/reviews/book/f9012345-6789-abcd-ef01-23456789abcd", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 16:12:54", "status":200, "latency":"   3.000583ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 16:12:55", "status":200, "latency":"   1.630916ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 16:12:56", "status":200, "latency":"   3.359417ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 16:12:57", "status":200, "latency":"   2.965875ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 16:12:58", "status":200, "latency":"   2.146666ms", "method":"GET", "path":"/api/books/f3a4b5c6-d7e8-9f01-2345-6789abcdef01", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-25 16:12:58", "status":200, "latency":"   1.822708ms", "method":"GET", "path":"/api/reviews/book/f3a4b5c6-d7e8-9f01-2345-6789abcdef01", "error":"-", "response":[], "ip":"127.0.0.1"}

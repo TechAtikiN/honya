@@ -1,18 +1,17 @@
 'use client'
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts"
+import { PieChart, Pie, Cell } from "recharts"
 import {
   ChartContainer,
   ChartTooltip,
 } from "@/components/ui/chart"
 import { Locale } from "@/i18n.config"
-import { Tooltip } from "../ui/tooltip"
 import DropdownFilter from "../books/DropdownFilter"
 import { BOOKS_DATA_FILTER_OPTIONS } from "@/constants/analytics"
 import { BOOK_CATEGORIES } from "@/constants/books"
 import { LocaleDict } from "@/lib/locales"
 
 const COLORS = [
-  "#4F6D7A", //
+  "#4F6D7A",
   "#FF6F61",
   "#6B8E23",
   "#FF6347",
@@ -36,7 +35,14 @@ interface BooksDonutChartProps {
   translations: LocaleDict;
 }
 
-const ChartTooltipContent = ({ active, payload, locale }: any) => {
+interface ChartTooltipContentProps {
+  active?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  payload?: any;
+  locale: Locale;
+}
+
+const ChartTooltipContent = ({ active, payload, locale }: ChartTooltipContentProps) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
 
@@ -111,8 +117,6 @@ export default function BooksDonutChart({
 
       rawData = filteredRatingGroups;
     }
-
-    const total = Object.values(rawData).reduce((sum, count) => sum + count, 0);
 
     return Object.entries(rawData)
       .sort(([, a], [, b]) => b - a)

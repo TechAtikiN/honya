@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Locale } from "@/i18n.config";
 import { LocaleDict } from "@/lib/locales";
 import { Upload, X } from "lucide-react";
 import Image from "next/image";
@@ -13,13 +12,11 @@ export default function UploadBookImage({
   setImageFile,
   imageURL,
   translations,
-  locale,
 }: {
   imageFile: File | null;
   setImageFile: (file: File | null) => void;
   imageURL?: string | null;
   translations: LocaleDict;
-  locale: Locale;
 }) {
   const [error, setError] = useState<string | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);

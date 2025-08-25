@@ -9,7 +9,6 @@ import { Button } from '../ui/button'
 import RangeFilter from './RangeFilter'
 import { ListFilterPlus } from 'lucide-react'
 import { LocaleDict } from '@/lib/locales'
-import { Locale } from '@/i18n.config'
 
 interface SelectedFilter {
   key: string
@@ -19,10 +18,9 @@ interface SelectedFilter {
 
 interface FiltersProps {
   translations: LocaleDict
-  locale: Locale
 }
 
-export default function Filters({ translations, locale }: FiltersProps) {
+export default function Filters({ translations }: FiltersProps) {
   const [selectedFilters, setSelectedFilters] = useState<SelectedFilter[]>([])
 
   const handleFilterChange = (key: string, label: string, value: number) => {

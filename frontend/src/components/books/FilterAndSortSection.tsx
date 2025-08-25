@@ -2,7 +2,7 @@
 import { BOOK_CATEGORIES, BOOK_SORT_OPTIONS } from "@/constants/books"
 import DropdownFilter from "./DropdownFilter"
 import Filters from "./Filters"
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { Button } from "../ui/button";
 import { Trash2 } from "lucide-react";
 import HintLabel from "../global/hint-label";
@@ -29,7 +29,6 @@ export default function FilterAndSortSection({
       <div className="flex flex-wrap items-center justify-start gap-2">
         <Filters
           translations={translations}
-          locale={locale}
         />
       </div>
 

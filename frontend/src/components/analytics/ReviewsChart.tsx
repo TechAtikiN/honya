@@ -25,6 +25,7 @@ const chartConfig = {
 } satisfies ChartConfig
 
 const ChartTooltipContent = ({ active, payload, translations }:
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   { active?: boolean; payload?: any; translations: LocaleDict }
 ) => {
   if (active && payload && payload.length) {

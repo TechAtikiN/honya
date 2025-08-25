@@ -1,6 +1,7 @@
 import { Book } from "@/types/book"
 import Link from "next/link"
 import HintLabel from "../global/hint-label"
+import Image from "next/image"
 
 interface BookListItemProps {
   book: Book | null
@@ -18,7 +19,8 @@ export default function BookListItem({
     >
       <div className="mx-auto">
         <div className="relative w-[200px] h-[250px] object-fill  md:w-[165px] md:h-[250px] rounded-md overflow-hidden drop-shadow-md shadow-lg">
-          <img
+          <Image
+            fill
             src={book.image || "/assets/books/book-placeholder.png"}
             alt={book.title}
             className="object-fill w-full h-full"

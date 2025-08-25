@@ -9,8 +9,9 @@ interface BookListProps {
 }
 
 export default function BookList({ books }: BookListProps) {
-  if (!books) return null
   const { collapse } = useSidebarStore();
+
+  if (!books) return null
 
   return (
     <div className={`grid max-[420px]:grid-cols-1 grid-cols-2 sm:grid-cols-2 
