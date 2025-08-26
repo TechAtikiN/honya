@@ -24,14 +24,14 @@ func NewUrlController(service service.UrlService) UrlController {
 // ProcessUrl godoc
 // @Summary Process a URL to get its redirection or canonical form
 // @Description Process a given URL to retrieve its redirection URL, canonical URL, or both
-// @Tags URL
+// @Tags url
 // @Accept json
 // @Produce json
 // @Param request body dto.ProcessUrlRequest true "Process URL Request"
 // @Success 200 {object} dto.ProcessUrlResponse
 // @Failure 400 {object} errors.ErrorResponse
 // @Failure 500 {object} errors.ErrorResponse
-// @Router /process-url [get]
+// @Router /url/process-url [post]
 func (c *urlController) ProcessUrl(ctx *fiber.Ctx) error {
 	var req dto.ProcessUrlRequest
 	if err := ctx.BodyParser(&req); err != nil {

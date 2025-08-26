@@ -74,3 +74,353 @@
 {"timestamp":"2025-08-26 11:15:44", "status":200, "latency":"   2.418917ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
 
 {"timestamp":"2025-08-26 11:15:44", "status":200, "latency":"   2.496333ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:24:45", "status":200, "latency":"    7.11925ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:24:47", "status":200, "latency":"      3.594ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:24:47", "status":200, "latency":"   1.587209ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:24:47", "status":200, "latency":"     12.615ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:33:06", "status":200, "latency":"   6.591167ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:33:06", "status":200, "latency":"   12.61675ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:33:06", "status":200, "latency":"  15.321792ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:33:10", "status":200, "latency":"   4.223292ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:33:10", "status":200, "latency":"    6.71475ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:33:10", "status":200, "latency":"   7.381166ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:33:31", "status":200, "latency":"   4.174375ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:33:31", "status":200, "latency":"   5.052166ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:33:31", "status":200, "latency":"   4.703333ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:33:36", "status":200, "latency":"   3.058416ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:33:36", "status":200, "latency":"   3.242042ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:33:36", "status":200, "latency":"   3.303375ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:56:47", "status":200, "latency":"  16.133167ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:56:58", "status":200, "latency":"   4.580208ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:58:26", "status":200, "latency":"   6.024208ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:58:26", "status":200, "latency":"  13.257833ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:58:26", "status":200, "latency":"  14.805333ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:58:26", "status":200, "latency":"   3.725208ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:58:26", "status":200, "latency":"   4.219541ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:58:26", "status":200, "latency":"   5.034666ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:58:45", "status":200, "latency":"   2.151459ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:58:45", "status":200, "latency":"   2.561167ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:58:45", "status":200, "latency":"   5.326125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:59:03", "status":200, "latency":"   4.649708ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:59:12", "status":200, "latency":"   2.464333ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:59:15", "status":200, "latency":"     3.6655ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:59:16", "status":200, "latency":"   2.553875ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:59:16", "status":200, "latency":"   2.346834ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:59:16", "status":200, "latency":"     3.2675ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:59:54", "status":200, "latency":"   4.822375ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:00:12", "status":201, "latency":" 289.572958ms", "method":"POST", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:00:12", "status":200, "latency":"      2.945ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:00:13", "status":200, "latency":"   3.706875ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:00:13", "status":200, "latency":"   1.835208ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:00:13", "status":200, "latency":"   2.921708ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:02:01", "status":200, "latency":"   4.074583ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:02:25", "status":200, "latency":"   3.185167ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:02:25", "status":200, "latency":"    5.88025ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:02:25", "status":200, "latency":"   8.842625ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:02:36", "status":200, "latency":"   3.328041ms", "method":"GET", "path":"/api/dashboard/books-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:02:36", "status":200, "latency":"   3.537166ms", "method":"GET", "path":"/api/dashboard/reviews-data", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:02:36", "status":200, "latency":"   2.579584ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:04:17", "status":200, "latency":"     7.1485ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:06:26", "status":200, "latency":"   5.913209ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:06:41", "status":200, "latency":"      3.074ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:06:41", "status":200, "latency":"   1.016667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:06:53", "status":200, "latency":"   2.680125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:07:18", "status":200, "latency":"   7.222208ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:07:18", "status":200, "latency":"   1.835916ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:16:26", "status":405, "latency":"    248.708µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:16:26", "status":405, "latency":"    248.708µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:16:42", "status":405, "latency":"     39.041µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:16:42", "status":405, "latency":"     39.041µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:16:51", "status":405, "latency":"     42.667µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:16:51", "status":405, "latency":"     42.667µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:17:20", "status":405, "latency":"     42.208µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:17:20", "status":405, "latency":"     42.208µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:18:36", "status":405, "latency":"    153.583µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:18:36", "status":405, "latency":"    153.583µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:18:43", "status":405, "latency":"     40.958µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:18:43", "status":405, "latency":"     40.958µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:19:10", "status":200, "latency":"    9.32125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:19:41", "status":405, "latency":"     26.875µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:19:41", "status":405, "latency":"     26.875µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:19:43", "status":405, "latency":"     19.125µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:19:43", "status":405, "latency":"     19.125µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:21:19", "status":405, "latency":"     96.791µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:21:19", "status":405, "latency":"     96.791µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:21:20", "status":405, "latency":"       36.5µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:21:20", "status":405, "latency":"       36.5µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:21:22", "status":405, "latency":"     60.708µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:21:22", "status":405, "latency":"     60.708µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:21:23", "status":405, "latency":"      25.75µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:21:23", "status":405, "latency":"      25.75µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:21:24", "status":405, "latency":"     27.416µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:21:24", "status":405, "latency":"     27.416µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:21:24", "status":405, "latency":"      18.25µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:21:24", "status":405, "latency":"      18.25µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:22:08", "status":405, "latency":"         25µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:22:08", "status":405, "latency":"         25µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:22:09", "status":405, "latency":"     37.834µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:22:09", "status":405, "latency":"     37.834µs", "method":"GET", "path":"/dashboard/books", "error":"Cannot GET /dashboard/books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:23:48", "status":405, "latency":"     82.666µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:23:48", "status":405, "latency":"     82.666µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:26:09", "status":405, "latency":"    120.625µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:26:09", "status":405, "latency":"    120.625µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:26:10", "status":405, "latency":"     53.875µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:26:10", "status":405, "latency":"     53.875µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:28:06", "status":405, "latency":"    142.792µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:28:06", "status":405, "latency":"    142.792µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:32:40", "status":405, "latency":"     93.375µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:32:40", "status":405, "latency":"     93.375µs", "method":"GET", "path":"/books", "error":"Cannot GET /books", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:33:39", "status":405, "latency":"     44.333µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:33:39", "status":405, "latency":"     44.333µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:33:39", "status":405, "latency":"     20.417µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:33:39", "status":405, "latency":"     20.417µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:33:46", "status":405, "latency":"     26.708µs", "method":"GET", "path":"/swagge", "error":"Cannot GET /swagge", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:33:46", "status":405, "latency":"     26.708µs", "method":"GET", "path":"/swagge", "error":"Cannot GET /swagge", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:33:46", "status":405, "latency":"     15.417µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:33:46", "status":405, "latency":"     15.417µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:33:48", "status":405, "latency":"     15.625µs", "method":"GET", "path":"/swagger", "error":"Cannot GET /swagger", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:33:48", "status":405, "latency":"     15.625µs", "method":"GET", "path":"/swagger", "error":"Cannot GET /swagger", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:33:48", "status":405, "latency":"     11.583µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:33:48", "status":405, "latency":"     11.583µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:34:01", "status":405, "latency":"     20.375µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:34:01", "status":405, "latency":"     20.375µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:34:01", "status":405, "latency":"     20.666µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:34:01", "status":405, "latency":"     20.666µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:36:48", "status":405, "latency":"    203.667µs", "method":"GET", "path":"/docs/", "error":"Cannot GET /docs/", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:36:48", "status":405, "latency":"    203.667µs", "method":"GET", "path":"/docs/", "error":"Cannot GET /docs/", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:36:48", "status":405, "latency":"      15.25µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:36:48", "status":405, "latency":"      15.25µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:36:50", "status":405, "latency":"     42.625µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:36:50", "status":405, "latency":"     42.625µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:36:50", "status":405, "latency":"     16.875µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:36:50", "status":405, "latency":"     16.875µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:47", "status":405, "latency":"    260.625µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:47", "status":405, "latency":"    260.625µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:47", "status":405, "latency":"     20.583µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:47", "status":405, "latency":"     20.583µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:50", "status":405, "latency":"     16.542µs", "method":"GET", "path":"/swagger", "error":"Cannot GET /swagger", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:50", "status":405, "latency":"     16.542µs", "method":"GET", "path":"/swagger", "error":"Cannot GET /swagger", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:50", "status":405, "latency":"      16.25µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:50", "status":405, "latency":"      16.25µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:52", "status":405, "latency":"     22.375µs", "method":"GET", "path":"/swagger/", "error":"Cannot GET /swagger/", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:52", "status":405, "latency":"     22.375µs", "method":"GET", "path":"/swagger/", "error":"Cannot GET /swagger/", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:52", "status":405, "latency":"     14.958µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:52", "status":405, "latency":"     14.958µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:54", "status":405, "latency":"     33.292µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:54", "status":405, "latency":"     33.292µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:54", "status":405, "latency":"     14.083µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:37:54", "status":405, "latency":"     14.083µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:40:17", "status":405, "latency":"     28.208µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:40:17", "status":405, "latency":"     28.208µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:42:29", "status":405, "latency":"     63.041µs", "method":"GET", "path":"/docs/index.html", "error":"Cannot GET /docs/index.html", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:42:29", "status":405, "latency":"     63.041µs", "method":"GET", "path":"/docs/index.html", "error":"Cannot GET /docs/index.html", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:42:29", "status":405, "latency":"     13.667µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:42:29", "status":405, "latency":"     13.667µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:43:46", "status":405, "latency":"    413.458µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:43:46", "status":405, "latency":"    413.458µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:43:46", "status":405, "latency":"     21.708µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:43:46", "status":405, "latency":"     21.708µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:44:55", "status":405, "latency":"      253.5µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:44:55", "status":405, "latency":"      253.5µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:44:55", "status":405, "latency":"     16.458µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:44:55", "status":405, "latency":"     16.458µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:44:55", "status":405, "latency":"     30.125µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:44:55", "status":405, "latency":"     30.125µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:44:55", "status":405, "latency":"     15.208µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:44:55", "status":405, "latency":"     15.208µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:45:05", "status":405, "latency":"     73.417µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:45:05", "status":405, "latency":"     73.417µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:45:05", "status":405, "latency":"     11.333µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:45:05", "status":405, "latency":"     11.333µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:45:05", "status":405, "latency":"     51.167µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:45:05", "status":405, "latency":"     51.167µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:45:05", "status":405, "latency":"     14.291µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:45:05", "status":405, "latency":"     14.291µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:45:05", "status":405, "latency":"      29.25µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:45:05", "status":405, "latency":"      29.25µs", "method":"GET", "path":"/docs", "error":"Cannot GET /docs", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:45:05", "status":405, "latency":"     21.667µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:45:05", "status":405, "latency":"     21.667µs", "method":"GET", "path":"/favicon.ico", "error":"Cannot GET /favicon.ico", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:47:27", "status":200, "latency":"   7.237416ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:48:47", "status":405, "latency":"    206.292µs", "method":"POST", "path":"/process-url", "error":"Cannot POST /process-url", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:48:47", "status":405, "latency":"    206.292µs", "method":"POST", "path":"/process-url", "error":"Cannot POST /process-url", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:50:11", "status":500, "latency":"   1.378583ms", "method":"GET", "path":"/api/url/process-url", "error":"Method Not Allowed", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:50:11", "status":500, "latency":"   1.378583ms", "method":"GET", "path":"/api/url/process-url", "error":"Method Not Allowed", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:50:16", "status":200, "latency":"    507.417µs", "method":"POST", "path":"/api/url/process-url", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:50:56", "status":405, "latency":"      119.5µs", "method":"POST", "path":"/url/process-url", "error":"Cannot POST /url/process-url", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:50:56", "status":405, "latency":"      119.5µs", "method":"POST", "path":"/url/process-url", "error":"Cannot POST /url/process-url", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 12:55:21", "status":200, "latency":"    611.042µs", "method":"POST", "path":"/api/url/process-url", "error":"-", "response":[], "ip":"127.0.0.1"}

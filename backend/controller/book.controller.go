@@ -36,12 +36,12 @@ func NewBookController(service service.BookService) BookController {
 // @Produce json
 // @Param query query string false "Search query"
 // @Param offset query int false "Pagination offset" default(0)
-// @Param limit query int false "Pagination limit" default(10)
-// @Param category query string false "Book category (Available categories: fiction, non_fiction, science, history, fantasy, mystery, thriller, cooking, travel, classics)"
-// @Param publication_year query int false "Publication year"
-// @Param rating query number false "Minimum rating"
-// @Param pages query int false "Number of pages"
-// @Param sort query string false "Sort by field (e.g., title, publication_year, rating)"
+// @Param limit query int false "Number of items to return" default(10)
+// @Param category query string false "Filter by category (Available categories: fiction, non_fiction, science, history, fantasy, mystery, thriller, cooking, travel, classics)"
+// @Param publication_year query int false "Filter by publication year"
+// @Param rating query number false "Filter by minimum rating"
+// @Param pages query int false "Filter by minimum number of pages"
+// @Param sort query string false "Sort by field (Options: title_asc, title_desc, year_asc, year_desc, rating_asc, rating_desc)" default(title_asc)
 // @Success 200 {object} dto.BookListResponse "List of books fetched successfully"
 // @Failure 400 {object} errors.ErrorResponse "Invalid query parameters"
 // @Router /books [get]
@@ -68,12 +68,12 @@ func (c *bookController) GetBooks(ctx *fiber.Ctx) error {
 
 // GetBookByID godoc
 // @Summary Get a book by ID
-// @Description Retrieve detailed information about a specific book by its ID
+// @Description Retrieve the details of a specific book by its ID
 // @Tags books
 // @Accept json
 // @Produce json
 // @Param id path string true "Book ID"
-// @Success 200 {object} dto.BookResponse "Book fetched successfully"
+// @Success 200 {object} dto.BookResponse "Book details fetched successfully"
 // @Failure 400 {object} errors.ErrorResponse "Invalid ID format"
 // @Failure 404 {object} errors.ErrorResponse "Book not found"
 // @Router /books/{id} [get]
@@ -99,16 +99,17 @@ func (c *bookController) GetBookByID(ctx *fiber.Ctx) error {
 // @Accept multipart/form-data
 // @Produce json
 // @Param title formData string true "Book title"
-// @Param description formData string false "Book description"
+// @Param description formData string true "Book description"
 // @Param category formData string true "Book category (Available categories: fiction, non_fiction, science, history, fantasy, mystery, thriller, cooking, travel, classics)"
 // @Param publication_year formData int true "Publication year"
 // @Param rating formData number true "Book rating"
 // @Param pages formData int true "Number of pages"
-// @Param isbn formData string true "ISBN number"
+// @Param isbn formData string true "Book ISBN (must be unique)"
 // @Param author_name formData string true "Author name"
 // @Param image formData file false "Book cover image"
 // @Success 201 {object} dto.BookResponse "Book created successfully"
 // @Failure 400 {object} errors.ErrorResponse "Invalid input data"
+// @Failure 409 {object} errors.ErrorResponse "A book with this ISBN already exists"
 // @Router /books [post]
 func (c *bookController) CreateBook(ctx *fiber.Ctx) error {
 	var reqData dto.BookCreateRequest
@@ -154,12 +155,6 @@ func (c *bookController) CreateBook(ctx *fiber.Ctx) error {
 // @Param publication_year formData int false "Publication year"
 // @Param rating formData number false "Book rating"
 // @Param pages formData int false "Number of pages"
-// @Param author_name formData string false "Author name"
-// @Param image formData file false "Book cover image"
-// @Success 200 {object} dto.BookResponse "Book updated successfully"
-// @Failure 400 {object} errors.ErrorResponse "Invalid input data"
-// @Failure 404 {object} errors.ErrorResponse "Book not found"
-// @Router /books/{id} [put]
 func (c *bookController) UpdateBook(ctx *fiber.Ctx) error {
 	id, err := utils.ParseUUIDParam(ctx, "id")
 	if err != nil {

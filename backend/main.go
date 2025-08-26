@@ -14,6 +14,11 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
+// @title Honya API
+// @version 1.0
+// @description API for managing books and reviews
+// @BasePath /api
+
 //go:embed docs/swagger.json
 var swaggerJson []byte
 

@@ -45,37 +45,38 @@ const docTemplate = `{
                     {
                         "type": "integer",
                         "default": 10,
-                        "description": "Pagination limit",
+                        "description": "Number of items to return",
                         "name": "limit",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "Book category (Available categories: fiction, non_fiction, science, history, fantasy, mystery, thriller, cooking, travel, classics)",
+                        "description": "Filter by category (Available categories: fiction, non_fiction, science, history, fantasy, mystery, thriller, cooking, travel, classics)",
                         "name": "category",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "Publication year",
+                        "description": "Filter by publication year",
                         "name": "publication_year",
                         "in": "query"
                     },
                     {
                         "type": "number",
-                        "description": "Minimum rating",
+                        "description": "Filter by minimum rating",
                         "name": "rating",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "Number of pages",
+                        "description": "Filter by minimum number of pages",
                         "name": "pages",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "Sort by field (e.g., title, publication_year, rating)",
+                        "default": "title_asc",
+                        "description": "Sort by field (Options: title_asc, title_desc, year_asc, year_desc, rating_asc, rating_desc)",
                         "name": "sort",
                         "in": "query"
                     }
@@ -119,7 +120,8 @@ const docTemplate = `{
                         "type": "string",
                         "description": "Book description",
                         "name": "description",
-                        "in": "formData"
+                        "in": "formData",
+                        "required": true
                     },
                     {
                         "type": "string",
@@ -151,7 +153,7 @@ const docTemplate = `{
                     },
                     {
                         "type": "string",
-                        "description": "ISBN number",
+                        "description": "Book ISBN (must be unique)",
                         "name": "isbn",
                         "in": "formData",
                         "required": true
@@ -179,6 +181,12 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Invalid input data",
+                        "schema": {
+                            "$ref": "#/definitions/errors.ErrorResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "A book with this ISBN already exists",
                         "schema": {
                             "$ref": "#/definitions/errors.ErrorResponse"
                         }
@@ -252,7 +260,7 @@ const docTemplate = `{
         },
         "/books/{id}": {
             "get": {
-                "description": "Retrieve detailed information about a specific book by its ID",
+                "description": "Retrieve the details of a specific book by its ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -274,103 +282,13 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "Book fetched successfully",
+                        "description": "Book details fetched successfully",
                         "schema": {
                             "$ref": "#/definitions/dto.BookResponse"
                         }
                     },
                     "400": {
                         "description": "Invalid ID format",
-                        "schema": {
-                            "$ref": "#/definitions/errors.ErrorResponse"
-                        }
-                    },
-                    "404": {
-                        "description": "Book not found",
-                        "schema": {
-                            "$ref": "#/definitions/errors.ErrorResponse"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "description": "Update the details of an existing book by its ID",
-                "consumes": [
-                    "multipart/form-data"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "books"
-                ],
-                "summary": "Update an existing book",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Book ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Book title",
-                        "name": "title",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "description": "Book description",
-                        "name": "description",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "description": "Book category (Available categories: fiction, non_fiction, science, history, fantasy, mystery, thriller, cooking, travel, classics)",
-                        "name": "category",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Publication year",
-                        "name": "publication_year",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "number",
-                        "description": "Book rating",
-                        "name": "rating",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Number of pages",
-                        "name": "pages",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "description": "Author name",
-                        "name": "author_name",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "file",
-                        "description": "Book cover image",
-                        "name": "image",
-                        "in": "formData"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Book updated successfully",
-                        "schema": {
-                            "$ref": "#/definitions/dto.BookResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid input data",
                         "schema": {
                             "$ref": "#/definitions/errors.ErrorResponse"
                         }
@@ -429,9 +347,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/process-url": {
+        "/dashboard/books": {
             "get": {
-                "description": "Process a given URL to retrieve its redirection URL, canonical URL, or both",
+                "description": "Get books data",
                 "consumes": [
                     "application/json"
                 ],
@@ -439,37 +357,22 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "URL"
+                    "dashboard"
                 ],
-                "summary": "Process a URL to get its redirection or canonical form",
+                "summary": "Get books data",
                 "parameters": [
                     {
-                        "description": "Process URL Request",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/dto.ProcessUrlRequest"
-                        }
+                        "type": "string",
+                        "description": "Filter by",
+                        "name": "filter_by",
+                        "in": "query"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/dto.ProcessUrlResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/errors.ErrorResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/errors.ErrorResponse"
+                            "$ref": "#/definitions/model.Book"
                         }
                     }
                 }
@@ -703,6 +606,52 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/url/process-url": {
+            "post": {
+                "description": "Process a given URL to retrieve its redirection URL, canonical URL, or both",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "url"
+                ],
+                "summary": "Process a URL to get its redirection or canonical form",
+                "parameters": [
+                    {
+                        "description": "Process URL Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.ProcessUrlRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ProcessUrlResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/errors.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.ErrorResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -892,18 +841,91 @@ const docTemplate = `{
                     "example": "Invalid ID format"
                 }
             }
+        },
+        "model.Book": {
+            "type": "object",
+            "properties": {
+                "author_name": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "isbn": {
+                    "type": "string"
+                },
+                "pages": {
+                    "type": "integer"
+                },
+                "publication_year": {
+                    "type": "integer"
+                },
+                "rating": {
+                    "type": "number"
+                },
+                "reviews": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.Review"
+                    }
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.Review": {
+            "type": "object",
+            "properties": {
+                "book_id": {
+                    "type": "string"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "integer"
+                }
+            }
         }
     }
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "",
+	Version:          "1.0",
 	Host:             "",
-	BasePath:         "",
+	BasePath:         "/api",
 	Schemes:          []string{},
-	Title:            "",
-	Description:      "",
+	Title:            "Honya API",
+	Description:      "API for managing books and reviews",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

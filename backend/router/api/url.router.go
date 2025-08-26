@@ -26,5 +26,7 @@ func NewUrlRouter(app *fiber.App) *UrlRouter {
 }
 
 func (r *UrlRouter) Setup(api fiber.Router) {
-	api.Get("/process-url", r.ctrl.ProcessUrl)
+	urlRoutes := api.Group("/url")
+
+	urlRoutes.Post("/process-url", r.ctrl.ProcessUrl)
 }

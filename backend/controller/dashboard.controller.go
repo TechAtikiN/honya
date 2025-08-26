@@ -21,7 +21,25 @@ func NewDashboardController(service service.DashboardService) DashboardControlle
 	return &dashboardController{service}
 }
 
+// GetBooksData godoc
+// @Summary Get books data
+// @Description Get books data
+// @Tags dashboard
+// @Accept json
+// @Produce json
+// @Param filter_by query string false "Filter by"
+// @Success 200 {object} model.Book
+// @Router /dashboard/books [get]
 func (c *dashboardController) GetBooksData(ctx *fiber.Ctx) error {
+	// GetBooksData godoc
+	// @Summary Get books data
+	// @Description Get books data
+	// @Tags dashboard
+	// @Accept json
+	// @Produce json
+	// @Param filter_by query string false "Filter by"
+	// @Success 200 {object} model.Book
+	// @Router /dashboard/books [get]
 	filterBy := ctx.Query("filter_by", utils.DefaultDonutChartFilterBy)
 
 	data, err := c.service.GetBooksData(filterBy)
@@ -36,6 +54,14 @@ func (c *dashboardController) GetBooksData(ctx *fiber.Ctx) error {
 }
 
 func (c *dashboardController) GetReviewsData(ctx *fiber.Ctx) error {
+	// GetReviewsData godoc
+	// @Summary Get reviews data
+	// @Description Get reviews data
+	// @Tags dashboard
+	// @Accept json
+	// @Produce json
+	// @Param limit query string false "Limit"
+	// @Success 200 {object} model.Review
 	limitStr := ctx.Query("limit", "10")
 	limit, err := strconv.Atoi(limitStr)
 
