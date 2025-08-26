@@ -20,29 +20,18 @@ type EnvConfig struct {
 	AWSSecretKey             string
 }
 
-// NOTE: In production, we will use the environment variables set by Vercel.
-// In development, we will use the .env.local file.
-// This is because Vercel will automatically set the environment variables for us.
-// We can use the .env.local file to set the environment variables for our local development.
-// We can use the .env file to set the environment variables for our production environment.
-
-// Global variable for storing environment config; could also pass via context
 var NewEnvConfig EnvConfig
 
 func GetEnvConfig() (EnvConfig, error) {
-	if os.Getenv("VERCEL_ENV") == "" {
-
-		if _, err := os.Stat(".env.local"); err == nil {
-			err := godotenv.Load(".env.local", ".env")
-			if err != nil {
-
-				return NewEnvConfig, errors.NewBadRequestError("Error loading .env.local file")
-			}
-		} else {
-			err := godotenv.Load(".env")
-			if err != nil {
-				return NewEnvConfig, errors.NewBadRequestError("Error loading .env file")
-			}
+	if _, err := os.Stat(".env.local"); err == nil {
+		err := godotenv.Load(".env.local", ".env")
+		if err != nil {
+			return NewEnvConfig, errors.NewBadRequestError("Error loading .env.local file")
+		}
+	} else {
+		err := godotenv.Load(".env")
+		if err != nil {
+			return NewEnvConfig, errors.NewBadRequestError("Error loading .env file")
 		}
 	}
 

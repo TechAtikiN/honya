@@ -54,3 +54,23 @@
 {"timestamp":"2025-08-26 02:09:50", "status":200, "latency":"   4.837917ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
 
 {"timestamp":"2025-08-26 02:27:48", "status":200, "latency":"  12.465125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:15:35", "status":200, "latency":"  11.399833ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:15:37", "status":200, "latency":"   3.773125ms", "method":"GET", "path":"/api/books/a4b5c6d7-e8f9-0123-4567-89abcdef0123", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:15:37", "status":200, "latency":"   2.529125ms", "method":"GET", "path":"/api/reviews/book/a4b5c6d7-e8f9-0123-4567-89abcdef0123", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:15:39", "status":200, "latency":"      4.201ms", "method":"GET", "path":"/api/books/d456789a-bcde-f012-3456-789abcdef012", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:15:39", "status":200, "latency":"   2.128958ms", "method":"GET", "path":"/api/reviews/book/d456789a-bcde-f012-3456-789abcdef012", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:15:44", "status":200, "latency":"   4.145125ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:15:44", "status":200, "latency":"   3.554334ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:15:44", "status":200, "latency":"   2.903667ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:15:44", "status":200, "latency":"   2.418917ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}
+
+{"timestamp":"2025-08-26 11:15:44", "status":200, "latency":"   2.496333ms", "method":"GET", "path":"/api/books", "error":"-", "response":[], "ip":"127.0.0.1"}

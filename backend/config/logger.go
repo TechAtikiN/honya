@@ -77,15 +77,6 @@ func getLogFile(logRetention string) (*os.File, error) {
 }
 
 func SetupLogger(logStack string, logRetention string) fiber.Handler {
-	// Check if we are running in the Vercel production environment
-	if os.Getenv("VERCEL_ENV") != "" {
-		// In production, log to standard output for Vercel to capture
-		return logger.New(logger.Config{
-			Output: os.Stdout,
-		})
-	}
-
-	// In development, set up file-based logging
 	var err error
 	logFile, err = getLogFile(logRetention)
 	if err != nil {
