@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { Book } from '@/types/book';
 import { Locale } from '@/i18n.config';
-import CustomLink from '../global/custom-link';
+import CustomLink from '../global/CustomLink';
 import { ExternalLink } from 'lucide-react';
 
 interface BookTableItemProps {

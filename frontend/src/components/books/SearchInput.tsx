@@ -48,14 +48,9 @@ export default function SearchInput({ translations }: SearchInputProps) {
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      handleSearch.cancel(); // Cancel any pending debounced search
+      handleSearch.cancel();
       performSearch(query);
     }
-  };
-
-  const handleSearchButtonClick = () => {
-    handleSearch.cancel(); // Cancel any pending debounced search
-    performSearch(query);
   };
 
   return (

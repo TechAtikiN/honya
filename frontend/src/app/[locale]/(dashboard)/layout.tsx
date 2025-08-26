@@ -1,5 +1,5 @@
-import MobileSidebar from '@/components/global/mobile-sidebar';
-import Sidebar from '@/components/global/sidebar';
+import MobileSidebar from '@/components/global/MobileSidebar';
+import Sidebar from '@/components/global/Sidebar';
 import { getSidebarLinks } from '@/constants/sidebar';
 import { getLocale } from '@/i18n.config';
 import { getDictionary } from '@/lib/locales';

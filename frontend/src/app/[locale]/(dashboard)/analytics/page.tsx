@@ -10,6 +10,7 @@ import { getLocale } from '@/i18n.config';
 import { getDictionary } from '@/lib/locales';
 import { getFilters, getPagination } from '@/lib/utils';
 import { Book, Filters } from '@/types/book';
+import { BookOpenText } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -46,6 +47,18 @@ export default async function Analytics({
     meta: { total_count: 0 },
   };
 
+  // if no books found, show descriptive message
+  if (!data || data.length === 0) {
+    return (
+      <div className='flex flex-col items-center justify-center  h-[calc(100vh-30px)] space-y-3'>
+        <BookOpenText className='animate-bounce h-8 w-8 text-primary/60' />
+        <p className='text-primary/60 text-lg font-bold'>
+          {translations.page.analytics.noBooks}
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className='flex flex-col space-y-3 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar pb-5 py-2'>
       <p className='text-2xl font-bold text-primary'>
@@ -56,7 +69,12 @@ export default async function Analytics({
         <div className='grid grid-cols-1 min-[850px]:grid-cols-2 gap-5'>
           <div className='p-3 rounded-md border border-primary/20 flex'>
             {!booksData ? (
-              <div className=''>{translations.page.analytics.noBooks}</div>
+              <div className='flex flex-col items-center justify-center h-full w-full space-y-3'>
+                <BookOpenText className='animate-bounce h-8 w-8 text-primary/60' />
+                <p className='text-primary/60 text-lg font-bold'>
+                  {translations.page.analytics.noBooks}
+                </p>
+              </div>
             ) : (
               <BooksChart
                 locale={lang}
@@ -68,7 +86,12 @@ export default async function Analytics({
           </div>
           <div className='p-3 rounded-md border border-primary/20 flex'>
             {!reviewsData ? (
-              <div className=''>{translations.page.analytics.noReviews}</div>
+              <div className='flex flex-col items-center justify-center h-full w-full space-y-3'>
+                <BookOpenText className='animate-bounce h-8 w-8 text-primary/60' />
+                <p className='text-primary/60 text-lg font-bold'>
+                  {translations.page.analytics.noReviews}
+                </p>
+              </div>
             ) : (
               <ReviewsChart
                 locale={lang}

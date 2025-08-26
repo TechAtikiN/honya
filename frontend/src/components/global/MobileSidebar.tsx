@@ -9,10 +9,10 @@ import {
   SheetTrigger,
 } from '../ui/sheet';
 import { Locale } from '@/i18n.config';
-import BrandLogo from './brand-logo';
-import SidebarLink from './sidebar-link';
+import BrandLogo from './BrandLogo';
+import SidebarLink from './SidebarLink';
 import { useSidebarStore } from '@/stores/sidebar.store';
-import LanguageSelector from './language-selector';
+import LanguageSelector from './LanguageSelector';
 
 interface MobileSidebarProps {
   locale: Locale;

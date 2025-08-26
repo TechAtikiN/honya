@@ -16,7 +16,7 @@ export default function BookTable({
 }: BookListProps) {
   if (!books) return null;
   return (
-    <div className=''>
+    <div className='min-h-[300px]'>
       <div className='relative overflow-x-auto shadow-sm sm:rounded-lg'>
         {books.length > 0 ? (
           <table className='w-full text-sm'>

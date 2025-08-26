@@ -80,3 +80,6 @@ erDiagram
 - Get all reviews for a specific book
 - List reviews across all books
 - Add a new review
+
+### API Documentation 📄
+The API documentation for the Honya Books Application is provided in the [API.md](./API.md) file. All the API endpoints are documented in the API.md file and Swagger UI is available at `http://localhost:8080/swagger/`

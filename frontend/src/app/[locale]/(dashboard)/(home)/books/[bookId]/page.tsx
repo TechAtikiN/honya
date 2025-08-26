@@ -8,7 +8,7 @@ import AddReview from '@/components/book-details/AddReview';
 import DeleteBook from '@/components/book-details/DeleteBook';
 import StarRating from '@/components/book-details/StarRating';
 import UpdateBook from '@/components/books/UpdateBook';
-import CustomLink from '@/components/global/custom-link';
+import CustomLink from '@/components/global/CustomLink';
 import { getDictionary } from '@/lib/locales';
 import { BOOK_CATEGORIES } from '@/constants/books';
 
@@ -26,6 +26,7 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
 
   const bookDetails = await getBookDetails(bookId);
 
+  // if book not found, show descriptive message
   if (!bookDetails) {
     return (
       <div className='flex flex-col items-center justify-center gap-y-5 h-[calc(100vh-30px)]'>
@@ -48,7 +49,7 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
 
   return (
     <div className='flex flex-col space-y-10 h-[calc(100vh-30px)] overflow-auto invisible-scrollbar px-2 pb-10'>
-      {/* back button */}
+      {/* Back button + Update book button */}
       <div className='flex items-center justify-between w-full'>
         <CustomLink
           href={`/`}
@@ -68,7 +69,7 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
       </div>
 
       <div className='flex flex-col md:flex-row items-start justify-center space-x-0 md:space-x-10 space-y-5 md:space-y-0'>
-        {/* Left section  */}
+        {/* Left section - Book image */}
         <div className='relative flex items-center justify-center w-full md:w-1/2'>
           <div className='hidden md:block md:absolute md:h-[520px] md:w-[520px] md:rounded-full md:bg-secondary/35 md:z-0 shadow-lg' />
           <Image
@@ -80,7 +81,7 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
           />
         </div>
 
-        {/* Right section */}
+        {/* Right section - Book details */}
         <div className='flex flex-col items-start justify-center space-y-4 w-full md:w-1/2'>
           <p className='bg-secondary border border-primary rounded-xl font-bold px-3 text-primary'>
             {BOOK_CATEGORIES.find(
@@ -112,7 +113,7 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
         </p>
       </div>
 
-      {/* bottom  */}
+      {/* Bottom section - Book details */}
       <div className='flex flex-col space-y-10'>
         <div className='flex flex-col md:flex-row items-start justify-between'>
           <div className='flex flex-col items-center justify-between space-y-1'>
@@ -149,7 +150,7 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
         </div>
         <hr />
 
-        {/* reviews */}
+        {/* Reviews */}
         <div className='flex flex-col space-y-3'>
           <div className='flex items-center justify-between'>
             <p className='text-2xl font-bold text-primary'>
@@ -196,6 +197,7 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
         </div>
       </div>
 
+      {/* Delete book button */}
       <DeleteBook
         bookId={bookDetails.id}
         translations={translations}

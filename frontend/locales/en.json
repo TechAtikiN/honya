@@ -31,6 +31,7 @@
   "page": {
     "home": {
       "titleName": "Books",
+      "noBooks": "No books found",
       "filters": {
         "category": "Category",
         "filters": "Filters",

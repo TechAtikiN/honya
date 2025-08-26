@@ -1,13 +1,13 @@
 ## API Documentation ⚙️
 The API documentation for Honya Books is provided below. This documentation outlines the available endpoints, request parameters, and response formats for interacting with the backend services.
 
-### Base URL
+### Base URL 🔗
 The base URL for all API endpoints is:
 ```
 http://localhost:8080/api
 ```
 
-### Swagger Documentation
+### Swagger Documentation 📄
 For an interactive experience, you can access the Swagger UI for the API documentation at:
 ```
 http://localhost:8080/docs
@@ -43,6 +43,7 @@ Retrieve a paginated list of books with advanced filtering, sorting, and search 
 
 **Response:** Returns a paginated list of books with metadata including total count and pagination info.
 
+---
 ##### **GET /books/{id}**
 Retrieve detailed information about a specific book including all its reviews.
 
@@ -69,7 +70,10 @@ Create a new book entry with optional cover image upload.
 
 **Response:** Returns the created book with generated ID and image URL.
 
-##### **PUT /books/{id}**
+
+---
+
+##### **PATCH /books/{id}**
 Update an existing book's details. Supports both JSON and form-data requests.
 
 **Path Parameters:**
@@ -81,6 +85,8 @@ Update an existing book's details. Supports both JSON and form-data requests.
 
 **Response:** Returns the updated book information.
 
+--- 
+
 ##### **DELETE /books/{id}**
 Delete a book and all its associated reviews.
 
@@ -89,14 +95,17 @@ Delete a book and all its associated reviews.
 
 **Response:** Confirmation message of successful deletion.
 
+---
+
 #### 2. Reviews 📝
 
 ##### **GET /reviews**
-Retrieve a list of all reviews across all books with pagination.
+Retrieve a list of all reviews across all books with pagination and search capabilities.
 
 **Query Parameters:**
-- `offset` (integer, optional): Pagination offset
-- `limit` (integer, optional): Number of reviews per page
+- `query` (string, optional): Search query to filter reviews
+- `offset` (integer, optional): Pagination offset (default: 0)
+- `limit` (integer, optional): Number of reviews per page (default: 10)
 
 ##### **GET /reviews/{id}**
 Get detailed information about a specific review.
@@ -104,11 +113,16 @@ Get detailed information about a specific review.
 **Path Parameters:**
 - `id` (UUID, required): Review ID
 
-##### **GET /book/{book_id}/reviews**
-Retrieve all reviews for a specific book.
+##### **GET /books/{book_id}/reviews**
+Retrieve all reviews for a specific book with pagination and search capabilities.
 
 **Path Parameters:**
 - `book_id` (UUID, required): Book ID
+
+**Query Parameters:**
+- `query` (string, optional): Search query to filter reviews
+- `offset` (integer, optional): Pagination offset (default: 0)
+- `limit` (integer, optional): Number of reviews per page (default: 10)
 
 ##### **POST /reviews**
 Add a new review for a book.
@@ -129,13 +143,24 @@ Update an existing review.
 **Path Parameters:**
 - `id` (UUID, required): Review ID
 
-**Request Body:** All fields are optional for partial updates.
+**Request Body:**
+```json
+{
+  "name": "Updated reviewer name (optional)",
+  "email": "updated@email.com (optional, valid email)",
+  "content": "Updated review content (optional)"
+}
+```
+
+**Note:** All fields are optional for partial updates.
 
 ##### **DELETE /reviews/{id}**
 Delete a specific review.
 
 **Path Parameters:**
 - `id` (UUID, required): Review ID
+
+---
 
 #### 3. Dashboard Analytics 📊
 
@@ -155,9 +180,11 @@ Get top reviewers data showing most active users by review count.
 
 **Response:** Returns list of top reviewers with their review counts.
 
+---
+
 #### 4. URL Processing 🔗
 
-##### **POST /process-url**
+##### **POST /url/process-url**
 Process URLs to get redirection paths, canonical URLs, or both for link cleanup and validation.
 
 **Request Body:**
@@ -180,6 +207,8 @@ Process URLs to get redirection paths, canonical URLs, or both for link cleanup 
 }
 ```
 
+---
+
 ### Seeding Data
 1. Using Makefile
 ```
@@ -191,6 +220,8 @@ make seed
 Seed the database with sample data.
 
 **Response:** Returns a message indicating the status of the seeding process for books and reviews.
+
+---
 
 ### Schema Definitions
 The schema definitions for the API requests and responses can be found in the [SCHEMA.md](./SCHEMA.md) file.

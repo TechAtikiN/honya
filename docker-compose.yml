@@ -19,10 +19,12 @@ services:
   api:
     container_name: api
     build:
-      context: . # This sets the build context to the project root (honya/)
-      dockerfile: ./backend/Dockerfile # This points to the correct Dockerfile within that context
+      context: . 
+      dockerfile: ./backend/Dockerfile
     env_file:
       - ./backend/.env
+    ports:
+      - "8080:8080"
     volumes:
       - ./backend/.env:/app/.env
     networks:

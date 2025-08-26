@@ -1,7 +1,7 @@
 'use client';
 import { Locale } from '@/i18n.config';
 import { usePathname } from 'next/navigation';
-import CustomLink from './custom-link';
+import CustomLink from './CustomLink';
 
 interface SidebarLinkProps {
   link: {
@@ -51,11 +51,17 @@ export default function SidebarLink({
       return true;
     }
 
-    if (normalizedLinkHref === '/' && normalizedPathname.startsWith('/books/')) {
+    if (
+      normalizedLinkHref === '/' &&
+      normalizedPathname.startsWith('/books/')
+    ) {
       return true;
     }
 
-    if (normalizedLinkHref !== '/' && normalizedPathname.startsWith(normalizedLinkHref)) {
+    if (
+      normalizedLinkHref !== '/' &&
+      normalizedPathname.startsWith(normalizedLinkHref)
+    ) {
       const remainder = normalizedPathname.slice(normalizedLinkHref.length);
       return remainder === '' || remainder.startsWith('/');
     }
@@ -67,10 +73,11 @@ export default function SidebarLink({
     <CustomLink
       locale={locale}
       href={link.href}
-      className={`flex items-center justify-start space-x-3 p-2 rounded-sm ${isActive
-        ? 'bg-secondary border font-medium border-primary/60'
-        : 'font-normal'
-        }`}
+      className={`flex items-center justify-start space-x-3 p-2 rounded-sm ${
+        isActive
+          ? 'bg-secondary border font-medium border-primary/60'
+          : 'font-normal'
+      }`}
     >
       <div>{link.icon}</div>
       <p className={`${collapse ? 'opacity-0 w-0' : 'opacity-100 w-auto'}`}>

@@ -4,7 +4,7 @@ Below is a step-by-step guide to set up the Frontend (Next.js) and Backend (Gola
 ### Prerequisites
 Make sure you have the following installed:
 - [Node.js](https://nodejs.org/en/download)
-- [Pnpm](https://pnpm.io/installation) (for frontend)
+- [PNPM](https://pnpm.io/installation) (for frontend)
 - [Go](https://go.dev/dl/) 
 - [PostgreSQL](https://www.postgresql.org/download/)
 - [Docker](https://www.docker.com/get-started) (optional, for running application in containers)
@@ -39,47 +39,58 @@ git clone https://github.com/TechAtikiN/honya.git
 cd honya
 ```
 
+---
+
 #### 2. Install Dependencies
-**Frontend**
-> Install dependencies using either Makefile or PNPM.
 1. Using Makefile
 ```bash
-make install-fe
+make install
 ```
-2. Using PNPM
-> Note: This project uses yarn as the package manager.
+> `make install` will install both frontend and backend dependencies.
+
+2. Custom Install
 ```bash
 cd frontend
-pnpm install
+pnpm install # Install frontend dependencies
 ```
-
-**Backend**
-> Install dependencies using either Makefile or Go.
-1. Using Makefile
-```bash
-make install-be
-```
-2. Using Go
 ```bash
 cd backend
-go mod download
+go mod download # Install backend dependencies
 ```
+
+---
 
 #### 3. Run the Application
+1. Using Makefile
+```bash
+make run # Run the application
+```
+
+2. Using Docker
+```bash
+make docker-up # Run the application in containers
+```
+
+3. Custom Run
+
 **Frontend**
 ```bash
 cd frontend
-pnpm dev
+pnpm dev # Run the frontend
 ```
 **Backend**
 ```bash
 cd backend
-go run main.go
+go run main.go # Run the backend
 ```
+
+---
 
 #### 4. Access the Application
 - Frontend: `http://localhost:3000`
 - Backend: `http://localhost:8080`
+
+Swagger UI: `http://localhost:8080/swagger/`
 
 ### API Documentation
 The API documentation can be found at [API.md](./API.md) file.

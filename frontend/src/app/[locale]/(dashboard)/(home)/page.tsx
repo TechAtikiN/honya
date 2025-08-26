@@ -7,6 +7,7 @@ import { getFilters, getPagination } from '@/lib/utils';
 import { Book, Filters } from '@/types/book';
 import { getDictionary } from '@/lib/locales';
 import BooksPagination from '@/components/books/BooksPagination';
+import { BookOpenText } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -38,10 +39,10 @@ export default async function Home({ params, searchParams }: HomePageProps) {
       </div>
 
       <div className='flex flex-col items-center justify-between h-full gap-y-6'>
-        {/* Search input and Add button */}
+        {/* Search input + Add button */}
         <div className='flex flex-col gap-y-6 w-full'>
           <div className='flex flex-col gap-y-4'>
-            {/* Filters and Sort */}
+            {/* Filters + Sort */}
             <FilterAndSortSection
               filters={formattedFilters}
               translations={translations}
@@ -52,7 +53,10 @@ export default async function Home({ params, searchParams }: HomePageProps) {
           <div>
             {!data || data.length === 0 ? (
               <div className='flex flex-col items-center justify-center h-full space-y-3'>
-                <p className='text-primary text-lg'>No books found.</p>
+                <BookOpenText className='animate-bounce h-8 w-8 text-primary/60' />
+                <p className='text-primary/60 text-lg font-bold'>
+                  {translations.page.home.noBooks}
+                </p>
               </div>
             ) : (
               <div className='w-full flex flex-col justify-between h-full gap-y-6'>
@@ -62,6 +66,7 @@ export default async function Home({ params, searchParams }: HomePageProps) {
           </div>
         </div>
 
+        {/* Pagination */}
         {meta && meta.total_count > 0 && (
           <BooksPagination
             totalCount={meta?.total_count || 0}

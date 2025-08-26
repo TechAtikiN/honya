@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help install install-fe install-be lint lint-fe lint-be test-be docker-up docker-down docker-clean seed
+.PHONY: help install install-fe install-be lint lint-fe lint-be test-be docker-up docker-down docker-clean seed run
 
 # ============= Variables =============
 
@@ -38,17 +38,8 @@ lint: ## Lint all code
 
 # ============= Test =============
 
-# test-fe: ## Test frontend code
-# 	cd ${FRONTEND_DIR} && pnpm test
-
 test-be: ## Test backend code
 	cd ${BACKEND_DIR} && go test ./...
-
-# test: ## Test all code 
-# 	@echo "Running frontend and backend tests..."
-# 	@$(MAKE) test-fe
-# 	@$(MAKE) test-be
-# 	@echo "All tests completed successfully."
 
 # ============= Docker =============
 
@@ -65,6 +56,14 @@ docker-clean : ## Stop and remove Docker containers, networks, images, and volum
 
 seed: ## Seed the database with initial data
 	cd ${BACKEND_DIR} && go run ${SEED_SCRIPT}
+
+# ============= Run =============
+
+run: ## Run the application
+	@echo "Running frontend and backend..."
+	docker compose up db -d && \
+	cd ${BACKEND_DIR} && go run main.go & \
+	cd ${FRONTEND_DIR} && pnpm dev
 
 # ============= Help  =============
 

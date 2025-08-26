@@ -2,14 +2,17 @@
 This document outlines key architectural decisions and technology choices made for the **Honya Books** application.
 
 ### Frontend
-- `Next.js`: Decided to use Next.js for the frontend because it gives many features out of the box. For example: Routing, Caching, Server Actions to efficiently interact with the backend, and many more.
+- `Next.js`: Decided to use Next.js for the frontend because it gives many features out of the box. 
+    - Routing
+    - Caching
+    - Server Actions
 - `React Hook Form`: Used to handle form states with minimal re-renders and pairing it with Zod to validate form data facilitated a better developer experience.
 
 ### Backend
 - `Go + Fiber`: Fiber offers a quick and minimalistic way to build a RESTful API. It's easy to get a middleware up and running with Fiber (*Rate Limiter, Logger, etc*).
 - `Clean Architecture`: Controller, Service, Repository Pattern is used to keep the code clean and maintainable. It helps in writing more readable and testable code.
 - `Base Reposiory`: Implemented a *Base Repository* for a better code organization and to avoid code duplication.
-- `AWS S3`: Used to store the book cover images. Simpler and cheaper way to store files. 
+- `AWS S3`: Used to store the book cover images. Simpler and scalable way to store files. 
 - `Testing`: Used Testify to write unit tests for the backend that tests controller, service, and repository layers.
 
 #### Clean Architecture Diagram
@@ -42,7 +45,6 @@ graph TD
 honya/                              # Root Project Directory
 │
 ├── backend/                        
-│   ├── api/index.go                # Application Entry Point for Production
 │   ├── config/                     # Environment & Configuration
 │   ├── controller/                 # HTTP Request Handlers
 │   ├── dto/                        # Data Transfer Objects
@@ -54,7 +56,7 @@ honya/                              # Root Project Directory
 │   ├── tests/                      # Unit & Integration Tests
 │   ├── utils/                      # Helper Functions & Utilities
 │   ├── docs/                       # Swagger Documentation
-│   └── main_local.go               # Application Entry Point for Local Development
+│   └── main.go                     # Application Entry Point
 │
 ├── frontend/                       # Next.js Frontend
 │   ├── src/

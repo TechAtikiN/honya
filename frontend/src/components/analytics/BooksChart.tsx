@@ -1,32 +1,30 @@
-'use client'
-import { PieChart, Pie, Cell } from "recharts"
-import {
-  ChartContainer,
-  ChartTooltip,
-} from "@/components/ui/chart"
-import { Locale } from "@/i18n.config"
-import DropdownFilter from "../books/DropdownFilter"
-import { BOOKS_DATA_FILTER_OPTIONS } from "@/constants/analytics"
-import { BOOK_CATEGORIES } from "@/constants/books"
-import { LocaleDict } from "@/lib/locales"
+'use client';
+import { PieChart, Pie, Cell } from 'recharts';
+import { ChartContainer, ChartTooltip } from '@/components/ui/chart';
+import { Locale } from '@/i18n.config';
+import DropdownFilter from '../books/DropdownFilter';
+import { BOOKS_DATA_FILTER_OPTIONS } from '@/constants/analytics';
+import { BOOK_CATEGORIES } from '@/constants/books';
+import { LocaleDict } from '@/lib/locales';
+import { BookOpenText } from 'lucide-react';
 
 const COLORS = [
-  "#4F6D7A",
-  "#FF6F61",
-  "#6B8E23",
-  "#FF6347",
-  "#98C8E8",
-  "#4C9F70",
-  "#FFD700",
-  "#FF4500",
-  "#32CD32",
-  "#FF1493",
-  "#8A2BE2",
-  "#D2691E",
-  "#FF7F50",
-  "#1E90FF",
-  "#FF8C00",
-]
+  '#4F6D7A',
+  '#FF6F61',
+  '#6B8E23',
+  '#FF6347',
+  '#98C8E8',
+  '#4C9F70',
+  '#FFD700',
+  '#FF4500',
+  '#32CD32',
+  '#FF1493',
+  '#8A2BE2',
+  '#D2691E',
+  '#FF7F50',
+  '#1E90FF',
+  '#FF8C00',
+];
 
 interface BooksDonutChartProps {
   locale: Locale;
@@ -42,17 +40,22 @@ interface ChartTooltipContentProps {
   locale: Locale;
 }
 
-const ChartTooltipContent = ({ active, payload, locale }: ChartTooltipContentProps) => {
+const ChartTooltipContent = ({
+  active,
+  payload,
+  locale,
+}: ChartTooltipContentProps) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
 
     const categoryLabel = getCategoryLabel(data.name, locale);
 
     return (
-      <div className="bg-background border border-secondary ring-2 ring-primary/50 rounded-md p-2 shadow-lg">
-        <p className="font-medium text-foreground">{categoryLabel}</p> {/* Display category */}
-        <p className="text-sm text-muted-foreground">
-          Count: <span className="font-medium text-primary">{data.count}</span>
+      <div className='bg-background border border-secondary ring-2 ring-primary/50 rounded-md p-2 shadow-lg'>
+        <p className='font-medium text-foreground'>{categoryLabel}</p>{' '}
+        {/* Display category */}
+        <p className='text-sm text-muted-foreground'>
+          Count: <span className='font-medium text-primary'>{data.count}</span>
         </p>
       </div>
     );
@@ -62,19 +65,27 @@ const ChartTooltipContent = ({ active, payload, locale }: ChartTooltipContentPro
 
 const getCategoryLabel = (categoryValue: string, locale: Locale) => {
   const category = BOOK_CATEGORIES.find((cat) => cat.value === categoryValue);
-  return category ? (locale === 'ja' ? category.label_ja : category.label_en) : categoryValue;
+  return category
+    ? locale === 'ja'
+      ? category.label_ja
+      : category.label_en
+    : categoryValue;
 };
 
 export default function BooksDonutChart({
   locale,
   booksData,
   filterBy,
-  translations
+  translations,
 }: BooksDonutChartProps) {
+  // if no books data, show descriptive message
   if (!booksData) {
     return (
-      <div className="flex items-center justify-center text-muted-foreground">
-        {translations.page.analytics.noBooks}
+      <div className='flex flex-col items-center justify-center h-full w-full space-y-3'>
+        <BookOpenText className='animate-bounce h-8 w-8 text-primary/60' />
+        <p className='text-primary/60 text-lg font-bold'>
+          {translations.page.analytics.noBooks}
+        </p>
       </div>
     );
   }
@@ -129,48 +140,47 @@ export default function BooksDonutChart({
   const chartData = processData();
 
   return (
-    <div className="flex flex-col items-center justify-center gap-y-4 w-full">
-      <div className="flex items-center justify-between w-full">
-        <p className="font-bold text-primary text-lg text-center">
+    <div className='flex flex-col items-center justify-center gap-y-4 w-full'>
+      <div className='flex items-center justify-between w-full'>
+        <p className='font-bold text-primary text-lg text-center'>
           {filterBy === 'category'
             ? translations.page.analytics.booksByCategory
             : filterBy === 'rating'
-              ? translations.page.analytics.booksByRating
-              : filterBy === 'author'
-                ? translations.page.analytics.booksByAuthor
-                : 'Books'}
+            ? translations.page.analytics.booksByRating
+            : filterBy === 'author'
+            ? translations.page.analytics.booksByAuthor
+            : 'Books'}
         </p>
         <DropdownFilter
           locale={locale}
-          label={"Filter"}
-          searchParamKey="filter_by"
-          defaultValue="category"
+          label={'Filter'}
+          searchParamKey='filter_by'
+          defaultValue='category'
           list={BOOKS_DATA_FILTER_OPTIONS}
         />
       </div>
-      <ChartContainer config={{}} className="w-full">
+      <ChartContainer config={{}} className='w-full'>
         <PieChart>
           <Pie
             data={chartData}
-            cx="50%"
-            cy="50%"
+            cx='50%'
+            cy='50%'
             innerRadius={50}
             outerRadius={90}
             paddingAngle={2}
-            dataKey="count"
-            stroke="none"
+            dataKey='count'
+            stroke='none'
           >
             {chartData.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}
-                className="hover:opacity-80 transition-opacity cursor-pointer"
+                className='hover:opacity-80 transition-opacity cursor-pointer'
               />
             ))}
           </Pie>
 
           <ChartTooltip content={<ChartTooltipContent locale={locale} />} />
-
         </PieChart>
       </ChartContainer>
     </div>

@@ -5,7 +5,7 @@ import Filters from './Filters';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { Button } from '../ui/button';
 import { Trash2 } from 'lucide-react';
-import HintLabel from '../global/hint-label';
+import HintLabel from '../global/HintLabel';
 import { Filters as TFilters } from '@/types/book';
 import { LocaleDict } from '@/lib/locales';
 import { Locale } from '@/i18n.config';
@@ -28,6 +28,7 @@ export default function FilterAndSortSection({
   const handleClearAllFilters = () => {
     const params = new URLSearchParams(searchParams.toString());
 
+    // Clear all filters
     params.delete('category');
     params.delete('publication_year');
     params.delete('query');
