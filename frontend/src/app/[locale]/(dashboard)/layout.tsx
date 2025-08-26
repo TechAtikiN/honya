@@ -1,4 +1,3 @@
-import Appbar from '@/components/global/appbar';
 import MobileSidebar from '@/components/global/mobile-sidebar';
 import Sidebar from '@/components/global/sidebar';
 import { getSidebarLinks } from '@/constants/sidebar';

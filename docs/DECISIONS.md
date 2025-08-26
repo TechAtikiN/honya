@@ -41,7 +41,8 @@ graph TD
 ```bash
 honya/                              # Root Project Directory
 │
-├── backend/                        # Go Backend API
+├── backend/                        
+│   ├── api/index.go                # Application Entry Point for Production
 │   ├── config/                     # Environment & Configuration
 │   ├── controller/                 # HTTP Request Handlers
 │   ├── dto/                        # Data Transfer Objects
@@ -53,7 +54,7 @@ honya/                              # Root Project Directory
 │   ├── tests/                      # Unit & Integration Tests
 │   ├── utils/                      # Helper Functions & Utilities
 │   ├── docs/                       # Swagger Documentation
-│   └── main.go                     # Application Entry Point
+│   └── main_local.go               # Application Entry Point for Local Development
 │
 ├── frontend/                       # Next.js Frontend
 │   ├── src/
